@@ -10,17 +10,15 @@ views:
       - sensor.bathroom_temperature
       - sensor.bathroom_light
       - sensor.bathroom_humidity
-      - >-
-        sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_temperature
-      - >-
-        sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_relative_humidity
+      - sensor.thermostat_temperature
+      - sensor.thermostat_humidity
     cards:
       - type: thermostat
         entity: >-
-          climate.radio_thermostat_company_of_america_ct100_plus_thermostat_heating_1
+          climate.thermostat.heat
       - type: thermostat
         entity: >-
-          climate.radio_thermostat_company_of_america_ct100_plus_thermostat_cooling_1
+          climate.thermostat.cool
       - type: entities
         entities:
           - light.bedroom_sensor_status
