@@ -11,7 +11,7 @@ lovelace:
   mode: yaml
 
 zwave:
-  usb_path: /dev/ttyACM0
+  usb_path: /dev/ttyACM1
   network_key: !secret zwave_key
 
 mobile_app:

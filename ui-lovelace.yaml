@@ -10,13 +10,13 @@ views:
       - sensor.bathroom_temperature
       - sensor.bathroom_light
       - sensor.bathroom_humidity
-      - sensor.thermostat_temperature
-      - sensor.thermostat_humidity
+      - sensor.ct_100_temperature
+      - sensor.ct_100_humidity
     cards:
       - type: thermostat
-        entity: climate.thermostat_heat
+        entity: climate.ct_100_heat
       - type: thermostat
-        entity: climate.thermostat_cool
+        entity: climate.ct_100_cool
       - type: entities
         entities:
           - light.bedroom_sensor_status
