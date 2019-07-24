@@ -6,7 +6,12 @@ http:
   ssl_key: /ssl/privkey.pem
 
 zwave:
+  usb_path: /dev/ttyACM0
   network_key: !secret zwave_key
+
+mobile_app:
+
+ios:
 
 group: !include groups.yaml
 automation: !include automations.yaml
