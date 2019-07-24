@@ -12,6 +12,7 @@ views:
       - sensor.bathroom_humidity
       - sensor.ct_100_temperature
       - sensor.ct_100_humidity
+      - binary_sensor.front_door
     cards:
       - type: thermostat
         entity: climate.ct_100_heat
