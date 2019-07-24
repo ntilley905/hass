@@ -7,4 +7,7 @@ condition:
   entity_id: 'person.nathan'
   state: 'not_home'
 action:
-  service:
+  service: notify.mobile_app_nathans_iphone
+  data:
+    title: "Front Door"
+    message: "The front door is open!"
