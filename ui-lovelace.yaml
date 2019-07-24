@@ -3,8 +3,6 @@ views:
   - path: default_view
     title: Home
     badges:
-      - binary_sensor.bedroom_motion
-      - binary_sensor.bathroom_motion
       - person.nathan
       - sensor.bedroom_light
       - sensor.bedroom_humidity
@@ -16,11 +14,6 @@ views:
         sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_temperature
       - >-
         sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_relative_humidity
-      - >-
-        sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_indicator
-      - >-
-        sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_indicator_2
-      - sun.sun
     cards:
       - type: thermostat
         entity: >-
@@ -28,12 +21,6 @@ views:
       - type: thermostat
         entity: >-
           climate.radio_thermostat_company_of_america_ct100_plus_thermostat_cooling_1
-      - type: thermostat
-        entity: >-
-          climate.radio_thermostat_company_of_america_ct100_plus_thermostat_furnace
-      - type: thermostat
-        entity: >-
-          climate.radio_thermostat_company_of_america_ct100_plus_thermostat_dry_air
       - type: entities
         entities:
           - light.bedroom_sensor_status
@@ -45,14 +32,3 @@ views:
         title: Switch
       - type: weather-forecast
         entity: weather.home
-      - type: entities
-        entities:
-          - zwave.aeon_labs_zw090_z_stick_gen5_us
-          - zwave.unknown_node_8
-          - zwave.radio_thermostat_company_of_america_ct100_plus_thermostat
-          - zwave.unknown_node_5
-          - zwave.unknown_node_9
-          - zwave.unknown_node_14
-          - zwave.unknown_node_15
-          - zwave.unknown_node_6
-        title: Z-Wave
