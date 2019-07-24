@@ -5,6 +5,9 @@ http:
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
 
+lovelace:
+  mode: yaml
+
 zwave:
   usb_path: /dev/ttyACM0
   network_key: !secret zwave_key
