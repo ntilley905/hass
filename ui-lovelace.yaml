@@ -14,11 +14,9 @@ views:
       - sensor.thermostat_humidity
     cards:
       - type: thermostat
-        entity: >-
-          climate.thermostat.heat
+        entity: climate.thermostat_heat
       - type: thermostat
-        entity: >-
-          climate.thermostat.cool
+        entity: climate.thermostat_cool
       - type: entities
         entities:
           - light.bedroom_sensor_status
