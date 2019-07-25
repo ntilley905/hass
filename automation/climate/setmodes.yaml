@@ -23,7 +23,7 @@
       to: 'off'
   condition:
     condition: template
-    value_template: '{{ not is_state('input_boolean.trip_mode', 'on')}}'
+    value_template: '{{ not is_state("input_boolean.trip_mode", "on") }}'
   action:
     - service: input_number.set_value
       data_template:
