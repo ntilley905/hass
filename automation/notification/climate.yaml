@@ -4,7 +4,7 @@
       entity_id: input_number.climate_heat_point
   action:
     - delay:
-      seconds: 5
+        seconds: 5
     - service: notify.mobile_app_nathans_iphone
       data_template:
         title: 'Climate Setpoint Change'
