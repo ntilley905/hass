@@ -1,8 +1,8 @@
-- climate_cool_point:
-    min: 50
-    max: 85
-    unit_of_measurement: °F
-- climate_heat_point:
-    min: 50
-    max: 85
-    unit_of_measurement: °F
+climate_cool_point:
+  min: 50
+  max: 85
+  unit_of_measurement: °F
+climate_heat_point:
+  min: 50
+  max: 85
+  unit_of_measurement: °F
