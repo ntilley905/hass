@@ -29,3 +29,9 @@ views:
         title: Switch
       - type: weather-forecast
         entity: weather.home
+  - path: config
+    title: config
+    icon: mdi:settings
+    cards:
+      type: entities
+      entity: light.bedroom_sensor_status
