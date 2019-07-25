@@ -69,7 +69,7 @@ views:
           - automation.climate_set_home
           - automation.climate_set_away
           - automation.climate_set_trip
-      - type: entities:
+      - type: entities
         title: Other Automations
         entities:
           - automation.toggle_trip_mode
