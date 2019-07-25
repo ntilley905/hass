@@ -13,12 +13,11 @@
         entity_id: input_number.climate_cool_point
         value_template: '{{ states("input_number.climate_cool_default") | int }}'
 - alias: Climate Set Away
-  - trigger:
-      platform: state
+  trigger:
+    - platform: state
       entity_id: person.nathan
       to: 'not_home'
-  - trigger:
-      platform: state
+    - platform: state
       entity_id: input_boolean.trip_mode
       to: 'off'
   condition:
