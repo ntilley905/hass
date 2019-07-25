@@ -33,6 +33,7 @@ views:
     badges:
       - sensor.ct_100_temperature
       - sensor.ct_100_humidity
+      - sensor.hvac_action
     cards:
       - type: thermostat
         entity: climate.ct_100_heat
