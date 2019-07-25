@@ -19,4 +19,4 @@ mobile_app:
 ios:
 
 group: !include groups.yaml
-automation: !include_dir_merge_list automation/
+automation: !include_dir_merge_list automation
