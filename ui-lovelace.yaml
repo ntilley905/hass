@@ -14,10 +14,6 @@ views:
       - sensor.ct_100_humidity
       - binary_sensor.front_door
     cards:
-      - type: thermostat
-        entity: climate.ct_100_heat
-      - type: thermostat
-        entity: climate.ct_100_cool
       - type: entities
         entities:
           - light.bedroom_sensor_status
@@ -39,3 +35,15 @@ views:
       - type: entities
         entities:
           - automation.front_door
+  - path: climate
+    title: Climate
+    icon: mdi:air-conditioner
+    cards:
+      - type: thermostat
+        entity: climate.ct_100_heat
+      - type: thermostat
+        entity: climate.ct_100_cool
+      - type: entities
+        entities:
+          - input_number.climate_heat_point
+          - input_number.climate_cool_point
