@@ -31,6 +31,7 @@ views:
     cards:
       - type: entities
         entities:
+          - input_boolean.trip_mode
           - light.bedroom_sensor_status
       - type: entities
         entities:
@@ -47,3 +48,8 @@ views:
         entities:
           - input_number.climate_heat_point
           - input_number.climate_cool_point
+          - input_number.climate_heat_default
+          - input_number.climate_cool_default
+          - input_number.climate_away_offset
+          - input_number.climate_trip_offset
+          - input_number.climate_sleep_offset
