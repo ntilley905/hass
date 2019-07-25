@@ -4,9 +4,9 @@
     entity_id: input_number.climate_cool_point
   action:
     service: climate.set_temperature
-      data_template:
-        entity_id: climate.ct_100_cool
-        temperature: '{{ trigger.to_state.state | int }}'
+    data_template:
+      entity_id: climate.ct_100_cool
+      temperature: '{{ trigger.to_state.state | int }}'
 - alias: Set Heat Point
   trigger:
     platform: state
