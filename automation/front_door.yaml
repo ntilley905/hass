@@ -1,13 +1,14 @@
-trigger:
-  platform: state
-  entity_id: binary_sensor.front_door
-  to: 'on'
-condition:
-  condition: state
-  entity_id: 'person.nathan'
-  state: 'not_home'
-action:
-  service: notify.mobile_app_nathans_iphone
-  data:
-    title: "Front Door"
-    message: "The front door is open!"
+- alias: Front Door
+  trigger:
+    platform: state
+    entity_id: binary_sensor.front_door
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: 'person.nathan'
+    state: 'not_home'
+  action:
+    service: notify.mobile_app_nathans_iphone
+    data:
+      title: "Front Door"
+      message: "The front door is open!"
