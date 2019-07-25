@@ -30,12 +30,23 @@ views:
     icon: mdi:settings
     cards:
       - type: entities
+        title: Status
         entities:
           - input_boolean.trip_mode
-          - light.bedroom_sensor_status
       - type: entities
+        title: Notification Automations
         entities:
           - automation.front_door
+          - automation.climate_notifications
+      - type: entities
+        title: Climate Automations
+        entities:
+          - automation.climate_set_cool
+          - automation.climate_set_heat
+          - automation.climate_set_home
+          - automation.climate_set_away
+          - automation.climate_set_trip
+
   - path: climate
     title: Climate
     icon: mdi:air-conditioner

@@ -1,4 +1,4 @@
-- alias: Set Cool Point
+- alias: Climate Set Cool
   trigger:
     platform: state
     entity_id: input_number.climate_cool_point
@@ -7,7 +7,7 @@
     data_template:
       entity_id: climate.ct_100_cool
       temperature: '{{ trigger.to_state.state | int }}'
-- alias: Set Heat Point
+- alias: Climate Set Heat
   trigger:
     platform: state
     entity_id: input_number.climate_heat_point
