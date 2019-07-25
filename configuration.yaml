@@ -10,6 +10,12 @@ http:
 lovelace:
   mode: yaml
 
+zone:
+  - name: ATL
+    latitude: !secret atl_latitude
+    longitude: !secret atl_longitude
+    icon: mdi:airplane
+
 zwave:
   usb_path: /dev/ttyACM1
   network_key: !secret zwave_key
