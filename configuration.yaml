@@ -26,3 +26,4 @@ ios:
 
 group: !include groups.yaml
 automation: !include_dir_merge_list automation
+input_number: !include input_number.yaml
