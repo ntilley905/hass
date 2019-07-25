@@ -30,7 +30,6 @@ ios:
 #  username: !secret amcrest_user
 #  password: !secret amcrest_pass
 
-group: !include groups.yaml
 automation: !include_dir_merge_list automation
 input_number: !include input_number.yaml
 input_boolean: !include input_boolean.yaml
