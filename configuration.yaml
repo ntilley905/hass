@@ -18,5 +18,11 @@ mobile_app:
 
 ios:
 
+#Amcrest commented out pending finding user/password
+#amcrest:
+#  host: !secret amcrest_host
+#  username: !secret amcrest_user
+#  password: !secret amcrest_pass
+
 group: !include groups.yaml
 automation: !include_dir_merge_list automation
