@@ -27,26 +27,26 @@ views:
       - type: weather-forecast
         entity: weather.home
 
-- path: climate
-  title: Climate
-  icon: mdi:air-conditioner
-  badges:
-    - sensor.ct_100_temperature
-    - sensor.ct_100_humidity
-  cards:
-    - type: thermostat
-      entity: climate.ct_100_heat
-    - type: thermostat
-      entity: climate.ct_100_cool
-    - type: entities
-      entities:
-        - input_number.climate_heat_point
-        - input_number.climate_cool_point
-        - input_number.climate_heat_default
-        - input_number.climate_cool_default
-        - input_number.climate_away_offset
-        - input_number.climate_trip_offset
-        - input_number.climate_sleep_offset
+  - path: climate
+    title: Climate
+    icon: mdi:air-conditioner
+    badges:
+      - sensor.ct_100_temperature
+      - sensor.ct_100_humidity
+      cards:
+        - type: thermostat
+          entity: climate.ct_100_heat
+        - type: thermostat
+          entity: climate.ct_100_cool
+        - type: entities
+        entities:
+          - input_number.climate_heat_point
+          - input_number.climate_cool_point
+          - input_number.climate_heat_default
+          - input_number.climate_cool_default
+          - input_number.climate_away_offset
+          - input_number.climate_trip_offset
+          - input_number.climate_sleep_offset
 
   - path: config
     title: config
