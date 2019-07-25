@@ -33,5 +33,9 @@ views:
     title: config
     icon: mdi:settings
     cards:
-      type: entities
-      entity: light.bedroom_sensor_status
+      - type: entities
+        entities:
+          - light.bedroom_sensor_status
+      - type: entities
+        entities:
+          - automation.front_door
