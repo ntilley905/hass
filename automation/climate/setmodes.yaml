@@ -1,0 +1,49 @@
+- alias: Climate Set Home
+  trigger:
+    platform: state
+    entity_id: person.nathan
+    to: 'home'
+  action:
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.climate_heat_point
+        value: {{ states("input_number.climate_heat_default") | int }}
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.climate_cool_point
+        value: {{ states("input_number.climate_cool_default") | int }}
+- alias: Climate Set Away
+  - trigger:
+      platform: state
+      entity_id: person.nathan
+      to: 'not_home'
+  - trigger:
+      platform: state
+      entity_id: input_boolean.trip_mode
+      to: 'off'
+  condition:
+    condition: template
+    value_template: "{{ not is_state('input_boolean.trip_mode', 'on')}}"
+  action:
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.climate_heat_point
+        value: {{ states("input_number.climate_heat_default") | int - states("input_number.climate_away_offset") | int }}
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.climate_cool_point
+        value: {{ states("input_number.climate_cool_default") | int + states("input_number.climate_away_offset") | int }}
+- alias: Climate Set Trip
+  trigger:
+    platform: state
+    entity_id: input_boolean.trip_mode
+    to: 'on'
+  action:
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.climate_heat_point
+        value: {{ states("input_number.climate_heat_default") | int - states("input_number.climate_trip_offset") | int }}
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.climate_cool_point
+        value: {{ states("input_number.climate_cool_default") | int + states("input_number.climate_trip_offset") | int }}

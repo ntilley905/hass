@@ -8,3 +8,28 @@ climate_heat_point:
   min: 50
   max: 85
   unit_of_measurement: °F
+climate_cool_default:
+  name: Climate Cool Default
+  min: 50
+  max: 85
+  unit_of_measurement: °F
+climate_heat_default:
+  name: Climate Heat Default
+  min: 50
+  max: 85
+  unit_of_measurement: °F
+climate_away_offset:
+  name: Climate Away Offset
+  min: 50
+  max: 85
+  unit_of_measurement: °F
+climate_trip_offset:
+  name: Climate Trip Offset
+  min: 50
+  max: 85
+  unit_of_measurement: °F
+climate_sleep_offset:
+  name: Climate Sleep Offset
+  min: 50
+  max: 85
+  unit_of_measurement: °F
