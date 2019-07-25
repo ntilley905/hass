@@ -1,0 +1,11 @@
+- alias: Climate Notifications
+  trigger:
+    - platform: state
+      entity_id: input_number.climate_heat_point
+    - platform: state
+      entity_id: input_number.climate_cool_point
+  action:
+    service: notify.mobile_app_nathans_iphone
+    data_template:
+      title: 'Climate Setpoint Change'
+      message: 'Climate changed to {{ states("input_number.climate_cool_point") | int }} and {{ states("input_number.climate_heat_point") | int }}.'
