@@ -45,3 +45,4 @@ input_number: !include input_number.yaml
 input_boolean: !include input_boolean.yaml
 sensor: !include sensor.yaml
 light: !include light.yaml
+scene: !include scene.yaml

@@ -85,6 +85,7 @@ views:
         title: Light Automations
         entities:
           - automation.away_lights
+          - automation.home_lights
       - type: entities
         title: Climate Automations
         entities:

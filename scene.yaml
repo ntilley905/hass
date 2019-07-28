@@ -1,0 +1,6 @@
+- name: Welcome Home
+  entities:
+    light.kitchen_lights: on
+    light.island_dimmer:
+      state: on
+      brightness: 255

@@ -1,0 +1,12 @@
+- alias: Home Lights
+  trigger:
+    platform: state
+    entity_id: person.nathan
+    to: 'home'
+  condition:
+    condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'
+  action:
+    service: scene.turn_on
+    entity_id: scene.welcome_home
