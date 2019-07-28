@@ -11,8 +11,6 @@ views:
       - sensor.bathroom_temperature
       - sensor.bathroom_light
       - sensor.bathroom_humidity
-      - sensor.ct_100_temperature
-      - sensor.ct_100_humidity
       - binary_sensor.front_door
       - binary_sensor.amcrest_camera_motion_detected
     cards:
