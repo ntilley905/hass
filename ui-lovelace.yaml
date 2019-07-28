@@ -26,6 +26,8 @@ views:
         title: Switch
       - type: weather-forecast
         entity: weather.home
+#      - type: picture-entity
+#        entity: 
 
   - path: climate
     title: Climate

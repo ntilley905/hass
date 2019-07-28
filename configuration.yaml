@@ -24,11 +24,12 @@ mobile_app:
 
 ios:
 
-#Amcrest commented out pending finding user/password
-#amcrest:
-#  host: !secret amcrest_host
-#  username: !secret amcrest_user
-#  password: !secret amcrest_pass
+amcrest:
+  host: !secret amcrest_host
+  username: !secret amcrest_user
+  password: !secret amcrest_pass
+  binary_sensors:
+    - motion_detected
 
 automation: !include_dir_merge_list automation
 input_number: !include input_number.yaml
