@@ -20,7 +20,7 @@ zone:
     icon: mdi:airplane
 
 zwave:
-  usb_path: /dev/ttyACM1
+  usb_path: /dev/ttyACM0
   network_key: !secret zwave_key
 
 mobile_app:
