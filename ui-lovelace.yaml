@@ -35,16 +35,16 @@ views:
     cards:
       - type: entities
         entities:
-          - switch.kitchen_lights
+          - light.kitchen_lights
           - light.island_dimmer
-          - switch.hallway_light
+          - light.hallway_light
 
   - path: bedroom
     title: Bedroom
     cards:
       - type: entities
         entities:
-          - switch.bedroom_light
+          - light.bedroom_light
 
   - path: climate
     title: Climate

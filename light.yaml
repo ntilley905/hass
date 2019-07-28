@@ -1,0 +1,9 @@
+- platform: switch
+  name: Kitchen Lights
+  entity_id: switch.kitchen_lights
+- platform: switch
+  name: Hallway Light
+  entity_id: switch.hallway_light
+- platform: switch
+  name: Bedroom Light
+  entity_id: switch.bedroom_light
