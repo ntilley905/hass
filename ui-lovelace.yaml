@@ -14,6 +14,7 @@ views:
       - sensor.ct_100_temperature
       - sensor.ct_100_humidity
       - binary_sensor.front_door
+      - binary_sensor.amcrest_camera_motion_detected
     cards:
       - type: entities
         entities:
@@ -26,8 +27,8 @@ views:
         title: Switch
       - type: weather-forecast
         entity: weather.home
-#      - type: picture-entity
-#        entity: 
+      - type: picture-entity
+        entity: camera.amcrest_camera
 
   - path: climate
     title: Climate
