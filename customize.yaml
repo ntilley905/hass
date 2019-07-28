@@ -1,2 +1,4 @@
 camera.amcrest_camera:
   friendly_name: Living Room Camera
+binary_sensor.amcrest_camera_motion_detected:
+  friendly_name: Kitchen Motion
