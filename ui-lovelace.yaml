@@ -82,6 +82,10 @@ views:
           - automation.front_door
           - automation.climate_notifications
       - type: entities
+        title: Light Automations
+        entities:
+          - automation.away_lights
+      - type: entities
         title: Climate Automations
         entities:
           - automation.climate_set_cool
