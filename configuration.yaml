@@ -34,6 +34,12 @@ amcrest:
   binary_sensors:
     - motion_detected
 
+device_tracker:
+  platform: unifi
+  host: !secret unifi_host
+  username: !secret unifi_user
+  password: !secret unifi_pass
+
 automation: !include_dir_merge_list automation
 input_number: !include input_number.yaml
 input_boolean: !include input_boolean.yaml
