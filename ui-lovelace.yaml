@@ -31,7 +31,7 @@ views:
         entity: camera.amcrest_camera
 
   - path: living_room
-    name: Living Room
+    title: Living Room
     cards:
       - type: entities
         entities:
@@ -40,7 +40,7 @@ views:
           - switch.hallway_light
 
   - path: bedroom
-    name: Bedroom
+    title: Bedroom
     cards:
       - type: entities
         entities:
