@@ -8,3 +8,14 @@
     data:
       airport: 'ATL'
       type: 'GDP'
+- alias: ATL Ground Stop
+  trigger:
+    platform: state
+    entity_id: sensor.atl_ground_stop
+    to: 'True'
+  action:
+    service: script.delay_notify
+    data_template:
+      airport:  'ATL'
+      type: 'GS'
+      endtime: {{ states("sensor.atl_end_time") }}
