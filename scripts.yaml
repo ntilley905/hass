@@ -48,3 +48,4 @@ script_loop:
       data_template:
         mp3filename: "{{ mp3filename }}"
         loop: "yes"
+        loop_delay: "{{ loop_delay }}"
