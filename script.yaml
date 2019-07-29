@@ -2,11 +2,11 @@ delay_notify:
   alias: Delay Notify
   sequence:
     - service_template: >
-      {% if target == 'discord' %}
-        notify.discord_webhook
-      {% elif target == 'ios' %}
-        notify.mobile_app_nathans_iphone
-      {% endif %}
+        {% if target == 'discord' %}
+          notify.discord_webhook
+        {% elif target == 'ios' %}
+          notify.mobile_app_nathans_iphone
+        {% endif %}
       data_template:
         title: {{ airport }} delay!
         message: >
