@@ -47,4 +47,4 @@ script_loop:
     - service_template: "{{ script_to_loop }}"
       data_template:
         mp3filename: "{{ mp3filename }}"
-        loop: "{{ loop }}"
+        loop: "yes"
