@@ -33,7 +33,7 @@ marantz_speak:
         media_content_type: "url"
         media_content_id: "https://raw.githubusercontent.com/ntilley905/hass/script-test/mp3/{{ mp3filename }}.mp3"
     - condition: template
-      value_template: {{ loop == 'yes'}}
+      value_template: "{{ loop == 'yes'}}"
     - service: script.script_loop
       data:
         script_to_loop: script.marantz_speak
