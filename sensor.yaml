@@ -3,3 +3,19 @@
     hvac_action:
       friendly_name: HVAC Action
       value_template: '{{ state_attr("climate.ct_100_cool", "hvac_action") }}'
+- platform: mqtt
+  name: "ATL Delay"
+  state_topic: "delays/ATL"
+  value_template: "{{ value_json.Delay }}"
+- platform: mqtt
+  name: "ATL Ground Delay"
+  state_topic: "delays/ATL"
+  value_template: "{{ value_json.GroundDelay }}"
+- platform: mqtt
+  name: "ATL Ground Stop"
+  state_topic: "delays/ATL"
+  value_template: "{{ value_json.GroundStop }}"
+- platform: mqtt
+  name: "ATL End Time"
+  state_topic: "delays/ATL"
+  value_template: "{{ value_json.EndTime }}"
