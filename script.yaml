@@ -4,4 +4,4 @@ delay_notify:
     - service: notify.discord_webhook
       data_template:
         message: >
-          {{ airport }} went into a {% if type == 'GDP' %} ground delay program! {% elif type == 'GS' %} ground stop that ends at {{ endtime }}! {% endif %}
+          {{ airport }}{% if type == 'GDP' %} went into a ground delay program! {% elif type == 'GS' %} went into a ground stop that ends at {{ endtime }}! {% elif type == 'GSCX' %} ground stop canceled.{% endif %}

@@ -11,11 +11,23 @@
 - alias: ATL Ground Stop
   trigger:
     platform: state
-    entity_id: sensor.atl_ground_stop
-    to: 'True'
+    entity_id: sensor.atl_end_time
+  condition:
+    condition: template
+    value_template: '{{ not is_state("sensor.atl_end_time", "None")}}'
   action:
     service: script.delay_notify
     data_template:
-      airport:  'ATL'
+      airport: 'ATL'
       type: 'GS'
       endtime: '{{ states("sensor.atl_end_time") }}'
+- alias: ATL GS Cancel
+  trigger:
+    platform: state
+    entity_id: sensor.atl_end_time
+    to: 'None'
+  action:
+    service: script.delay_notify
+    data:
+      airport: 'ATL'
+      type: 'GSCX'
