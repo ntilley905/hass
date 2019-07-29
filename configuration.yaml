@@ -85,9 +85,14 @@ mobile_app:
 ios:
 
 notify:
-  platform: discord
-  token: !secret discord_token
-
+  platform: rest
+  name: discord_webhook
+  method: POST
+  message_param_name: content
+  title_param_name: username
+  data:
+    username: Home Assistant
+  resource: !secret discord_webhook_url
 amcrest:
   host: !secret amcrest_host
   username: !secret amcrest_user
