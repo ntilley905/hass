@@ -131,6 +131,17 @@ views:
     title: config
     icon: mdi:settings
     cards:
+      - type: entity-filter
+        entities:
+          - group.loopable_scripts
+        state_filter:
+          - "on"
+        card:
+          type: entity-button
+          tap_action:
+            action: call-service
+            service: script.script_loop_stop
+          name: Stop Loop
       - type: entities
         title: Status
         entities:
