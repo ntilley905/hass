@@ -14,7 +14,7 @@
     entity_id: sensor.atl_end_time
   condition:
     condition: template
-    value_template: '{{ not is_state("sensor.atl_end_time", "None")}}'
+    value_template: "{{ not is_state('sensor.atl_end_time', 'None') }}"
   action:
     service: script.delay_notify
     data_template:
