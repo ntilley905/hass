@@ -38,8 +38,13 @@ marantz_speak:
       data:
         script_to_loop: script.marantz_speak
         loop_delay: 5
+        mp3filename: {{ mp3filename }}
+        loop: {{ loop }}
 script_loop:
   alias: Loop a Passed Script
   sequence:
     - delay: "{{ loop_delay }}"
-    - service_template: "{{ script_to_loop }}.turn_on"
+    - service_template: "{{ script_to_loop }}"
+      data:
+        mp3filename: {{ mp3filename }}
+        loop: {{ loop }}
