@@ -73,7 +73,7 @@ views:
       - type: entities
         title: ATL Delays
         entities:
-          - sensor.atl_delay
+          - sensor.dtw_delay
           - sensor.atl_ground_delay
           - sensor.atl_ground_stop
           - sensor.atl_end_time
@@ -132,6 +132,24 @@ views:
         entities:
           - automation.front_door
           - automation.climate_notifications
+          - automation.atl_ground_delay
+          - automation.atl_ground_stop
+          - automation.atl_gs_cancel
+          - automation.dtw_ground_delay
+          - automation.dtw_ground_stop
+          - automation.dtw_gs_cancel
+          - automation.lga_ground_delay
+          - automation.lga_ground_stop
+          - automation.lga_gs_cancel
+          - automation.jfk_ground_delay
+          - automation.jfk_ground_stop
+          - automation.jfk_gs_cancel
+          - automation.bos_ground_delay
+          - automation.bos_ground_stop
+          - automation.bos_gs_cancel
+          - automation.ord_ground_delay
+          - automation.ord_ground_stop
+          - automation.ord_gs_cancel
       - type: entities
         title: Light Automations
         entities:
