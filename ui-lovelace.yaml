@@ -143,6 +143,7 @@ views:
             service: script.script_loop_stop
           entity: script.script_loop_stop
           name: Stop Loop
+        show_empty: false
       - type: entities
         title: Status
         entities:
