@@ -77,6 +77,7 @@ views:
           - sensor.atl_ground_delay
           - sensor.atl_ground_stop
           - sensor.atl_end_time
+          - input_boolean.atl_notify
         show_header_toggle: false
       - type: entities
         title: DTW Delays
@@ -85,6 +86,7 @@ views:
           - sensor.dtw_ground_delay
           - sensor.dtw_ground_stop
           - sensor.dtw_end_time
+          - input_boolean.dtw_notify
         show_header_toggle: false
       - type: entities
         title: LGA Delays
@@ -93,6 +95,7 @@ views:
           - sensor.lga_ground_delay
           - sensor.lga_ground_stop
           - sensor.lga_end_time
+          - input_boolean.lga_notify
         show_header_toggle: false
       - type: entities
         title: JFK Delays
@@ -101,6 +104,7 @@ views:
           - sensor.jfk_ground_delay
           - sensor.jfk_ground_stop
           - sensor.jfk_end_time
+          - input_boolean.jfk_notify
         show_header_toggle: false
       - type: entities
         title: BOS Delays
@@ -109,6 +113,7 @@ views:
           - sensor.bos_ground_delay
           - sensor.bos_ground_stop
           - sensor.bos_end_time
+          - input_boolean.bos_notify
         show_header_toggle: false
       - type: entities
         title: ORD Delays
@@ -117,6 +122,7 @@ views:
           - sensor.ord_ground_delay
           - sensor.ord_ground_stop
           - sensor.ord_end_time
+          - input_boolean.ord_notify
         show_header_toggle: false
 
   - path: config
