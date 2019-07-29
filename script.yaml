@@ -11,3 +11,18 @@ delay_notify:
         title: "{{ airport }} delay!"
         message: >
           {{ airport }}{% if type == 'GDP' %} went into a ground delay program! {% elif type == 'GS' %} went into a ground stop that ends at {{ endtime }}! {% elif type == 'GSCX' %} ground stop canceled.{% endif %}
+adam_mp3:
+  alias: Tell Me How You Really Feel
+  sequence:
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.marantz_sr5012
+        volume_level: "0.6"
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.marantz_sr5012
+        media_content_type: "url"
+        media_content_id: "https://raw.githubusercontent.com/ntilley905/hass/master/mp3/adam.mp3"
+    - service: media_player.media_stop
+      data:
+        entity_id: media_player.marantz_sr5012
