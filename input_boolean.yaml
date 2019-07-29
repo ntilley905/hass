@@ -1,2 +1,14 @@
 trip_mode:
   name: Trip Mode
+atl_notify:
+  name: Enable ATL Notifications
+dtw_notify:
+  name: Enable DTW Notifications
+lga_notify:
+  name: Enable LGA Notifications
+jfk_notify:
+  name: Enable JFK Notifications
+bos_notify:
+  name: Enable BOS Notifications
+ord_notify:
+  name: Enable ORD Notifications
