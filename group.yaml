@@ -2,3 +2,4 @@ loopable_scripts:
   entities:
     - script.marantz_speak
     - script.script_loop
+    - script.flash_lights
