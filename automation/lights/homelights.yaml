@@ -4,9 +4,9 @@
     entity_id: person.nathan
     to: 'home'
   condition:
-    condition: state
-    entity_id: sun.sun
-    state: 'below_horizon'
+    condition: sun
+    after: sunset
+    after_offset: "-01:00:00"
   action:
     service: scene.turn_on
     entity_id: scene.welcome_home
