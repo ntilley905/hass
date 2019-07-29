@@ -141,6 +141,7 @@ views:
           tap_action:
             action: call-service
             service: script.script_loop_stop
+          entity: script.script_loop_stop
           name: Stop Loop
       - type: entities
         title: Status
