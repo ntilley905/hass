@@ -50,3 +50,9 @@ script_loop:
         mp3filename: "{{ mp3filename }}"
         loop: "yes"
         loop_delay: "{{ loop_delay }}"
+script_loop_stop:
+  alias: Stop Looping Script
+  sequence:
+    - service: group.turn_off
+      data:
+        entity_id: group.loopable_scripts

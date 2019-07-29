@@ -1,0 +1,4 @@
+loopable_scripts:
+  entities:
+    - script.marantz_speak
+    - script.script_loop
