@@ -8,6 +8,6 @@ delay_notify:
           notify.mobile_app_nathans_iphone
         {% endif %}
       data_template:
-        title: {{ airport }} delay!
+        title: "{{ airport }} delay!"
         message: >
           {{ airport }}{% if type == 'GDP' %} went into a ground delay program! {% elif type == 'GS' %} went into a ground stop that ends at {{ endtime }}! {% elif type == 'GSCX' %} ground stop canceled.{% endif %}
