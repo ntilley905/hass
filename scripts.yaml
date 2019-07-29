@@ -18,15 +18,15 @@ adam_mp3:
       data:
         entity_id: media_player.marantz_sr5012
         volume_level: "0.6"
-    - delay: 
-	seconds: 2
+    - delay:
+	     seconds: 2
     - service: media_player.play_media
       data:
         entity_id: media_player.marantz_sr5012
         media_content_type: "url"
         media_content_id: "https://raw.githubusercontent.com/ntilley905/hass/master/mp3/adam.mp3"
-    - delay: 
-	seconds: 2
+    - delay:
+	     seconds: 2
     - service: media_player.media_stop
       data:
         entity_id: media_player.marantz_sr5012
