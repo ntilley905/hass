@@ -135,6 +135,7 @@ views:
         title: Status
         entities:
           - input_boolean.trip_mode
+          - group.all_lights
       - type: entities
         title: Notification Automations
         entities:
