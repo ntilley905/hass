@@ -12,6 +12,9 @@
       data:
         title: "Front Door"
         message: "The front door is open!"
+    - service: homeassistant.turn_on
+      data:
+        entity_id: group.all_lights
     - service: script.marantz_speak
       data:
         mp3filename: "alarm"
