@@ -117,3 +117,4 @@ sensor: !include sensor.yaml
 light: !include light.yaml
 scene: !include scene.yaml
 script: !include scripts.yaml
+group: !include group.yaml
