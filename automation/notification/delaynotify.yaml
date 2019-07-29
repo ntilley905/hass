@@ -12,7 +12,7 @@
     - condition: state
       entity_id: input_boolean.atl_notify
       state: 'on'
-    - service: script.delay_notify_ios
+    - service: script.delay_notify
       data:
         target: 'ios'
         airport: 'ATL'
