@@ -62,6 +62,8 @@ flash_lights:
     - service: light.turn_on
       entity_id: light.kitchen_lights
     - delay: 1
+    - service: light.turn_off
+      entity_id: light.kitchen_lights
     - service: script.script_loop
       data:
         script_to_loop: script.flash_lights
