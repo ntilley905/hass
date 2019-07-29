@@ -18,3 +18,4 @@
     - service: script.marantz_speak
       data:
         mp3filename: "alarm"
+        loop: "yes"
