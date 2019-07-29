@@ -4,10 +4,18 @@
     entity_id: sensor.atl_ground_delay
     to: 'True'
   action:
-    service: script.delay_notify
-    data:
-      airport: 'ATL'
-      type: 'GDP'
+    - service: script.delay_notify
+      data:
+        target: 'discord'
+        airport: 'ATL'
+        type: 'GDP'
+    - condition: state
+      entity_id: input_boolean.atl_notify
+    - service: script.delay_notify_ios
+      data:
+        target: 'ios'
+        airport: 'ATL'
+        type: 'GDP'
 - alias: ATL Ground Stop
   trigger:
     platform: state
