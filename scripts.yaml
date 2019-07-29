@@ -28,6 +28,3 @@ adam_mp3:
         entity_id: media_player.marantz_sr5012
         media_content_type: "url"
         media_content_id: "https://raw.githubusercontent.com/ntilley905/hass/master/mp3/adam.mp3"
-    - service: media_player.media_stop
-      data:
-        entity_id: media_player.marantz_sr5012
