@@ -66,6 +66,18 @@ views:
           - input_number.climate_trip_offset
           - input_number.climate_sleep_offset
 
+  - path: delays
+    title: Delays
+    icon: mdi:airplane
+    cards:
+      - type: entities
+        title: ATL Delays
+        entities:
+          - sensor.atl_delay
+          - sensor.atl_ground_delay
+          - sensor.atl_ground_stop
+          - sensor.atl_end_time
+
   - path: config
     title: config
     icon: mdi:settings
