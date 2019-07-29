@@ -35,7 +35,7 @@ marantz_speak:
     - condition: template
       value_template: "{{ loop == 'yes'}}"
     - service: script.script_loop
-      data:
+      data_template:
         script_to_loop: script.marantz_speak
         loop_delay: 5
         mp3filename: {{ mp3filename }}
@@ -45,6 +45,6 @@ script_loop:
   sequence:
     - delay: "{{ loop_delay }}"
     - service_template: "{{ script_to_loop }}"
-      data:
+      data_template:
         mp3filename: {{ mp3filename }}
         loop: {{ loop }}
