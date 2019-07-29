@@ -36,6 +36,8 @@ views:
           - light.kitchen_lights
           - light.island_dimmer
           - light.hallway_light
+      - type: media-control
+        entity: media_player.marantz_sr5012
 
   - path: bedroom
     title: Bedroom
