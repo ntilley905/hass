@@ -32,3 +32,14 @@ marantz_speak:
         entity_id: media_player.marantz_sr5012
         media_content_type: "url"
         media_content_id: "https://raw.githubusercontent.com/ntilley905/hass/script-test/mp3/{{ mp3filename }}.mp3"
+    - condition: template
+      value_template: {{ loop == 'yes'}}
+    - service: script.script_loop
+      data:
+        script_to_loop: script.marantz_speak
+        loop_delay: 5
+script_loop:
+  alias: Loop a Passed Script
+  sequence:
+    - delay: "{{ loop_delay }}"
+    - service_template: "{{ script_to_loop }}.turn_on"
