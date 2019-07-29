@@ -11,6 +11,7 @@
         type: 'GDP'
     - condition: state
       entity_id: input_boolean.atl_notify
+      state: 'on'
     - service: script.delay_notify_ios
       data:
         target: 'ios'
