@@ -28,3 +28,18 @@ adam_mp3:
         entity_id: media_player.marantz_sr5012
         media_content_type: "url"
         media_content_id: "https://raw.githubusercontent.com/ntilley905/hass/master/mp3/adam.mp3"
+marantz_speak:
+  alias: Marantz Speak
+  sequence:
+    - service: media_player.clear_playlist
+      data:
+        entity_id: media_player.marantz_sr5012
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.marantz_sr5012
+        volume_level: "0.6"
+    - service: media_player.play_media
+      data_template:
+        entity_id: media_player.marantz_sr5012
+        media_content_type: "url"
+        media_content_id: "https://raw.githubusercontent.com/ntilley905/hass/script-test/mp3/{{ mp3filename }}.mp3"
