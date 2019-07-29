@@ -175,6 +175,6 @@ views:
         title: Other Automations
         entities:
           - automation.toggle_trip_mode
-      - type: entities:
+      - type: entities
         entities:
           - script.adam_mp3
