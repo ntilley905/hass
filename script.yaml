@@ -1,0 +1,12 @@
+delay_notify:
+  alias: Delay Notify
+  sequence:
+    - service: notify.discord_webhook
+      data_template:
+        message: >
+          "{{ airport }}" went into a
+          {% if type == 'GDP' %}
+            ground delay program!
+          {% elif type == 'GS' %}
+            ground stop!
+          {% endif %}

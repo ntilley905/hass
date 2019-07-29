@@ -1,0 +1,10 @@
+- alias: ATL Ground Delay
+  trigger:
+    platform: state
+    entity_id: sensor.atl_ground_delay
+    to: 'True'
+  action:
+    service: script.delay_notify
+    data:
+      airport: 'ATL'
+      type: 'GDP'

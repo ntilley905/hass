@@ -112,3 +112,4 @@ input_boolean: !include input_boolean.yaml
 sensor: !include sensor.yaml
 light: !include light.yaml
 scene: !include scene.yaml
+script: !include script.yaml
