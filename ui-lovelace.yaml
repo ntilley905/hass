@@ -14,6 +14,18 @@ views:
       - binary_sensor.front_door
       - binary_sensor.amcrest_camera_motion_detected
     cards:
+      - type: entity-filter
+        entities:
+          - group.loopable_scripts
+        state_filter:
+          - "on"
+        card:
+          type: entity-button
+          tap_action:
+            action: call-service
+            service: script.script_loop_stop
+          entity: script.script_loop_stop
+          name: Stop Loop
       - type: entities
         entities:
           - light.bedroom_sensor_status
