@@ -56,3 +56,13 @@ script_loop_stop:
     - service: homeassistant.turn_off
       data:
         entity_id: group.loopable_scripts
+flash_lights:
+  alias: Flash Lights
+  sequence:
+    - service: light.turn_on
+      entity_id: light.kitchen_lights
+    - delay: 1
+    - service: script.script_loop
+      data:
+        script_to_loop: script.flash_lights
+        loop_delay: 1
