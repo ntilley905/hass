@@ -77,6 +77,47 @@ views:
           - sensor.atl_ground_delay
           - sensor.atl_ground_stop
           - sensor.atl_end_time
+        show_header_toggle: false
+      - type: entities
+        title: DTW Delays
+        entities:
+          - sensor.dtw_delay
+          - sensor.dtw_ground_delay
+          - sensor.dtw_ground_stop
+          - sensor.dtw_end_time
+        show_header_toggle: false
+      - type: entities
+        title: LGA Delays
+        entities:
+          - sensor.lga_delay
+          - sensor.lga_ground_delay
+          - sensor.lga_ground_stop
+          - sensor.lga_end_time
+        show_header_toggle: false
+      - type: entities
+        title: JFK Delays
+        entities:
+          - sensor.jfk_delay
+          - sensor.jfk_ground_delay
+          - sensor.jfk_ground_stop
+          - sensor.jfk_end_time
+        show_header_toggle: false
+      - type: entities
+        title: BOS Delays
+        entities:
+          - sensor.bos_delay
+          - sensor.bos_ground_delay
+          - sensor.bos_ground_stop
+          - sensor.bos_end_time
+        show_header_toggle: false
+      - type: entities
+        title: ORD Delays
+        entities:
+          - sensor.ord_delay
+          - sensor.ord_ground_delay
+          - sensor.ord_ground_stop
+          - sensor.ord_end_time
+        show_header_toggle: false
 
   - path: config
     title: config
