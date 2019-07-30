@@ -1,8 +1,11 @@
 - alias: Climate Set Home
   trigger:
-    platform: state
-    entity_id: person.nathan
-    to: 'home'
+    - platform: state
+      entity_id: person.nathan
+      to: 'home'
+    - platform: state
+      entity_id: input_boolean.sleep_mode
+      to: 'off'
   action:
     - service: input_number.set_value
       data_template:
@@ -46,3 +49,17 @@
       data_template:
         entity_id: input_number.climate_cool_point
         value: '{{ states("input_number.climate_cool_default") | int + states("input_number.climate_trip_offset") | int }}'
+- alias: Climate Set Sleep
+  trigger:
+    platform: state
+    entity_id: input_boolean.sleep_mode
+    to: 'on'
+  action:
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.climate_heat_point
+        value: '{{ states("input_number.climate_heat_default") | int - states("input_number.climate_sleep_offset") | int }}'
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.climate_cool_point
+        value: '{{ states("input_number.climate_cool_default") | int + states("input_number.climate_sleep_offset") | int }}'

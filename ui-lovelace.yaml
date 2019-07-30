@@ -27,15 +27,16 @@ views:
           entity: script.script_loop_stop
           name: Stop Loop
         show_empty: false
-      - type: entities
+      - type: entity-filter
         entities:
-          - light.bedroom_sensor_status
-          - light.bathroom_sensor_status
-        title: Light
-      - type: entities
-        entities:
+          - input_boolean.trip_mode
+          - input_boolean.sleep_mode
           - switch.coffee_maker
-        title: Switch
+          - binary_sensor.front_door
+        state_filter:
+          - "on"
+          - "open"
+        title: Status
       - type: weather-forecast
         entity: weather.home
       - type: picture-entity
@@ -161,6 +162,7 @@ views:
         title: Status
         entities:
           - input_boolean.trip_mode
+          - input_boolean.sleep_mode
           - group.all_lights
       - type: entities
         title: Notification Automations

@@ -1,5 +1,7 @@
 trip_mode:
   name: Trip Mode
+sleep_mode:
+  name: Sleep Mode
 atl_notify:
   name: Enable ATL Notifications
 dtw_notify:
