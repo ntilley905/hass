@@ -99,3 +99,9 @@
   name: "ORD End Time"
   state_topic: "delays/ORD"
   value_template: "{{ value_json.EndTime }}"
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    - 'time_date'
+    - 'time_utc'
