@@ -12,6 +12,12 @@
       data:
         title: "Front Door"
         message: "The front door is open!"
+        data:
+          attachment:
+            content-type: jpeg
+          push:
+            category: alarm
+          entity_id: camera.amcrest_camera
     - service: homeassistant.turn_on
       data:
         entity_id: group.all_lights
