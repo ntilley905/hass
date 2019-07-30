@@ -93,12 +93,13 @@ alarm_clock:
       data:
         title: "Good Morning"
         message: "Time to start the day."
-        push:
-          category: "alarm_clock"
-          sound:
-            name: default
-            critical: 1
-            volume: 1.0
+        data:
+          push:
+            category: "alarm_clock"
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
     - condition: state
       entity_id: input_boolean.alarm_clock_coffee
       state: 'on'
