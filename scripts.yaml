@@ -31,7 +31,7 @@ marantz_speak:
       data_template:
         entity_id: media_player.marantz_sr5012
         media_content_type: "url"
-        media_content_id: "https://raw.githubusercontent.com/ntilley905/hass/script-test/mp3/{{ mp3filename }}.mp3"
+        media_content_id: "https://raw.githubusercontent.com/ntilley905/hass/master/mp3/{{ mp3filename }}.mp3"
     - condition: template
       value_template: "{{ loop == 'yes'}}"
     - delay: 5
