@@ -16,7 +16,7 @@
           attachment:
             content-type: jpeg
           push:
-            category: alarm
+            category: camera
           entity_id: camera.amcrest_camera
     - service: homeassistant.turn_on
       data:
