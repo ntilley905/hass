@@ -1,0 +1,8 @@
+- alias: iOS Stop Loop Action
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: STOP_LOOP
+  action:
+    service: script.script_loop_stop

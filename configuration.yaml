@@ -83,6 +83,14 @@ mqtt:
 mobile_app:
 
 ios:
+  push:
+    categories:
+      - name: Camera With Actions
+        identifier: 'camera'
+        actions:
+          - identifier: 'STOP_LOOP'
+            title: 'Stop Loop'
+            authenticationRequired: true
 
 notify:
   platform: rest
@@ -93,6 +101,7 @@ notify:
   data:
     username: Home Assistant
   resource: !secret discord_webhook_url
+  
 amcrest:
   host: !secret amcrest_host
   username: !secret amcrest_user
