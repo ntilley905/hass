@@ -62,6 +62,9 @@ history:
       - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_temperature_2
       - sensor.sim_1
       - sensor.ssid
+      - sensor.time
+      - sensor.time_date
+      - sensor.time_utc
 
 
 zone:
