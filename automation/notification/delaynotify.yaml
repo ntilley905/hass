@@ -4,6 +4,9 @@
     entity_id: sensor.atl_ground_delay
     to: 'True'
   action:
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
@@ -12,6 +15,9 @@
     - condition: state
       entity_id: input_boolean.atl_notify
       state: 'on'
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'ios'
@@ -25,6 +31,9 @@
     condition: template
     value_template: "{{ not is_state('sensor.atl_end_time', 'None') }}"
   action:
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data_template:
         target: 'discord'
@@ -34,6 +43,9 @@
     - condition: state
       entity_id: input_boolean.atl_notify
       state: 'on'
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data_template:
         target: 'ios'
@@ -46,6 +58,9 @@
     entity_id: sensor.atl_end_time
     to: 'None'
   action:
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
@@ -54,6 +69,9 @@
     - condition: state
       entity_id: input_boolean.atl_notify
       state: 'on'
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'ios'
@@ -65,6 +83,9 @@
     entity_id: sensor.dtw_ground_delay
     to: 'True'
   action:
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
@@ -73,6 +94,9 @@
     - condition: state
       entity_id: input_boolean.atl_notify
       state: 'on'
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'ios'
@@ -86,6 +110,9 @@
     condition: template
     value_template: "{{ not is_state('sensor.dtw_end_time', 'None') }}"
   action:
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data_template:
         target: 'discord'
@@ -95,6 +122,9 @@
     - condition: state
       entity_id: input_boolean.dtw_notify
       state: 'on'
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data_template:
         target: 'ios'
@@ -107,6 +137,9 @@
     entity_id: sensor.dtw_end_time
     to: 'None'
   action:
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
@@ -115,6 +148,9 @@
     - condition: state
       entity_id: input_boolean.dtw_notify
       state: 'on'
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'ios'
@@ -126,6 +162,9 @@
     entity_id: sensor.lga_ground_delay
     to: 'True'
   action:
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
@@ -134,6 +173,9 @@
     - condition: state
       entity_id: input_boolean.lga_notify
       state: 'on'
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'ios'
@@ -147,6 +189,9 @@
     condition: template
     value_template: "{{ not is_state('sensor.lga_end_time', 'None') }}"
   action:
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data_template:
         target: 'discord'
@@ -156,6 +201,9 @@
     - condition: state
       entity_id: input_boolean.lga_notify
       state: 'on'
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data_template:
         target: 'ios'
@@ -168,6 +216,9 @@
     entity_id: sensor.lga_end_time
     to: 'None'
   action:
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
@@ -176,6 +227,9 @@
     - condition: state
       entity_id: input_boolean.lga_notify
       state: 'on'
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'ios'
@@ -187,6 +241,9 @@
     entity_id: sensor.jfk_ground_delay
     to: 'True'
   action:
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
@@ -195,6 +252,9 @@
     - condition: state
       entity_id: input_boolean.jfk_notify
       state: 'on'
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'ios'
@@ -208,6 +268,9 @@
     condition: template
     value_template: "{{ not is_state('sensor.jfk_end_time', 'None') }}"
   action:
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data_template:
         target: 'discord'
@@ -217,6 +280,9 @@
     - condition: state
       entity_id: input_boolean.jfk_notify
       state: 'on'
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data_template:
         target: 'ios'
@@ -229,6 +295,9 @@
     entity_id: sensor.jfk_end_time
     to: 'None'
   action:
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
@@ -237,6 +306,9 @@
     - condition: state
       entity_id: input_boolean.jfk_notify
       state: 'on'
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'ios'
@@ -248,6 +320,9 @@
     entity_id: sensor.bos_ground_delay
     to: 'True'
   action:
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
@@ -256,6 +331,9 @@
     - condition: state
       entity_id: input_boolean.bos_notify
       state: 'on'
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'ios'
@@ -269,6 +347,9 @@
     condition: template
     value_template: "{{ not is_state('sensor.bos_end_time', 'None') }}"
   action:
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data_template:
         target: 'discord'
@@ -278,6 +359,9 @@
     - condition: state
       entity_id: input_boolean.bos_notify
       state: 'on'
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data_template:
         target: 'ios'
@@ -290,6 +374,9 @@
     entity_id: sensor.bos_end_time
     to: 'None'
   action:
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
@@ -298,6 +385,9 @@
     - condition: state
       entity_id: input_boolean.bos_notify
       state: 'on'
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'ios'
@@ -309,6 +399,9 @@
     entity_id: sensor.ord_ground_delay
     to: 'True'
   action:
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
@@ -317,6 +410,9 @@
     - condition: state
       entity_id: input_boolean.ord_notify
       state: 'on'
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'ios'
@@ -330,6 +426,9 @@
     condition: template
     value_template: "{{ not is_state('sensor.ord_end_time', 'None') }}"
   action:
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data_template:
         target: 'discord'
@@ -339,6 +438,9 @@
     - condition: state
       entity_id: input_boolean.ord_notify
       state: 'on'
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data_template:
         target: 'ios'
@@ -351,6 +453,9 @@
     entity_id: sensor.ord_end_time
     to: 'None'
   action:
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
@@ -359,6 +464,9 @@
     - condition: state
       entity_id: input_boolean.ord_notify
       state: 'on'
+    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
+      timeout: '00:00:30'
+      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'ios'
