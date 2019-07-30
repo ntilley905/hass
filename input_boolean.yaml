@@ -14,3 +14,7 @@ bos_notify:
   name: Enable BOS Notifications
 ord_notify:
   name: Enable ORD Notifications
+alarm_clock_enable:
+  name: Alarm Clock
+alarm_clock_coffee:
+  name: Enable Coffee

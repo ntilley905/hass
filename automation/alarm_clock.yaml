@@ -1,0 +1,32 @@
+- alias: Alarm Clock
+  trigger:
+    platform: template
+    value_template: "{{ states('sensor.time') == (state_attr('input_datetime.alarm_clock', 'timestamp') | int | timestamp_custom('%H:%M', False)) }}"
+  condition:
+    condition: state
+    entity_id: input_boolean.alarm_clock_enable
+    state: 'on'
+  action:
+    service: script.alarm_clock
+- alias: Snooze Alarm Clock
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: SNOOZE_ALARM_CLOCK
+  action:
+    - service: script.turn_off
+      entity_id: script.alarm_clock
+    - service: homeassistant.turn_off
+      entity_id: group.all_lights
+    - delay: '00:05:00'
+    - service: script.alarm_clock
+- alias: Stop Alarm Clock
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: STOP_ALARM_CLOCK
+  action:
+    - service: script.turn_off
+      entity_id: script.alarm_clock

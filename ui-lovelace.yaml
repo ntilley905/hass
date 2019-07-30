@@ -165,6 +165,12 @@ views:
           - input_boolean.sleep_mode
           - group.all_lights
       - type: entities
+        title: Alarm Clock
+        entities:
+          - input_boolean.alarm_clock_enable
+          - input_datetime.alarm_clock
+          - input_boolean.alarm_clock_coffee
+      - type: entities
         title: Notification Automations
         entities:
           - automation.front_door
