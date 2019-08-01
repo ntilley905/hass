@@ -82,6 +82,13 @@ views:
           - input_number.climate_trip_offset
           - input_number.climate_sleep_offset
 
+  - path: media-player
+    title: Media Player
+    icon: mdi:music
+    cards: 
+      - type: media-control
+        entity: media_player.spotify
+
   - path: delays
     title: Delays
     icon: mdi:airplane
