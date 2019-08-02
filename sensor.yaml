@@ -6,6 +6,7 @@
     indoor_temperature:
       friendly_name: Indoor Temperature
       value_template: '{{ ((float(states.sensor.bedroom_temperature.state) + float(states.sensor.bathroom_temperature.state) + float(states.sensor.ct_100_temperature.state)) / 3) | round(1) }}'
+      unit_of_measurement: '°F'
 - platform: mqtt
   name: "ATL Delay"
   state_topic: "delays/ATL"
