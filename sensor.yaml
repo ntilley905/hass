@@ -3,6 +3,9 @@
     hvac_action:
       friendly_name: HVAC Action
       value_template: '{{ state_attr("climate.ct_100_cool", "hvac_action") }}'
+    indoor_temperature:
+      friendly_name: Indoor Temperature
+      value_template: '{{ ((float(states.sensor.bedroom_temperature.state) + float(states.sensor.bathroom_temperature.state) + float(states.sensor.ct_100_temperature.state)) / 3) | round(1) }}'
 - platform: mqtt
   name: "ATL Delay"
   state_topic: "delays/ATL"
@@ -105,3 +108,10 @@
     - 'date'
     - 'time_date'
     - 'time_utc'
+- platform: history_stats
+  name: AC Cool Today
+  entity_id: sensor.hvac_action
+  state: 'cooling'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
