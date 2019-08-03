@@ -135,6 +135,19 @@ media_player:
   client_id: !secret spotify_client_id
   client_secret: !secret spotify_client_secret
 
+fan:
+  - platform: template
+    fans:
+      living_room:
+        friendly_name: Living Room Fan
+        value_template: "{{ states('switch.living_room_ceiling_fan') }}"
+        turn_on:
+          service: switch.turn_on
+          entity_id: switch.living_room_ceiling_fan
+        turn_off:
+          service: switch.turn_off
+          entity_id: switch.living_room_ceiling_fan
+
 automation: !include_dir_merge_list automation
 input_number: !include input_number.yaml
 input_boolean: !include input_boolean.yaml
