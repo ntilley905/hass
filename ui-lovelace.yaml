@@ -45,57 +45,97 @@ views:
 
   - path: living_room
     title: Living Room
+    badges:
+      - binary_sensor.front_door
+      - binary_sensor.kitchen_motion
     cards:
-      - type: entities
-        entities:
-          - light.kitchen_lights
-          - light.island_dimmer
-          - light.hallway_light
-          - fan.living_room
-      - type: glance
-        entities:
-          - sensor.living_room_temperature_z
-          - sensor.living_room_humidity_z
-          - sensor.living_room_luminance_z
-          - binary_sensor.living_room_motion_z
-          - binary_sensor.front_door
-          - binary_sensor.kitchen_motion
-        show_name: false
-        title: Living Room Sensor
-      - type: glance
-        title: Hallway Sensor
-        entities:
-          - sensor.hallway_temperature_z
-          - sensor.hallway_humidity_z
-          - sensor.hallway_luminance_z
-          - binary.sensor.hallway_motion_z
-        show_name: false
-      - type: media-control
-        entity: media_player.marantz_sr5012
+      - type: vertical-stack
+        cards:
+          - type: glance
+            title: Hallway Sensor
+            entities:
+              - sensor.hallway_temperature_z
+              - sensor.hallway_humidity_z
+              - sensor.hallway_luminance_z
+              - binary.sensor.hallway_motion_z
+            show_name: false
+          - type: entity-button
+            entity_id: light.hallway_light
+            name: Hallway
+      - type: vertical-stack
+        cards:
+          - type: glance
+            title: Living Room Sensor
+            entities:
+              - sensor.living_room_temperature_z
+              - sensor.living_room_humidity_z
+              - sensor.living_room_luminance_z
+              - binary_sensor.living_room_motion_z
+            show_name: false
+          - type: horizontal-stack
+            cards:
+              - type: entity-button
+                entity: light.kitchen_lights
+                name: Kitchen
+              - type: entity-button
+                entity: light.island_dimmer
+                name: Island
+              - type: entity-button
+                entity: fan.living_room
+                name: Fan
+
 
   - path: bedroom
     title: Bedroom
     cards:
+      - type: vertical-stack
+        cards:
+          - type: glance
+            title: Bedroom Sensor (Z)
+            entities:
+              - sensor.bedroom_temperature_z
+              - sensor.bedroom_humidity_z
+              - sensor.bedroom_luminance_z
+              - binary_sensor.bedroom_motion_z
+            show_name: false
+          - type: glance
+            title: Bedroom Sensor
+            entities:
+              - sensor.bedroom_temperature
+              - sensor.bedroom_humidity
+              - sensor.bedroom_light
+              - binary_sensor.bedroom_motion
+            show_name: false
       - type: entities
         entities:
           - light.bedroom_light
           - light.bedroom_lamp
           - light.tv_backlight
-      - type: glance
-        title: Bedroom Sensor (Z)
-        entities:
-          - sensor.bedroom_temperature_z
-          - sensor.bedroom_humidity_z
-          - sensor.bedroom_luminance_z
-          - binary_sensor.bedroom_motion_z
-        show_name: false
-      - type: glance
-        title: Bedroom Sensor
-        entities:
-          - sensor.bedroom_temperature
-          - sensor.bedroom_humidity
-          - sensor.bedroom_light
-          - binary_sensor.bedroom_motion
+
+
+  - path: bathroom
+    title: Bathroom
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: glance
+            title: Bathroom Sensor (Z)
+            entities:
+              - sensor.bathroom_temperature_z
+              - sensor.bathroom_humidity_z
+              - sensor.bathroom_luminance_z
+              - binary_sensor.bathroom_motion_z
+            show_name: false
+          - type: glance
+            title: Bathroom Sensor
+            entities:
+              - sensor.bathroom_temperature
+              - sensor.bathroom_humidity
+              - sensor.bathroom_light
+              - binary_sensor.bathroom_motion
+            show_name: false
+      - type: entity-button
+        entity: light.bathroom_lights
 
 
   - path: climate
@@ -121,12 +161,15 @@ views:
           - input_number.climate_trip_offset
           - input_number.climate_sleep_offset
 
+
   - path: media-player
     title: Media Player
     icon: mdi:music
     cards:
       - type: media-control
         entity: media_player.spotify
+      - type: media-control
+        entity: media_player.marantz_sr5012
 
   - path: delays
     title: Delays

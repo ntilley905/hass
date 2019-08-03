@@ -148,6 +148,14 @@ fan:
           service: switch.turn_off
           entity_id: switch.living_room_ceiling_fan
 
+light:
+  - platform: group
+    name: Bathroom Lights
+    entities:
+      - light.bathroom_light_1
+      - light.bathroom_light_2
+      - light.bathroom_light_3
+
 automation: !include_dir_merge_list automation
 input_number: !include input_number.yaml
 input_boolean: !include input_boolean.yaml
