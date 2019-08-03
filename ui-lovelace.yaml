@@ -11,6 +11,7 @@ views:
       - sensor.bathroom_temperature
       - sensor.bathroom_light
       - sensor.bathroom_humidity
+      - sensor.indoor_temperature
       - binary_sensor.front_door
       - binary_sensor.amcrest_camera_motion_detected
     cards:
@@ -67,6 +68,7 @@ views:
       - sensor.ct_100_temperature
       - sensor.ct_100_humidity
       - sensor.hvac_action
+      - sensor.ac_cool_today
     cards:
       - type: thermostat
         entity: climate.ct_100_heat
@@ -81,6 +83,13 @@ views:
           - input_number.climate_away_offset
           - input_number.climate_trip_offset
           - input_number.climate_sleep_offset
+
+  - path: media-player
+    title: Media Player
+    icon: mdi:music
+    cards: 
+      - type: media-control
+        entity: media_player.spotify
 
   - path: delays
     title: Delays
