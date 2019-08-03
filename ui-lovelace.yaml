@@ -47,7 +47,7 @@ views:
     title: Living Room
     badges:
       - binary_sensor.front_door
-      - binary_sensor.kitchen_motion
+      - binary_sensor.amcrest_camera_motion_detected
     cards:
       - type: vertical-stack
         cards:
@@ -57,7 +57,7 @@ views:
               - sensor.hallway_temperature_z
               - sensor.hallway_humidity_z
               - sensor.hallway_luminance_z
-              - binary.sensor.hallway_motion_z
+              - binary_sensor.hallway_motion_z
             show_name: false
           - type: entity-button
             entity_id: light.hallway_light
