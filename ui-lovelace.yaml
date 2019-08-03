@@ -51,6 +51,25 @@ views:
           - light.kitchen_lights
           - light.island_dimmer
           - light.hallway_light
+          - fan.living_room
+      - type: glance
+        entities:
+          - sensor.living_room_temperature_z
+          - sensor.living_room_humidity_z
+          - sensor.living_room_luminance_z
+          - binary_sensor.living_room_motion_z
+          - binary_sensor.front_door
+          - binary_sensor.kitchen_motion
+        show_name: false
+        title: Living Room Sensor
+      - type: glance
+        title: Hallway Sensor
+        entities:
+          - sensor.hallway_temperature_z
+          - sensor.hallway_humidity_z
+          - sensor.hallway_luminance_z
+          - binary.sensor.hallway_motion_z
+        show_name: false
       - type: media-control
         entity: media_player.marantz_sr5012
 
@@ -60,6 +79,24 @@ views:
       - type: entities
         entities:
           - light.bedroom_light
+          - light.bedroom_lamp
+          - light.tv_backlight
+      - type: glance
+        title: Bedroom Sensor (Z)
+        entities:
+          - sensor.bedroom_temperature_z
+          - sensor.bedroom_humidity_z
+          - sensor.bedroom_luminance_z
+          - binary_sensor.bedroom_motion_z
+        show_name: false
+      - type: glance
+        title: Bedroom Sensor
+        entities:
+          - sensor.bedroom_temperature
+          - sensor.bedroom_humidity
+          - sensor.bedroom_light
+          - binary_sensor.bedroom_motion
+
 
   - path: climate
     title: Climate
@@ -87,7 +124,7 @@ views:
   - path: media-player
     title: Media Player
     icon: mdi:music
-    cards: 
+    cards:
       - type: media-control
         entity: media_player.spotify
 
