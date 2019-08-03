@@ -60,7 +60,7 @@ views:
               - binary_sensor.hallway_motion_z
             show_name: false
           - type: entity-button
-            entity_id: light.hallway_light
+            entity: light.hallway_light
             name: Hallway
       - type: vertical-stack
         cards:
