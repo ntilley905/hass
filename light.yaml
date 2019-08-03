@@ -7,3 +7,9 @@
 - platform: switch
   name: Bedroom Light
   entity_id: switch.bedroom_light
+- platform: group
+  name: Bathroom Lights
+  entities:
+    - light.bathroom_light_1
+    - light.bathroom_light_2
+    - light.bathroom_light_3
