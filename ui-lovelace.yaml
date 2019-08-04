@@ -81,6 +81,7 @@ views:
                 entity: switch.coffee_maker
                 name: Coffee
           - type: horizontal-stack
+            cards:
               - type: light
                 entity: light.island_dimmer
                 name: Island
