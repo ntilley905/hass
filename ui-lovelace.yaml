@@ -5,15 +5,7 @@ views:
     title: Home
     badges:
       - person.nathan
-      - sensor.bedroom_light
-      - sensor.bedroom_humidity
-      - sensor.bedroom_temperature
-      - sensor.bathroom_temperature
-      - sensor.bathroom_light
-      - sensor.bathroom_humidity
-      - sensor.indoor_temperature
       - binary_sensor.front_door
-      - binary_sensor.amcrest_camera_motion_detected
     cards:
       - type: entity-filter
         entities:
@@ -34,6 +26,10 @@ views:
           - input_boolean.sleep_mode
           - switch.coffee_maker
           - binary_sensor.front_door
+      - type: history-graph
+        entities:
+          - sensor.indoor_temperature
+          - sensor.dark_sky_temperature
         state_filter:
           - "on"
           - "open"

@@ -114,6 +114,10 @@ notify:
     username: Home Assistant
   resource: !secret discord_webhook_url
 
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api
+
 amcrest:
   host: !secret amcrest_host
   username: !secret amcrest_user

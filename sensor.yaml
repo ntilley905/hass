@@ -116,3 +116,33 @@
   type: time
   start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
   end: '{{ now() }}'
+- platform: darksky
+  api_key: !secret darksky_api
+  forecast:
+    - 0
+  hourly_forecast:
+    - 0
+    - 1
+  monitored_conditions:
+    - summary
+    - icon
+    - precip_type
+    - temperature
+    - apparent_temperature
+    - dew_point
+    - cloud_cover
+    - humidity
+    - pressure
+    - visbility
+    - ozone
+    - minutely_summary
+    - hourly_summary
+    - daily_summary
+    - temperature_high
+    - temperature_low
+    - apparent_temperature_high
+    - apparent_temperature_low
+    - uv_index
+    - nearest_storm_distance
+  scan_interval:
+    minutes: 3
