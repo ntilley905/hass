@@ -26,13 +26,13 @@ views:
           - input_boolean.sleep_mode
           - switch.coffee_maker
           - binary_sensor.front_door
+        state_filter:
+          - "on"
+          - "open"
       - type: history-graph
         entities:
           - sensor.indoor_temperature
           - sensor.dark_sky_temperature
-        state_filter:
-          - "on"
-          - "open"
         title: Status
       - type: weather-forecast
         entity: weather.home
