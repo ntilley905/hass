@@ -1,7 +1,0 @@
-- alias: Guest Lights
-  trigger:
-    platform: webhook
-    webhook_id: guest_lights
-  action:
-    service: light.toggle
-    entity_id: light.island_dimmer

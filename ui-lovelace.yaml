@@ -78,6 +78,10 @@ views:
                 entity: light.kitchen_lights
                 name: Kitchen
               - type: entity-button
+                entity: switch.coffee_maker
+                name: Coffee
+          - type: horizontal-stack
+              - type: light
                 entity: light.island_dimmer
                 name: Island
               - type: entity-button
