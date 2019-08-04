@@ -133,7 +133,7 @@
     - cloud_cover
     - humidity
     - pressure
-    - visbility
+    - visibility
     - ozone
     - minutely_summary
     - hourly_summary
