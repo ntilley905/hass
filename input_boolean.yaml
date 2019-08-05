@@ -18,3 +18,5 @@ alarm_clock_enable:
   name: Alarm Clock
 alarm_clock_coffee:
   name: Enable Coffee
+guest_mode:
+  name: Guest Mode
