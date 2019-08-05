@@ -4,9 +4,6 @@
     entity_id: sensor.atl_ground_delay
     to: 'True'
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
@@ -15,9 +12,6 @@
     - condition: state
       entity_id: input_boolean.atl_notify
       state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'ios'
@@ -31,24 +25,9 @@
     condition: template
     value_template: "{{ not is_state('sensor.atl_end_time', 'None') }}"
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data_template:
         target: 'discord'
-        airport: 'ATL'
-        type: 'GS'
-        endtime: '{{ states("sensor.atl_end_time") }}'
-    - condition: state
-      entity_id: input_boolean.atl_notify
-      state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
-    - service: script.delay_notify
-      data_template:
-        target: 'ios'
         airport: 'ATL'
         type: 'GS'
         endtime: '{{ states("sensor.atl_end_time") }}'
@@ -58,23 +37,9 @@
     entity_id: sensor.atl_end_time
     to: 'None'
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
-        airport: 'ATL'
-        type: 'GSCX'
-    - condition: state
-      entity_id: input_boolean.atl_notify
-      state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
-    - service: script.delay_notify
-      data:
-        target: 'ios'
         airport: 'ATL'
         type: 'GSCX'
 - alias: DTW Ground Delay
@@ -83,23 +48,9 @@
     entity_id: sensor.dtw_ground_delay
     to: 'True'
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
-        airport: 'DTW'
-        type: 'GDP'
-    - condition: state
-      entity_id: input_boolean.atl_notify
-      state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
-    - service: script.delay_notify
-      data:
-        target: 'ios'
         airport: 'DTW'
         type: 'GDP'
 - alias: DTW Ground Stop
@@ -110,24 +61,9 @@
     condition: template
     value_template: "{{ not is_state('sensor.dtw_end_time', 'None') }}"
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data_template:
         target: 'discord'
-        airport: 'DTW'
-        type: 'GS'
-        endtime: '{{ states("sensor.dtw_end_time") }}'
-    - condition: state
-      entity_id: input_boolean.dtw_notify
-      state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
-    - service: script.delay_notify
-      data_template:
-        target: 'ios'
         airport: 'DTW'
         type: 'GS'
         endtime: '{{ states("sensor.dtw_end_time") }}'
@@ -137,23 +73,9 @@
     entity_id: sensor.dtw_end_time
     to: 'None'
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
-        airport: 'DTW'
-        type: 'GSCX'
-    - condition: state
-      entity_id: input_boolean.dtw_notify
-      state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
-    - service: script.delay_notify
-      data:
-        target: 'ios'
         airport: 'DTW'
         type: 'GSCX'
 - alias: LGA Ground Delay
@@ -162,23 +84,9 @@
     entity_id: sensor.lga_ground_delay
     to: 'True'
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
-        airport: 'LGA'
-        type: 'GDP'
-    - condition: state
-      entity_id: input_boolean.lga_notify
-      state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
-    - service: script.delay_notify
-      data:
-        target: 'ios'
         airport: 'LGA'
         type: 'GDP'
 - alias: LGA Ground Stop
@@ -189,24 +97,9 @@
     condition: template
     value_template: "{{ not is_state('sensor.lga_end_time', 'None') }}"
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data_template:
         target: 'discord'
-        airport: 'LGA'
-        type: 'GS'
-        endtime: '{{ states("sensor.lga_end_time") }}'
-    - condition: state
-      entity_id: input_boolean.lga_notify
-      state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
-    - service: script.delay_notify
-      data_template:
-        target: 'ios'
         airport: 'LGA'
         type: 'GS'
         endtime: '{{ states("sensor.lga_end_time") }}'
@@ -216,23 +109,9 @@
     entity_id: sensor.lga_end_time
     to: 'None'
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
-        airport: 'LGA'
-        type: 'GSCX'
-    - condition: state
-      entity_id: input_boolean.lga_notify
-      state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
-    - service: script.delay_notify
-      data:
-        target: 'ios'
         airport: 'LGA'
         type: 'GSCX'
 - alias: JFK Ground Delay
@@ -241,23 +120,9 @@
     entity_id: sensor.jfk_ground_delay
     to: 'True'
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
-        airport: 'JFK'
-        type: 'GDP'
-    - condition: state
-      entity_id: input_boolean.jfk_notify
-      state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
-    - service: script.delay_notify
-      data:
-        target: 'ios'
         airport: 'JFK'
         type: 'GDP'
 - alias: JFK Ground Stop
@@ -268,24 +133,9 @@
     condition: template
     value_template: "{{ not is_state('sensor.jfk_end_time', 'None') }}"
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data_template:
         target: 'discord'
-        airport: 'JFK'
-        type: 'GS'
-        endtime: '{{ states("sensor.jfk_end_time") }}'
-    - condition: state
-      entity_id: input_boolean.jfk_notify
-      state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
-    - service: script.delay_notify
-      data_template:
-        target: 'ios'
         airport: 'JFK'
         type: 'GS'
         endtime: '{{ states("sensor.jfk_end_time") }}'
@@ -295,23 +145,9 @@
     entity_id: sensor.jfk_end_time
     to: 'None'
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
-        airport: 'JFK'
-        type: 'GSCX'
-    - condition: state
-      entity_id: input_boolean.jfk_notify
-      state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
-    - service: script.delay_notify
-      data:
-        target: 'ios'
         airport: 'JFK'
         type: 'GSCX'
 - alias: BOS Ground Delay
@@ -320,23 +156,9 @@
     entity_id: sensor.bos_ground_delay
     to: 'True'
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
-        airport: 'BOS'
-        type: 'GDP'
-    - condition: state
-      entity_id: input_boolean.bos_notify
-      state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
-    - service: script.delay_notify
-      data:
-        target: 'ios'
         airport: 'BOS'
         type: 'GDP'
 - alias: BOS Ground Stop
@@ -347,24 +169,9 @@
     condition: template
     value_template: "{{ not is_state('sensor.bos_end_time', 'None') }}"
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data_template:
         target: 'discord'
-        airport: 'BOS'
-        type: 'GS'
-        endtime: '{{ states("sensor.bos_end_time") }}'
-    - condition: state
-      entity_id: input_boolean.bos_notify
-      state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
-    - service: script.delay_notify
-      data_template:
-        target: 'ios'
         airport: 'BOS'
         type: 'GS'
         endtime: '{{ states("sensor.bos_end_time") }}'
@@ -374,23 +181,9 @@
     entity_id: sensor.bos_end_time
     to: 'None'
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
-        airport: 'BOS'
-        type: 'GSCX'
-    - condition: state
-      entity_id: input_boolean.bos_notify
-      state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
-    - service: script.delay_notify
-      data:
-        target: 'ios'
         airport: 'BOS'
         type: 'GSCX'
 - alias: ORD Ground Delay
@@ -399,23 +192,9 @@
     entity_id: sensor.ord_ground_delay
     to: 'True'
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
-        airport: 'ORD'
-        type: 'GDP'
-    - condition: state
-      entity_id: input_boolean.ord_notify
-      state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
-    - service: script.delay_notify
-      data:
-        target: 'ios'
         airport: 'ORD'
         type: 'GDP'
 - alias: ORD Ground Stop
@@ -426,24 +205,9 @@
     condition: template
     value_template: "{{ not is_state('sensor.ord_end_time', 'None') }}"
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data_template:
         target: 'discord'
-        airport: 'ORD'
-        type: 'GS'
-        endtime: '{{ states("sensor.ord_end_time") }}'
-    - condition: state
-      entity_id: input_boolean.ord_notify
-      state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
-    - service: script.delay_notify
-      data_template:
-        target: 'ios'
         airport: 'ORD'
         type: 'GS'
         endtime: '{{ states("sensor.ord_end_time") }}'
@@ -453,22 +217,8 @@
     entity_id: sensor.ord_end_time
     to: 'None'
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
-        airport: 'ORD'
-        type: 'GSCX'
-    - condition: state
-      entity_id: input_boolean.ord_notify
-      state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
-    - service: script.delay_notify
-      data:
-        target: 'ios'
         airport: 'ORD'
         type: 'GSCX'
