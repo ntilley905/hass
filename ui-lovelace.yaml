@@ -179,7 +179,7 @@ views:
       - type: entities
         title: ATL Delays
         entities:
-          - sensor.dtw_delay
+          - sensor.atl_delay
           - sensor.atl_ground_delay
           - sensor.atl_ground_stop
           - sensor.atl_end_time
