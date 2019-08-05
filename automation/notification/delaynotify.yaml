@@ -4,9 +4,6 @@
     entity_id: sensor.atl_ground_delay
     to: 'True'
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
@@ -15,9 +12,6 @@
     - condition: state
       entity_id: input_boolean.atl_notify
       state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'ios'
@@ -31,9 +25,6 @@
     condition: template
     value_template: "{{ not is_state('sensor.atl_end_time', 'None') }}"
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data_template:
         target: 'discord'
@@ -43,9 +34,6 @@
     - condition: state
       entity_id: input_boolean.atl_notify
       state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data_template:
         target: 'ios'
@@ -58,9 +46,6 @@
     entity_id: sensor.atl_end_time
     to: 'None'
   action:
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'discord'
@@ -69,9 +54,6 @@
     - condition: state
       entity_id: input_boolean.atl_notify
       state: 'on'
-    - wait_template: "{{ is_state('script.delay_notify', 'off')}}"
-      timeout: '00:00:30'
-      continue_on_timeout: true
     - service: script.delay_notify
       data:
         target: 'ios'
