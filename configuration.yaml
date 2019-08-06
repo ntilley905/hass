@@ -3,6 +3,8 @@ homeassistant:
 
 default_config:
 
+discovery:
+
 http:
   base_url: !secret base_url
   ssl_certificate: /ssl/fullchain.pem
@@ -139,13 +141,6 @@ media_player:
   - platform: spotify
     client_id: !secret spotify_client_id
     client_secret: !secret spotify_client_secret
-  - platform: volumio
-    name: Volumio
-    host: !secret volumio_host
-    port: 3000
-  - platform: mpd
-    name: volumio_mpd
-    host: !secret volumio_host
 
 fan:
   - platform: template
