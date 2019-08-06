@@ -3,6 +3,8 @@ homeassistant:
 
 default_config:
 
+discovery:
+
 http:
   base_url: !secret base_url
   ssl_certificate: /ssl/fullchain.pem
