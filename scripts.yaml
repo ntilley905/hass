@@ -111,4 +111,4 @@ morning_tts:
     service: tts.google_translate_say
     data_template:
       entity_id: media_player.volumio_mpd
-      message: "{{ Good morning! The current time is now().strftime('%H:%M'). Today's weather is states('sensor.dark_sky_summary_0d') Here's the news. }}"
+      message: "Good morning! The current time is {{ now().strftime('%H:%M') }}. Today's weather is {{ states('sensor.dark_sky_summary_0d') }} Here's the news."
