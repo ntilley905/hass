@@ -105,3 +105,10 @@ alarm_clock:
       state: 'on'
     - service: switch.turn_on
       entity_id: switch.coffee_maker
+morning_tts:
+  alias: Morning TTS
+  sequence:
+    service: tts.google_translate_say
+    data_template:
+      entity_id: media_player.volumio_mpd
+      message: "{{ Good morning! The current time is now().strftime('%H:%M'). Today's weather is states('sensor.dark_sky_summary_0d') Here's the news. }}"
