@@ -2,3 +2,60 @@ camera.amcrest_camera:
   friendly_name: Living Room Camera
 binary_sensor.amcrest_camera_motion_detected:
   friendly_name: Kitchen Motion
+device_tracker.saras_iphone:
+  friendly_name: Sara's iPhone
+sensor.bathroom_humidity_z:
+  icon: mdi:water-percent
+  unit_of_measurement: '%'
+sensor.bathroom_luminance_z:
+  icon: mdi:lightbulb-on-outline
+binary_sensor.bathroom_motion_z:
+  device_class: motion
+sensor.bathroom_temperature:
+  icon: mdi:thermometer
+sensor.bathroom_temperature_z:
+  icon: mdi:thermometer
+  unit_of_measurement: °F
+sensor.bedroom_humidity_z:
+  icon: mdi:water-percent
+  unit_of_measurement: '%'
+sensor.bedroom_light:
+  icon: mdi:lightbulb-on-outline
+sensor.bedroom_luminance_z:
+  icon: mdi:lightbulb-on-outline
+  unit_of_measurement: '%'
+binary_sensor.bedroom_motion_z:
+  device_class: motion
+sensor.bedroom_temperature:
+  icon: mdi:thermometer
+sensor.bedroom_temperature_z:
+  icon: mdi:thermometer
+  unit_of_measurement: °F
+switch.coffee_maker:
+  icon: mdi:coffee
+sensor.hallway_humidity_z:
+  icon: mdi:water-percent
+  unit_of_measurement: '%'
+sensor.hallway_luminance_z:
+  icon: mdi:lightbulb-on-outline
+  unit_of_measurement: '%'
+binary_sensor.hallway_motion_z:
+  device_class: motion
+sensor.hallway_temperature_z:
+  icon: mdi:thermometer
+  unit_of_measurement: °F
+sensor.indoor_temperature:
+  icon: mdi:thermometer
+binary_sensor.front_door:
+  device_class: door
+sensor.living_room_humidity_z:
+  icon: mdi:water-percent
+  unit_of_measurement: '%'
+sensor.living_room_luminance_z:
+  icon: mdi:lightbulb-on-outline
+  unit_of_measurement: '%'
+binary_sensor.living_room_motion_z:
+  device_class: motion
+sensor.living_room_temperature_z:
+  icon: mdi:thermometer
+  unit_of_measurement: °F
