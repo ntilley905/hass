@@ -1,0 +1,17 @@
+- alias: Turn Guest Mode On
+  trigger:
+    platform: state
+    entity_id: group.guest_devices
+    to: 'home'
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.guest_mode
+
+- alias: Turn Guest Mode Off
+  trigger:
+    platform: state
+    entity_id: group.guest_devices
+    to: 'not_home'
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.guest_mode
