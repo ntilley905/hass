@@ -146,3 +146,8 @@
     - nearest_storm_distance
   scan_interval:
     minutes: 3
+- platform: scrape
+  name: NPR News Scrape
+  resource: https://www.npr.org/rss/podcast.php?id=500005
+  select: 'enclosure'
+  attribute: 'url'
