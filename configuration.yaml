@@ -138,9 +138,12 @@ heos:
   host: 192.168.5.30
 
 media_player:
-  platform: spotify
-  client_id: !secret spotify_client_id
-  client_secret: !secret spotify_client_secret
+  - platform: spotify
+    client_id: !secret spotify_client_id
+    client_secret: !secret spotify_client_secret
+  - platform: volumio
+    host: !secret volumio_host
+    port: 3000
 
 fan:
   - platform: template
