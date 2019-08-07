@@ -112,3 +112,21 @@
   payload_on: "True"
   payload_off: "False"
   value_template: "{{ value_json.GroundStop }}"
+- platform: template
+  sensors:
+    living_room_motion_z:
+      friendly_name: "Living Room Motion"
+      device_class: motion
+      value_template: "{{ is_state('sensor.living_room_burglar_z', '8') }}"
+    hallway_motion_z:
+      friendly_name: "Hallway Motion"
+      device_class: motion
+      value_template: "{{ is_state('sensor.hallway_burglar_z', '8') }}"
+    bedroom_motion_z:
+      friendly_name: "Bedroom Motion"
+      device_class: motion
+      value_template: "{{ is_state('sensor.bedroom_burglar_z', '8') }}"
+    bathroom_motion_z:
+      friendly_name: "Bathroom Motion"
+      device_class: motion
+      value_template: "{{ is_state('sensor.bathroom_burglar_z', '8') }}"
