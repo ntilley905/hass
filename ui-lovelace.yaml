@@ -181,56 +181,62 @@ views:
       - type: entities
         title: ATL Delays
         entities:
-          - sensor.atl_delay
-          - sensor.atl_ground_delay
-          - sensor.atl_ground_stop
+          - binary_sensor.atl_delay
+          - binary_sensor.atl_ground_delay
+          - binary_sensor.atl_ground_stop
           - sensor.atl_end_time
-          - input_boolean.atl_notify
+          - input_boolean.atl_discord_notify
+          - input_boolean.atl_ios_notify
         show_header_toggle: false
       - type: entities
         title: DTW Delays
         entities:
-          - sensor.dtw_delay
-          - sensor.dtw_ground_delay
-          - sensor.dtw_ground_stop
+          - binary_sensor.dtw_delay
+          - binary_sensor.dtw_ground_delay
+          - binary_sensor.dtw_ground_stop
           - sensor.dtw_end_time
-          - input_boolean.dtw_notify
+          - input_boolean.dtw_discord_notify
+          - input_boolean.dtw_ios_notify
         show_header_toggle: false
       - type: entities
         title: LGA Delays
         entities:
-          - sensor.lga_delay
-          - sensor.lga_ground_delay
-          - sensor.lga_ground_stop
+          - binary_sensor.lga_delay
+          - binary_sensor.lga_ground_delay
+          - binary_sensor.lga_ground_stop
           - sensor.lga_end_time
-          - input_boolean.lga_notify
+          - input_boolean.lga_discord_notify
+          - input_boolean.lga_ios_notify
         show_header_toggle: false
       - type: entities
         title: JFK Delays
         entities:
-          - sensor.jfk_delay
-          - sensor.jfk_ground_delay
-          - sensor.jfk_ground_stop
+          - binary_sensor.jfk_delay
+          - binary_sensor.jfk_ground_delay
+          - binary_sensor.jfk_ground_stop
           - sensor.jfk_end_time
-          - input_boolean.jfk_notify
+          - input_boolean.jfk_discord_notify
+          - input_boolean.jfk_ios_notify
         show_header_toggle: false
       - type: entities
         title: BOS Delays
         entities:
-          - sensor.bos_delay
-          - sensor.bos_ground_delay
-          - sensor.bos_ground_stop
+          - binary_sensor.bos_delay
+          - binary_sensor.bos_ground_delay
+          - binary_sensor.bos_ground_stop
           - sensor.bos_end_time
-          - input_boolean.bos_notify
+          - input_boolean.bos_discord_notify
+          - input_boolean.bos_ios_notify
         show_header_toggle: false
       - type: entities
         title: ORD Delays
         entities:
-          - sensor.ord_delay
-          - sensor.ord_ground_delay
-          - sensor.ord_ground_stop
+          - binary_sensor.ord_delay
+          - binary_sensor.ord_ground_delay
+          - binary_sensor.ord_ground_stop
           - sensor.ord_end_time
-          - input_boolean.ord_notify
+          - input_boolean.ord_discord_notify
+          - input_boolean.ord_ios_notify
         show_header_toggle: false
 
   - path: config

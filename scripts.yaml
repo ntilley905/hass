@@ -1,16 +1,3 @@
-delay_notify:
-  alias: Delay Notify
-  sequence:
-    - service_template: >
-        {% if target == 'discord' %}
-          notify.discord_webhook
-        {% elif target == 'ios' %}
-          notify.mobile_app_nathans_iphone
-        {% endif %}
-      data_template:
-        title: "{{ airport }} delay!"
-        message: >
-          {{ airport }}{% if type == 'GDP' %} went into a ground delay program! {% elif type == 'GS' %} went into a ground stop that ends at {{ endtime }}! {% elif type == 'GSCX' %} ground stop canceled.{% endif %}
 adam_mp3:
   alias: Tell Me How You Really Feel
   sequence:
