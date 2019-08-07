@@ -175,6 +175,8 @@ views:
   - path: delays
     title: Delays
     icon: mdi:airplane
+    badges:
+      - binary_sensor.delay_program_status
     cards:
       - type: entities
         title: ATL Delays

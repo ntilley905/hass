@@ -166,6 +166,7 @@ input_number: !include input_number.yaml
 input_boolean: !include input_boolean.yaml
 input_datetime: !include input_datetime.yaml
 sensor: !include sensor.yaml
+binary_sensor: !include binary_sensor.yaml
 light: !include light.yaml
 scene: !include scene.yaml
 script: !include scripts.yaml

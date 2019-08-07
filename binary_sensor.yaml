@@ -1,0 +1,6 @@
+- platform: mqtt
+  name: Delay Program Status
+  state_topic: "delays/status"
+  payload_on: "True"
+  payload_off: "False"
+  device_class: connectivity
