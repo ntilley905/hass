@@ -161,6 +161,8 @@ fan:
 tts:
   - platform: google_translate
 
+wemo:
+  
 automation: !include_dir_merge_list automation
 input_number: !include input_number.yaml
 input_boolean: !include input_boolean.yaml
