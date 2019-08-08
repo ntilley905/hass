@@ -9,19 +9,6 @@ views:
     cards:
       - type: entity-filter
         entities:
-          - group.loopable_scripts
-        state_filter:
-          - "on"
-        card:
-          type: entity-button
-          tap_action:
-            action: call-service
-            service: script.script_loop_stop
-          entity: script.script_loop_stop
-          name: Stop Loop
-        show_empty: false
-      - type: entity-filter
-        entities:
           - input_boolean.trip_mode
           - input_boolean.sleep_mode
           - switch.coffee_maker
@@ -243,18 +230,6 @@ views:
     title: config
     icon: mdi:settings
     cards:
-      - type: entity-filter
-        entities:
-          - group.loopable_scripts
-        state_filter:
-          - "on"
-        card:
-          type: entity-button
-          tap_action:
-            action: call-service
-            service: script.script_loop_stop
-          entity: script.script_loop_stop
-          name: Stop Loop
         show_empty: false
       - type: entities
         title: Status
@@ -308,6 +283,3 @@ views:
         title: Other Automations
         entities:
           - automation.toggle_trip_mode
-      - type: entities
-        entities:
-          - script.adam_mp3
