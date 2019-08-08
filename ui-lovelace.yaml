@@ -230,7 +230,6 @@ views:
     title: config
     icon: mdi:settings
     cards:
-        show_empty: false
       - type: entities
         title: Status
         entities:
