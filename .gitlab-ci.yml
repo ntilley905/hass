@@ -25,5 +25,4 @@ deploy:
     - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
   script:
-    - ssh -t -t $DEPLOY_USER@$DEPLOY_HOST
-    - cd /config; git pull; hassio ha restart"
+    - ssh $DEPLOY_USER@$DEPLOY_HOST; cd '$DEPLOY_PATH'; git pull; hassio ha restart"
