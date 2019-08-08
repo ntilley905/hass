@@ -1,0 +1,10 @@
+stages:
+  - test
+  - deploy
+  - notify
+
+test:
+  stage: test
+  image: homeassistant/amd64-homeassistant
+  script:
+    - hassio ha check
