@@ -163,6 +163,10 @@ wemo:
   static:
     - !secret wemo_coffee_switch_ip
 
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
+
 automation: !include_dir_merge_list automation
 input_number: !include input_number.yaml
 input_boolean: !include input_boolean.yaml
