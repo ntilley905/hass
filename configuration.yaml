@@ -163,7 +163,7 @@ tts:
 
 wemo:
   static:
-    - !secret wemo_coffe_switch_ip
+    - !secret wemo_coffee_switch_ip
 
 automation: !include_dir_merge_list automation
 input_number: !include input_number.yaml
