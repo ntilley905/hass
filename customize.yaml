@@ -9,8 +9,7 @@ sensor.bathroom_humidity_z:
   unit_of_measurement: '%'
 sensor.bathroom_luminance_z:
   icon: mdi:lightbulb-on-outline
-binary_sensor.bathroom_motion_z:
-  device_class: motion
+binary_sensor.bathroom_motion_z: {}
 sensor.bathroom_temperature:
   icon: mdi:thermometer
 sensor.bathroom_temperature_z:
@@ -24,8 +23,7 @@ sensor.bedroom_light:
 sensor.bedroom_luminance_z:
   icon: mdi:lightbulb-on-outline
   unit_of_measurement: '%'
-binary_sensor.bedroom_motion_z:
-  device_class: motion
+binary_sensor.bedroom_motion_z: {}
 sensor.bedroom_temperature:
   icon: mdi:thermometer
 sensor.bedroom_temperature_z:
@@ -39,8 +37,7 @@ sensor.hallway_humidity_z:
 sensor.hallway_luminance_z:
   icon: mdi:lightbulb-on-outline
   unit_of_measurement: '%'
-binary_sensor.hallway_motion_z:
-  device_class: motion
+binary_sensor.hallway_motion_z: {}
 sensor.hallway_temperature_z:
   icon: mdi:thermometer
   unit_of_measurement: °F
@@ -54,8 +51,7 @@ sensor.living_room_humidity_z:
 sensor.living_room_luminance_z:
   icon: mdi:lightbulb-on-outline
   unit_of_measurement: '%'
-binary_sensor.living_room_motion_z:
-  device_class: motion
+binary_sensor.living_room_motion_z: {}
 sensor.living_room_temperature_z:
   icon: mdi:thermometer
   unit_of_measurement: °F

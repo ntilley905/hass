@@ -8,97 +8,25 @@
       value_template: '{{ ((float(states.sensor.bedroom_temperature.state) + float(states.sensor.bathroom_temperature.state) + float(states.sensor.ct_100_temperature.state)) / 3) | round(1) }}'
       unit_of_measurement: '°F'
 - platform: mqtt
-  name: "ATL Delay"
-  state_topic: "delays/ATL"
-  value_template: "{{ value_json.Delay }}"
-- platform: mqtt
-  name: "ATL Ground Delay"
-  state_topic: "delays/ATL"
-  value_template: "{{ value_json.GroundDelay }}"
-- platform: mqtt
-  name: "ATL Ground Stop"
-  state_topic: "delays/ATL"
-  value_template: "{{ value_json.GroundStop }}"
-- platform: mqtt
   name: "ATL End Time"
   state_topic: "delays/ATL"
   value_template: "{{ value_json.EndTime }}"
-- platform: mqtt
-  name: "DTW Delay"
-  state_topic: "delays/DTW"
-  value_template: "{{ value_json.Delay }}"
-- platform: mqtt
-  name: "DTW Ground Delay"
-  state_topic: "delays/DTW"
-  value_template: "{{ value_json.GroundDelay }}"
-- platform: mqtt
-  name: "DTW Ground Stop"
-  state_topic: "delays/DTW"
-  value_template: "{{ value_json.GroundStop }}"
 - platform: mqtt
   name: "DTW End Time"
   state_topic: "delays/DTW"
   value_template: "{{ value_json.EndTime }}"
 - platform: mqtt
-  name: "LGA Delay"
-  state_topic: "delays/LGA"
-  value_template: "{{ value_json.Delay }}"
-- platform: mqtt
-  name: "LGA Ground Delay"
-  state_topic: "delays/LGA"
-  value_template: "{{ value_json.GroundDelay }}"
-- platform: mqtt
-  name: "LGA Ground Stop"
-  state_topic: "delays/LGA"
-  value_template: "{{ value_json.GroundStop }}"
-- platform: mqtt
   name: "LGA End Time"
   state_topic: "delays/LGA"
   value_template: "{{ value_json.EndTime }}"
-- platform: mqtt
-  name: "JFK Delay"
-  state_topic: "delays/JFK"
-  value_template: "{{ value_json.Delay }}"
-- platform: mqtt
-  name: "JFK Ground Delay"
-  state_topic: "delays/JFK"
-  value_template: "{{ value_json.GroundDelay }}"
-- platform: mqtt
-  name: "JFK Ground Stop"
-  state_topic: "delays/JFK"
-  value_template: "{{ value_json.GroundStop }}"
 - platform: mqtt
   name: "JFK End Time"
   state_topic: "delays/JFK"
   value_template: "{{ value_json.EndTime }}"
 - platform: mqtt
-  name: "BOS Delay"
-  state_topic: "delays/BOS"
-  value_template: "{{ value_json.Delay }}"
-- platform: mqtt
-  name: "BOS Ground Delay"
-  state_topic: "delays/BOS"
-  value_template: "{{ value_json.GroundDelay }}"
-- platform: mqtt
-  name: "BOS Ground Stop"
-  state_topic: "delays/BOS"
-  value_template: "{{ value_json.GroundStop }}"
-- platform: mqtt
   name: "BOS End Time"
   state_topic: "delays/BOS"
   value_template: "{{ value_json.EndTime }}"
-- platform: mqtt
-  name: "ORD Delay"
-  state_topic: "delays/ORD"
-  value_template: "{{ value_json.Delay }}"
-- platform: mqtt
-  name: "ORD Ground Delay"
-  state_topic: "delays/ORD"
-  value_template: "{{ value_json.GroundDelay }}"
-- platform: mqtt
-  name: "ORD Ground Stop"
-  state_topic: "delays/ORD"
-  value_template: "{{ value_json.GroundStop }}"
 - platform: mqtt
   name: "ORD End Time"
   state_topic: "delays/ORD"
@@ -146,3 +74,8 @@
     - nearest_storm_distance
   scan_interval:
     minutes: 3
+- platform: scrape
+  name: NPR News Scrape
+  resource: https://www.npr.org/rss/podcast.php?id=500005
+  select: 'enclosure'
+  attribute: 'url'

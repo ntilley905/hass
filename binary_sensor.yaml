@@ -1,0 +1,132 @@
+- platform: mqtt
+  name: Delay Program Status
+  state_topic: "delays/status"
+  payload_on: "True"
+  payload_off: "False"
+  device_class: connectivity
+- platform: mqtt
+  name: "ATL Delay"
+  state_topic: "delays/ATL"
+  payload_on: "True"
+  payload_off: "False"
+  value_template: "{{ value_json.Delay }}"
+- platform: mqtt
+  name: "ATL Ground Delay"
+  state_topic: "delays/ATL"
+  payload_on: "True"
+  payload_off: "False"
+  value_template: "{{ value_json.GroundDelay }}"
+- platform: mqtt
+  name: "ATL Ground Stop"
+  state_topic: "delays/ATL"
+  payload_on: "True"
+  payload_off: "False"
+  value_template: "{{ value_json.GroundStop }}"
+- platform: mqtt
+  name: "DTW Delay"
+  state_topic: "delays/DTW"
+  payload_on: "True"
+  payload_off: "False"
+  value_template: "{{ value_json.Delay }}"
+- platform: mqtt
+  name: "DTW Ground Delay"
+  state_topic: "delays/DTW"
+  payload_on: "True"
+  payload_off: "False"
+  value_template: "{{ value_json.GroundDelay }}"
+- platform: mqtt
+  name: "DTW Ground Stop"
+  state_topic: "delays/DTW"
+  payload_on: "True"
+  payload_off: "False"
+  value_template: "{{ value_json.GroundStop }}"
+- platform: mqtt
+  name: "LGA Delay"
+  state_topic: "delays/LGA"
+  payload_on: "True"
+  payload_off: "False"
+  value_template: "{{ value_json.Delay }}"
+- platform: mqtt
+  name: "LGA Ground Delay"
+  state_topic: "delays/LGA"
+  payload_on: "True"
+  payload_off: "False"
+  value_template: "{{ value_json.GroundDelay }}"
+- platform: mqtt
+  name: "LGA Ground Stop"
+  state_topic: "delays/LGA"
+  payload_on: "True"
+  payload_off: "False"
+  value_template: "{{ value_json.GroundStop }}"
+- platform: mqtt
+  name: "JFK Delay"
+  state_topic: "delays/JFK"
+  payload_on: "True"
+  payload_off: "False"
+  value_template: "{{ value_json.Delay }}"
+- platform: mqtt
+  name: "JFK Ground Delay"
+  state_topic: "delays/JFK"
+  payload_on: "True"
+  payload_off: "False"
+  value_template: "{{ value_json.GroundDelay }}"
+- platform: mqtt
+  name: "JFK Ground Stop"
+  state_topic: "delays/JFK"
+  payload_on: "True"
+  payload_off: "False"
+  value_template: "{{ value_json.GroundStop }}"
+- platform: mqtt
+  name: "BOS Delay"
+  state_topic: "delays/BOS"
+  payload_on: "True"
+  payload_off: "False"
+  value_template: "{{ value_json.Delay }}"
+- platform: mqtt
+  name: "BOS Ground Delay"
+  state_topic: "delays/BOS"
+  payload_on: "True"
+  payload_off: "False"
+  value_template: "{{ value_json.GroundDelay }}"
+- platform: mqtt
+  name: "BOS Ground Stop"
+  state_topic: "delays/BOS"
+  payload_on: "True"
+  payload_off: "False"
+  value_template: "{{ value_json.GroundStop }}"
+- platform: mqtt
+  name: "ORD Delay"
+  state_topic: "delays/ORD"
+  payload_on: "True"
+  payload_off: "False"
+  value_template: "{{ value_json.Delay }}"
+- platform: mqtt
+  name: "ORD Ground Delay"
+  state_topic: "delays/ORD"
+  payload_on: "True"
+  payload_off: "False"
+  value_template: "{{ value_json.GroundDelay }}"
+- platform: mqtt
+  name: "ORD Ground Stop"
+  state_topic: "delays/ORD"
+  payload_on: "True"
+  payload_off: "False"
+  value_template: "{{ value_json.GroundStop }}"
+- platform: template
+  sensors:
+    living_room_motion_z:
+      friendly_name: "Living Room Motion"
+      device_class: motion
+      value_template: "{{ is_state('sensor.living_room_burglar_z', '8') }}"
+    hallway_motion_z:
+      friendly_name: "Hallway Motion"
+      device_class: motion
+      value_template: "{{ is_state('sensor.hallway_burglar_z', '8') }}"
+    bedroom_motion_z:
+      friendly_name: "Bedroom Motion"
+      device_class: motion
+      value_template: "{{ is_state('sensor.bedroom_burglar_z', '8') }}"
+    bathroom_motion_z:
+      friendly_name: "Bathroom Motion"
+      device_class: motion
+      value_template: "{{ is_state('sensor.bathroom_burglar_z', '8') }}"
