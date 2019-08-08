@@ -135,7 +135,7 @@ device_tracker:
   verify_ssl: false
 
 heos:
-  host: 192.168.5.30
+  host: !secret marantz_ip
 
 media_player:
   - platform: spotify
@@ -162,7 +162,9 @@ tts:
   - platform: google_translate
 
 wemo:
-  
+  static:
+    - !secret wemo_coffe_switch_ip
+
 automation: !include_dir_merge_list automation
 input_number: !include input_number.yaml
 input_boolean: !include input_boolean.yaml

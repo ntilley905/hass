@@ -1,0 +1,29 @@
+#generic ignores
+*.log
+*.xml
+*.sqlite
+*.db
+*.db-whm
+*db-shl
+*.txt
+*._
+
+#directory ignores
+/tts
+/.ssh
+/.storage
+/node-red
+
+#specific ignores
+secrets.yaml
+ip_bans.yaml
+known_devices.yaml
+.ios.conf
+.spotify-token-cache
+
+#os file ignores
+.DS_Store
+._.DS_Store
+
+#specific allows
+!.test/secrets.yaml
