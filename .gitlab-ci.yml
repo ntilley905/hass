@@ -8,6 +8,6 @@ test:
   image: homeassistant/amd64-homeassistant
   before_script:
     - python -m homeassistant --version
-    - cp -R ./.test/* ./config
+    - cp -R ./.test/* .
   script:
     - hass --script check_config -c .
