@@ -1,0 +1,5 @@
+---
+#This enables the config panel in the frontend.
+#https://www.home-assistant.io/components/config/
+
+config:

@@ -1,0 +1,9 @@
+---
+# I utilize Wemo WiFi switches. Currently only one is in use.
+# It requires a static IP because it is on a separate VLAN.
+#
+# https://www.home-assistant.io/components/wemo/
+
+wemo:
+  static:
+    - !secret wemo_coffee_switch_ip

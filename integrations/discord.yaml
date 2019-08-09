@@ -1,0 +1,13 @@
+#This sets up the Discord webhook notification service.
+#Currently I use REST webhooks to notify discord. 
+#https://www.home-assistant.io/components/notify.rest/
+
+notify:
+  platform: rest
+  name: discord_webhook
+  method: POST
+  message_param_name: content
+  title_param_name: username
+  data:
+    username: Home Assistant
+  resource: !secret discord_webhook_url

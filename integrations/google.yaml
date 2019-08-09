@@ -1,0 +1,9 @@
+---
+# This loads the Google integration for use with Google Calendars
+# This is a work in progress!
+#
+# https://www.home-assistant.io/components/calendar.google/
+
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret

@@ -1,0 +1,5 @@
+---
+# This loads all fans.
+# https://www.home-assistant.io/components/fan/
+
+fan: !include_dir_list ../entities/fans

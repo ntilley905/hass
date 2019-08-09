@@ -1,0 +1,9 @@
+---
+# This sets up my Unifi integration which is used to track devices.
+# https://www.home-assistant.io/components/unifi/
+
+platform: unifi
+host: !secret unifi_host
+username: !secret unifi_user
+password: !secret unifi_pass
+verify_ssl: false

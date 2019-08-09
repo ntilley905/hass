@@ -1,0 +1,7 @@
+---
+# This loads my TTS platforms.
+#
+# https://www.home-assistant.io/components/tts/
+#
+
+tts: !include_dir_list ../entities/tts

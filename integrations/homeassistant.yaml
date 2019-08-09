@@ -1,0 +1,6 @@
+---
+#This is the base Home Assistant configuration.
+#https://www.home-assistant.io/docs/configuration/basic/
+
+homeassistant:
+  customize: !include customize.yaml

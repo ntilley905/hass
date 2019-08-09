@@ -1,0 +1,16 @@
+# This is a template fan for a ceiling fan in my living room.
+# The fan is controlled by a GE/Jasco Z-Wave Switch ZW4003.
+
+# https://www.home-assistant.io/components/fan.template/
+
+platform: template
+  fans:
+    living_room:
+      friendly_name: Living Room Fan
+      value_template: "{{ states('switch.living_room_ceiling_fan') }}"
+      turn_on:
+        service: switch.turn_on
+        entity_id: switch.living_room_ceiling_fan
+      turn_off:
+        service: switch.turn_off
+        entity_id: switch.living_room_ceiling_fan

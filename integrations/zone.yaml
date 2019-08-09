@@ -1,0 +1,9 @@
+#This sets zones for my device trackers to use.
+#https://www.home-assistant.io/components/zone/
+
+zone:
+  #Set as the parking lot for my work
+  - name: ATL
+    latitude: !secret atl_latitude
+    longitude: !secret atl_longitude
+    icon: mdi:airplane

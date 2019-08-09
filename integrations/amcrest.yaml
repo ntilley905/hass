@@ -1,0 +1,9 @@
+#This sets up my Amcrest camera.
+#https://www.home-assistant.io/components/amcrest/
+
+amcrest:
+  host: !secret amcrest_host
+  username: !secret amcrest_user
+  password: !secret amcrest_pass
+  binary_sensors:
+    - motion_detected

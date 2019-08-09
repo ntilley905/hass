@@ -1,0 +1,55 @@
+#The history component tracks what is going on in Home Assistant.
+#https://www.home-assistant.io/components/history/
+
+history:
+  include:
+    domains:
+      - sensor
+      - binary_sensor
+      - switch
+      - light
+      - device_tracker
+      - person
+      - weather
+      - input_boolean
+    entities:
+      - climate.ct_100_cool
+      - climate.ct_100_heat
+  exclude:
+    entities:
+      - switch.kitchen_lights
+      - switch.hallway_light
+      - switch.bedroom_light
+      - switch.bathroom_sensor_status
+      - switch.bedroom_sensor_status
+      - sensor.activity
+      - sensor.average_active_pace
+      - sensor.battery_level
+      - sensor.battery_state
+      - sensor.bssid
+      - sensor.connection_type
+      - sensor.distance
+      - sensor.ecolink_door_window_sensor_access_control
+      - sensor.ecolink_door_window_sensor_alarm_level
+      - sensor.ecolink_door_window_sensor_alarm_type
+      - sensor.ecolink_door_window_sensor_burglar
+      - sensor.ecolink_door_window_sensor_power_management
+      - sensor.ecolink_door_window_sensor_sourcenodeid
+      - sensor.floors_ascended
+      - sensor.floors_descended
+      - sensor.last_update_trigger
+      - sensor.nathaniels_ipad_battery_level
+      - sensor.nathaniels_ipad_battery_state
+      - sensor.nathans_iphone_battery_level
+      - sensor.nathans_iphone_battery_state
+      - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_indicator_3
+      - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_indicator_4
+      - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_relative_humidity
+      - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_relative_humidity_2
+      - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_temperature
+      - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_temperature_2
+      - sensor.sim_1
+      - sensor.ssid
+      - sensor.time
+      - sensor.time_date
+      - sensor.time_utc

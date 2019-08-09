@@ -1,0 +1,9 @@
+#This serves all files and data required for the Home Assistant frontend.
+#https://www.home-assistant.io/components/http/
+
+http:
+  base_url: !secret base_url
+  use_x_forwarded_for: true
+  trusted_proxies: 127.0.0.1
+  ip_ban_enabled: true
+  login_attempts_threshold: 3

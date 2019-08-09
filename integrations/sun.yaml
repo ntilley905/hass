@@ -1,0 +1,5 @@
+---
+#This will use your  location to track if the sun is above or below the horizon.
+#https://www.home-assistant.io/components/sun/
+
+sun:

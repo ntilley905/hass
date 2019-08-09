@@ -1,0 +1,11 @@
+#This sets up my MQTT service. I currently use the hassio addon listed below.
+#https://www.home-assistant.io/components/mqtt/
+#
+#Broker addon:
+#https://github.com/hassio-addons/addon-mqtt
+
+mqtt:
+  broker: a0d7b954-mqtt
+  username: !secret mqtt_user1
+  password: !secret mqtt_pass1
+  client_id: home-assistant

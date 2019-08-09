@@ -1,0 +1,7 @@
+---
+#This sets up a Volumio media player and Volumio MPD. Currently a work in
+#progress due to my new VLAN setup breaking volumio.
+
+platform: mpd
+name: volumio_mpd
+host: !secret volumio_ip

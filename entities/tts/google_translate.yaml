@@ -1,0 +1,7 @@
+# This sets up my primary TTS platform, Google Translate.
+# I use Google Translate primarily because it is free and it works well.
+# This is used in a number of automations.
+#
+# 
+
+platform: google_translate

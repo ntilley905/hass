@@ -1,0 +1,5 @@
+#This is how I control my Marantz SR5012.
+#https://www.home-assistant.io/components/heos/
+
+heos:
+  host: !secret marantz_ip

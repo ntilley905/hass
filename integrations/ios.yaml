@@ -1,0 +1,23 @@
+#This sets up my iOS push categories.
+#https://www.home-assistant.io/docs/ecosystem/ios/
+
+ios:
+  push:
+    categories:
+      #Used when notifications from front door are triggered
+      - name: Camera With Actions
+        identifier: 'camera'
+        actions:
+          #This is no longer used
+          - identifier: 'STOP_LOOP'
+            title: 'Stop Loop'
+            authenticationRequired: true
+      #Currently unused
+      - name: Alarm Clock
+        identifier: 'alarm_clock'
+        actions:
+          - identifier: 'SNOOZE_ALARM_CLOCK'
+            title: 'Snooze'
+          - identifier: 'STOP_ALARM_CLOCK'
+            title: 'Turn Off'
+            destructive: true

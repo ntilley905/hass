@@ -1,0 +1,5 @@
+#This sets lovelace to yaml mode. See ui-lovelace.yaml for actual configuration.
+#https://www.home-assistant.io/lovelace/
+
+lovelace:
+  mode: yaml
