@@ -2,9 +2,7 @@
 *.log
 *.xml
 *.sqlite
-*.db
-*.db-whm
-*db-shl
+*.db*
 *.txt
 *._
 
