@@ -167,6 +167,10 @@ google:
   client_id: !secret google_client_id
   client_secret: !secret google_client_secret
 
+hue:
+  bridges:
+    - host: !secret hue_ip
+
 automation: !include_dir_merge_list automation
 input_number: !include input_number.yaml
 input_boolean: !include input_boolean.yaml

@@ -20,6 +20,8 @@ ip_bans.yaml
 known_devices.yaml
 .ios.conf
 .spotify-token-cache
+.google.token
+google_calendars.yaml
 
 #os file ignores
 .DS_Store
