@@ -22,7 +22,7 @@ views:
           - sensor.dark_sky_temperature
         title: Status
       - type: weather-forecast
-        entity: weather.home
+        entity: weather.dark_sky
       - type: picture-entity
         entity: camera.amcrest_camera
 
@@ -247,24 +247,6 @@ views:
         entities:
           - automation.front_door
           - automation.climate_notifications
-          - automation.atl_ground_delay
-          - automation.atl_ground_stop
-          - automation.atl_gs_cancel
-          - automation.dtw_ground_delay
-          - automation.dtw_ground_stop
-          - automation.dtw_gs_cancel
-          - automation.lga_ground_delay
-          - automation.lga_ground_stop
-          - automation.lga_gs_cancel
-          - automation.jfk_ground_delay
-          - automation.jfk_ground_stop
-          - automation.jfk_gs_cancel
-          - automation.bos_ground_delay
-          - automation.bos_ground_stop
-          - automation.bos_gs_cancel
-          - automation.ord_ground_delay
-          - automation.ord_ground_stop
-          - automation.ord_gs_cancel
       - type: entities
         title: Light Automations
         entities:
@@ -278,7 +260,27 @@ views:
           - automation.climate_set_home
           - automation.climate_set_away
           - automation.climate_set_trip
+          - automation.climate_set_sleep
+          - automation.record_ac_cool_time
+      - type: entities
+        title: Alarm Clock Automations
+        entities:
+          - automation.alarm_clock
+          - automation.snooze_alarm_clock
+          - automation.stop_alarm_clock
       - type: entities
         title: Other Automations
         entities:
           - automation.toggle_trip_mode
+          - automation.ios_stop_loop_action
+          - automation.turn_guest_mode_on
+          - automation.turn_guest_mode_off
+      - type: entities
+        title: PoE
+        entities:
+          - switch.poe_port_2
+          - switch.poe_port_4
+          - switch.poe_port_5
+          - switch.poe_port_6
+          - switch.poe_port_7
+          - switch.poe_port_8

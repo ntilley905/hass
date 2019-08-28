@@ -9,7 +9,7 @@
         entity_id: group.all_lights
     - service: homeassistant.turn_off
       data:
-        entity_id: group.all_switches
+        entity_id: switch.coffee_maker
     - service: homeassistant.turn_off
       data:
         entity_id: group.all_fans

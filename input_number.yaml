@@ -33,3 +33,13 @@ climate_sleep_offset:
   min: -10
   max: 10
   unit_of_measurement: °F
+previous_day_ac_cool:
+  name: Previous Day AC Usage
+  unit_of_measurement: h
+  min: 0
+  max: 24
+previous_day_average_temp:
+  name: Previous Day Average Outdoor Temp
+  unit_of_measurement: °F
+  min: 0
+  max: 120

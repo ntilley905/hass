@@ -66,6 +66,18 @@ history:
       - sensor.time_date
       - sensor.time_utc
 
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: !secret influx_user
+  password: !secret influx_pass
+  max_retries: 3
+  default_measurement: state
+
+recorder:
+  purge_keep_days: 2
+  purge_interval: 1
 
 zone:
   - name: ATL
