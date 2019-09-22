@@ -1,0 +1,10 @@
+automation:
+  - alias: "iOS Lights Off Action"
+    trigger:
+      platform: event
+      event_type: ios_action_fired
+      event_data:
+        actionName: 'Lights Off'
+    action: 
+      service: light.turn_off
+      entity_id: group.all_lights
