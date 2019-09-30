@@ -3,7 +3,7 @@ homeassistant:
 
 default_config:
 
-discovery:
+#discovery:
 
 http:
   base_url: !secret base_url
@@ -136,13 +136,6 @@ amcrest:
   password: !secret amcrest_pass
   binary_sensors:
     - motion_detected
-
-device_tracker:
-  platform: unifi
-  host: !secret unifi_host
-  username: !secret unifi_user
-  password: !secret unifi_pass
-  verify_ssl: false
 
 heos:
   host: !secret marantz_ip
