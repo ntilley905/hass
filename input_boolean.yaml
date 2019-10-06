@@ -1,7 +1,9 @@
 trip_mode:
   name: Trip Mode
+  icon: mdi:airplane
 sleep_mode:
   name: Sleep Mode
+  icon: mdi:hotel
 atl_discord_notify:
   name: ATL Discord Notify
 atl_ios_notify:
@@ -28,9 +30,13 @@ ord_ios_notify:
   name: ORD iOS Notify
 alarm_clock_enable:
   name: Alarm Clock
+  icon: mdi:alarm
 alarm_clock_coffee:
   name: Enable Coffee
+  icon: mdi:coffee
 guest_mode:
   name: Guest Mode
+  icon: mdi:account
 window_open:
   name: Window Open
+  icon: mdi:window-open

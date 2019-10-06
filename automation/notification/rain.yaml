@@ -1,0 +1,17 @@
+- alias: Rain Notification
+  trigger:
+    platform: template
+    value_template: '{{ not is_state("sensor.dark_sky_precip", "unknown") }}'
+  condition:
+    condition: state
+    entity_id: input_boolean.window_open
+    state: 'on'
+  action:
+    - service: notify.mobile_app_nathans_iphone
+      data_template:
+        title: 'Precip Detected!'
+        message: 'Windows are open and {{ states("sensor.dark_sky_precip") }} is detected!'
+    - condition: state
+      entity_id: input_boolean.sleep_mode
+      state: 'off'
+    - service: script.rain_tts

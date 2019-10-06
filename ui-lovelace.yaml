@@ -12,12 +12,23 @@ views:
         entities:
           - input_boolean.trip_mode
           - input_boolean.sleep_mode
+          - input_boolean.window_open
           - switch.coffee_maker
           - binary_sensor.front_door
         state_filter:
           - "on"
           - "open"
         show_empty: false
+      - type: conditional
+        conditions:
+          - entity: sensor.dark_sky_precip_0h
+            state_not: "unknown"
+        card:
+          type: markdown
+          content: |
+            ## {{ states('sensor.dark_sky_precip_0h') | capitalize }}
+
+            {{ states('sensor.dark_sky_precip_0h') }} is expected in the next hour.
       - type: history-graph
         entities:
           - sensor.indoor_temperature
@@ -239,6 +250,7 @@ views:
         entities:
           - input_boolean.trip_mode
           - input_boolean.sleep_mode
+          - input_boolean.window_open
           - group.all_lights
       - type: entities
         title: Alarm Clock

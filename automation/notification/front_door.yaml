@@ -21,7 +21,8 @@
     - service: homeassistant.turn_on
       data:
         entity_id: group.all_lights
-    - service: script.marantz_speak
-      data:
-        mp3filename: "alarm"
-        loop: "yes"
+#This is depreciated, need to fix
+#    - service: script.marantz_speak
+#      data:
+#        mp3filename: "alarm"
+#        loop: "yes"
