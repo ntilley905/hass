@@ -32,3 +32,5 @@ alarm_clock_coffee:
   name: Enable Coffee
 guest_mode:
   name: Guest Mode
+window_open:
+  name: Window Open

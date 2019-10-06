@@ -1,0 +1,46 @@
+- alias: Climate Turn Off
+  trigger:
+    platform: state
+    entity_id: input_boolean.window_open
+    to: 'on'
+    for:
+      seconds: 30
+  action:
+    service: climate.turn_off
+    entity_id: climate.ct_100_cool
+- alias: Climate Change Mode
+  trigger:
+    - platform: state
+      entity_id: input_boolean.window_open
+      to: 'off'
+      for:
+        seconds: 30
+    - platform: state
+      entity_id: input_select.climate_mode
+  condition:
+    condition: state
+    entity_id: input_boolean.window_open
+    state: 'off'
+  action:
+    service: climate.set_hvac_mode
+    data_template:
+      entity_id: climate.ct_100_cool
+      hvac_mode: '{{ states("input_select.climate_mode") | lower }}'
+- alias: Climate Set to Heat
+  trigger:
+    platform: template
+    value_template: '{{ states("input_number.climate_heat_point") > states("sensor.ct_100_temperature") }}'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.climate_mode
+      option: Heat
+- alias: Climate Set to Cool
+  trigger:
+    platform: template
+    value_template: '{{ states("input_number.climate_cool_point") < states("sensor.ct_100_temperature") }}'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.climate_mode
+      option: Cool

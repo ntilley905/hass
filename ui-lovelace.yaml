@@ -136,6 +136,7 @@ views:
       - sensor.ct_100_humidity
       - sensor.hvac_action
       - sensor.ac_cool_today
+      - sensor.ac_heat_today
     cards:
       - type: thermostat
         entity: climate.ct_100_heat
@@ -143,6 +144,7 @@ views:
         entity: climate.ct_100_cool
       - type: entities
         entities:
+          - input_select.climate_mode
           - input_number.climate_heat_point
           - input_number.climate_cool_point
           - input_number.climate_heat_default
