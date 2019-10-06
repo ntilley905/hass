@@ -1,1 +1,4 @@
-
+home_devices:
+  entities:
+    - person.nathan
+    - person.sara

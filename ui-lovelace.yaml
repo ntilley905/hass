@@ -5,6 +5,7 @@ views:
     title: Home
     badges:
       - person.nathan
+      - person.sara
       - binary_sensor.front_door
     cards:
       - type: entity-filter
@@ -16,6 +17,7 @@ views:
         state_filter:
           - "on"
           - "open"
+        show_empty: false
       - type: history-graph
         entities:
           - sensor.indoor_temperature

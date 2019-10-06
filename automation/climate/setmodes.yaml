@@ -1,7 +1,7 @@
 - alias: Climate Set Home
   trigger:
     - platform: state
-      entity_id: person.nathan
+      entity_id: group.home_devices
       to: 'home'
     - platform: state
       entity_id: input_boolean.sleep_mode
@@ -18,7 +18,7 @@
 - alias: Climate Set Away
   trigger:
     - platform: state
-      entity_id: person.nathan
+      entity_id: group.home_devices
       to: 'not_home'
     - platform: state
       entity_id: input_boolean.trip_mode

@@ -3,7 +3,9 @@ homeassistant:
 
 default_config:
 
-#discovery:
+discovery:
+  ignore:
+    - denonavr
 
 http:
   base_url: !secret base_url
@@ -163,6 +165,7 @@ fan:
 
 tts:
   - platform: google_translate
+    base_url: !secret internal_ip
 
 wemo:
   static:
