@@ -3,6 +3,9 @@ homeassistant:
 
 default_config:
 
+updater:
+  include_used_components: true
+
 discovery:
   ignore:
     - denonavr
@@ -117,6 +120,11 @@ ios:
           - identifier: 'STOP_ALARM_CLOCK'
             title: 'Turn Off'
             destructive: true
+      - name: Windows
+        identifier: 'window'
+        actions:
+          - identifier: 'OOPS'
+            title: "No I Didn't"
 
 notify:
   platform: rest

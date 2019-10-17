@@ -20,6 +20,7 @@ known_devices.yaml
 .spotify-token-cache
 .google.token
 google_calendars.yaml
+.uuid
 
 #os file ignores
 .DS_Store

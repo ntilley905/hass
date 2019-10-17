@@ -15,6 +15,7 @@ views:
           - input_boolean.window_open
           - switch.coffee_maker
           - binary_sensor.front_door
+          - binary_sensor.updater
         state_filter:
           - "on"
           - "open"
