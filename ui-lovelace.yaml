@@ -85,6 +85,14 @@ views:
               - type: entity-button
                 entity: fan.living_room
                 name: Fan
+          - type: horizontal-stack
+            cards:
+              - type: light
+                entity: light.living_room_lamp
+                name: Lamp
+              - type: light
+                entity: light.couch
+                name: Couch
 
 
   - path: bedroom

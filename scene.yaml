@@ -4,3 +4,15 @@
     light.island_dimmer:
       state: on
       brightness: 255
+    light.living_room_lamp:
+      state: on
+      brightness: 255
+      color_temp: 380
+- name: Night Lights
+  entities:
+    light.island_dimmer:
+      state: on
+      brightness: 1
+    light.bathroom:
+      state: on
+      brightness: 10
