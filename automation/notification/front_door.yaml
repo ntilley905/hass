@@ -5,7 +5,7 @@
     to: 'on'
   condition:
     condition: state
-    entity_id: 'person.nathan'
+    entity_id: 'group.home_devices'
     state: 'not_home'
   action:
     - service: notify.mobile_app_nathans_iphone
