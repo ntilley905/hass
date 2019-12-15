@@ -159,9 +159,7 @@ views:
       - sensor.ac_heat_today
     cards:
       - type: thermostat
-        entity: climate.ct_100_heat
-      - type: thermostat
-        entity: climate.ct_100_cool
+        entity: climate.ct_100
       - type: entities
         entities:
           - input_select.climate_mode
