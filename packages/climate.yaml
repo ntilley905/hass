@@ -48,7 +48,7 @@ input_select:
       - Heat
       - Cool
 
-input_boolean:
+input_number:
   # The cool_point and heat_point are what is actually transmitted to the
   # thermostat.
   climate_cool_point:
@@ -261,7 +261,7 @@ automation:
           value: '{{ states("input_number.climate_cool_default") | int + states("input_number.climate_sleep_offset") | int }}'
 
   # And finally the automation which actually sets the set point on the
-  # thermostat itself. 
+  # thermostat itself.
   - alias: Climate Set Point
     trigger:
       - platform: state

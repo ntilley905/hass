@@ -85,16 +85,6 @@ recorder:
   purge_keep_days: 2
   purge_interval: 1
 
-zone:
-  - name: ATL
-    latitude: !secret atl_latitude
-    longitude: !secret atl_longitude
-    icon: mdi:airplane
-  - name: GDOT
-    latitude: !secret gdot_latitude
-    longitude: !secret gdot_longitude
-    icon: mdi:office-building
-
 zwave:
   usb_path: /dev/serial/by-id/usb-0658_0200-if00
   network_key: !secret zwave_key
@@ -107,29 +97,6 @@ mqtt:
   client_id: home-assistant
 
 mobile_app:
-
-ios:
-  push:
-    categories:
-      - name: Camera With Actions
-        identifier: 'camera'
-        actions:
-          - identifier: 'STOP_LOOP'
-            title: 'Stop Loop'
-            authenticationRequired: true
-      - name: Alarm Clock
-        identifier: 'alarm_clock'
-        actions:
-          - identifier: 'SNOOZE_ALARM_CLOCK'
-            title: 'Snooze'
-          - identifier: 'STOP_ALARM_CLOCK'
-            title: 'Turn Off'
-            destructive: true
-      - name: Windows
-        identifier: 'window'
-        actions:
-          - identifier: 'OOPS'
-            title: "No I Didn't"
 
 notify:
   platform: rest
