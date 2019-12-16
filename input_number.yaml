@@ -38,6 +38,11 @@ previous_day_ac_cool:
   unit_of_measurement: h
   min: 0
   max: 24
+previous_day_ac_heat:
+  name: Previous Day Heat Usage
+  unit_of_measurement: h
+  min: 0
+  max: 24
 previous_day_average_temp:
   name: Previous Day Average Outdoor Temp
   unit_of_measurement: °F
