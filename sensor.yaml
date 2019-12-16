@@ -1,8 +1,5 @@
 - platform: template
   sensors:
-    hvac_action:
-      friendly_name: HVAC Action
-      value_template: '{{ state_attr("climate.ct_100", "hvac_action") }}'
     indoor_temperature:
       friendly_name: Indoor Temperature
       value_template: '{{ ((float(states.sensor.bathroom_temperature.state) + float(states.sensor.ct_100_temperature.state) + float(states.sensor.bathroom_temperature_z.state) + float(states.sensor.bedroom_temperature_z.state) + float(states.sensor.hallway_temperature_z.state) + float(states.sensor.living_room_temperature_z.state)) / 6) | round(1) }}'
@@ -37,20 +34,6 @@
     - 'date'
     - 'time_date'
     - 'time_utc'
-- platform: history_stats
-  name: AC Cool Today
-  entity_id: sensor.hvac_action
-  state: 'cooling'
-  type: time
-  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
-  end: '{{ now() }}'
-- platform: history_stats
-  name: AC Heat Today
-  entity_id: sensor.hvac_action
-  state: 'heating'
-  type: time
-  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
-  end: '{{ now() }}'
 - platform: darksky
   api_key: !secret darksky_api
   forecast:
@@ -86,12 +69,6 @@
   resource: https://www.npr.org/rss/podcast.php?id=500005
   select: 'enclosure'
   attribute: 'url'
-- platform: statistics
-  name: Outdoor Temperature Stats
-  entity_id: sensor.dark_sky_temperature
-  sampling_size: 500
-  max_age:
-    hours: 24
 - platform: xfinity
   username: !secret xfinity_user
   password: !secret xfinity_pass

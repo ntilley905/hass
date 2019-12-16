@@ -1,0 +1,287 @@
+# This package contains all functions for my climate control.
+#
+# I have a somewhat customized climate setup with a CT100 Z-Wave thermostat.
+# The climate is entirely controlled by Home Assistant via setting the
+# setpoint depending on our status of home vs. away and other settings such
+# as trip mode or sleep mode. There are defined defaults and offsets and
+# the set point is dynamically generated based on these.
+
+sensor:
+
+  # This sensor pulls the attribute for the current HVAC action.
+  - platform: template
+    sensors:
+      hvac_action:
+        friendly_name: HVAC Action
+        value_template: '{{ state_attr("climate.ct_100", "hvac_action") }}'
+
+  # This records the daily usage for both cooling and heating.
+  - platform: history_stats
+    name: AC Cool Today
+    entity_id: sensor.hvac_action
+    state: 'cooling'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+  - platform: history_stats
+    name: AC Heat Today
+    entity_id: sensor.hvac_action
+    state: 'heating'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+
+  # This records the average outdoor temp for the past 24 hours to use in usage
+  # stats.
+  - platform: statistics
+    name: Outdoor Temperature Stats
+    entity_id: sensor.dark_sky_temperature
+    sampling_size: 500
+    max_age:
+      hours: 24
+
+input_select:
+  # This is just a way to set the thermostat to heat or cool.
+  climate_mode:
+    name: Climate Mode
+    options:
+      - Heat
+      - Cool
+
+input_boolean:
+  # The cool_point and heat_point are what is actually transmitted to the
+  # thermostat.
+  climate_cool_point:
+    name: Climate Cool Point
+    min: 50
+    max: 85
+    unit_of_measurement: °F
+  climate_heat_point:
+    name: Climate Heat Point
+    min: 50
+    max: 85
+    unit_of_measurement: °F
+
+  # These are the defaults used to generate the set points based on offsets.
+  climate_cool_default:
+    name: Climate Cool Default
+    min: 50
+    max: 85
+    unit_of_measurement: °F
+  climate_heat_default:
+    name: Climate Heat Default
+    min: 50
+    max: 85
+    unit_of_measurement: °F
+
+  # And the definable offsets.
+  climate_away_offset:
+    name: Climate Away Offset
+    min: -10
+    max: 10
+    unit_of_measurement: °F
+  climate_trip_offset:
+    name: Climate Trip Offset
+    min: -10
+    max: 10
+    unit_of_measurement: °F
+  climate_sleep_offset:
+    name: Climate Sleep Offset
+    min: -10
+    max: 10
+    unit_of_measurement: °F
+
+  # These are used to track how much usage I had in previous days. Currently
+  # not implemented.
+  previous_day_ac_cool:
+    name: Previous Day AC Usage
+    unit_of_measurement: h
+    min: 0
+    max: 24
+  previous_day_average_temp:
+    name: Previous Day Average Outdoor Temp
+    unit_of_measurement: °F
+    min: 0
+    max: 120
+
+automation:
+
+  # This turns the climate control off if a window is detected open for
+  # more than 30 seconds.
+  - alias: Climate Turn Off
+    trigger:
+      platform: state
+      entity_id: input_boolean.window_open
+      to: 'on'
+      for:
+        seconds: 30
+    action:
+      service: climate.turn_off
+      entity_id: climate.ct_100
+
+  # This changes the mode on the thermostat itself if either the windows are
+  # closed or the mode changes on the input select. This is effectively
+  # how the actual change from heat to cool occurs through another
+  # automation that changes the input select.
+  - alias: Climate Change Mode
+    trigger:
+      - platform: state
+        entity_id: input_boolean.window_open
+        to: 'off'
+        for:
+          seconds: 30
+      - platform: state
+        entity_id: input_select.climate_mode
+    condition:
+      # This exists so that in case the automation fires to change the
+      # input select while the windows are open, the climate does not turn on
+      # until this automation triggers again via the window closing.
+      condition: state
+      entity_id: input_boolean.window_open
+      state: 'off'
+    action:
+      service: climate.set_hvac_mode
+      data_template:
+        entity_id: climate.ct_100
+        hvac_mode: '{{ states("input_select.climate_mode") | lower }}'
+
+  # This fires any time the actual temperature at the thermostat is below the
+  # heat set point.
+  - alias: Climate Set to Heat
+    trigger:
+      platform: template
+      value_template: '{{ states("input_number.climate_heat_point") > states("sensor.ct_100_temperature") }}'
+    action:
+      service: input_select.select_option
+      data:
+        entity_id: input_select.climate_mode
+        option: Heat
+
+  # Like the automation above, this fires when the temperature rises above
+  # the cool set point.
+  - alias: Climate Set to Cool
+    trigger:
+      platform: template
+      value_template: '{{ states("input_number.climate_cool_point") < states("sensor.ct_100_temperature") }}'
+    action:
+      service: input_select.select_option
+      data:
+        entity_id: input_select.climate_mode
+        option: Cool
+
+  # This sets the total time that the AC ran today.
+  - alias: Record AC Cool Time
+    trigger:
+      platform: time
+      at: "23:59:45"
+    action:
+      service: input_number.set_value
+      data_template:
+        entity_id: input_number.previous_day_ac_cool
+        value: "{{ states('sensor.ac_cool_today') }}"
+
+  # This is currently unused but would like to get it working in the future
+  #- alias: Record Average
+  #  trigger:
+  #    platform: time
+  #    at: "23:59:45"
+  #  action:
+  #    service: input_number.set_value
+  #    data_template:
+  #      entity_id: input_number.previous_day_average_temp
+  #      value: "{{ states('sensor.outdoor_temperature_stats_mean')}}"
+
+  # The automations below are what actually do the math to determine
+  # what to set the set point to based on various combinations of arriving
+  # home or vice versa, or other modes selected in the front end.
+  - alias: Climate Set Home
+    trigger:
+      - platform: state
+        entity_id: group.home_devices
+        to: 'home'
+      - platform: state
+        entity_id: input_boolean.sleep_mode
+        to: 'off'
+    action:
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.climate_heat_point
+          value: '{{ states("input_number.climate_heat_default") | int }}'
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.climate_cool_point
+          value: '{{ states("input_number.climate_cool_default") | int }}'
+  - alias: Climate Set Away
+    trigger:
+      - platform: state
+        entity_id: group.home_devices
+        to: 'not_home'
+      - platform: state
+        entity_id: input_boolean.trip_mode
+        to: 'off'
+    condition:
+      condition: template
+      value_template: '{{ not is_state("input_boolean.trip_mode", "on") }}'
+    action:
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.climate_heat_point
+          value: '{{ states("input_number.climate_heat_default") | int - states("input_number.climate_away_offset") | int }}'
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.climate_cool_point
+          value: '{{ states("input_number.climate_cool_default") | int + states("input_number.climate_away_offset") | int }}'
+  - alias: Climate Set Trip
+    trigger:
+      platform: state
+      entity_id: input_boolean.trip_mode
+      to: 'on'
+    action:
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.climate_heat_point
+          value: '{{ states("input_number.climate_heat_default") | int - states("input_number.climate_trip_offset") | int }}'
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.climate_cool_point
+          value: '{{ states("input_number.climate_cool_default") | int + states("input_number.climate_trip_offset") | int }}'
+  - alias: Climate Set Sleep
+    trigger:
+      platform: state
+      entity_id: input_boolean.sleep_mode
+      to: 'on'
+    action:
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.climate_heat_point
+          value: '{{ states("input_number.climate_heat_default") | int + states("input_number.climate_sleep_offset") | int }}'
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.climate_cool_point
+          value: '{{ states("input_number.climate_cool_default") | int + states("input_number.climate_sleep_offset") | int }}'
+
+  # And finally the automation which actually sets the set point on the
+  # thermostat itself. 
+  - alias: Climate Set Point
+    trigger:
+      - platform: state
+        entity_id: input_number.climate_cool_point
+      - platform: state
+        entity_id: input_number.climate_heat_point
+      - platform: state
+        entity_id: input_select.climate_mode
+    condition:
+      condition: template
+      value_template: '{{ not is_state("input_select.climate_mode", "Off") }}'
+    action:
+      service: climate.set_temperature
+      data_template:
+        entity_id: climate.ct_100
+        temperature: >
+          {% if is_state("input_select.climate_mode", "Cool") -%}
+            {{ states("input_number.climate_cool_point") | int() }}
+          {% elif is_state("input_select.climate_mode", "Heat") -%}
+            {{ states("input_number.climate_heat_point") | int() }}
+          {% else -%}
+            {{ states("climate.ct_100") }}
+          {% endif -%}
