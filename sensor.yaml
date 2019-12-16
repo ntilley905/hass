@@ -2,10 +2,10 @@
   sensors:
     hvac_action:
       friendly_name: HVAC Action
-      value_template: '{{ state_attr("climate.ct_100_cool", "hvac_action") }}'
+      value_template: '{{ state_attr("climate.ct_100", "hvac_action") }}'
     indoor_temperature:
       friendly_name: Indoor Temperature
-      value_template: '{{ ((float(states.sensor.bedroom_temperature.state) + float(states.sensor.bathroom_temperature.state) + float(states.sensor.ct_100_temperature.state) + float(states.sensor.bathroom_temperature_z.state) + float(states.sensor.bedroom_temperature_z.state) + float(states.sensor.hallway_temperature_z.state) + float(states.sensor.living_room_temperature_z.state)) / 7) | round(1) }}'
+      value_template: '{{ ((float(states.sensor.bathroom_temperature.state) + float(states.sensor.ct_100_temperature.state) + float(states.sensor.bathroom_temperature_z.state) + float(states.sensor.bedroom_temperature_z.state) + float(states.sensor.hallway_temperature_z.state) + float(states.sensor.living_room_temperature_z.state)) / 6) | round(1) }}'
       unit_of_measurement: '°F'
 - platform: mqtt
   name: "ATL End Time"

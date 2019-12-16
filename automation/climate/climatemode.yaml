@@ -7,7 +7,7 @@
       seconds: 30
   action:
     service: climate.turn_off
-    entity_id: climate.ct_100_cool
+    entity_id: climate.ct_100
 - alias: Climate Change Mode
   trigger:
     - platform: state
@@ -24,7 +24,7 @@
   action:
     service: climate.set_hvac_mode
     data_template:
-      entity_id: climate.ct_100_cool
+      entity_id: climate.ct_100
       hvac_mode: '{{ states("input_select.climate_mode") | lower }}'
 - alias: Climate Set to Heat
   trigger:
