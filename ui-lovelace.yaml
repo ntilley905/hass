@@ -28,6 +28,30 @@ views:
           green: 0
           yellow: 768
           red: 921
+      - type: horizontal-stack
+        cards:
+          - type: sensor
+            entity: sensor.travel_home_to_atl
+            graph: line
+            detail: 2
+            name: To ATL
+          - type: sensor
+            entity: sensor.travel_atl_to_home
+            graph: line
+            detail: 2
+            name: From ATL
+      - type: horizontal-stack
+        cards:
+          - type: sensor
+            entity: sensor.travel_home_to_gdot
+            graph: line
+            detail: 2
+            name: To GDOT
+          - type: sensor
+            entity: sensor.travel_gdot_to_home
+            graph: line
+            detail: 2
+            name: From GDOT
       - type: history-graph
         entities:
           - sensor.indoor_temperature
