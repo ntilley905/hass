@@ -144,6 +144,10 @@ weather:
   - platform: darksky
     api_key: !secret darksky_api
 
+camera:
+  - platform: nwsradar
+    station: FFC
+
 amcrest:
   host: !secret amcrest_host
   username: !secret amcrest_user

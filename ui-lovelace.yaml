@@ -20,16 +20,14 @@ views:
           - "on"
           - "open"
         show_empty: false
-      - type: conditional
-        conditions:
-          - entity: sensor.dark_sky_precip_0h
-            state_not: "unknown"
-        card:
-          type: markdown
-          content: |
-            ## {{ states('sensor.dark_sky_precip_0h') | capitalize }}
-
-            {{ states('sensor.dark_sky_precip_0h') }} is expected in the next hour.
+      - type: gauge
+        entity: sensor.xfinity_usage
+        min: 0
+        max: 1024
+        severity:
+          green: 0
+          yellow: 768
+          red: 921
       - type: history-graph
         entities:
           - sensor.indoor_temperature
@@ -39,6 +37,8 @@ views:
         entity: weather.dark_sky
       - type: picture-entity
         entity: camera.amcrest_camera
+      - type: picture-entity
+        entity: camera.ffc
 
   - path: living_room
     title: Living Room

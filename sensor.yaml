@@ -92,3 +92,8 @@
   sampling_size: 500
   max_age:
     hours: 24
+- platform: xfinity
+  username: !secret xfinity_user
+  password: !secret xfinity_pass
+- platform: weatheralerts
+  sameid: '013121'
