@@ -21,55 +21,78 @@ lovelace:
 history:
   include:
     domains:
-      - sensor
-      - binary_sensor
-      - switch
-      - light
       - device_tracker
+      - fan
+      - light
       - person
-      - weather
-      - input_boolean
+      - sensor
+      - sun
     entities:
-      - climate.ct_100_cool
-      - climate.ct_100_heat
+      - binary_sensor.amcrest_camera_motion_detected
+      - binary_sensor.bathroom_motion
+      - binary_sensor.bathroom_motion_z
+      - binary_sensor.bedroom_motion
+      - binary_sensor.bedroom_motion_z
+      - binary_sensor.front_door
+      - binary_sensor.hallway_motion_z
+      - binary_sensor.living_room_motion_z
+      - climate.ct_100
+      - switch.coffee_maker
+      - weather.dark_sky
   exclude:
     entities:
-      - switch.kitchen_lights
-      - switch.hallway_light
-      - switch.bedroom_light
-      - switch.bathroom_sensor_status
-      - switch.bedroom_sensor_status
-      - sensor.activity
-      - sensor.average_active_pace
-      - sensor.battery_level
-      - sensor.battery_state
-      - sensor.bssid
-      - sensor.connection_type
-      - sensor.distance
+      - sensor.atl_end_time
+      - sensor.bathroom_alarm_level_z
+      - sensor.bathroom_alarm_type_z
+      - sensor.bathroom_burglar_z
+      - sensor.bathroom_sourcenodeid_z
+      - sensor.bedroom_alarm_level_z
+      - sensor.bedroom_alarm_type_z
+      - sensor.bedroom_burglar_z
+      - sensor.bedroom_power_management_z
+      - sensor.bedroom_sourcenodeid_z
+      - sensor.bedroom_system_z
+      - sensor.bos_end_time
+      - sensor.date
+      - sensor.dtw_end_time
       - sensor.ecolink_door_window_sensor_access_control
       - sensor.ecolink_door_window_sensor_alarm_level
       - sensor.ecolink_door_window_sensor_alarm_type
       - sensor.ecolink_door_window_sensor_burglar
       - sensor.ecolink_door_window_sensor_power_management
       - sensor.ecolink_door_window_sensor_sourcenodeid
-      - sensor.floors_ascended
-      - sensor.floors_descended
-      - sensor.last_update_trigger
-      - sensor.nathaniels_ipad_battery_level
-      - sensor.nathaniels_ipad_battery_state
-      - sensor.nathans_iphone_battery_level
-      - sensor.nathans_iphone_battery_state
+      - sensor.hacs
+      - sensor.hallway_alarm_level_z
+      - sensor.hallway_alarm_type_z
+      - sensor.hallway_burglar_z
+      - sensor.hallway_power_management_z
+      - sensor.hallway_sourcenodeid_z
+      - sensor.jfk_end_time
+      - sensor.lga_end_time
+      - sensor.living_room_alarm_type_z
+      - sensor.living_room_burglar_z
+      - sensor.living_room_sourcenodeid_z
+      - sensor.living_room_system_z
+      - sensor.nathan_ipad_bssid
+      - sensor.nathan_ipad_sim_1
+      - sensor.nathan_iphone_bssid
+      - sensor.nathan_iphone_sim_1
+      - sensor.npr_news_scrape
+      - sensor.ord_end_time
+      - sensor.outdoor_temperature_stats
+      - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_battery_level
+      - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_battery_level_2
       - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_indicator_3
       - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_indicator_4
-      - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_relative_humidity
       - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_relative_humidity_2
-      - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_temperature
       - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_temperature_2
-      - sensor.sim_1
-      - sensor.ssid
+      - sensor.sara_iphone_bssid
+      - sensor.sara_iphone_sim_1
+      - sensor.sara_iphone_ssid
       - sensor.time
       - sensor.time_date
       - sensor.time_utc
+
 
 influxdb:
   host: a0d7b954-influxdb
@@ -131,14 +154,19 @@ ios:
             title: "No I Didn't"
 
 notify:
-  platform: rest
-  name: discord_webhook
-  method: POST
-  message_param_name: content
-  title_param_name: username
-  data:
-    username: Home Assistant
-  resource: !secret discord_webhook_url
+  - platform: rest
+    name: discord_webhook
+    method: POST
+    message_param_name: content
+    title_param_name: username
+    data:
+      username: Home Assistant
+    resource: !secret discord_webhook_url
+  - platform: group
+    name: all_mobile_apps
+    services:
+      - service: mobile_app_nathans_iphone
+      - service: mobile_app_saras_iphone
 
 weather:
   - platform: darksky

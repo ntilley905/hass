@@ -16,10 +16,24 @@ views:
           - switch.coffee_maker
           - binary_sensor.front_door
           - binary_sensor.updater
+          - entity: sensor.hacs
+            state_filter:
+              - operator: ">"
+                value: 0
         state_filter:
           - "on"
           - "open"
         show_empty: false
+      - type: conditional
+        conditions:
+          - entity: sensor.weatheralerts
+            state_not: "No alerts"
+        card:
+          type: markdown
+          content: >
+            ##Weather Alert!
+
+            {{ states("sensor.weatheralerts") }}
       - type: gauge
         entity: sensor.xfinity_usage
         min: 0
@@ -278,6 +292,7 @@ views:
     cards:
       - type: entities
         title: Status
+        show_header_toggle: false
         entities:
           - input_boolean.trip_mode
           - input_boolean.sleep_mode
@@ -289,11 +304,22 @@ views:
           - input_boolean.alarm_clock_enable
           - input_datetime.alarm_clock
           - input_boolean.alarm_clock_coffee
+      - type: entity
+        title: Scenes
+        entities:
+          - scene.welcome_home
+          - scene.night_lights
       - type: entities
         title: Notification Automations
         entities:
           - automation.front_door
           - automation.climate_notifications
+          - automation.rain_notification
+          - automation.data_at_75
+          - automation.data_at_90
+          - automation.notify_to_leave
+          - automation.leave_now
+          - automation.windows_open_when_leaving
       - type: entities
         title: Light Automations
         entities:
@@ -302,13 +328,18 @@ views:
       - type: entities
         title: Climate Automations
         entities:
-          - automation.climate_set_cool
-          - automation.climate_set_heat
+          - automation.climate_change_mode
+          - automation.climate_set_point
+          - automation.climate_set_to_cool
+          - automation.climate_set_to_heat
+          - automation.climate_turn_off
           - automation.climate_set_home
           - automation.climate_set_away
           - automation.climate_set_trip
           - automation.climate_set_sleep
           - automation.record_ac_cool_time
+          - automation.record_ac_heat_time
+          - automation.record_average
       - type: entities
         title: Alarm Clock Automations
         entities:
@@ -320,14 +351,31 @@ views:
         entities:
           - automation.toggle_trip_mode
           - automation.ios_stop_loop_action
+          - automation.ios_lights_off_action
           - automation.turn_guest_mode_on
           - automation.turn_guest_mode_off
+          - automation.reset_xfinity_notify
+          - automation.time_to_leave
       - type: entities
-        title: PoE
+        title: Network Devices
+        show_header_toggle: false
         entities:
-          - switch.poe_port_2
-          - switch.poe_port_4
-          - switch.poe_port_5
-          - switch.poe_port_6
-          - switch.poe_port_7
-          - switch.poe_port_8
+          - device_tracker.amcrest_camera
+          - device_tracker.ap_ac_lite
+          - device_tracker.apple_tv
+          - device_tracker.bathroom
+          - device_tracker.bedroom
+          - device_tracker.marantz_sr5012
+          - device_tracker.nathan_ipad_unifi
+          - device_tracker.nathan_iphone_unifi
+          - device_tracker.nathan_apple_watch
+          - device_tracker.nathan_laptop
+          - device_tracker.philips_hue
+          - device_tracker.sara_iphone_unifi
+          - device_tracker.sara_laptop
+          - device_tracker.sara_work_laptop
+          - device_tracker.switch_8
+          - device_tracker.unifi_controller
+          - device_tracker.usg
+          - device_tracker.volumio
+          - device_tracker.xboxone
