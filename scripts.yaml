@@ -61,21 +61,3 @@ rain_tts:
       data_template:
         entity_id: media_player.volumio_mpd
         message: "Attention! The windows are open and {{ states('sensor.dark_sky_precip') }} is detected."
-house_cold:
-  alias: It's Cold
-  sequence:
-    - service: climate.set_temperature
-      data_template:
-        entity_id: climate.ct_100
-        temperature: "{{ state_attr('climate.ct_100', 'temperature') + 1 }}"
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.climate_override
-house_hot:
-  alias: It's Hot
-  sequence:
-    - service: climate.set_temperature
-      data_template:
-        entity_id: climate.ct_100
-        temperature: "{{ state_attr('climate.ct_100', 'temperature') - 1 }}"
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.climate_override

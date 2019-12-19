@@ -4,3 +4,68 @@
 google:
   client_id: !secret google_client_id
   client_secret: !secret google_client_secret
+
+# This is the placeholder for the automations to set what time I need to leave.
+input_datetime:
+  time_to_leave:
+    name: Time to Leave
+    has_time: true
+
+automation:
+  # This automation sets the datetime that I need to leave.
+  - alias: Time to Leave
+    trigger:
+      # Trigger every time the drive time changes
+      - platform: state
+        entity_id: sensor.travel_home_to_atl
+      # Also trigger if my report time is within 6 hours
+      - platform: template
+        value_template: "{{ state_attr('calendar.report', 'start_time')|as_timestamp() - now()|as_timestamp() == 21600 }}"
+    condition:
+      # Don't run unless report time is within 12 hours
+      - condition: template
+        value_template: "{{ state_attr('calendar.report', 'start_time')|as_timestamp() - now()|as_timestamp() < 43200 }}"
+    action:
+      # Set the datetime dynamically. Uses the time of my report, the drive time
+      # to work, and gives me a 30 minute buffer
+      service: input_datetime.set_datetime
+      data_template:
+        entity_id: input_datetime.time_to_leave
+        time: >
+          {% set stamp = (state_attr('calendar.report', 'start_time')|as_timestamp() - (states('sensor.travel_home_to_atl')|round(0, 'ceil')|int() * 60) - 1800) %}
+          {% set rounddown = stamp - (stamp % 600) %}
+          {{ rounddown|timestamp_custom('%H:%M:%S') }}
+  # Notify me 15 minutes before I need to leave
+  - alias: Notify to Leave
+    trigger:
+      platform: template
+      value_template: "{{ states('sensor.time') == ((state_attr('input_datetime.time_to_leave', 'timestamp') - 900) | int | timestamp_custom('%H:%M', False)) }}"
+    condition:
+      - condition: template
+        value_template: "{{ state_attr('calendar.report', 'start_time')|as_timestamp() - now()|as_timestamp() < 43200 }}"
+      - condition: state
+        entity_id: person.nathan
+        state: 'home'
+    action:
+      service: notify.mobile_app_nathans_iphone
+      data_template:
+        title: 'Time to Leave!'
+        message: "Leave at {{ state_attr('input_datetime.time_to_leave', 'timestamp') | timestamp_custom('%-I:%M %p', False) }} to arrive on time."
+  # Notify me 5 minutes before I need to leave
+  - alias: Leave Now
+    trigger:
+      platform: template
+      value_template: "{{ states('sensor.time') == ((state_attr('input_datetime.time_to_leave', 'timestamp') - 300) | int | timestamp_custom('%H:%M', False)) }}"
+    condition:
+      - condition: template
+        value_template: "{{ state_attr('calendar.report', 'start_time')|as_timestamp() - now()|as_timestamp() < 43200 }}"
+      - condition: state
+        entity_id: person.nathan
+        state: 'home'
+      - condition: template
+        value_template: "{{ not is_state('sensor.nathans_iphone_activity', 'Automotive') }}"
+    action:
+      service: notify.mobile_app_nathans_iphone
+      data_template:
+        title: 'Leave Now!'
+        message: "Leave at {{ state_attr('input_datetime.time_to_leave', 'timestamp') | timestamp_custom('%-I:%M %p', False) }} to arrive on time."
