@@ -40,3 +40,6 @@ guest_mode:
 window_open:
   name: Window Open
   icon: mdi:window-open
+xfinity_75_notify:
+xfinity_90_notify:
+climate_override:

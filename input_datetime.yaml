@@ -1,3 +1,6 @@
 alarm_clock:
   name: Alarm Clock Time
   has_time: true
+time_to_leave:
+  name: Time to Leave
+  has_time: true

@@ -74,3 +74,23 @@
   password: !secret xfinity_pass
 - platform: weatheralerts
   sameid: '013121'
+- platform: waze_travel_time
+  origin: zone.home
+  destination: zone.atl
+  region: 'US'
+  name: Travel Home to ATL
+- platform: waze_travel_time
+  origin: zone.atl
+  destination: zone.home
+  region: 'US'
+  name: Travel ATL to Home
+- platform: waze_travel_time
+  origin: zone.home
+  destination: zone.gdot
+  region: 'US'
+  name: Travel Home to GDOT
+- platform: waze_travel_time
+  origin: zone.gdot
+  destination: zone.home
+  region: 'US'
+  name: Travel GDOT to Home
