@@ -24,6 +24,11 @@
       entity_id: input_number.climate_heat_point
     - platform: state
       entity_id: input_select.climate_mode
+    - platform: state
+      entity_id: input_boolean.climate_override
+      to: 'on'
+      for:
+        hours: 1
   condition:
     condition: template
     value_template: '{{ not is_state("input_select.climate_mode", "Off") }}'
@@ -45,3 +50,5 @@
           {% else -%}
             {{ states("climate.ct_100") }}
           {% endif -%}
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.climate_override

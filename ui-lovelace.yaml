@@ -10,6 +10,7 @@ views:
     cards:
       - type: entity-filter
         entities:
+          - group.all_lights
           - input_boolean.trip_mode
           - input_boolean.sleep_mode
           - input_boolean.window_open
@@ -66,6 +67,20 @@ views:
             graph: line
             detail: 2
             name: From GDOT
+      - type: horizontal-stack
+        cards:
+          - type: entity-button
+            entity: script.house_cold
+            icon: mdi:snowflake
+            tap_action:
+              action: call-service
+              service: script.house_cold
+          - type: entity-button
+            entity: script.house_hot
+            icon: mdi:fire
+            tap_action:
+              action: call-service
+              service: script.house_hot
       - type: history-graph
         entities:
           - sensor.indoor_temperature
@@ -304,7 +319,7 @@ views:
           - input_boolean.alarm_clock_enable
           - input_datetime.alarm_clock
           - input_boolean.alarm_clock_coffee
-      - type: entity
+      - type: entities
         title: Scenes
         entities:
           - scene.welcome_home

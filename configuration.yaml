@@ -121,6 +121,10 @@ zwave:
   usb_path: /dev/serial/by-id/usb-0658_0200-if00
   network_key: !secret zwave_key
   polling_interval: 30000
+  device_config:
+    light.island_dimmer:
+      refresh_value: true
+      delay: 3
 
 mqtt:
   broker: a0d7b954-mqtt
@@ -222,6 +226,7 @@ google:
 hue:
   bridges:
     - host: !secret hue_ip
+      allow_hue_groups: false
 
 automation: !include_dir_merge_list automation
 input_number: !include input_number.yaml
