@@ -1,0 +1,17 @@
+- alias: Sara to Work
+  trigger:
+    platform: state
+    entity_id: person.sara
+    to: 'not_home'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.living_room_motion_z
+      state: 'off'
+      for:
+        minutes: 3
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'on'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.all_lights
