@@ -1,0 +1,22 @@
+ios:
+  push:
+    categories:
+      - name: Camera With Actions
+        identifier: 'camera'
+        actions:
+          - identifier: 'STOP_LOOP'
+            title: 'Stop Loop'
+            authenticationRequired: true
+      - name: Alarm Clock
+        identifier: 'alarm_clock'
+        actions:
+          - identifier: 'SNOOZE_ALARM_CLOCK'
+            title: 'Snooze'
+          - identifier: 'STOP_ALARM_CLOCK'
+            title: 'Turn Off'
+            destructive: true
+      - name: Windows
+        identifier: 'window'
+        actions:
+          - identifier: 'OOPS'
+            title: "No I Didn't"

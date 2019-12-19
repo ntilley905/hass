@@ -1,0 +1,9 @@
+zone:
+  - name: ATL
+    latitude: !secret atl_latitude
+    longitude: !secret atl_longitude
+    icon: mdi:airplane
+  - name: GDOT
+    latitude: !secret gdot_latitude
+    longitude: !secret gdot_longitude
+    icon: mdi:office-building

@@ -155,10 +155,6 @@ wemo:
   static:
     - !secret wemo_coffee_switch_ip
 
-google:
-  client_id: !secret google_client_id
-  client_secret: !secret google_client_secret
-
 hue:
   bridges:
     - host: !secret hue_ip
