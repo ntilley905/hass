@@ -1,0 +1,108 @@
+- alias: Weather Alert Critical 1
+  trigger:
+    platform: state
+    entity_id: sensor.north_fulton
+  condition:
+    - condition: template
+      value_template: '{{ states("sensor.north_fulton") == "1" }}'
+    - condition: template
+      value_template: '{{ state_attr("sensor.north_fulton", "alerts")[0].urgency == "Immediate" }}'
+  action:
+    - service: notify.all_mobile_apps
+      data_template:
+        title: 'Urgent Weather Alert!'
+        message: 'There is a {{ state_attr("sensor.north_fulton", "alerts")[0].event }} in effect for Fulton County.'
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+    - service: scene.turn_on
+      entity_id: scene.all_lights_on
+- alias: Weather Alert Non Critical 1
+  trigger:
+    platform: state
+    entity_id: sensor.north_fulton
+  condition:
+    - condition: template
+      value_template: '{{ states("sensor.north_fulton") == "1" }}'
+    - condition: template
+      value_template: '{{ state_attr("sensor.north_fulton", "alerts")[0].urgency != "Immediate" }}'
+  action:
+    - service: notify.all_mobile_apps
+      data_template:
+        title: 'Weather Alert!'
+        message: 'There is a {{ state_attr("sensor.north_fulton", "alerts")[0].event }} in effect for Fulton County.'
+- alias: Weather Alert Critical 2
+  trigger:
+    platform: state
+    entity_id: sensor.north_fulton
+  condition:
+    - condition: template
+      value_template: '{{ states("sensor.north_fulton") == "2" }}'
+    - condition: template
+      value_template: '{{ state_attr("sensor.north_fulton", "alerts")[1].urgency == "Immediate" }}'
+  action:
+    - service: notify.all_mobile_apps
+      data_template:
+        title: 'Urgent Weather Alert!'
+        message: 'There is a {{ state_attr("sensor.north_fulton", "alerts")[1].event }} in effect for Fulton County.'
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+    - service: scene.turn_on
+      entity_id: scene.all_lights_on
+- alias: Weather Alert Non Critical 2
+  trigger:
+    platform: state
+    entity_id: sensor.north_fulton
+  condition:
+    - condition: template
+      value_template: '{{ states("sensor.north_fulton") == "2" }}'
+    - condition: template
+      value_template: '{{ state_attr("sensor.north_fulton", "alerts")[1].urgency != "Immediate" }}'
+  action:
+    - service: notify.all_mobile_apps
+      data_template:
+        title: 'Weather Alert!'
+        message: 'There is a {{ state_attr("sensor.north_fulton", "alerts")[1].event }} in effect for Fulton County.'
+- alias: Weather Alert Critical 3
+  trigger:
+    platform: state
+    entity_id: sensor.north_fulton
+  condition:
+    - condition: template
+      value_template: '{{ states("sensor.north_fulton") == "3" }}'
+    - condition: template
+      value_template: '{{ state_attr("sensor.north_fulton", "alerts")[2].urgency == "Immediate" }}'
+  action:
+    - service: notify.all_mobile_apps
+      data_template:
+        title: 'Urgent Weather Alert!'
+        message: 'There is a {{ state_attr("sensor.north_fulton", "alerts")[2].event }} in effect for Fulton County.'
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+    - service: scene.turn_on
+      entity_id: scene.all_lights_on
+- alias: Weather Alert Non Critical 3
+  trigger:
+    platform: state
+    entity_id: sensor.north_fulton
+  condition:
+    - condition: template
+      value_template: '{{ states("sensor.north_fulton") == "3" }}'
+    - condition: template
+      value_template: '{{ state_attr("sensor.north_fulton", "alerts")[2].urgency != "Immediate" }}'
+  action:
+    - service: notify.all_mobile_apps
+      data_template:
+        title: 'Weather Alert!'
+        message: 'There is a {{ state_attr("sensor.north_fulton", "alerts")[2].event }} in effect for Fulton County.'

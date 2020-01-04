@@ -336,6 +336,12 @@ views:
           - automation.notify_to_leave
           - automation.leave_now
           - automation.windows_open_when_leaving
+          - automation.weather_alert_critical_1
+          - automation.weather_alert_non_critical_1
+          - automation.weather_alert_critical_2
+          - automation.weather_alert_non_critical_2
+          - automation.weather_alert_critical_3
+          - automation.weather_alert_non_critical_3
       - type: entities
         title: Light Automations
         entities:
