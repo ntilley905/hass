@@ -1,4 +1,5 @@
 title: Home
+background: var(--background-image)
 views:
 
   - path: default_view
