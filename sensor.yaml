@@ -96,7 +96,8 @@
   username: !secret xfinity_user
   password: !secret xfinity_pass
 - platform: weatheralerts
-  sameid: '013121'
+  state: 'GA'
+  zone: '033'
 - platform: waze_travel_time
   origin: zone.home
   destination: zone.atl

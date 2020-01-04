@@ -28,14 +28,14 @@ views:
         show_empty: false
       - type: conditional
         conditions:
-          - entity: sensor.weatheralerts
-            state_not: "No alerts"
+          - entity: sensor.north_fulton
+            state_not: '0'
         card:
           type: markdown
           content: >
-            ##Weather Alert!
+            ## Weather Alert!
 
-            {{ states("sensor.weatheralerts") }}
+            {{ states("sensor.north_fulton") }}
       - type: gauge
         entity: sensor.xfinity_usage
         min: 0
