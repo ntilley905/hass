@@ -35,7 +35,7 @@ views:
           content: >
             ## Weather Alert!
 
-            {{ states("sensor.north_fulton") }}
+            {{ state_attr("sensor.north_fulton", "alerts")[0].event }}
       - type: gauge
         entity: sensor.xfinity_usage
         min: 0
