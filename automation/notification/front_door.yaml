@@ -20,7 +20,7 @@
           entity_id: camera.amcrest_camera
     - service: homeassistant.turn_on
       data:
-        entity_id: group.all_lights
+        entity_id: group.lights
 #This is depreciated, need to fix
 #    - service: script.marantz_speak
 #      data:

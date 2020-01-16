@@ -11,7 +11,7 @@ views:
     cards:
       - type: entity-filter
         entities:
-          - group.all_lights
+          - group.lights
           - input_boolean.trip_mode
           - input_boolean.sleep_mode
           - input_boolean.window_open
@@ -35,7 +35,7 @@ views:
           content: >
             ## Weather Alert!
 
-            {{ state_attr("sensor.north_fulton", "alerts")[0].event }}
+            {{ states("sensor.north_fulton") }}
       - type: gauge
         entity: sensor.xfinity_usage
         min: 0
@@ -313,7 +313,7 @@ views:
           - input_boolean.trip_mode
           - input_boolean.sleep_mode
           - input_boolean.window_open
-          - group.all_lights
+          - group.lights
       - type: entities
         title: Alarm Clock
         entities:

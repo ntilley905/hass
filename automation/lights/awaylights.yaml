@@ -6,10 +6,10 @@
   action:
     - service: homeassistant.turn_off
       data:
-        entity_id: group.all_lights
+        entity_id: group.lights
     - service: homeassistant.turn_off
       data:
         entity_id: switch.coffee_maker
     - service: homeassistant.turn_off
       data:
-        entity_id: group.all_fans
+        entity_id: fan.living_room

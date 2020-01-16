@@ -17,4 +17,4 @@
       before: '08:00:00'
   action:
     service: homeassistant.turn_off
-    entity_id: group.all_lights
+    entity_id: group.lights
