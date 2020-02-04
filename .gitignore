@@ -29,5 +29,5 @@ google_calendars.yaml
 #specific allows
 !.test/secrets.yaml
 
-#esphome ignores
-esphome/**/
+#custom component ignores (work in progress)
+custom_components/faasensor/*

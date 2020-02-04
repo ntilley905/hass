@@ -32,7 +32,7 @@
     service: notify.mobile_app_nathans_iphone
     data_template:
       title: 'Time to Leave!'
-      message: "Leave at {{ state_attr('input_datetime.time_to_leave', 'timestamp') | timestamp_custom('%-I:%M %p', False) }} to arrive on time."
+      message: "Leave at {{ state_attr('input_datetime.time_to_leave', 'timestamp') | timestamp_custom('%-I:%M %p', False) }} to arrive on time. Take {{ state_attr('sensor.travel_home_to_atl', 'route') }}."
 - alias: Leave Now
   trigger:
     platform: template
@@ -49,4 +49,4 @@
     service: notify.mobile_app_nathans_iphone
     data_template:
       title: 'Leave Now!'
-      message: "Leave at {{ state_attr('input_datetime.time_to_leave', 'timestamp') | timestamp_custom('%-I:%M %p', False) }} to arrive on time."
+      message: "Leave at {{ state_attr('input_datetime.time_to_leave', 'timestamp') | timestamp_custom('%-I:%M %p', False) }} to arrive on time. Take {{ state_attr('sensor.travel_home_to_atl', 'route') }}."

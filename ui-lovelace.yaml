@@ -28,7 +28,7 @@ views:
         show_empty: false
       - type: conditional
         conditions:
-          - entity: sensor.north_fulton
+          - entity: sensor.fulton_county
             state_not: '0'
         card:
           type: markdown

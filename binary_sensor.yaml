@@ -134,3 +134,5 @@
   country: US
   province: GA
   workdays: [mon, tue, wed, thu]
+- platform: faastatus
+  id: LGA

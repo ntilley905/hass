@@ -97,7 +97,7 @@
   password: !secret xfinity_pass
 - platform: weatheralerts
   state: 'GA'
-  zone: '033'
+  zone: 'GAC121'
 - platform: waze_travel_time
   origin: zone.home
   destination: zone.atl
