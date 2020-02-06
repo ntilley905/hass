@@ -1,117 +1,3 @@
-- platform: mqtt
-  name: Delay Program Status
-  state_topic: "delays/status"
-  payload_on: "True"
-  payload_off: "False"
-  device_class: connectivity
-- platform: mqtt
-  name: "ATL Delay"
-  state_topic: "delays/ATL"
-  payload_on: "True"
-  payload_off: "False"
-  value_template: "{{ value_json.Delay }}"
-- platform: mqtt
-  name: "ATL Ground Delay"
-  state_topic: "delays/ATL"
-  payload_on: "True"
-  payload_off: "False"
-  value_template: "{{ value_json.GroundDelay }}"
-- platform: mqtt
-  name: "ATL Ground Stop"
-  state_topic: "delays/ATL"
-  payload_on: "True"
-  payload_off: "False"
-  value_template: "{{ value_json.GroundStop }}"
-- platform: mqtt
-  name: "DTW Delay"
-  state_topic: "delays/DTW"
-  payload_on: "True"
-  payload_off: "False"
-  value_template: "{{ value_json.Delay }}"
-- platform: mqtt
-  name: "DTW Ground Delay"
-  state_topic: "delays/DTW"
-  payload_on: "True"
-  payload_off: "False"
-  value_template: "{{ value_json.GroundDelay }}"
-- platform: mqtt
-  name: "DTW Ground Stop"
-  state_topic: "delays/DTW"
-  payload_on: "True"
-  payload_off: "False"
-  value_template: "{{ value_json.GroundStop }}"
-- platform: mqtt
-  name: "LGA Delay"
-  state_topic: "delays/LGA"
-  payload_on: "True"
-  payload_off: "False"
-  value_template: "{{ value_json.Delay }}"
-- platform: mqtt
-  name: "LGA Ground Delay"
-  state_topic: "delays/LGA"
-  payload_on: "True"
-  payload_off: "False"
-  value_template: "{{ value_json.GroundDelay }}"
-- platform: mqtt
-  name: "LGA Ground Stop"
-  state_topic: "delays/LGA"
-  payload_on: "True"
-  payload_off: "False"
-  value_template: "{{ value_json.GroundStop }}"
-- platform: mqtt
-  name: "JFK Delay"
-  state_topic: "delays/JFK"
-  payload_on: "True"
-  payload_off: "False"
-  value_template: "{{ value_json.Delay }}"
-- platform: mqtt
-  name: "JFK Ground Delay"
-  state_topic: "delays/JFK"
-  payload_on: "True"
-  payload_off: "False"
-  value_template: "{{ value_json.GroundDelay }}"
-- platform: mqtt
-  name: "JFK Ground Stop"
-  state_topic: "delays/JFK"
-  payload_on: "True"
-  payload_off: "False"
-  value_template: "{{ value_json.GroundStop }}"
-- platform: mqtt
-  name: "BOS Delay"
-  state_topic: "delays/BOS"
-  payload_on: "True"
-  payload_off: "False"
-  value_template: "{{ value_json.Delay }}"
-- platform: mqtt
-  name: "BOS Ground Delay"
-  state_topic: "delays/BOS"
-  payload_on: "True"
-  payload_off: "False"
-  value_template: "{{ value_json.GroundDelay }}"
-- platform: mqtt
-  name: "BOS Ground Stop"
-  state_topic: "delays/BOS"
-  payload_on: "True"
-  payload_off: "False"
-  value_template: "{{ value_json.GroundStop }}"
-- platform: mqtt
-  name: "ORD Delay"
-  state_topic: "delays/ORD"
-  payload_on: "True"
-  payload_off: "False"
-  value_template: "{{ value_json.Delay }}"
-- platform: mqtt
-  name: "ORD Ground Delay"
-  state_topic: "delays/ORD"
-  payload_on: "True"
-  payload_off: "False"
-  value_template: "{{ value_json.GroundDelay }}"
-- platform: mqtt
-  name: "ORD Ground Stop"
-  state_topic: "delays/ORD"
-  payload_on: "True"
-  payload_off: "False"
-  value_template: "{{ value_json.GroundStop }}"
 - platform: template
   sensors:
     living_room_motion_z:
@@ -130,9 +16,61 @@
       friendly_name: "Bathroom Motion"
       device_class: motion
       value_template: "{{ is_state('sensor.bathroom_burglar_z', '8') }}"
+    atl_ground_delay:
+      friendly_name: "ATL GDP"
+      value_template: "{{ state_attr('sensor.atl_status', 'Ground Delay') }}"
+    atl_ground_stop:
+      friendly_name: "ATL GS"
+      value_template: "{{ state_attr('sensor.atl_status', 'Ground Stop') }}"
+    atl_closed:
+      friendly_name: "ATL Closed"
+      value_template: "{{ state_attr('sensor.atl_status', 'Closed') }}"
+    dtw_ground_delay:
+      friendly_name: "DTW GDP"
+      value_template: "{{ state_attr('sensor.dtw_status', 'Ground Delay') }}"
+    dtw_ground_stop:
+      friendly_name: "DTW GS"
+      value_template: "{{ state_attr('sensor.dtw_status', 'Ground Stop') }}"
+    dtw_closed:
+      friendly_name: "DTW Closed"
+      value_template: "{{ state_attr('sensor.dtw_status', 'Closed') }}"
+    lga_ground_delay:
+      friendly_name: "LGA GDP"
+      value_template: "{{ state_attr('sensor.lga_status', 'Ground Delay') }}"
+    lga_ground_stop:
+      friendly_name: "LGA GS"
+      value_template: "{{ state_attr('sensor.lga_status', 'Ground Stop') }}"
+    lga_closed:
+      friendly_name: "LGA Closed"
+      value_template: "{{ state_attr('sensor.lga_status', 'Closed') }}"
+    jfk_ground_delay:
+      friendly_name: "JFK GDP"
+      value_template: "{{ state_attr('sensor.jfk_status', 'Ground Delay') }}"
+    jfk_ground_stop:
+      friendly_name: "JFK GS"
+      value_template: "{{ state_attr('sensor.jfk_status', 'Ground Stop') }}"
+    jfk_closed:
+      friendly_name: "JFK Closed"
+      value_template: "{{ state_attr('sensor.jfk_status', 'Closed') }}"
+    bos_ground_delay:
+      friendly_name: "BOS GDP"
+      value_template: "{{ state_attr('sensor.bos_status', 'Ground Delay') }}"
+    bos_ground_stop:
+      friendly_name: "BOS GS"
+      value_template: "{{ state_attr('sensor.bos_status', 'Ground Stop') }}"
+    bos_closed:
+      friendly_name: "BOS Closed"
+      value_template: "{{ state_attr('sensor.bos_status', 'Closed') }}"
+    ord_ground_delay:
+      friendly_name: "ORD GDP"
+      value_template: "{{ state_attr('sensor.ord_status', 'Ground Delay') }}"
+    ord_ground_stop:
+      friendly_name: "ORD GS"
+      value_template: "{{ state_attr('sensor.ord_status', 'Ground Stop') }}"
+    ord_closed:
+      friendly_name: "ORD Closed"
+      value_template: "{{ state_attr('sensor.ord_status', 'Closed') }}"
 - platform: workday
   country: US
   province: GA
   workdays: [mon, tue, wed, thu]
-- platform: faastatus
-  id: LGA

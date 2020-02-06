@@ -24,7 +24,8 @@ frontend:
 logger:
   default: warning
   logs:
-    custom_components.faastatus: info
+    custom_components.faastatus: debug
+    custom_components.weatheralerts: debug
 
 history:
   include:
@@ -187,6 +188,15 @@ weather:
 camera:
   - platform: nwsradar
     station: FFC
+
+iqvia:
+  zip_code: !secret zip_code
+  monitored_conditions:
+    - allergy_average_forecasted
+    - allergy_index_today
+    - allergy_index_tomorrow
+    - disease_average_forecasted
+    - disease_index_today
 
 amcrest:
   host: !secret amcrest_host

@@ -7,30 +7,42 @@
       friendly_name: Indoor Temperature
       value_template: '{{ ((float(states.sensor.bathroom_temperature.state) + float(states.sensor.ct_100_temperature.state) + float(states.sensor.bathroom_temperature_z.state) + float(states.sensor.bedroom_temperature_z.state) + float(states.sensor.hallway_temperature_z.state) + float(states.sensor.living_room_temperature_z.state)) / 6) | round(1) }}'
       unit_of_measurement: '°F'
-- platform: mqtt
-  name: "ATL End Time"
-  state_topic: "delays/ATL"
-  value_template: "{{ value_json.EndTime }}"
-- platform: mqtt
-  name: "DTW End Time"
-  state_topic: "delays/DTW"
-  value_template: "{{ value_json.EndTime }}"
-- platform: mqtt
-  name: "LGA End Time"
-  state_topic: "delays/LGA"
-  value_template: "{{ value_json.EndTime }}"
-- platform: mqtt
-  name: "JFK End Time"
-  state_topic: "delays/JFK"
-  value_template: "{{ value_json.EndTime }}"
-- platform: mqtt
-  name: "BOS End Time"
-  state_topic: "delays/BOS"
-  value_template: "{{ value_json.EndTime }}"
-- platform: mqtt
-  name: "ORD End Time"
-  state_topic: "delays/ORD"
-  value_template: "{{ value_json.EndTime }}"
+    atl_end_time:
+      friendly_name: "ATL End Time"
+      value_template: "{{ state_attr('sensor.atl_status', 'End Time') }}"
+    atl_closure_end:
+      friendly_name: "ATL Closure End"
+      value_template: "{{ state_attr('sensor.atl_status', 'Closure End') }}"
+    dtw_end_time:
+      friendly_name: "JFK End Time"
+      value_template: "{{ state_attr('sensor.dtw_status', 'End Time') }}"
+    dtw_closure_end:
+      friendly_name: "JFK Closure End"
+      value_template: "{{ state_attr('sensor.dtw_status', 'Closure End') }}"
+    lga_end_time:
+      friendly_name: "LGA End Time"
+      value_template: "{{ state_attr('sensor.lga_status', 'End Time') }}"
+    lga_closure_end:
+      friendly_name: "LGA Closure End"
+      value_template: "{{ state_attr('sensor.lga_status', 'Closure End') }}"
+    jfk_end_time:
+      friendly_name: "JFK End Time"
+      value_template: "{{ state_attr('sensor.jfk_status', 'End Time') }}"
+    jfk_closure_end:
+      friendly_name: "JFK Closure End"
+      value_template: "{{ state_attr('sensor.jfk_status', 'Closure End') }}"
+    bos_end_time:
+      friendly_name: "BOS End Time"
+      value_template: "{{ state_attr('sensor.bos_status', 'End Time') }}"
+    bos_closure_end:
+      friendly_name: "BOS Closure End"
+      value_template: "{{ state_attr('sensor.bos_status', 'Closure End') }}"
+    ord_end_time:
+      friendly_name: "ORD End Time"
+      value_template: "{{ state_attr('sensor.ord_status', 'End Time') }}"
+    ord_closure_end:
+      friendly_name: "ORD Closure End"
+      value_template: "{{ state_attr('sensor.ord_status', 'Closure End') }}"
 - platform: time_date
   display_options:
     - 'time'
@@ -97,7 +109,8 @@
   password: !secret xfinity_pass
 - platform: weatheralerts
   state: 'GA'
-  zone: 'GAC121'
+  zone: '121'
+  type: 'county'
 - platform: waze_travel_time
   origin: zone.home
   destination: zone.atl
@@ -118,3 +131,15 @@
   destination: zone.home
   region: 'US'
   name: Travel GDOT to Home
+- platform: faastatus
+  id: ATL
+- platform: faastatus
+  id: DTW
+- platform: faastatus
+  id: LGA
+- platform: faastatus
+  id: JFK
+- platform: faastatus
+  id: BOS
+- platform: faastatus
+  id: ORD

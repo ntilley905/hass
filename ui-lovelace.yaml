@@ -33,9 +33,11 @@ views:
         card:
           type: markdown
           content: >
-            ## Weather Alert!
+            ## Active Weather Alerts:
 
-            {{ states("sensor.north_fulton") }}
+            {% for alert in state_attr("sensor.fulton_county", "alerts") %}
+              {{ alert.event }}
+            {%- endfor %}
       - type: gauge
         entity: sensor.xfinity_usage
         min: 0
@@ -49,25 +51,34 @@ views:
           - type: sensor
             entity: sensor.travel_home_to_atl
             graph: line
-            detail: 2
+            detail: 1
             name: To ATL
           - type: sensor
             entity: sensor.travel_atl_to_home
             graph: line
-            detail: 2
+            detail: 1
             name: From ATL
       - type: horizontal-stack
         cards:
           - type: sensor
             entity: sensor.travel_home_to_gdot
             graph: line
-            detail: 2
+            detail: 1
             name: To GDOT
           - type: sensor
             entity: sensor.travel_gdot_to_home
             graph: line
-            detail: 2
+            detail: 1
             name: From GDOT
+      - type: gauge
+        entity: sensor.allergy_index_today
+        min: 0.0
+        max: 12.0
+        severity:
+          green: 0
+          yellow: 4.8
+          red: 7.3
+        name: Pollen Today
       - type: horizontal-stack
         cards:
           - type: entity-button
@@ -244,57 +255,67 @@ views:
       - type: entities
         title: ATL Delays
         entities:
-          - binary_sensor.atl_delay
+          - sensor.atl_status
           - binary_sensor.atl_ground_delay
           - binary_sensor.atl_ground_stop
+          - binary_sensor.atl_closed
           - sensor.atl_end_time
+          - sensor.atl_closure_end
           - input_boolean.atl_discord_notify
           - input_boolean.atl_ios_notify
         show_header_toggle: false
       - type: entities
         title: DTW Delays
         entities:
-          - binary_sensor.dtw_delay
+          - sensor.dtw_status
           - binary_sensor.dtw_ground_delay
           - binary_sensor.dtw_ground_stop
+          - binary_sensor.dtw_closed
           - sensor.dtw_end_time
+          - sensor.dtw_closure_end
           - input_boolean.dtw_discord_notify
           - input_boolean.dtw_ios_notify
         show_header_toggle: false
       - type: entities
         title: LGA Delays
         entities:
-          - binary_sensor.lga_delay
+          - sensor.lga_status
           - binary_sensor.lga_ground_delay
           - binary_sensor.lga_ground_stop
+          - binary_sensor.lga_closed
           - sensor.lga_end_time
+          - sensor.lga_closure_end
           - input_boolean.lga_discord_notify
           - input_boolean.lga_ios_notify
         show_header_toggle: false
       - type: entities
         title: JFK Delays
         entities:
-          - binary_sensor.jfk_delay
+          - sensor.jfk_status
           - binary_sensor.jfk_ground_delay
           - binary_sensor.jfk_ground_stop
+          - binary_sensor.jfk_closed
           - sensor.jfk_end_time
+          - sensor.jfk_closure_end
           - input_boolean.jfk_discord_notify
           - input_boolean.jfk_ios_notify
         show_header_toggle: false
       - type: entities
         title: BOS Delays
         entities:
-          - binary_sensor.bos_delay
+          - sensor.bos_status
           - binary_sensor.bos_ground_delay
           - binary_sensor.bos_ground_stop
+          - binary_sensor.bos_closed
           - sensor.bos_end_time
+          - sensor.bos_closure_end
           - input_boolean.bos_discord_notify
           - input_boolean.bos_ios_notify
         show_header_toggle: false
       - type: entities
         title: ORD Delays
         entities:
-          - binary_sensor.ord_delay
+          - sensor.ord_status
           - binary_sensor.ord_ground_delay
           - binary_sensor.ord_ground_stop
           - sensor.ord_end_time

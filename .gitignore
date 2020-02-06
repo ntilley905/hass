@@ -5,6 +5,7 @@
 *.db*
 *.txt
 *._
+__pycache__
 
 #directory ignores
 /tts
@@ -28,6 +29,3 @@ google_calendars.yaml
 
 #specific allows
 !.test/secrets.yaml
-
-#custom component ignores (work in progress)
-custom_components/faasensor/*
