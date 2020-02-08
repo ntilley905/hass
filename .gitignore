@@ -5,7 +5,7 @@
 *.db*
 *.txt
 *._
-__pycache__
+__pycache__/
 
 #directory ignores
 /tts

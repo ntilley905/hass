@@ -4,11 +4,11 @@
     entity_id: sensor.fulton_county
   condition:
     - condition: template
-      value_template: '{{ states("sensor.fulton_county") == "1" }}'
-    - condition: template
       value_template: '{{ state_attr("sensor.fulton_county", "alerts")[0].urgency == "Immediate" }}'
     - condition: template
       value_template: '{{ trigger.to_state.state | int > trigger.from_state.state | int }}'
+    - condition: template
+      value_template: '{{ state_attr("sensor.fulton_county", "alerts")[0].event != "Flood Warning") }}'
   action:
     - service: notify.all_mobile_apps
       data_template:
@@ -27,12 +27,16 @@
     platform: state
     entity_id: sensor.fulton_county
   condition:
-    - condition: template
-      value_template: '{{ states("sensor.fulton_county") == "1" }}'
-    - condition: template
-      value_template: '{{ state_attr("sensor.fulton_county", "alerts")[0].urgency != "Immediate" }}'
-    - condition: template
-      value_template: '{{ trigger.to_state.state | int > trigger.from_state.state | int }}'
+    - condition: and
+      conditions:
+      - condition: or
+        conditions:
+        - condition: template
+          value_template: '{{ state_attr("sensor.fulton_county", "alerts")[0].urgency != "Immediate" }}'
+        - condition: template
+          value_template: '{{ state_attr("sensor.fulton_county", "alerts")[0].event == "Flood Warning") }}'
+      - condition: template
+        value_template: '{{ trigger.to_state.state | int > trigger.from_state.state | int }}'
   action:
     - service: notify.all_mobile_apps
       data_template:
