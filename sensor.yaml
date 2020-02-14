@@ -7,42 +7,6 @@
       friendly_name: Indoor Temperature
       value_template: '{{ ((float(states.sensor.bathroom_temperature.state) + float(states.sensor.ct_100_temperature.state) + float(states.sensor.bathroom_temperature_z.state) + float(states.sensor.bedroom_temperature_z.state) + float(states.sensor.hallway_temperature_z.state) + float(states.sensor.living_room_temperature_z.state)) / 6) | round(1) }}'
       unit_of_measurement: '°F'
-    atl_end_time:
-      friendly_name: "ATL End Time"
-      value_template: "{{ state_attr('sensor.atl_status', 'end_time') }}"
-    atl_closure_end:
-      friendly_name: "ATL Closure End"
-      value_template: "{{ state_attr('sensor.atl_status', 'closure_end') }}"
-    dtw_end_time:
-      friendly_name: "JFK End Time"
-      value_template: "{{ state_attr('sensor.dtw_status', 'end_time') }}"
-    dtw_closure_end:
-      friendly_name: "JFK Closure End"
-      value_template: "{{ state_attr('sensor.dtw_status', 'closure_end') }}"
-    lga_end_time:
-      friendly_name: "LGA End Time"
-      value_template: "{{ state_attr('sensor.lga_status', 'end_time') }}"
-    lga_closure_end:
-      friendly_name: "LGA Closure End"
-      value_template: "{{ state_attr('sensor.lga_status', 'closure_end') }}"
-    jfk_end_time:
-      friendly_name: "JFK End Time"
-      value_template: "{{ state_attr('sensor.jfk_status', 'end_time') }}"
-    jfk_closure_end:
-      friendly_name: "JFK Closure End"
-      value_template: "{{ state_attr('sensor.jfk_status', 'closure_end') }}"
-    bos_end_time:
-      friendly_name: "BOS End Time"
-      value_template: "{{ state_attr('sensor.bos_status', 'end_time') }}"
-    bos_closure_end:
-      friendly_name: "BOS Closure End"
-      value_template: "{{ state_attr('sensor.bos_status', 'closure_end') }}"
-    ord_end_time:
-      friendly_name: "ORD End Time"
-      value_template: "{{ state_attr('sensor.ord_status', 'end_time') }}"
-    ord_closure_end:
-      friendly_name: "ORD Closure End"
-      value_template: "{{ state_attr('sensor.ord_status', 'closure_end') }}"
 - platform: time_date
   display_options:
     - 'time'
@@ -143,3 +107,5 @@
   id: BOS
 - platform: faastatus
   id: ORD
+- platform: faastatus
+  id: EWR

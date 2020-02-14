@@ -1,4 +1,7 @@
 title: Home
+resources:
+  - url: community_plugin/lovelace-template-entity-row/template-entity-row.js?v=20
+    type: module
 background: var(--background-image)
 views:
 
@@ -20,7 +23,7 @@ views:
           - binary_sensor.updater
           - entity: sensor.hacs
             state_filter:
-              - operator: ">"
+              - operator: "!="
                 value: 0
         state_filter:
           - "on"
@@ -251,75 +254,210 @@ views:
     icon: mdi:airplane
     cards:
       - type: entities
-        title: ATL Delays
+        title: ATL Status
+        show_header_toggle: false
         entities:
           - sensor.atl_status
-          - binary_sensor.atl_ground_delay
-          - binary_sensor.atl_ground_stop
-          - binary_sensor.atl_closed
-          - sensor.atl_end_time
-          - sensor.atl_closure_end
-          - input_boolean.atl_discord_notify
-          - input_boolean.atl_ios_notify
-        show_header_toggle: false
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.atl_status', 'closed', true) }}"
+            name: "Closure Reason:"
+            icon: mdi:airplane-off
+            state: "{{ state_attr('sensor.atl_status', 'closure_reason') }}"
+            secondary: "Closure End: {{ state_attr('sensor.atl_status', 'closure_end') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.atl_status', 'ground_stop', true) }}"
+            name: "Ground Stop Reason:"
+            icon: mdi:stop-circle-outline
+            state: "{{ state_attr('sensor.atl_status', 'ground_stop_reason') }}"
+            secondary: "End Time: {{ state_attr('sensor.atl_status', 'end_time') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.atl_status', 'ground_delay', true) }}"
+            name: "Ground Delay Reason:"
+            icon: mdi:timer-off
+            state: "{{ state_attr('sensor.atl_status', 'ground_delay_reason') }}"
+            secondary: "Last Updated {{ as_timestamp(states.sensor.atl_status.last_changed) | timestamp_custom('%D %-I:%M %p') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.atl_status', 'arrival_delay', true) }}"
+            name: "Arrival Delay Reason:"
+            icon: mdi:airplane-landing
+            state: "{{ state_attr('sensor.atl_status', 'arrival_delay_reason') }}"
+            secondary: "Last Updated {{ as_timestamp(states.sensor.atl_status.last_changed) | timestamp_custom('%D %-I:%M %p') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.atl_status', 'departure_delay', true) }}"
+            name: "Departure Delay Reason:"
+            icon: mdi:airplane-takeoff
+            state: "{{ state_attr('sensor.atl_status', 'departure_delay_reason') }}"
       - type: entities
-        title: DTW Delays
+        title: DTW Status
+        show_header_toggle: false
         entities:
           - sensor.dtw_status
-          - binary_sensor.dtw_ground_delay
-          - binary_sensor.dtw_ground_stop
-          - binary_sensor.dtw_closed
-          - sensor.dtw_end_time
-          - sensor.dtw_closure_end
-          - input_boolean.dtw_discord_notify
-          - input_boolean.dtw_ios_notify
-        show_header_toggle: false
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.dtw_status', 'closed', true) }}"
+            name: "Closure Reason:"
+            icon: mdi:airplane-off
+            state: "{{ state_attr('sensor.dtw_status', 'closure_reason') }}"
+            secondary: "Closure End: {{ state_attr('sensor.dtw_status', 'closure_end') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.dtw_status', 'ground_stop', true) }}"
+            name: "Ground Stop Reason:"
+            icon: mdi:stop-circle-outline
+            state: "{{ state_attr('sensor.dtw_status', 'ground_stop_reason') }}"
+            secondary: "End Time: {{ state_attr('sensor.dtw_status', 'end_time') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.dtw_status', 'ground_delay', true) }}"
+            name: "Ground Delay Reason:"
+            icon: mdi:timer-off
+            state: "{{ state_attr('sensor.dtw_status', 'ground_delay_reason') }}"
+            secondary: "Last Updated {{ as_timestamp(states.sensor.dtw_status.last_changed) | timestamp_custom('%D %-I:%M %p') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.dtw_status', 'arrival_delay', true) }}"
+            name: "Arrival Delay Reason:"
+            icon: mdi:airplane-landing
+            state: "{{ state_attr('sensor.dtw_status', 'arrival_delay_reason') }}"
+            secondary: "Last Updated {{ as_timestamp(states.sensor.dtw_status.last_changed) | timestamp_custom('%D %-I:%M %p') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.dtw_status', 'departure_delay', true) }}"
+            name: "Departure Delay Reason:"
+            icon: mdi:airplane-takeoff
+            state: "{{ state_attr('sensor.dtw_status', 'departure_delay_reason') }}"
       - type: entities
-        title: LGA Delays
+        title: LGA Status
+        show_header_toggle: false
         entities:
           - sensor.lga_status
-          - binary_sensor.lga_ground_delay
-          - binary_sensor.lga_ground_stop
-          - binary_sensor.lga_closed
-          - sensor.lga_end_time
-          - sensor.lga_closure_end
-          - input_boolean.lga_discord_notify
-          - input_boolean.lga_ios_notify
-        show_header_toggle: false
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.lga_status', 'closed', true) }}"
+            name: "Closure Reason:"
+            icon: mdi:airplane-off
+            state: "{{ state_attr('sensor.lga_status', 'closure_reason') }}"
+            secondary: "Closure End: {{ state_attr('sensor.lga_status', 'closure_end') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.lga_status', 'ground_stop', true) }}"
+            name: "Ground Stop Reason:"
+            icon: mdi:stop-circle-outline
+            state: "{{ state_attr('sensor.lga_status', 'ground_stop_reason') }}"
+            secondary: "End Time: {{ state_attr('sensor.lga_status', 'end_time') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.lga_status', 'ground_delay', true) }}"
+            name: "Ground Delay Reason:"
+            icon: mdi:timer-off
+            state: "{{ state_attr('sensor.lga_status', 'ground_delay_reason') }}"
+            secondary: "Last Updated {{ as_timestamp(states.sensor.lga_status.last_changed) | timestamp_custom('%D %-I:%M %p') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.lga_status', 'arrival_delay', true) }}"
+            name: "Arrival Delay Reason:"
+            icon: mdi:airplane-landing
+            state: "{{ state_attr('sensor.lga_status', 'arrival_delay_reason') }}"
+            secondary: "Last Updated {{ as_timestamp(states.sensor.lga_status.last_changed) | timestamp_custom('%D %-I:%M %p') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.lga_status', 'departure_delay', true) }}"
+            name: "Departure Delay Reason:"
+            icon: mdi:airplane-takeoff
+            state: "{{ state_attr('sensor.lga_status', 'departure_delay_reason') }}"
       - type: entities
-        title: JFK Delays
+        title: JFK Status
+        show_header_toggle: false
         entities:
           - sensor.jfk_status
-          - binary_sensor.jfk_ground_delay
-          - binary_sensor.jfk_ground_stop
-          - binary_sensor.jfk_closed
-          - sensor.jfk_end_time
-          - sensor.jfk_closure_end
-          - input_boolean.jfk_discord_notify
-          - input_boolean.jfk_ios_notify
-        show_header_toggle: false
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.jfk_status', 'closed', true) }}"
+            name: "Closure Reason:"
+            icon: mdi:airplane-off
+            state: "{{ state_attr('sensor.jfk_status', 'closure_reason') }}"
+            secondary: "Closure End: {{ state_attr('sensor.jfk_status', 'closure_end') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.jfk_status', 'ground_stop', true) }}"
+            name: "Ground Stop Reason:"
+            icon: mdi:stop-circle-outline
+            state: "{{ state_attr('sensor.jfk_status', 'ground_stop_reason') }}"
+            secondary: "End Time: {{ state_attr('sensor.jfk_status', 'end_time') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.jfk_status', 'ground_delay', true) }}"
+            name: "Ground Delay Reason:"
+            icon: mdi:timer-off
+            state: "{{ state_attr('sensor.jfk_status', 'ground_delay_reason') }}"
+            secondary: "Last Updated {{ as_timestamp(states.sensor.jfk_status.last_changed) | timestamp_custom('%D %-I:%M %p') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.jfk_status', 'arrival_delay', true) }}"
+            name: "Arrival Delay Reason:"
+            icon: mdi:airplane-landing
+            state: "{{ state_attr('sensor.jfk_status', 'arrival_delay_reason') }}"
+            secondary: "Last Updated {{ as_timestamp(states.sensor.jfk_status.last_changed) | timestamp_custom('%D %-I:%M %p') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.jfk_status', 'departure_delay', true) }}"
+            name: "Departure Delay Reason:"
+            icon: mdi:airplane-takeoff
+            state: "{{ state_attr('sensor.jfk_status', 'departure_delay_reason') }}"
       - type: entities
-        title: BOS Delays
+        title: BOS Status
+        show_header_toggle: false
         entities:
           - sensor.bos_status
-          - binary_sensor.bos_ground_delay
-          - binary_sensor.bos_ground_stop
-          - binary_sensor.bos_closed
-          - sensor.bos_end_time
-          - sensor.bos_closure_end
-          - input_boolean.bos_discord_notify
-          - input_boolean.bos_ios_notify
-        show_header_toggle: false
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.bos_status', 'closed', true) }}"
+            name: "Closure Reason:"
+            icon: mdi:airplane-off
+            state: "{{ state_attr('sensor.bos_status', 'closure_reason') }}"
+            secondary: "Closure End: {{ state_attr('sensor.bos_status', 'closure_end') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.bos_status', 'ground_stop', true) }}"
+            name: "Ground Stop Reason:"
+            icon: mdi:stop-circle-outline
+            state: "{{ state_attr('sensor.bos_status', 'ground_stop_reason') }}"
+            secondary: "End Time: {{ state_attr('sensor.bos_status', 'end_time') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.bos_status', 'ground_delay', true) }}"
+            name: "Ground Delay Reason:"
+            icon: mdi:timer-off
+            state: "{{ state_attr('sensor.bos_status', 'ground_delay_reason') }}"
+            secondary: "Last Updated {{ as_timestamp(states.sensor.bos_status.last_changed) | timestamp_custom('%D %-I:%M %p') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.bos_status', 'arrival_delay', true) }}"
+            name: "Arrival Delay Reason:"
+            icon: mdi:airplane-landing
+            state: "{{ state_attr('sensor.bos_status', 'arrival_delay_reason') }}"
+            secondary: "Last Updated {{ as_timestamp(states.sensor.bos_status.last_changed) | timestamp_custom('%D %-I:%M %p') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.bos_status', 'departure_delay', true) }}"
+            name: "Departure Delay Reason:"
+            icon: mdi:airplane-takeoff
+            state: "{{ state_attr('sensor.bos_status', 'departure_delay_reason') }}"
       - type: entities
-        title: ORD Delays
+        title: ORD Status
+        show_header_toggle: false
         entities:
           - sensor.ord_status
-          - binary_sensor.ord_ground_delay
-          - binary_sensor.ord_ground_stop
-          - sensor.ord_end_time
-          - input_boolean.ord_discord_notify
-          - input_boolean.ord_ios_notify
-        show_header_toggle: false
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.ord_status', 'closed', true) }}"
+            name: "Closure Reason:"
+            icon: mdi:airplane-off
+            state: "{{ state_attr('sensor.ord_status', 'closure_reason') }}"
+            secondary: "Closure End: {{ state_attr('sensor.ord_status', 'closure_end') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.ord_status', 'ground_stop', true) }}"
+            name: "Ground Stop Reason:"
+            icon: mdi:stop-circle-outline
+            state: "{{ state_attr('sensor.ord_status', 'ground_stop_reason') }}"
+            secondary: "End Time: {{ state_attr('sensor.ord_status', 'end_time') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.ord_status', 'ground_delay', true) }}"
+            name: "Ground Delay Reason:"
+            icon: mdi:timer-off
+            state: "{{ state_attr('sensor.ord_status', 'ground_delay_reason') }}"
+            secondary: "Last Updated {{ as_timestamp(states.sensor.ord_status.last_changed) | timestamp_custom('%D %-I:%M %p') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.ord_status', 'arrival_delay', true) }}"
+            name: "Arrival Delay Reason:"
+            icon: mdi:airplane-landing
+            state: "{{ state_attr('sensor.ord_status', 'arrival_delay_reason') }}"
+            secondary: "Last Updated {{ as_timestamp(states.sensor.ord_status.last_changed) | timestamp_custom('%D %-I:%M %p') }}"
+          - type: custom:template-entity-row
+            condition: "{{ is_state_attr('sensor.ord_status', 'departure_delay', true) }}"
+            name: "Departure Delay Reason:"
+            icon: mdi:airplane-takeoff
+            state: "{{ state_attr('sensor.ord_status', 'departure_delay_reason') }}"
+            secondary: "Last Updated {{ as_timestamp(states.sensor.ord_status.last_changed) | timestamp_custom('%D %-I:%M %p') }}"
 
   - path: config
     title: config
