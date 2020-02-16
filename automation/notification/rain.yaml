@@ -1,34 +1,34 @@
 - alias: Rain Notification
   trigger:
     platform: template
-    value_template: '{{ not is_state("sensor.dark_sky_precip", "unknown") }}'
+    value_template: "{{ not is_state('sensor.dark_sky_precip', 'unknown') }}"
   condition:
     condition: state
     entity_id: input_boolean.window_open
-    state: 'on'
+    state: "on"
   action:
     - service: notify.mobile_app_nathans_iphone
       data_template:
-        title: 'Precip Detected!'
-        message: 'Windows are open and {{ states("sensor.dark_sky_precip") }} is detected!'
+        title: "Precip Detected!"
+        message: "Windows are open and {{ states('sensor.dark_sky_precip') }} is detected!"
     - condition: state
       entity_id: input_boolean.sleep_mode
-      state: 'off'
+      state: "off"
     - service: script.rain_tts
 - alias: Windows Open When Leaving
   trigger:
     platform: state
     entity_id: group.home_devices
-    to: 'not_home'
+    to: "not_home"
   condition:
     condition: state
     entity_id: input_boolean.window_open
-    state: 'on'
+    state: "on"
   action:
     service: notify.mobile_app_nathans_iphone
     data:
-      title: 'Windows Open!'
-      message: 'You forgot to close the windows.'
+      title: "Windows Open!"
+      message: "You forgot to close the windows."
       data:
         push:
           category: window

@@ -24,4 +24,4 @@
     service: input_number.set_value
     data_template:
       entity_id: input_number.previous_day_average_temp
-      value: "{{ states('sensor.outdoor_temperature_stats')}}"
+      value: "{{ states('sensor.outdoor_temperature_stats') }}"

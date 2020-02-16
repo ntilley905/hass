@@ -6,5 +6,5 @@
   action:
     service: notify.all_mobile_apps
     data_template:
-      title: 'Freezer Temp High!'
-      message: 'The freezer temp is indicating {{ states("sensor.bedroom_temperature")}}°F.'
+      title: "Freezer Temp High!"
+      message: "The freezer temp is indicating {{ states('sensor.bedroom_temperature') }}°F."

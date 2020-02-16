@@ -3,10 +3,20 @@
     - platform: state
       entity_id: sensor.travel_home_to_atl
     - platform: template
-      value_template: "{{ state_attr('calendar.report', 'start_time')|as_timestamp() - now()|as_timestamp() == 21600 }}"
+      value_template: >
+        {% if state_attr('calendar.report', 'start_time') %}
+        {{ state_attr('calendar.report', 'start_time')|as_timestamp() - now()|as_timestamp() == 21600 }}
+        {% else %}
+        False
+        {% endif %}
   condition:
     - condition: template
-      value_template: "{{ state_attr('calendar.report', 'start_time')|as_timestamp() - now()|as_timestamp() < 43200 }}"
+      value_template: >
+        {% if state_attr('calendar.report', 'start_time') %}
+        {{ state_attr('calendar.report', 'start_time')|as_timestamp() - now()|as_timestamp() < 43200 }}"
+        {% else %}
+        False
+        {% endif %}
     - condition: state
       entity_id: person.nathan
       state: 'home'

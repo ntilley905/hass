@@ -7,5 +7,5 @@
         seconds: 5
     - service: notify.mobile_app_nathans_iphone
       data_template:
-        title: 'Climate Setpoint Change'
-        message: 'Climate changed to {{ states("input_number.climate_cool_point") | int }} and {{ states("input_number.climate_heat_point") | int }}.'
+        title: "Climate Setpoint Change"
+        message: "Climate changed to {{ states('input_number.climate_cool_point') | int }} and {{ states('input_number.climate_heat_point') | int }}."
