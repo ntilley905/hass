@@ -1,6 +1,6 @@
 title: Home
 resources:
-  - url: community_plugin/lovelace-template-entity-row/template-entity-row.js?v=20
+  - url: hacsfiles/lovelace-template-entity-row/template-entity-row.js?v=20
     type: module
 background: var(--background-image)
 views:
@@ -21,10 +21,6 @@ views:
           - switch.coffee_maker
           - binary_sensor.front_door
           - binary_sensor.updater
-          - entity: sensor.hacs
-            state_filter:
-              - operator: "!="
-                value: 0
         state_filter:
           - "on"
           - "open"
@@ -108,11 +104,39 @@ views:
       - type: picture-entity
         entity: camera.ffc
 
+  - path: covid-19
+    title: Covid 19
+    icon: mdi:hospital-box
+    cards:
+      - type: glance
+        title: Worldwide
+        entities:
+          - entity: sensor.worldwide_coronavirus_confirmed
+            name: Confirmed
+          - entity: sensor.worldwide_coronavirus_current
+            name: Current
+          - entity: sensor.worldwide_coronavirus_recovered
+            name: Recovered
+          - entity: sensor.worldwide_coronavirus_deaths
+            name: Deaths
+      - type: glance
+        title: US
+        entities:
+          - entity: sensor.us_coronavirus_confirmed
+            name: Confirmed
+          - entity: sensor.us_coronavirus_current
+            name: Current
+          - entity: sensor.us_coronavirus_recovered
+            name: Recovered
+          - entity: sensor.us_coronavirus_deaths
+            name: Deaths
   - path: living_room
     title: Living Room
     badges:
       - binary_sensor.front_door
       - binary_sensor.amcrest_camera_motion_detected
+      - sensor.shelly2_5_10b831_power_0
+      - sensor.shelly2_5_10b831_energy_0
     cards:
       - type: vertical-stack
         cards:
@@ -220,14 +244,14 @@ views:
     title: Climate
     icon: mdi:air-conditioner
     badges:
-      - sensor.ct_100_temperature
-      - sensor.ct_100_humidity
+      - sensor.thermostat_temperature
+      - sensor.thermostat_humidity
       - sensor.hvac_action
       - sensor.ac_cool_today
       - sensor.ac_heat_today
     cards:
       - type: thermostat
-        entity: climate.ct_100
+        entity: climate.thermostat
       - type: entities
         entities:
           - input_select.climate_mode

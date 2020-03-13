@@ -5,32 +5,22 @@
     - platform: state
       entity_id: input_number.climate_heat_point
     - platform: state
-      entity_id: input_select.climate_mode
-    - platform: state
       entity_id: input_boolean.climate_override
       to: 'on'
       for:
         hours: 1
+    - platform: state
+      entity_id: climate.thermostat
+      to: 'heat_cool'
   condition:
     condition: template
-    value_template: '{{ not is_state("input_select.climate_mode", "Off") }}'
+    value_template: '{{ not is_state("climate.thermostat", "off") }}'
   action:
-    - wait_template: >
-        {% if states("climate.ct_100") == states("input_select.climate_mode")|lower() %}
-        true
-        {% else %}
-        false
-        {% endif %}
+    - delay: '00:00:02'
     - service: climate.set_temperature
       data_template:
-        entity_id: climate.ct_100
-        temperature: >
-          {% if is_state("input_select.climate_mode", "Cool") -%}
-            {{ states("input_number.climate_cool_point") | int() }}
-          {% elif is_state("input_select.climate_mode", "Heat") -%}
-            {{ states("input_number.climate_heat_point") | int() }}
-          {% else -%}
-            {{ states("climate.ct_100") }}
-          {% endif -%}
+        entity_id: climate.thermostat
+        target_temp_high: '{{ states("input_number.climate_cool_point") }}'
+        target_temp_low: '{{ states("input_number.climate_heat_point") }}'
     - service: input_boolean.turn_off
       entity_id: input_boolean.climate_override

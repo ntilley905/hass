@@ -135,12 +135,6 @@ zwave:
       refresh_value: true
       delay: 3
 
-mqtt:
-  broker: a0d7b954-mqtt
-  username: !secret mqtt_user1
-  password: !secret mqtt_pass1
-  client_id: home-assistant
-
 mobile_app:
 
 ios:
@@ -213,19 +207,29 @@ media_player:
     name: volumio_mpd
     host: !secret volumio_ip
 
-# This fan switch is dead. Awaiting a new switch
-#fan:
-#  - platform: template
-#    fans:
-#      living_room:
-#        friendly_name: Living Room Fan
-#        value_template: "{{ states('switch.living_room_ceiling_fan') }}"
-#        turn_on:
-#          service: switch.turn_on
-#          entity_id: switch.living_room_ceiling_fan
-#        turn_off:
-#          service: switch.turn_off
-#          entity_id: switch.living_room_ceiling_fan
+fan:
+  - platform: template
+    fans:
+      living_room:
+        friendly_name: 'Living Room Fan'
+        value_template: '{{ states("switch.shelly2_5_10b831_relay_0") }}'
+        availability_template: >
+          {% if states('switch.shelly2_5_10b831_relay_0') == 'unavailable' %}
+          false
+          {% else %}
+          true
+          {% endif %}
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.shelly2_5_10b831_relay_0
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.shelly2_5_10b831_relay_0
+
+
+python_script:
 
 tts:
   - platform: google_translate
