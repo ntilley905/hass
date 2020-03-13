@@ -13,4 +13,4 @@ lights:
     - light.island_dimmer
     - light.kitchen_lights
     - light.living_room_lamp
-    - light.tv_backlight
+    - light.bedroom_led

@@ -16,3 +16,12 @@
     light.bathroom:
       state: on
       brightness: 10
+- name: Normal Lights
+  entities:
+    light.living_room_lamp:
+      state: on
+      brightness: 255
+      color_temp: 380
+    light.island_dimmer:
+      state: on
+      brightness: 255

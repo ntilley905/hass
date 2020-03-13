@@ -1,0 +1,13 @@
+- alias: Lights at Sunset
+  trigger:
+    platform: numeric_state
+    entity_id: sun.sun
+    value_template: "{{ state_attr('sun.sun', 'elevation') }}"
+    below: 10.0
+  condition:
+    condition: state
+    entity_id: group.home_devices
+    state: 'home'
+  action:
+    service: scene.turn_on
+    entity_id: scene.normal_lights

@@ -1,32 +1,3 @@
-alarm_clock:
-  alias: Alarm Clock
-  sequence:
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.sleep_mode
-    - service: light.turn_on
-      data:
-        entity_id: light.tv_backlight
-        kelvin: 4500
-        brightness: 255
-        transition: 60
-    - delay: '00:00:30'
-    - service: light.turn_on
-      data:
-        entity_id: light.bedroom_lamp
-        kelvin: 4500
-        brightness: 255
-        transition: 60
-    - delay: '00:01:00'
-    - service: light.turn_on
-      entity_id: light.bedroom_light
-    - service: script.morning_tts
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.alarm_clock_enable
-    - condition: state
-      entity_id: input_boolean.alarm_clock_coffee
-      state: 'on'
-    - service: switch.turn_on
-      entity_id: switch.coffee_maker
 morning_tts:
   alias: Morning TTS
   sequence:

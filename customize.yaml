@@ -55,3 +55,5 @@ binary_sensor.living_room_motion_z: {}
 sensor.living_room_temperature_z:
   icon: mdi:thermometer
   unit_of_measurement: °F
+zwave.radio_thermostat_company_of_america_ct100_plus_thermostat:
+  polling_interval: '1'

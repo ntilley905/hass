@@ -130,6 +130,23 @@ views:
             name: Recovered
           - entity: sensor.us_coronavirus_deaths
             name: Deaths
+
+  - path: alarm_clock
+    title: Alarm Clock
+    icon: mdi:alarm
+    cards:
+      - type: entities
+        entities:
+          - input_boolean.alarm_clock_enable
+          - input_datetime.alarm_clock
+        title: Alarm Clock
+        show_header_toggle: false
+      - type: entities
+        entities:
+          - input_boolean.alarm_clock_coffee
+          - input_boolean.alarm_clock_lights
+          - input_boolean.alarm_clock_tts
+
   - path: living_room
     title: Living Room
     badges:
@@ -212,7 +229,7 @@ views:
         entities:
           - light.bedroom_light
           - light.bedroom_lamp
-          - light.tv_backlight
+          - light.bedroom_led
 
 
   - path: bathroom
