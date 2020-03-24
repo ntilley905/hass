@@ -1,7 +1,4 @@
 title: Home
-resources:
-  - url: hacsfiles/lovelace-template-entity-row/template-entity-row.js?v=20
-    type: module
 background: var(--background-image)
 views:
 

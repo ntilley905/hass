@@ -107,5 +107,8 @@
   id: BOS
 - platform: faastatus
   id: ORD
-- platform: faastatus
-  id: EWR
+- platform: rest
+  resource: https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=3&mostRecent=true&stationString=KATL
+  name: ATL METAR
+  value_template: '{{ value_json.response.data.METAR.flight_category }}'
+  json_attributes_path: '{{ value_json.response.data.METAR }}'

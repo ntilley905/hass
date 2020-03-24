@@ -182,3 +182,20 @@
   country: US
   province: GA
   workdays: [mon, tue, wed, thu]
+#- platform: bayesian
+#  name: 'In Living Room'
+#  prior: 0.29
+#  probability_threshold: 0.9
+#  observations:
+#    - platform: state
+#      entity_id: binary_sensor.living_room_motion_z
+#      to_state: 'on'
+#      prob_given_true: 0.7
+#    - platform: state
+#      entity_id: light.island_dimmer
+#      to_state: 'on'
+#      prob_given_true: 0.8
+#    - platform: state
+#      entity_id: light.couch
+#      to_state: 'on'
+#      prob_given_true: 0.8

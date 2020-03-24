@@ -27,11 +27,13 @@
     - delay: '00:01:00'
     - service: light.turn_on
       entity_id: light.bedroom_light
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_clock_lights
 - alias: Alarm Clock Coffee
   trigger:
     platform: template
-    # 2 minutes before alarm clock time
-    value_template: "{{ states('sensor.time') == ((state_attr('input_datetime.alarm_clock', 'timestamp') - 120 ) | timestamp_custom('%H:%M', False)) }}"
+    # Right at alarm time
+    value_template: "{{ states('sensor.time') == (state_attr('input_datetime.alarm_clock', 'timestamp') | timestamp_custom('%H:%M', False)) }}"
   condition:
     - condition: state
       entity_id: input_boolean.alarm_clock_enable
@@ -40,8 +42,10 @@
       entity_id: input_boolean.alarm_clock_coffee
       state: 'on'
   action:
-    service: switch.turn_on
-    entity_id: switch.coffee_maker
+    - service: switch.turn_on
+      entity_id: switch.coffee_maker
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_clock_coffee
 - alias: Alarm Clock TTS
   trigger:
     platform: template
@@ -55,4 +59,6 @@
       entity_id: input_boolean.alarm_clock_tts
       state: 'on'
   action:
-    service: script.morning_tts
+    - service: script.morning_tts
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_clock_tts

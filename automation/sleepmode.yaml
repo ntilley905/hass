@@ -1,0 +1,23 @@
+- alias: Turn Sleep Mode Off
+  trigger:
+    platform: state
+    entity_id: switch.coffee_maker
+    to: 'on'
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.sleep_mode
+- alias: Turn Sleep Mode On
+  trigger:
+    platform: state
+    entity_id: group.lights
+    to: 'off'
+  condition:
+    - condition: time
+      after: '21:00:00'
+      before: '03:00:00'
+    - condition: state
+      entity_id: group.home_devices
+      state: 'home'
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.sleep_mode

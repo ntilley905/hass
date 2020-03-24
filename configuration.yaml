@@ -17,6 +17,9 @@ http:
 
 lovelace:
   mode: yaml
+  resources:
+    - url: hacsfiles/lovelace-template-entity-row/template-entity-row.js?v=20
+      type: module
 
 frontend:
   themes: !include_dir_merge_named themes
@@ -185,12 +188,6 @@ camera:
 
 iqvia:
   zip_code: !secret zip_code
-  monitored_conditions:
-    - allergy_average_forecasted
-    - allergy_index_today
-    - allergy_index_tomorrow
-    - disease_average_forecasted
-    - disease_index_today
 
 amcrest:
   host: !secret amcrest_host
