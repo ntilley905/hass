@@ -25,3 +25,8 @@
     light.island_dimmer:
       state: on
       brightness: 255
+- name: TV Lights
+  entities:
+    light.island_dimmer:
+      state: on
+      brightness: 64

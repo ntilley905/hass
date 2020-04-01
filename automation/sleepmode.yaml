@@ -1,8 +1,14 @@
 - alias: Turn Sleep Mode Off
   trigger:
-    platform: state
-    entity_id: switch.coffee_maker
-    to: 'on'
+    - platform: state
+      entity_id: switch.coffee_maker
+      to: 'on'
+    - platform: state
+      entity_id: light.living_room_lamp
+    - platform: state
+      entity_id: light.kitchen_lights
+    - platform: state
+      entity_id: binary_sensor.front_door
   action:
     service: input_boolean.turn_off
     entity_id: input_boolean.sleep_mode

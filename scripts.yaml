@@ -50,3 +50,25 @@ house_hot:
         temperature: "{{ state_attr('climate.ct_100', 'temperature') - 1 }}"
     - service: input_boolean.turn_on
       entity_id: input_boolean.climate_override
+apple_tv_on:
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.apple_tv
+        command: 'wakeup'
+    - service: remote.turn_on
+      entity_id: remote.apple_tv
+apple_tv_off:
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.apple_tv
+        command: 'home_hold'
+    - delay:
+        seconds: 2
+    - service: remote.send_command
+      data:
+        entity_id: remote.apple_tv
+        command: 'select'
+    - service: remote.turn_off
+      entity_id: remote.apple_tv

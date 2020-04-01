@@ -32,3 +32,14 @@
   action:
     service: light.turn_off
     entity_id: light.island_dimmer
+- alias: Night Lights Off in Morning
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.living_room_luminance_z
+    above: 50
+  condition:
+    condition: template
+    value_template: "{{ state_attr('light.island_dimmer', 'brightness') < 10 }}"
+  action:
+    service: light.turn_off
+    entity_id: light.island_dimmer

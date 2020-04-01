@@ -143,6 +143,7 @@ views:
           - input_boolean.alarm_clock_coffee
           - input_boolean.alarm_clock_lights
           - input_boolean.alarm_clock_tts
+        show_header_toggle: false
 
   - path: living_room
     title: Living Room
@@ -282,10 +283,67 @@ views:
     title: Media Player
     icon: mdi:music
     cards:
-      - type: media-control
-        entity: media_player.spotify
-      - type: media-control
-        entity: media_player.marantz_sr5012
+      - type: vertical-stack
+        cards:
+        - type: media-control
+          entity: media_player.apple_tv
+        - type: horizontal-stack
+          cards:
+            - type: button
+              name: Turn On
+              icon: mdi:power-standby
+              tap_action:
+                action: call-service
+                service: script.apple_tv_on
+            - type: button
+              name: Turn Off
+              icon: mdi:power-off
+              tap_action:
+                action: call-service
+                service: script.apple_tv_off
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: button
+                name: Up
+                icon: mdi:arrow-up
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.apple_tv
+                    command: 'up'
+              - type: vertical-stack
+                cards:
+                  - type: button
+                    name: Left
+                    icon: mdi:arrow-left
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.apple_tv
+                        command: 'left'
+                  - type: button
+                    name: Right
+                    icon: mdi:arrow-right
+                    tap_action:
+                      action: call-service
+                      service: remote.send_command
+                      service_data:
+                        entity_id: remote.apple_tv
+                        command: 'right'
+              - type: button
+                name: Down
+                icon: mdi:arrow-down
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.apple_tv
+                    command: 'down'
+
 
   - path: delays
     title: Delays
@@ -510,69 +568,19 @@ views:
           - input_boolean.window_open
           - group.lights
       - type: entities
-        title: Alarm Clock
+        title: AdGuard
         entities:
-          - input_boolean.alarm_clock_enable
-          - input_datetime.alarm_clock
-          - input_boolean.alarm_clock_coffee
+          - sensor.adguard_average_processing_speed
+          - sensor.adguard_dns_queries
+          - sensor.adguard_dns_queries_blocked_ratio
+          - switch.adguard_filtering
       - type: entities
         title: Scenes
         entities:
           - scene.welcome_home
           - scene.night_lights
-      - type: entities
-        title: Notification Automations
-        entities:
-          - automation.front_door
-          - automation.climate_notifications
-          - automation.rain_notification
-          - automation.data_at_75
-          - automation.data_at_90
-          - automation.notify_to_leave
-          - automation.leave_now
-          - automation.windows_open_when_leaving
-          - automation.weather_alert_critical_1
-          - automation.weather_alert_non_critical_1
-          - automation.weather_alert_critical_2
-          - automation.weather_alert_non_critical_2
-          - automation.weather_alert_critical_3
-          - automation.weather_alert_non_critical_3
-      - type: entities
-        title: Light Automations
-        entities:
-          - automation.away_lights
-          - automation.home_lights
-      - type: entities
-        title: Climate Automations
-        entities:
-          - automation.climate_change_mode
-          - automation.climate_set_point
-          - automation.climate_set_to_cool
-          - automation.climate_set_to_heat
-          - automation.climate_turn_off
-          - automation.climate_set_home
-          - automation.climate_set_away
-          - automation.climate_set_trip
-          - automation.climate_set_sleep
-          - automation.record_ac_cool_time
-          - automation.record_ac_heat_time
-          - automation.record_average
-      - type: entities
-        title: Alarm Clock Automations
-        entities:
-          - automation.alarm_clock
-          - automation.snooze_alarm_clock
-          - automation.stop_alarm_clock
-      - type: entities
-        title: Other Automations
-        entities:
-          - automation.toggle_trip_mode
-          - automation.ios_stop_loop_action
-          - automation.ios_lights_off_action
-          - automation.turn_guest_mode_on
-          - automation.turn_guest_mode_off
-          - automation.reset_xfinity_notify
-          - automation.time_to_leave
+          - scene.normal_lights
+          - scene.tv_lights
       - type: entities
         title: Network Devices
         show_header_toggle: false
