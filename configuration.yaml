@@ -22,6 +22,10 @@ lovelace:
       type: module
     - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
       type: module
+    - url: /hacsfiles/stack-in-card/stack-in-card.js
+      type: module
+    - url: /hacsfiles/light-brightness-preset-row/light-brightness-preset-row.js
+      type: module
 
 frontend:
   themes: !include_dir_merge_named themes
@@ -52,7 +56,7 @@ history:
       - binary_sensor.living_room_motion_z
       - climate.ct_100
       - switch.coffee_maker
-      - weather.dark_sky
+      - weather.katl
   exclude:
     entities:
       - sensor.atl_end_time
@@ -181,8 +185,8 @@ notify:
       - service: mobile_app_saras_iphone
 
 weather:
-  - platform: darksky
-    api_key: !secret darksky_api
+  - platform: nws
+    api_key: !secret email_address
 
 camera:
   - platform: nwsradar

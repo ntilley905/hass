@@ -42,30 +42,99 @@ views:
           green: 0
           yellow: 768
           red: 921
-      - type: horizontal-stack
+      - type: custom:stack-in-card
+        title: Lights and Switches
         cards:
-          - type: sensor
-            entity: sensor.travel_home_to_atl
-            graph: line
-            detail: 1
-            name: To ATL
-          - type: sensor
-            entity: sensor.travel_atl_to_home
-            graph: line
-            detail: 1
-            name: From ATL
-      - type: horizontal-stack
+          - type: button
+            entity: light.all
+            name: All Lights Off
+            tap_action:
+              action: call-service
+              service: light.turn_off
+              service_data:
+                entity_id: light.all
+          - type: entities
+            entities:
+              - type: divider
+          - type: horizontal-stack
+            cards:
+              - type: button
+                entity: light.kitchen_lights
+                name: Kitchen
+              - type: button
+                entity: fan.living_room
+                name: Fan
+          - type: entities
+            entities:
+              - type: divider
+          - type: custom:light-brightness-preset-row
+            entity: light.island_dimmer
+            name: Island
+            customSetpoints: true
+            LowBrightness: 50
+            MedBrightness: 128
+            HiBrightness: 255
+          - type: custom:light-brightness-preset-row
+            entity: light.living_room_lamp
+            name: Lamp
+            customSetpoints: true
+            LowBrightness: 50
+            MedBrightness: 128
+            HiBrightness: 255
+          - type: custom:light-brightness-preset-row
+            entity: light.couch
+            name: Couch
+            customSetpoints: true
+            LowBrightness: 50
+            MedBrightness: 128
+            HiBrightness: 255
+          - type: entities
+            entities:
+              - type: divider
+          - type: horizontal-stack
+            cards:
+              - type: button
+                entity: light.hallway_light
+                name: Hallway
+              - type: button
+                entity: light.bedroom_light
+                name: Bedroom
+          - type: entities
+            entities:
+              - type: divider
+          - type: custom:light-brightness-preset-row
+            entity: light.bedroom_lamp
+            name: Bed Lamp
+            customSetpoints: true
+            LowBrightness: 50
+            MedBrightness: 128
+            HiBrightness: 255
+      - type: vertical-stack
         cards:
-          - type: sensor
-            entity: sensor.travel_home_to_gdot
-            graph: line
-            detail: 1
-            name: To GDOT
-          - type: sensor
-            entity: sensor.travel_gdot_to_home
-            graph: line
-            detail: 1
-            name: From GDOT
+        - type: horizontal-stack
+          cards:
+            - type: sensor
+              entity: sensor.travel_home_to_atl
+              graph: line
+              detail: 1
+              name: To ATL
+            - type: sensor
+              entity: sensor.travel_atl_to_home
+              graph: line
+              detail: 1
+              name: From ATL
+        - type: horizontal-stack
+          cards:
+            - type: sensor
+              entity: sensor.travel_home_to_gdot
+              graph: line
+              detail: 1
+              name: To GDOT
+            - type: sensor
+              entity: sensor.travel_gdot_to_home
+              graph: line
+              detail: 1
+              name: From GDOT
       - type: gauge
         entity: sensor.allergy_index_today
         min: 0.0
@@ -92,10 +161,10 @@ views:
       - type: history-graph
         entities:
           - sensor.indoor_temperature
-          - sensor.dark_sky_temperature
+          - sensor.outdoor_temperature
         title: Status
       - type: weather-forecast
-        entity: weather.dark_sky
+        entity: weather.katl
       - type: picture-entity
         entity: camera.amcrest_camera
       - type: picture-entity
@@ -150,57 +219,63 @@ views:
     badges:
       - binary_sensor.front_door
       - binary_sensor.amcrest_camera_motion_detected
+      - binary_sensor.freezer_door
       - sensor.shelly2_5_10b831_power_0
       - sensor.shelly2_5_10b831_energy_0
     cards:
       - type: vertical-stack
         cards:
-          - type: glance
-            title: Hallway Sensor
-            entities:
-              - sensor.hallway_temperature_z
-              - sensor.hallway_humidity_z
-              - sensor.hallway_luminance_z
-              - binary_sensor.hallway_motion_z
-            show_name: false
-          - type: entity-button
-            entity: light.hallway_light
-            name: Hallway
+        - type: glance
+          title: Hallway Sensor
+          entities:
+            - sensor.hallway_temperature_z
+            - sensor.hallway_humidity_z
+            - sensor.hallway_luminance_z
+            - binary_sensor.hallway_motion_z
+          show_name: false
+        - type: entity-button
+          entity: light.hallway_light
+          name: Hallway
       - type: vertical-stack
         cards:
-          - type: glance
-            title: Living Room Sensor
-            entities:
-              - sensor.living_room_temperature_z
-              - sensor.living_room_humidity_z
-              - sensor.living_room_luminance_z
-              - binary_sensor.living_room_motion_z
-            show_name: false
-          - type: horizontal-stack
-            cards:
-              - type: entity-button
-                entity: light.kitchen_lights
-                name: Kitchen
-              - type: entity-button
-                entity: switch.coffee_maker
-                name: Coffee
-          - type: horizontal-stack
-            cards:
-              - type: light
-                entity: light.island_dimmer
-                name: Island
-              - type: entity-button
-                entity: fan.living_room
-                name: Fan
-          - type: horizontal-stack
-            cards:
-              - type: light
-                entity: light.living_room_lamp
-                name: Lamp
-              - type: light
-                entity: light.couch
-                name: Couch
-
+        - type: glance
+          title: Living Room Sensor
+          entities:
+            - sensor.living_room_temperature_z
+            - sensor.living_room_humidity_z
+            - sensor.living_room_luminance_z
+            - binary_sensor.living_room_motion_z
+          show_name: false
+        - type: horizontal-stack
+          cards:
+            - type: entity-button
+              entity: light.kitchen_lights
+              name: Kitchen
+            - type: entity-button
+              entity: switch.coffee_maker
+              name: Coffee
+        - type: horizontal-stack
+          cards:
+            - type: light
+              entity: light.island_dimmer
+              name: Island
+            - type: entity-button
+              entity: fan.living_room
+              name: Fan
+        - type: horizontal-stack
+          cards:
+            - type: light
+              entity: light.living_room_lamp
+              name: Lamp
+            - type: light
+              entity: light.couch
+              name: Couch
+      - type: vertical-stack
+        cards:
+        - type: sensor
+          entity: sensor.freezer_temperature
+          graph: line
+          detail: 2
 
   - path: bedroom
     title: Bedroom

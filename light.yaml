@@ -13,3 +13,15 @@
     - light.bathroom_light_1
     - light.bathroom_light_2
     - light.bathroom_light_3
+- platform: group
+  name: all
+  entities:
+    - light.bathroom_lights
+    - light.bedroom_lamp
+    - light.bedroom_light
+    - light.couch
+    - light.hallway_light
+    - light.island_dimmer
+    - light.kitchen_lights
+    - light.living_room_lamp
+    - light.bedroom_led

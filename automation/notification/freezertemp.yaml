@@ -1,10 +1,22 @@
 - alias: Freezer Temp High
   trigger:
     platform: numeric_state
-    entity_id: sensor.bedroom_temperature
+    entity_id: sensor.freezer_temperature
     above: 20
   action:
     service: notify.all_mobile_apps
     data_template:
       title: "Freezer Temp High!"
-      message: "The freezer temp is indicating {{ states('sensor.bedroom_temperature') }}°F."
+      message: "The freezer temp is indicating {{ states('sensor.freezer_temperature') }}°F."
+- alias: Freezer Door Open
+  trigger:
+    platform: state
+    entity_id: binary_sensor.freezer_door
+    to: 'open'
+    for:
+      minutes: 1
+  action:
+    - service: notify.all_mobile_apps
+      data:
+        title: "Freezer Door Open"
+        message: "The freezer door has been left open. Current temp {{ states('sensor.freezer_temperature') }}°F."
