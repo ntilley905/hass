@@ -556,6 +556,8 @@ views:
             secondary: "Last Updated {{ as_timestamp(states.sensor.ord_status.last_changed) | timestamp_custom('%D %-I:%M %p') }}"
 
   - path: config
+    visible:
+      - user: !secret nathan_user_id
     title: config
     icon: mdi:settings
     cards:
@@ -581,26 +583,11 @@ views:
           - scene.night_lights
           - scene.normal_lights
           - scene.tv_lights
-      - type: entities
+      - type: custom:auto-entities
+        card:
+          type: glance
         title: Network Devices
-        show_header_toggle: false
-        entities:
-          - device_tracker.amcrest_camera
-          - device_tracker.ap_ac_lite
-          - device_tracker.apple_tv
-          - device_tracker.bathroom
-          - device_tracker.bedroom
-          - device_tracker.marantz_sr5012
-          - device_tracker.nathan_ipad_unifi
-          - device_tracker.nathan_iphone_unifi
-          - device_tracker.nathan_apple_watch
-          - device_tracker.nathan_laptop
-          - device_tracker.philips_hue
-          - device_tracker.sara_iphone_unifi
-          - device_tracker.sara_laptop
-          - device_tracker.sara_work_laptop
-          - device_tracker.switch_8
-          - device_tracker.unifi_controller
-          - device_tracker.usg
-          - device_tracker.volumio
-          - device_tracker.xboxone
+        filter:
+          include:
+            - attributes:
+                source_type: 'router'
