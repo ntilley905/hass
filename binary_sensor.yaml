@@ -178,6 +178,10 @@
       attribute_templates:
         reason: "{{state_attr('sensor.ord_status', 'closure_reason') }}"
         end: "{{ state_attr('sensor.ord_status', 'closure_end') }}"
+    weather_alert:
+      friendly_name: Weather Alert
+      value_template: "{{ not is_state('sensor.fulton_county', '0') }}"
+      device_class: safety
 - platform: workday
   country: US
   province: GA

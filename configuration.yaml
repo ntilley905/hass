@@ -26,6 +26,11 @@ lovelace:
       type: module
     - url: /hacsfiles/light-brightness-preset-row/light-brightness-preset-row.js
       type: module
+  dashboards:
+    lovelace-mobile:
+      mode: yaml
+      filename: ui-mobile.yaml
+      title: Mobile
 
 frontend:
   themes: !include_dir_merge_named themes
@@ -241,6 +246,7 @@ tts:
 wemo:
   static:
     - !secret wemo_coffee_switch_ip
+    - !secret wemo_air_purifier_ip
 
 google:
   client_id: !secret google_client_id
@@ -250,6 +256,8 @@ hue:
   bridges:
     - host: !secret hue_ip
       allow_hue_groups: false
+
+speedtestdotnet:
 
 automation: !include_dir_merge_list automation
 input_number: !include input_number.yaml

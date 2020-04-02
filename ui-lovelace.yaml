@@ -9,19 +9,6 @@ views:
       - person.sara
       - binary_sensor.front_door
     cards:
-      - type: entity-filter
-        entities:
-          - group.lights
-          - input_boolean.trip_mode
-          - input_boolean.sleep_mode
-          - input_boolean.window_open
-          - switch.coffee_maker
-          - binary_sensor.front_door
-          - binary_sensor.updater
-        state_filter:
-          - "on"
-          - "open"
-        show_empty: false
       - type: conditional
         conditions:
           - entity: sensor.fulton_county
@@ -34,14 +21,6 @@ views:
             {% for alert in state_attr("sensor.fulton_county", "alerts") %}
               {{ alert.event }}
             {%- endfor %}
-      - type: gauge
-        entity: sensor.xfinity_usage
-        min: 0
-        max: 1024
-        severity:
-          green: 0
-          yellow: 768
-          red: 921
       - type: custom:stack-in-card
         title: Lights and Switches
         cards:
@@ -94,6 +73,14 @@ views:
           - type: horizontal-stack
             cards:
               - type: button
+                entity: switch.coffee_maker
+                name: Coffee
+              - type: button
+                entity: switch.air_purifier
+                name: Air Purifier
+          - type: horizontal-stack
+            cards:
+              - type: button
                 entity: light.hallway_light
                 name: Hallway
               - type: button
@@ -109,6 +96,16 @@ views:
             LowBrightness: 50
             MedBrightness: 128
             HiBrightness: 255
+      - type: glance
+        entities:
+          - binary_sensor.weather_alert
+          - binary_sensor.front_door
+          - person.nathan
+          - person.sara
+          - sensor.indoor_temperature
+          - sensor.outdoor_temperature
+          - sensor.cabinet_temperature
+          - sensor.speedtest_download
       - type: vertical-stack
         cards:
         - type: horizontal-stack
@@ -304,7 +301,6 @@ views:
           - light.bedroom_lamp
           - light.bedroom_led
 
-
   - path: bathroom
     title: Bathroom
     cards:
@@ -329,7 +325,6 @@ views:
       - type: entity-button
         entity: light.bathroom_lights
 
-
   - path: climate
     title: Climate
     icon: mdi:air-conditioner
@@ -352,7 +347,6 @@ views:
           - input_number.climate_away_offset
           - input_number.climate_trip_offset
           - input_number.climate_sleep_offset
-
 
   - path: media-player
     title: Media Player
@@ -418,7 +412,6 @@ views:
                   service_data:
                     entity_id: remote.apple_tv
                     command: 'down'
-
 
   - path: delays
     title: Delays
@@ -643,7 +636,16 @@ views:
           - input_boolean.trip_mode
           - input_boolean.sleep_mode
           - input_boolean.window_open
-          - group.lights
+          - light.all
+          - binary_sensor.updater
+      - type: gauge
+        entity: sensor.xfinity_usage
+        min: 0
+        max: 1024
+        severity:
+          green: 0
+          yellow: 768
+          red: 921
       - type: entities
         title: AdGuard
         entities:

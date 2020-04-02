@@ -1,8 +1,13 @@
 - alias: Freezer Temp High
   trigger:
-    platform: numeric_state
-    entity_id: sensor.freezer_temperature
-    above: 20
+    - platform: numeric_state
+      entity_id: sensor.freezer_temperature
+      above: 20
+      for:
+        minutes: 5
+    - platform: numeric_state
+      entity_id: sensor.freezer_temperature
+      above: 32
   action:
     service: notify.all_mobile_apps
     data_template:

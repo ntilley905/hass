@@ -57,3 +57,5 @@ sensor.living_room_temperature_z:
   unit_of_measurement: °F
 zwave.radio_thermostat_company_of_america_ct100_plus_thermostat:
   polling_interval: '1'
+switch.air_purifier:
+  icon: mdi:air-filter
