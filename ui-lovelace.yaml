@@ -288,7 +288,6 @@ views:
             entities:
               - sensor.bedroom_temperature
               - sensor.bedroom_humidity
-              - sensor.bedroom_light
               - binary_sensor.bedroom_motion
             show_name: false
       - type: entities

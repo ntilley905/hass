@@ -4,11 +4,14 @@
     entity_id: binary_sensor.front_door
     to: 'on'
   condition:
-    condition: state
-    entity_id: 'group.home_devices'
-    state: 'not_home'
+    - condition: state
+      entity_id: 'group.home_devices'
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
   action:
-    - service: notify.mobile_app_nathans_iphone
+    - service: notify.all_mobile_apps
       data:
         title: "Front Door"
         message: "The front door is open!"
@@ -18,11 +21,32 @@
           push:
             category: camera
           entity_id: camera.amcrest_camera
-    - service: homeassistant.turn_on
+    - service: light.turn_on
       data:
-        entity_id: group.lights
-#This is depreciated, need to fix
-#    - service: script.marantz_speak
-#      data:
-#        mp3filename: "alarm"
-#        loop: "yes"
+        entity_id: light.all
+- alias: Front Door Guest
+  trigger:
+    platform: state
+    entity_id: binary_sensor.front_door
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: 'group.home_devices'
+      state: 'not_home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'on'
+  action:
+    - service: notify.all_mobile_apps
+      data:
+        title: "Front Door"
+        message: "Cat sitter is here!"
+        data:
+          attachment:
+            content-type: jpeg
+          push:
+            category: camera
+          entity_id: camera.amcrest_camera
+    - service: scene.turn_on
+      data:
+        entity_id: scene.welcome_home
