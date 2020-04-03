@@ -1,0 +1,63 @@
+esphome:
+  name: bathroom_sensor
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: !secret ssid
+  password: !secret wifipw
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Bathroom Sensor Fallback Hotspot"
+    password: "QYMqcWLeAuzL"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+sensor:
+  - platform: adc
+    pin: A0
+    name: "Bathroom Luminance"
+    unit_of_measurement: lx
+    filters:
+      - lambda: |-
+          return (x / 10000.0) * 2000000.0;
+  - platform: dht
+    pin: D7
+    model: AM2302
+    temperature:
+      name: "Bathroom Temperature"
+    humidity:
+      name: "Bathroom Humidity"
+
+binary_sensor:  
+  - platform: gpio
+    pin: D5
+    name: "Bathroom Motion"
+    device_class: motion
+    
+output:
+  - platform: esp8266_pwm
+    pin: D1
+    id: led_red
+  - platform: esp8266_pwm
+    pin: D2
+    id: led_green
+  - platform: esp8266_pwm
+    pin: D3
+    id: led_blue
+    
+light: 
+  - platform: rgb
+    name: "Bathroom Sensor LED"
+    red: led_red
+    green: led_green
+    blue: led_blue

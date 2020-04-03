@@ -4,11 +4,8 @@ binary_sensor.amcrest_camera_motion_detected:
   friendly_name: Kitchen Motion
 device_tracker.saras_iphone:
   friendly_name: Sara's iPhone
-sensor.bathroom_humidity_z:
-  icon: mdi:water-percent
-  unit_of_measurement: '%'
-sensor.bathroom_luminance_z:
-  icon: mdi:lightbulb-on-outline
+sensor.bathroom_humidity_z: {}
+sensor.bathroom_luminance_z: {}
 binary_sensor.bathroom_motion_z: {}
 sensor.bathroom_temperature:
   icon: mdi:thermometer

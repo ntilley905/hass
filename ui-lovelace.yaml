@@ -4,10 +4,6 @@ views:
 
   - path: default_view
     title: Home
-    badges:
-      - person.nathan
-      - person.sara
-      - binary_sensor.front_door
     cards:
       - type: conditional
         conditions:
@@ -21,6 +17,16 @@ views:
             {% for alert in state_attr("sensor.fulton_county", "alerts") %}
               {{ alert.event }}
             {%- endfor %}
+      - type: glance
+        entities:
+          - binary_sensor.weather_alert
+          - binary_sensor.front_door
+          - person.nathan
+          - person.sara
+          - sensor.indoor_temperature
+          - sensor.outdoor_temperature
+          - sensor.cabinet_temperature
+          - sensor.speedtest_download
       - type: custom:stack-in-card
         title: Lights and Switches
         cards:
@@ -96,16 +102,6 @@ views:
             LowBrightness: 50
             MedBrightness: 128
             HiBrightness: 255
-      - type: glance
-        entities:
-          - binary_sensor.weather_alert
-          - binary_sensor.front_door
-          - person.nathan
-          - person.sara
-          - sensor.indoor_temperature
-          - sensor.outdoor_temperature
-          - sensor.cabinet_temperature
-          - sensor.speedtest_download
       - type: vertical-stack
         cards:
         - type: horizontal-stack
@@ -319,7 +315,7 @@ views:
             entities:
               - sensor.bathroom_temperature
               - sensor.bathroom_humidity
-              - sensor.bathroom_light
+              - sensor.bathroom_luminance
               - binary_sensor.bathroom_motion
             show_name: false
       - type: entity-button
@@ -646,6 +642,15 @@ views:
           green: 0
           yellow: 768
           red: 921
+      - type: sensor
+        entity: sensor.speedtest_download
+        graph: line
+      - type: sensor
+        entity: sensor.speedtest_upload
+        graph: line
+      - type: sensor
+        entity: sensor.speedtest_ping
+        graph: line
       - type: entities
         title: AdGuard
         entities:

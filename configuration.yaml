@@ -258,6 +258,7 @@ hue:
       allow_hue_groups: false
 
 speedtestdotnet:
+  server_id: 3165
 
 automation: !include_dir_merge_list automation
 input_number: !include input_number.yaml

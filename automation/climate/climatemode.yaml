@@ -22,5 +22,5 @@
   action:
     service: climate.set_hvac_mode
     data_template:
-      entity_id: climate.ct_100
+      entity_id: climate.thermostat
       hvac_mode: 'heat_cool'

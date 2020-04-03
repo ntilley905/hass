@@ -1,0 +1,41 @@
+esphome:
+  name: bedroom_sensor
+  platform: ESP32
+  board: esp32dev
+
+wifi:
+  ssid: !secret ssid
+  password: !secret wifipw
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Bedroom Sensor Fallback Hotspot"
+    password: "2QN1b8IpYiZ6"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+sensor:
+  - platform: dht
+    pin: GPIO23
+    model: AM2302
+    temperature:
+      name: "Bedroom Temperature"
+    humidity:
+      name: "Bedroom Humidity"
+
+binary_sensor:
+  - platform: gpio
+    pin: GPIO22
+    name: "Bedroom Motion"
+    device_class: motion
+    
+status_led: 
+  pin: GPIO2
