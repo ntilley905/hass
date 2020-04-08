@@ -15,3 +15,5 @@
         entity_id: fan.living_room
     - service: input_boolean.turn_off
       entity_id: input_boolean.sleep_mode
+    - service: fan.turn_off
+      entity_id: fan.living_room

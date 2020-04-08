@@ -1,0 +1,94 @@
+# Air purifier has the following priority:
+# 1. Should always run when the HVAC is running
+# 2. Should turn off when TV is playing
+# 3. Should otherwise be on while we are home
+# 4. While we are gone, should revert to a cycle depending on pollen count
+
+- alias: Air Purifier On During AC
+  trigger:
+    platform: template
+    value_template: "{{ not is_state('sensor.hvac_action', 'idle') }}"
+  action:
+    service: switch.turn_on
+    entity_id: switch.air_purifier
+- alias: Air Purifier Off During TV
+  trigger:
+    platform: state
+    entity_id: media_player.apple_tv
+    to: 'playing'
+  condition:
+    condition: state
+    entity_id: sensor.hvac_action
+    state: 'idle'
+  action:
+    service: switch.turn_off
+    entity_id: switch.air_purifier
+- alias: Air Purifier Off During TV After HVAC
+  trigger:
+    platform: state
+    entity_id: sensor.hvac_action
+    to: 'idle'
+  condition:
+    condition: state
+    entity_id: media_player.apple_tv
+    state: 'playing'
+  action:
+    service: switch.turn_off
+    entity_id: switch.air_purifier
+- alias: Air Purifier On When Home
+  trigger:
+    platform: state
+    entity_id: group.home_devices
+    to: 'home'
+  action:
+    service: switch.turn_on
+    entity_id: switch.air_purifier
+- alias: Air Purifier Cycle High
+  trigger:
+    platform: time_pattern
+    hours: '/1'
+  condition:
+    condition: numeric_state
+    entity_id: sensor.allergy_index_today
+    above: 7
+  action:
+    service: input_boolean.toggle
+    entity_id: input_boolean.air_purifier_cycle
+- alias: Air Purifier Cycle Low
+  trigger:
+    platform: time_pattern
+    hours: '/4'
+  condition:
+    condition: numeric_state
+    entity_id: sensor.allergy_index_today
+    below: 7
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.air_purifier_cycle
+    - delay: '01:00:00'
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.air_purifier_cycle
+- alias: Air Purifier Set Not Home
+  trigger:
+    - platform: state
+      entity_id: group.home_devices
+      to: 'not_home'
+    - platform: state
+      entity_id: sensor.hvac_action
+    - platform: state
+      entity_id: input_boolean.air_purifier_cycle
+  condition:
+    - condition: state
+      entity_id: group.home_devices
+      state: 'not_home'
+    - condition: state
+      entity_id: sensor.hvac_action
+      state: 'idle'
+  action:
+    service_template: >
+      {% if states('input_boolean.air_purifier_cycle') == 'on' %}
+      switch.turn_on
+      {% else %}
+      switch.turn_off
+      {% endif %}
+    entity_id: switch.air_purifier

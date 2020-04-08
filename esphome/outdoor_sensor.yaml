@@ -1,0 +1,38 @@
+esphome:
+  name: outdoor_sensor
+  platform: ESP32
+  board: esp32dev
+
+wifi:
+  ssid: !secret ssid
+  password: !secret wifipw
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Outdoor Sensor Fallback Hotspot"
+    password: "43LwY2If7tUH"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+i2c:
+  sda: 21
+  scl: 22
+  scan: True
+  
+sensor: 
+  - platform: bme280
+    temperature:
+      name: "Outdoor Temperature"
+    pressure:
+      name: "Outdoor Pressure"
+    humidity:
+      name: "Outdoor Humidity"
+    address: 0x76

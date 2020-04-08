@@ -56,8 +56,8 @@ views:
             entity: light.island_dimmer
             name: Island
             customSetpoints: true
-            LowBrightness: 50
-            MedBrightness: 128
+            LowBrightness: 20
+            MedBrightness: 80
             HiBrightness: 255
           - type: custom:light-brightness-preset-row
             entity: light.living_room_lamp
@@ -642,13 +642,7 @@ views:
           yellow: 768
           red: 921
       - type: sensor
-        entity: sensor.speedtest_download
-        graph: line
-      - type: sensor
-        entity: sensor.speedtest_upload
-        graph: line
-      - type: sensor
-        entity: sensor.speedtest_ping
+        entity: sensor.fast_com_download
         graph: line
       - type: entities
         title: AdGuard

@@ -257,8 +257,7 @@ hue:
     - host: !secret hue_ip
       allow_hue_groups: false
 
-speedtestdotnet:
-  server_id: 3165
+fastdotcom:
 
 automation: !include_dir_merge_list automation
 input_number: !include input_number.yaml
