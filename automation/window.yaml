@@ -1,0 +1,34 @@
+- alias: Window or Door Open
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.bedroom_window_1
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.bedroom_window_2
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.bedroom_window_3
+      to: 'on'
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.window_open
+- alias: Window or Door Closed
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.bedroom_window_1
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.bedroom_window_2
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.bedroom_window_3
+      to: 'off'
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.window_open

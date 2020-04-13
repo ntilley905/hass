@@ -1,4 +1,4 @@
-- alias: Weather Alert Critical 1
+- alias: Weather Alert Critical
   trigger:
     platform: state
     entity_id: sensor.fulton_county
@@ -6,13 +6,13 @@
     - condition: template
       value_template: '{{ state_attr("sensor.fulton_county", "alerts")[0].urgency == "Immediate" }}'
     - condition: template
-      value_template: '{{not trigger.to_state.state | int < trigger.from_state.state | int }}'
+      value_template: '{{ not trigger.to_state.state | int < trigger.from_state.state | int }}'
     - condition: template
       value_template: '{{ state_attr("sensor.fulton_county", "alerts")[0].event != "Flood Warning" }}'
     - condition: template
-      value_template: '[[ trigger.from_state.state != "unavailable" }}'
+      value_template: '{{ trigger.from_state.state != "unavailable" }}'
   action:
-    - service: notify.all_mobile_apps
+    - service: notify.mobile_app_nathans_iphone
       data_template:
         title: >
           {% if state_attr("sensor.fulton_county", "alerts")[0].messageType == "Update" %}
@@ -31,9 +31,9 @@
               critical: 1
               volume: 1.0
             thread-id: 'weather-alert'
-    - service: scene.turn_on
-      entity_id: scene.all_lights_on
-- alias: Weather Alert Non Critical 1
+    - service: light.turn_on
+      entity_id: light.all
+- alias: Weather Alert Non Critical
   trigger:
     platform: state
     entity_id: sensor.fulton_county
@@ -63,6 +63,6 @@
           push:
             thread-id: 'weather-alert'
         message: >
-          {{ state_attr("sensor.fulton_county", "alerts")[0].description }}
-
           {{ state_attr("sensor.fulton_county", "alerts")[0].title }}
+
+          {{ state_attr("sensor.fulton_county", "alerts")[0].description }}

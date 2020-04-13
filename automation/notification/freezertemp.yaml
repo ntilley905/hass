@@ -17,7 +17,7 @@
   trigger:
     platform: state
     entity_id: binary_sensor.freezer_door
-    to: 'open'
+    to: 'on'
     for:
       minutes: 1
   action:
