@@ -12,7 +12,7 @@
     - condition: template
       value_template: '{{ trigger.from_state.state != "unavailable" }}'
   action:
-    - service: notify.mobile_app_nathans_iphone
+    - service: notify.all_mobile_apps
       data_template:
         title: >
           {% if state_attr("sensor.fulton_county", "alerts")[0].messageType == "Update" %}
