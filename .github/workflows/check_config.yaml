@@ -3,7 +3,7 @@ name: Check Config
 on:
   push:
   pull_request:
-  
+
  jobs:
   hass-stable:
     - name: Getting your configuration from GitHub
