@@ -1,0 +1,14 @@
+- alias: Notify of IP Ban
+  trigger:
+    - platform: state
+      entity_id: persistent_notification.http_login
+  condition:
+    - condition: template
+      value_template: "{{ trigger.to_state.state != off }}"
+  action:
+    - service: notify.mobile_app_nathans_iphone
+      data_template:
+        title: "Failed Home Assistant login attempt!"
+        message: "{{ trigger.to_state.attributes.message }}"
+        data:
+          url: http://www.ip-tracker.org/locator/ip-lookup.php?ip={{ states.persistent_notification.http_login.attributes.message.split("from ")[1] }}

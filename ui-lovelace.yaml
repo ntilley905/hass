@@ -26,7 +26,6 @@ views:
           - sensor.indoor_temperature
           - sensor.outdoor_temperature
           - sensor.cabinet_temperature
-          - sensor.speedtest_download
       - type: custom:stack-in-card
         title: Lights and Switches
         cards:
@@ -641,9 +640,6 @@ views:
           green: 0
           yellow: 768
           red: 921
-      - type: sensor
-        entity: sensor.fast_com_download
-        graph: line
       - type: entities
         title: AdGuard
         entities:

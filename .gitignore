@@ -12,6 +12,7 @@ __pycache__/
 /.ssh
 /.storage
 /node-red
+/.cloud
 
 #specific ignores
 secrets.yaml

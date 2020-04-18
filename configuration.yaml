@@ -3,17 +3,26 @@ homeassistant:
 
 default_config:
 
+http:
+  base_url: !secret base_url
+  use_x_forwarded_for: true
+  trusted_proxies: !secret nginx_ip
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
+
+cloudflare:
+  email: !secret email_address
+  api_key: !secret cf_api_key
+  zone: !secret cf_zone
+  records:
+    - !secret cf_record
+
 updater:
   include_used_components: true
 
 discovery:
   ignore:
     - denonavr
-
-http:
-  base_url: !secret base_url
-  use_x_forwarded_for: true
-  trusted_proxies: 127.0.0.1
 
 lovelace:
   mode: yaml
@@ -256,8 +265,6 @@ hue:
   bridges:
     - host: !secret hue_ip
       allow_hue_groups: false
-
-fastdotcom:
 
 automation: !include_dir_merge_list automation
 input_number: !include input_number.yaml
