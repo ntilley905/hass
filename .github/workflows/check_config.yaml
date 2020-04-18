@@ -1,0 +1,22 @@
+name: Check Config
+
+on:
+  push:
+  pull_request:
+  
+ jobs:
+  hass-stable:
+    - name: Getting your configuration from GitHub
+      uses: actions/checkout@v1
+    - name: Activate dummy secrets.yaml
+      run: mv ./.test/secrets.yaml ./secrets.yaml
+    # - name: Disable DHT component
+    - name: Home Assistant Version
+      uses: "docker://homeassistant/home-assistant:stable"
+      with:
+        args: |
+          python -m homeassistant --version
+    - name: Home Assistant Check
+      uses: "docker://homeassistant/home-assistant:stable"
+      with:
+        args: python -m homeassistant --config ./ --script check_config --info all
