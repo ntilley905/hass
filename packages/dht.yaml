@@ -1,0 +1,13 @@
+---
+
+# This DHT platform is separated into its own package so that it can be removed
+# prior to Github Actions tests the config.
+
+sensor:
+  - platform: dht
+    name: Cabinet
+    sensor: AM2302
+    pin: 4
+    monitored_conditions:
+      - temperature
+      - humidity

@@ -2,6 +2,7 @@
 
 homeassistant:
   customize: !include customize.yaml
+  packages: !include_dir_merge_named packages
 
 default_config:
 
