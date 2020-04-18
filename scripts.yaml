@@ -13,8 +13,7 @@ morning_tts:
     - service: tts.google_translate_say
       data_template:
         entity_id: media_player.volumio_mpd
-        message: >
-        "Good morning! The current time is {{ now().strftime('%H:%M') }}. Today's weather is {{ state_attr('weather.katl', 'forecast')[0].detailed_description }}. Here's the news."
+        message: "Good morning! The current time is {{ now().strftime('%H:%M') }}. Today's weather is {{ state_attr('weather.katl', 'forecast')[0].detailed_description }}. Here's the news."
     - wait_template: "{{ not is_state('media_player.volumio_mpd', 'playing') }}"
     - service: media_player.play_media
       data_template:
@@ -34,8 +33,7 @@ rain_tts:
     - service: tts.google_translate_say
       data_template:
         entity_id: media_player.volumio_mpd
-        message: >
-        Attention! The windows are open and the weather is {{ states('sensor.precip_type') }}.
+        message: "Attention! The windows are open and the weather is {{ states('sensor.precip_type') }}."
 house_cold:
   alias: It's Cold
   sequence:

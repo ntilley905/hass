@@ -1,0 +1,14 @@
+---
+
+extends: default
+
+rules:
+  line-length: disable
+  truthy: disable
+
+ignore: |
+  ui-lovelace.yaml
+  custom_components/
+  .github/workflows/check_config.yaml
+  .gitlab-ci.yml
+  /themes/

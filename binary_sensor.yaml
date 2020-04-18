@@ -22,8 +22,7 @@
       friendly_name: "ATL Departure Delay"
       value_template: "{{ state_attr('sensor.atl_status', 'departure_delay') }}"
       attribute_templates:
-        reason: >
-        {{ state_attr('sensor.atl_status', 'departure_delay_reason') }}
+        reason: "{{ state_attr('sensor.atl_status', 'departure_delay_reason') }}"
     atl_arrival_delay:
       friendly_name: "ATL Arrival Delay"
       value_template: "{{ state_attr('sensor.atl_status', 'arrival_delay') }}"
@@ -50,8 +49,7 @@
       friendly_name: "DTW Departure Delay"
       value_template: "{{ state_attr('sensor.dtw_status', 'departure_delay') }}"
       attribute_templates:
-        reason: >
-        {{ state_attr('sensor.dtw_status', 'departure_delay_reason') }}
+        reason: "{{ state_attr('sensor.dtw_status', 'departure_delay_reason') }}"
     dtw_arrival_delay:
       friendly_name: "DTW Arrival Delay"
       value_template: "{{ state_attr('sensor.dtw_status', 'arrival_delay') }}"
@@ -78,8 +76,7 @@
       friendly_name: "LGA Departure Delay"
       value_template: "{{ state_attr('sensor.lga_status', 'departure_delay') }}"
       attribute_templates:
-        reason: >
-        {{ state_attr('sensor.lga_status', 'departure_delay_reason') }}
+        reason: "{{ state_attr('sensor.lga_status', 'departure_delay_reason') }}"
     lga_arrival_delay:
       friendly_name: "LGA Arrival Delay"
       value_template: "{{ state_attr('sensor.lga_status', 'arrival_delay') }}"
@@ -106,8 +103,7 @@
       friendly_name: "JFK Departure Delay"
       value_template: "{{ state_attr('sensor.jfk_status', 'departure_delay') }}"
       attribute_templates:
-        reason: >
-        {{ state_attr('sensor.jfk_status', 'departure_delay_reason') }}
+        reason: "{{ state_attr('sensor.jfk_status', 'departure_delay_reason') }}"
     jfk_arrival_delay:
       friendly_name: "JFK Arrival Delay"
       value_template: "{{ state_attr('sensor.jfk_status', 'arrival_delay') }}"
@@ -134,8 +130,7 @@
       friendly_name: "BOS Departure Delay"
       value_template: "{{ state_attr('sensor.bos_status', 'departure_delay') }}"
       attribute_templates:
-        reason: >
-        {{ state_attr('sensor.bos_status', 'departure_delay_reason') }}
+        reason: "{{ state_attr('sensor.bos_status', 'departure_delay_reason') }}"
     bos_arrival_delay:
       friendly_name: "BOS Arrival Delay"
       value_template: "{{ state_attr('sensor.bos_status', 'arrival_delay') }}"
@@ -162,8 +157,7 @@
       friendly_name: "ORD Departure Delay"
       value_template: "{{ state_attr('sensor.ord_status', 'departure_delay') }}"
       attribute_templates:
-        reason: >
-        {{ state_attr('sensor.ord_status', 'departure_delay_reason') }}
+        reason: "{{ state_attr('sensor.ord_status', 'departure_delay_reason') }}"
     ord_arrival_delay:
       friendly_name: "ORD Arrival Delay"
       value_template: "{{ state_attr('sensor.ord_status', 'arrival_delay') }}"
@@ -194,3 +188,20 @@
   country: US
   province: GA
   workdays: [mon, tue, wed, thu]
+#- platform: bayesian
+#  name: 'In Living Room'
+#  prior: 0.29
+#  probability_threshold: 0.9
+#  observations:
+#    - platform: state
+#      entity_id: binary_sensor.living_room_motion_z
+#      to_state: 'on'
+#      prob_given_true: 0.7
+#    - platform: state
+#      entity_id: light.island_dimmer
+#      to_state: 'on'
+#      prob_given_true: 0.8
+#    - platform: state
+#      entity_id: light.couch
+#      to_state: 'on'
+#      prob_given_true: 0.8

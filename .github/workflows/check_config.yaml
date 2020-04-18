@@ -1,7 +1,6 @@
 ---
 name: Home Assistant CI
 
-# yamllint disable rule:truthy rule: line-length
 on:
   push:
   pull_request:

@@ -1,3 +1,5 @@
+---
+
 esphome:
   name: outdoor_sensor
   platform: ESP32
@@ -26,8 +28,8 @@ i2c:
   sda: 21
   scl: 22
   scan: True
-  
-sensor: 
+
+sensor:
   - platform: bme280
     temperature:
       name: "Outdoor Temperature"

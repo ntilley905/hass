@@ -1,3 +1,5 @@
+---
+
 esphome:
   name: bathroom_sensor
   platform: ESP8266
@@ -38,12 +40,12 @@ sensor:
     humidity:
       name: "Bathroom Humidity"
 
-binary_sensor:  
+binary_sensor:
   - platform: gpio
     pin: D5
     name: "Bathroom Motion"
     device_class: motion
-    
+
 output:
   - platform: esp8266_pwm
     pin: D1
@@ -54,8 +56,8 @@ output:
   - platform: esp8266_pwm
     pin: D3
     id: led_blue
-    
-light: 
+
+light:
   - platform: rgb
     name: "Bathroom Sensor LED"
     red: led_red
