@@ -1,3 +1,5 @@
+---
+
 - alias: Notify of IP Ban
   trigger:
     - platform: state

@@ -1,3 +1,5 @@
+---
+
 - alias: Away Lights
   trigger:
     platform: state

@@ -1,37 +1,39 @@
+---
+
 - alias: FAA Notification
   trigger:
     platform: state
     entity_id:
-    - binary_sensor.atl_departure_delay
-    - binary_sensor.atl_arrival_delay
-    - binary_sensor.atl_ground_delay
-    - binary_sensor.atl_ground_stop
-    - binary_sensor.atl_closed
-    - binary_sensor.dtw_departure_delay
-    - binary_sensor.dtw_arrival_delay
-    - binary_sensor.dtw_ground_delay
-    - binary_sensor.dtw_ground_stop
-    - binary_sensor.dtw_closed
-    - binary_sensor.jfk_departure_delay
-    - binary_sensor.jfk_arrival_delay
-    - binary_sensor.jfk_ground_delay
-    - binary_sensor.jfk_ground_stop
-    - binary_sensor.jfk_closed
-    - binary_sensor.lga_departure_delay
-    - binary_sensor.lga_arrival_delay
-    - binary_sensor.lga_ground_delay
-    - binary_sensor.lga_ground_stop
-    - binary_sensor.lga_closed
-    - binary_sensor.bos_departure_delay
-    - binary_sensor.bos_arrival_delay
-    - binary_sensor.bos_ground_delay
-    - binary_sensor.bos_ground_stop
-    - binary_sensor.bos_closed
-    - binary_sensor.ord_departure_delay
-    - binary_sensor.ord_arrival_delay
-    - binary_sensor.ord_ground_delay
-    - binary_sensor.ord_ground_stop
-    - binary_sensor.ord_closed
+      - binary_sensor.atl_departure_delay
+      - binary_sensor.atl_arrival_delay
+      - binary_sensor.atl_ground_delay
+      - binary_sensor.atl_ground_stop
+      - binary_sensor.atl_closed
+      - binary_sensor.dtw_departure_delay
+      - binary_sensor.dtw_arrival_delay
+      - binary_sensor.dtw_ground_delay
+      - binary_sensor.dtw_ground_stop
+      - binary_sensor.dtw_closed
+      - binary_sensor.jfk_departure_delay
+      - binary_sensor.jfk_arrival_delay
+      - binary_sensor.jfk_ground_delay
+      - binary_sensor.jfk_ground_stop
+      - binary_sensor.jfk_closed
+      - binary_sensor.lga_departure_delay
+      - binary_sensor.lga_arrival_delay
+      - binary_sensor.lga_ground_delay
+      - binary_sensor.lga_ground_stop
+      - binary_sensor.lga_closed
+      - binary_sensor.bos_departure_delay
+      - binary_sensor.bos_arrival_delay
+      - binary_sensor.bos_ground_delay
+      - binary_sensor.bos_ground_stop
+      - binary_sensor.bos_closed
+      - binary_sensor.ord_departure_delay
+      - binary_sensor.ord_arrival_delay
+      - binary_sensor.ord_ground_delay
+      - binary_sensor.ord_ground_stop
+      - binary_sensor.ord_closed
     to: 'on'
   action:
     service: notify.discord_webhook
@@ -46,16 +48,16 @@
   trigger:
     platform: state
     entity_id:
-    - binary_sensor.atl_ground_stop
-    - binary_sensor.atl_closed
-    - binary_sensor.jfk_ground_stop
-    - binary_sensor.jfk_closed
-    - binary_sensor.lga_ground_stop
-    - binary_sensor.lga_closed
-    - binary_sensor.bos_ground_stop
-    - binary_sensor.bos_closed
-    - binary_sensor.ord_ground_stop
-    - binary_sensor.ord_closed
+      - binary_sensor.atl_ground_stop
+      - binary_sensor.atl_closed
+      - binary_sensor.jfk_ground_stop
+      - binary_sensor.jfk_closed
+      - binary_sensor.lga_ground_stop
+      - binary_sensor.lga_closed
+      - binary_sensor.bos_ground_stop
+      - binary_sensor.bos_closed
+      - binary_sensor.ord_ground_stop
+      - binary_sensor.ord_closed
     to: 'off'
   action:
     service: notify.discord_webhook

@@ -1,3 +1,5 @@
+---
+
 - alias: Data at 75%
   trigger:
     platform: numeric_state

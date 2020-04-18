@@ -1,3 +1,5 @@
+---
+
 - alias: Rain Notification
   trigger:
     platform: template

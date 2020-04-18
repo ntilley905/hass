@@ -1,3 +1,5 @@
+---
+
 - alias: Alarm Clock Lights
   trigger:
     platform: template

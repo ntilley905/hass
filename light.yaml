@@ -1,3 +1,5 @@
+---
+
 - platform: switch
   name: Kitchen Lights
   entity_id: switch.kitchen_lights

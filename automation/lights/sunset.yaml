@@ -1,3 +1,5 @@
+---
+
 - alias: Lights at Sunset
   trigger:
     platform: numeric_state

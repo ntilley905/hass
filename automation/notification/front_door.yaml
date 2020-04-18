@@ -1,3 +1,5 @@
+---
+
 - alias: Front Door
   trigger:
     platform: state

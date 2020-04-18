@@ -1,3 +1,5 @@
+---
+
 home_devices:
   entities:
     - person.nathan

@@ -1,3 +1,5 @@
+---
+
 - name: Welcome Home
   entities:
     light.kitchen_lights: on

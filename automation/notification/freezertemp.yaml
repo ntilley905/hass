@@ -1,3 +1,5 @@
+---
+
 - alias: Freezer Temp High
   trigger:
     - platform: numeric_state

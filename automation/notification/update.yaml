@@ -1,3 +1,5 @@
+---
+
 - alias: HA Update
   trigger:
     platform: state

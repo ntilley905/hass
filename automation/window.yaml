@@ -1,3 +1,5 @@
+---
+
 - alias: Window or Door Open
   trigger:
     - platform: state

@@ -1,3 +1,5 @@
+---
+
 esphome:
   name: fridge_sensor
   platform: ESP8266
@@ -24,12 +26,12 @@ ota:
 
 dallas:
   pin: D1
-  
+
 sensor:
   - platform: dallas
     address: 0x86000008E30E1728
     name: "Fridge Temperature"
-    
+
 binary_sensor:
   - platform: gpio
     pin:

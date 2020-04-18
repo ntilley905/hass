@@ -1,3 +1,5 @@
+---
+
 - alias: Turn Sleep Mode Off
   trigger:
     - platform: state

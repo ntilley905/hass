@@ -1,3 +1,5 @@
+---
+
 - alias: Climate Set Point
   trigger:
     - platform: state

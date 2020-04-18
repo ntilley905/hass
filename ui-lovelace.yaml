@@ -1,3 +1,5 @@
+---
+
 title: Home
 background: var(--background-image)
 views:
@@ -103,30 +105,30 @@ views:
             HiBrightness: 255
       - type: vertical-stack
         cards:
-        - type: horizontal-stack
-          cards:
-            - type: sensor
-              entity: sensor.travel_home_to_atl
-              graph: line
-              detail: 1
-              name: To ATL
-            - type: sensor
-              entity: sensor.travel_atl_to_home
-              graph: line
-              detail: 1
-              name: From ATL
-        - type: horizontal-stack
-          cards:
-            - type: sensor
-              entity: sensor.travel_home_to_gdot
-              graph: line
-              detail: 1
-              name: To GDOT
-            - type: sensor
-              entity: sensor.travel_gdot_to_home
-              graph: line
-              detail: 1
-              name: From GDOT
+          - type: horizontal-stack
+            cards:
+              - type: sensor
+                entity: sensor.travel_home_to_atl
+                graph: line
+                detail: 1
+                name: To ATL
+              - type: sensor
+                entity: sensor.travel_atl_to_home
+                graph: line
+                detail: 1
+                name: From ATL
+          - type: horizontal-stack
+            cards:
+              - type: sensor
+                entity: sensor.travel_home_to_gdot
+                graph: line
+                detail: 1
+                name: To GDOT
+              - type: sensor
+                entity: sensor.travel_gdot_to_home
+                graph: line
+                detail: 1
+                name: From GDOT
       - type: gauge
         entity: sensor.allergy_index_today
         min: 0.0
@@ -217,57 +219,57 @@ views:
     cards:
       - type: vertical-stack
         cards:
-        - type: glance
-          title: Hallway Sensor
-          entities:
-            - sensor.hallway_temperature_z
-            - sensor.hallway_humidity_z
-            - sensor.hallway_luminance_z
-            - binary_sensor.hallway_motion_z
-          show_name: false
-        - type: entity-button
-          entity: light.hallway_light
-          name: Hallway
+          - type: glance
+            title: Hallway Sensor
+            entities:
+              - sensor.hallway_temperature_z
+              - sensor.hallway_humidity_z
+              - sensor.hallway_luminance_z
+              - binary_sensor.hallway_motion_z
+            show_name: false
+          - type: entity-button
+            entity: light.hallway_light
+            name: Hallway
       - type: vertical-stack
         cards:
-        - type: glance
-          title: Living Room Sensor
-          entities:
-            - sensor.living_room_temperature_z
-            - sensor.living_room_humidity_z
-            - sensor.living_room_luminance_z
-            - binary_sensor.living_room_motion_z
-          show_name: false
-        - type: horizontal-stack
-          cards:
-            - type: entity-button
-              entity: light.kitchen_lights
-              name: Kitchen
-            - type: entity-button
-              entity: switch.coffee_maker
-              name: Coffee
-        - type: horizontal-stack
-          cards:
-            - type: light
-              entity: light.island_dimmer
-              name: Island
-            - type: entity-button
-              entity: fan.living_room
-              name: Fan
-        - type: horizontal-stack
-          cards:
-            - type: light
-              entity: light.living_room_lamp
-              name: Lamp
-            - type: light
-              entity: light.couch
-              name: Couch
+          - type: glance
+            title: Living Room Sensor
+            entities:
+              - sensor.living_room_temperature_z
+              - sensor.living_room_humidity_z
+              - sensor.living_room_luminance_z
+              - binary_sensor.living_room_motion_z
+            show_name: false
+          - type: horizontal-stack
+            cards:
+              - type: entity-button
+                entity: light.kitchen_lights
+                name: Kitchen
+              - type: entity-button
+                entity: switch.coffee_maker
+                name: Coffee
+          - type: horizontal-stack
+            cards:
+              - type: light
+                entity: light.island_dimmer
+                name: Island
+              - type: entity-button
+                entity: fan.living_room
+                name: Fan
+          - type: horizontal-stack
+            cards:
+              - type: light
+                entity: light.living_room_lamp
+                name: Lamp
+              - type: light
+                entity: light.couch
+                name: Couch
       - type: vertical-stack
         cards:
-        - type: sensor
-          entity: sensor.freezer_temperature
-          graph: line
-          detail: 2
+          - type: sensor
+            entity: sensor.freezer_temperature
+            graph: line
+            detail: 2
 
   - path: bedroom
     title: Bedroom
@@ -348,22 +350,22 @@ views:
     cards:
       - type: vertical-stack
         cards:
-        - type: media-control
-          entity: media_player.apple_tv
-        - type: horizontal-stack
-          cards:
-            - type: button
-              name: Turn On
-              icon: mdi:power-standby
-              tap_action:
-                action: call-service
-                service: script.apple_tv_on
-            - type: button
-              name: Turn Off
-              icon: mdi:power-off
-              tap_action:
-                action: call-service
-                service: script.apple_tv_off
+          - type: media-control
+            entity: media_player.apple_tv
+          - type: horizontal-stack
+            cards:
+              - type: button
+                name: Turn On
+                icon: mdi:power-standby
+                tap_action:
+                  action: call-service
+                  service: script.apple_tv_on
+              - type: button
+                name: Turn Off
+                icon: mdi:power-off
+                tap_action:
+                  action: call-service
+                  service: script.apple_tv_off
       - type: vertical-stack
         cards:
           - type: horizontal-stack

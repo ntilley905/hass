@@ -1,3 +1,5 @@
+---
+
 - alias: Home Lights
   trigger:
     platform: state

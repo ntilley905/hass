@@ -1,3 +1,5 @@
+---
+
 - alias: Climate Set Home
   trigger:
     - platform: state

@@ -1,3 +1,5 @@
+---
+
 - alias: Climate Notifications
   trigger:
     - platform: state

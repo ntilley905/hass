@@ -1,3 +1,5 @@
+---
+
 esphome:
   name: bedroom_window
   platform: ESP8266
@@ -24,19 +26,19 @@ ota:
 
 binary_sensor:
   - platform: gpio
-    pin: 
+    pin:
       number: D5
       mode: INPUT_PULLUP
     name: "Bedroom Window 1"
     device_class: window
   - platform: gpio
-    pin: 
+    pin:
       number: D6
       mode: INPUT_PULLUP
     name: "Bedroom Window 2"
     device_class: window
   - platform: gpio
-    pin: 
+    pin:
       number: D7
       mode: INPUT_PULLUP
     name: "Bedroom Window 3"

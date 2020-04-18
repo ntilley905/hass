@@ -1,3 +1,5 @@
+---
+
 - alias: Record AC Cool Time
   trigger:
     platform: time

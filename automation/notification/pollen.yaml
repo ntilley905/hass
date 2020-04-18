@@ -1,3 +1,5 @@
+---
+
 - alias: Pollen Notification
   trigger:
     platform: time

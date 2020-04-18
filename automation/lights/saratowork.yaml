@@ -1,3 +1,5 @@
+---
+
 - alias: Sara to Work
   trigger:
     platform: state

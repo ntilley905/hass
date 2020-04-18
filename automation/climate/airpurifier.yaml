@@ -1,3 +1,5 @@
+---
+
 # Air purifier has the following priority:
 # 1. Should always run when the HVAC is running
 # 2. Should turn off when TV is playing

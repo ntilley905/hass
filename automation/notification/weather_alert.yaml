@@ -1,3 +1,5 @@
+---
+
 - alias: Weather Alert Critical
   trigger:
     platform: state

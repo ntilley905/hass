@@ -1,16 +1,18 @@
-stages:
-  - test
-  - deploy
-  - notify
+---
 
-test:
-  stage: test
-  image: homeassistant/amd64-homeassistant
-  before_script:
-    - python -m homeassistant --version
-    - cp -R ./.test/* .
-  script:
-    - hass --script check_config -c .
+#stages:
+#  - test
+#  - deploy
+#  - notify
+#
+#test:
+#  stage: test
+#  image: homeassistant/amd64-homeassistant
+#  before_script:
+#    - python -m homeassistant --version
+#    - cp -R ./.test/* .
+#  script:
+#    - hass --script check_config -c .
 
 #deploy:
 #  stage: deploy

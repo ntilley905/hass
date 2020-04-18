@@ -1,3 +1,5 @@
+---
+
 esphome:
   name: bedroom_sensor
   platform: ESP32
@@ -36,6 +38,6 @@ binary_sensor:
     pin: GPIO22
     name: "Bedroom Motion"
     device_class: motion
-    
-status_led: 
+
+status_led:
   pin: GPIO2

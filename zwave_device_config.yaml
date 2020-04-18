@@ -1,3 +1,5 @@
+---
+
 sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_temperature_3:
   ignored: true
   polling_intensity: 0

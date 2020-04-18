@@ -1,3 +1,5 @@
+---
+
 esphome:
   name: freezer_sensor
   platform: ESP8266
@@ -22,39 +24,39 @@ api:
 
 ota:
 
-#output:
-#  - platform: esp8266_pwm
-#    pin: D2
-#    id: redgpio
-#    inverted: True
-#  - platform: esp8266_pwm
-#    pin: D3
-#    id: greengpio
-#    inverted: True
-#  - platform: esp8266_pwm
-#    pin: D4
-#    id: bluegpio
-#    inverted: True
-    
-#light:
-#  - platform: rgb
-#    name: Freezer LED
-#    id: freezer_led
-#    red: redgpio
-#    green: greengpio
-#    blue: bluegpio
+# output:
+#   - platform: esp8266_pwm
+#     pin: D2
+#     id: redgpio
+#     inverted: True
+#   - platform: esp8266_pwm
+#     pin: D3
+#     id: greengpio
+#     inverted: True
+#   - platform: esp8266_pwm
+#     pin: D4
+#     id: bluegpio
+#     inverted: True
+
+# light:
+#   - platform: rgb
+#     name: Freezer LED
+#     id: freezer_led
+#     red: redgpio
+#     green: greengpio
+#     blue: bluegpio
 
 dallas:
   pin: D1
-  
-sensor: 
+
+sensor:
   - platform: dallas
     address: 0x91000008E3884528
     name: Freezer Temperature
-    
-binary_sensor: 
+
+binary_sensor:
   - platform: gpio
-    pin: 
+    pin:
       number: D5
       mode: INPUT_PULLUP
     name: Freezer Door
@@ -73,4 +75,3 @@ binary_sensor:
 #            green: 1.0
 #            red: 0.0
 #            blue: 0.0
-    

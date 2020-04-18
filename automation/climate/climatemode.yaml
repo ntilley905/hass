@@ -1,3 +1,5 @@
+---
+
 - alias: Climate Turn Off
   trigger:
     platform: state

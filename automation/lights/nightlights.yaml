@@ -1,3 +1,5 @@
+--
+
 - alias: Night Lights
   trigger:
     platform: state
