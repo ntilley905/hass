@@ -37,6 +37,8 @@ jobs:
         run: cp  ./.test/secrets.yaml ./secrets.yaml
       - name: Disable DHT integration
         run: rm ./packages/dht.yaml
+      - name: Show Files for debug
+        run: ls ./packages/
       - name: Home Assistant Version
         uses: "docker://homeassistant/home-assistant:stable"
         with:
