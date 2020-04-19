@@ -36,7 +36,7 @@ jobs:
       - name: Copy secrets into main configuration directory
         run: cp  ./.test/secrets.yaml ./secrets.yaml
       - name: Disable DHT integration
-        run: rm -f ./packages/dht.yaml
+        run: git rm -f ./packages/dht.yaml
       - name: Home Assistant Version
         uses: "docker://homeassistant/home-assistant:stable"
         with:
@@ -55,7 +55,7 @@ jobs:
       - name: Copy secrets into main configuration directory
         run: cp  ./.test/secrets.yaml ./secrets.yaml
       - name: Disable DHT integration
-        run: rm -f ./packages/dht.yaml
+        run: git rm -f ./packages/dht.yaml
       - name: Home Assistant Version
         uses: "docker://homeassistant/home-assistant:beta"
         with:
@@ -74,7 +74,7 @@ jobs:
       - name: Copy secrets into main configuration directory
         run: cp  ./.test/secrets.yaml ./secrets.yaml
       - name: Disable DHT integration
-        run: rm -f ./packages/dht.yaml
+        run: git rm -f ./packages/dht.yaml
       - name: Home Assistant Version
         uses: "docker://homeassistant/home-assistant:dev"
         with:
