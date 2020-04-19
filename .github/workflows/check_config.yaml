@@ -45,7 +45,8 @@ jobs:
         with:
           args: |
             rm -f ./packages/dht.yaml
-            python -m homeassistant --config ./ --script check_config --info all  home_assistant_beta:
+            python -m homeassistant --config ./ --script check_config --info all
+  home_assistant_beta:
     runs-on: ubuntu-latest
     needs: [yamllint, remarklint]
     steps:
