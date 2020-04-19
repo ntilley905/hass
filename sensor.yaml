@@ -95,10 +95,3 @@
   name: ATL METAR
   value_template: '{{ value_json.response.data.METAR.flight_category }}'
   json_attributes_path: '{{ value_json.response.data.METAR }}'
-- platform: dht
-  name: Cabinet
-  sensor: AM2302
-  pin: 4
-  monitored_conditions:
-    - temperature
-    - humidity
