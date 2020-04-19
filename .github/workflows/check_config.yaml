@@ -44,7 +44,7 @@ jobs:
         uses: "docker://homeassistant/home-assistant:stable"
         with:
           args: |
-            rm -f ./packages/dht.yaml
+            rm -f ./packages/dht.yaml;
             python -m homeassistant --config ./ --script check_config --info all
   home_assistant_beta:
     runs-on: ubuntu-latest
@@ -63,7 +63,7 @@ jobs:
         uses: "docker://homeassistant/home-assistant:beta"
         with:
           args: |
-            rm -f ./packages/dht.yaml
+            rm -f ./packages/dht.yaml;
             python -m homeassistant --config ./ --script check_config --info all
   home_assistant_dev:
     runs-on: ubuntu-latest
@@ -82,5 +82,5 @@ jobs:
         uses: "docker://homeassistant/home-assistant:dev"
         with:
           args: |
-            rm -f ./packages/dht.yaml
+            rm -f ./packages/dht.yaml;
             python -m homeassistant --config ./ --script check_config --info all
