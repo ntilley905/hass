@@ -3,7 +3,7 @@
 # These automations send notifications when a weather alert is issued. They are
 # cateorized into critical or non-critical based on the NWS urgency of the
 # alert. Critical alerts send critical notifications and turn on the lights
-# to wake us up. Flood Warnings are excluded. 
+# to wake us up. Flood Warnings are excluded.
 
 - alias: Weather Alert Critical
   trigger:

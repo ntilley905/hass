@@ -1,7 +1,7 @@
 ---
 
 # This automation sends a notification if someone attempts to login and is not
-# successful. 
+# successful.
 
 - alias: Notify of Failed Login Attempt
   trigger:

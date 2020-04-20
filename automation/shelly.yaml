@@ -1,6 +1,6 @@
 ---
 
-# These automations trigger the shelly discovery python script. 
+# These automations trigger the shelly discovery python script.
 
 - id: shellies_announce
   alias: 'Shellies Announce'

@@ -2,7 +2,7 @@
 
 # These automations calculate the time for Nathan to drive to work based on
 # what time he needs to be there, and then notifies him of when that time is
-# 15 and 5 minutes away. 
+# 15 and 5 minutes away.
 
 - alias: Time to Leave
   trigger:

@@ -1,7 +1,7 @@
 ---
 
 # This automation sends a notification if the windows are open and it starts to
-# rain or if we leave home and have left the windows open. 
+# rain or if we leave home and have left the windows open.
 
 - alias: Rain Notification
   trigger:

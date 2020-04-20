@@ -2,7 +2,7 @@
 
 # This automation notifies through Discord if there is a delay at a tracked
 # airport. It also notifies if there was a ground stop or closure that has
-# since been canceled. 
+# since been canceled.
 
 - alias: FAA Notification
   trigger:
