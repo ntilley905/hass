@@ -1,5 +1,7 @@
 ---
 
+# These automations turn sleep mode on and off based on our usual routines.
+
 - alias: Turn Sleep Mode Off
   trigger:
     - platform: state
@@ -11,13 +13,16 @@
       entity_id: light.kitchen_lights
     - platform: state
       entity_id: binary_sensor.front_door
+    - platform: sun
+      event: sunrise
+      offset: '+00:15:00'
   action:
     service: input_boolean.turn_off
     entity_id: input_boolean.sleep_mode
 - alias: Turn Sleep Mode On
   trigger:
     platform: state
-    entity_id: group.lights
+    entity_id: light.all
     to: 'off'
   condition:
     - condition: time

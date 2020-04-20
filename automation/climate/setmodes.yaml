@@ -1,5 +1,9 @@
 ---
 
+# This automation sets the set point of the climate via various input
+# numbers. There is a default set point for both heat and cool, and then
+# offsets for sleep, away, and trip modes. 
+
 - alias: Climate Set Home
   trigger:
     - platform: state

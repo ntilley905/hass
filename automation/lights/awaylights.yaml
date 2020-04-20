@@ -1,5 +1,8 @@
 ---
 
+# This automation turns off all lights as well as the coffee maker, fan, and
+# sleep mode when we leave home. 
+
 - alias: Away Lights
   trigger:
     platform: state

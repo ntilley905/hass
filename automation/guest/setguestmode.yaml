@@ -1,5 +1,8 @@
 ---
 
+# This automation toggles guest mode based on the presence of devices that have
+# been added to the guest devices group (mostly my parents)
+
 - alias: Turn Guest Mode On
   trigger:
     platform: state

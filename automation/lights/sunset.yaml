@@ -1,5 +1,8 @@
 ---
 
+# This turns some lights on at sunset, which lights depends on whether or not
+# we are watching TV.
+
 - alias: Lights at Sunset
   trigger:
     platform: numeric_state

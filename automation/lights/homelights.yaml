@@ -1,5 +1,8 @@
 ---
 
+# This automation turns on our welcome lights if it is after one hour before
+# sunset to ensure we don't come home to a dark home.
+
 - alias: Home Lights
   trigger:
     platform: state

@@ -1,5 +1,9 @@
 ---
 
+# This automation turns the lights back off after Sara leaves home for work
+# if motion has not been detected in the living room since she left (ie. Nathan
+# is still in bed).
+
 - alias: Sara to Work
   trigger:
     platform: state
@@ -18,5 +22,5 @@
       after: '04:00:00'
       before: '08:00:00'
   action:
-    service: homeassistant.turn_off
-    entity_id: group.lights
+    service: light.turn_off
+    entity_id: light.all

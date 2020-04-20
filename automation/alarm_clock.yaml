@@ -1,5 +1,9 @@
 ---
 
+# These automations run the alarm clock. The alarm clock is set using a series
+# of input booleans and an input datetime. There are selectable actions for the
+# alarm clock for lights, coffee, and TTS. 
+
 - alias: Alarm Clock Lights
   trigger:
     platform: template

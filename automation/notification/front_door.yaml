@@ -1,5 +1,9 @@
 ---
 
+# This automation notifies us if the front door is opened while no one is home.
+# The notification includes a stream from the camera which is pointed at the
+# front door.
+
 - alias: Front Door
   trigger:
     platform: state

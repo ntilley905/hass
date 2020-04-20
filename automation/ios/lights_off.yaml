@@ -1,5 +1,7 @@
 ---
 
+# This is an automation to turn off all lights based on an iOS action.
+
 - alias: "iOS Lights Off Action"
   trigger:
     platform: event

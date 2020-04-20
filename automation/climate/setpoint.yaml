@@ -1,5 +1,10 @@
 ---
 
+# This automation sets the setpoint on the thermostat when the climate setpoint
+# input numbers change. It also runs any time the thermostat is turned on in
+# case the setpoint has changed since it was turned off (ie. change to sleep
+# mode before windows are closed)
+
 - alias: Climate Set Point
   trigger:
     - platform: state

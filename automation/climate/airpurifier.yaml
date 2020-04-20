@@ -1,5 +1,7 @@
 ---
 
+# This automation is to control the Wemo smart plug that runs our air purifier.
+
 # Air purifier has the following priority:
 # 1. Should always run when the HVAC is running
 # 2. Should turn off when TV is playing
@@ -39,9 +41,14 @@
     entity_id: switch.air_purifier
 - alias: Air Purifier On When Home
   trigger:
-    platform: state
-    entity_id: group.home_devices
-    to: 'home'
+    - platform: state
+      entity_id: group.home_devices
+      to: 'home'
+    - platform: state
+      entity_id: media_player.apple_tv
+  condition:
+    condition: template
+    value_template: '{{ not is_state("media_player.apple_tv", "playing") }}'
   action:
     service: switch.turn_on
     entity_id: switch.air_purifier

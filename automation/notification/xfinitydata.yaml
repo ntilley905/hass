@@ -1,5 +1,10 @@
 ---
 
+# These automations notify us if we have used 75% or 90% of our Xfinity data
+# for the month. It uses an input boolean to make sure we do not get the
+# notification more than once, and that boolean is reset once the data usage
+# goes back down. 
+
 - alias: Data at 75%
   trigger:
     platform: numeric_state

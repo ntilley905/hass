@@ -1,6 +1,9 @@
 ---
 
-- alias: Notify of IP Ban
+# This automation sends a notification if someone attempts to login and is not
+# successful. 
+
+- alias: Notify of Failed Login Attempt
   trigger:
     - platform: state
       entity_id: persistent_notification.http_login

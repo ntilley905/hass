@@ -1,5 +1,7 @@
 ---
 
+# This automation sends a daily notification if the pollen is high.
+
 - alias: Pollen Notification
   trigger:
     platform: time

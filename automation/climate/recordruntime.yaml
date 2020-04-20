@@ -1,5 +1,9 @@
 ---
 
+# This is an automation run once a day to record the value of how much the
+# HVAC runs and the average temperature. Used for long term data analysis
+# through InfluxDB.
+
 - alias: Record AC Cool Time
   trigger:
     platform: time

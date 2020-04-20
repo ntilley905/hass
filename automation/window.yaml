@@ -1,5 +1,8 @@
 ---
 
+# These automations toggle an input boolean when windows or doors are opened or
+# closed. 
+
 - alias: Window or Door Open
   trigger:
     - platform: state

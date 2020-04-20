@@ -1,5 +1,8 @@
 ---
 
+# This automation notifies us if the freezer gets too warm or the door is left
+# open. 
+
 - alias: Freezer Temp High
   trigger:
     - platform: numeric_state

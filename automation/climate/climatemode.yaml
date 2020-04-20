@@ -1,5 +1,8 @@
 ---
 
+# This automation turns the climate on or off when the windows are opened or
+# closed.
+
 - alias: Climate Turn Off
   trigger:
     platform: state
@@ -10,7 +13,7 @@
   action:
     service: climate.turn_off
     entity_id: climate.thermostat
-- alias: Climate Change Mode
+- alias: Climate Turn On
   trigger:
     - platform: state
       entity_id: input_boolean.window_open

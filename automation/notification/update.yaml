@@ -1,5 +1,8 @@
 ---
 
+# This automation sends a notification when a Home Assistant update is
+# available. 
+
 - alias: HA Update
   trigger:
     platform: state
