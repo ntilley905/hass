@@ -1,0 +1,107 @@
+---
+
+# This package handles turning off the coffee maker if it has been on for
+# more than an hour.
+
+# This automation runs once the coffee maker has been on for an hour or if 30
+# minutes has elapsed since the coffee delay was started, only to
+# whoever is home. The notification has two iOS actions, COFFEE_OFF and
+# COFFEE_DELAY. COFFEE_OFF turns the coffee maker off. COFFEE_DELAY turns on an
+# input boolean and once that has been on for 30 minutes, another notification
+# is generated with the same actions.
+
+automation:
+  - alias: Notify Coffee On
+    trigger:
+      - platform: state
+        entity_id: switch.coffee_maker
+        to: 'on'
+        for:
+          hours: 1
+      - platform: state
+        entity_id: input_boolean.coffee_delay
+        to: 'on'
+        for:
+          minutes: 30
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.coffee_delay
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.coffee_response_pending
+      - service_template: >
+          {% if is_state("person.nathan", "home") and
+                is_state("person.sara", "home") %}
+          notify.all_mobile_apps
+          {% elif is_state("person.nathan", "home") %}
+          notify.mobile_app_nathans_iphone
+          {% elif is_state("person.sara", "home") %}
+          notify.mobile_app_saras_iphone
+          {% endif %}
+        data:
+          title: 'Coffee Maker Still On'
+          message: 'The coffee maker has been on for {{ relative_time(states.switch.coffee_maker.last_changed) }}'
+          data:
+            push:
+              category: 'coffee'
+              apns_headers:
+                'apns-collapse-id': 'coffee'
+
+# This automation handles the COFFEE_OFF iOS action.
+  - alias: iOS Coffee Off
+    trigger:
+      platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: COFFEE_OFF
+    action:
+      - service: switch.turn_off
+        entity_id: switch.coffee_maker
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.coffee_response_pending
+
+# This automation handles the COFFEE_DELAY iOS action.
+  - alias: iOS Coffee Delay
+    trigger:
+      platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: COFFEE_DELAY
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.coffee_delay
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.coffee_response_pending
+
+# This automation runs if there is no response to the notification after 5
+# minutes by turning off the coffee maker.
+  - alias: Notify Coffee No Response
+    trigger:
+      platform: state
+      entity_id: input_boolean.coffee_response_pending
+      to: 'on'
+      for:
+        minutes: 5
+    action:
+      - service: switch.turn_off
+        entity_id: switch.coffee_maker
+      - service_template: >
+          {% if is_state("person.nathan", "home") and
+                is_state("person.sara", "home") %}
+          notify.all_mobile_apps
+          {% elif is_state("person.nathan", "home") %}
+          notify.mobile_app_nathans_iphone
+          {% elif is_state("person.sara", "home") %}
+          notify.mobile_app_saras_iphone
+          {% endif %}
+        data:
+          title: 'Coffee Maker Turned Off'
+          message: 'Since you did not respond, the coffee maker is now off.'
+          data:
+            push:
+              apns_headers:
+                'apns-collapse-id': 'coffee'
+
+
+input_boolean:
+  coffee_delay:
+  coffee_response_pending:
