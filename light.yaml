@@ -9,6 +9,9 @@
 - platform: switch
   name: Bedroom Light
   entity_id: switch.bedroom_light
+- platform: switch
+  name: Closet Light
+  entity_id: switch.shelly1_c487e3_relay_0
 - platform: group
   name: Bathroom Lights
   entities:
@@ -27,3 +30,4 @@
     - light.kitchen_lights
     - light.living_room_lamp
     - light.bedroom_led
+    - light.closet_light

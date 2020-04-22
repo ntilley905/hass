@@ -30,18 +30,6 @@ ord_discord_notify:
   name: ORD Discord Notify
 ord_ios_notify:
   name: ORD iOS Notify
-alarm_clock_enable:
-  name: Alarm Clock
-  icon: mdi:alarm
-alarm_clock_coffee:
-  name: Enable Coffee
-  icon: mdi:coffee
-alarm_clock_lights:
-  name: Enable Lights
-  icon: mdi:lightbulb
-alarm_clock_tts:
-  name: Enable Announcements
-  icon: mdi:volume-high
 guest_mode:
   name: Guest Mode
   icon: mdi:account
