@@ -56,8 +56,6 @@ automation:
     action:
       - service: switch.turn_off
         entity_id: switch.coffee_maker
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.coffee_response_pending
 
 # This automation handles the COFFEE_DELAY iOS action.
   - alias: iOS Coffee Delay
@@ -100,6 +98,21 @@ automation:
             push:
               apns_headers:
                 'apns-collapse-id': 'coffee'
+
+# This automation turns off the input booleans when the coffee maker is turned
+# off. This prevents the automations from running multiple times or if the
+# coffee maker is turned off manually.
+
+  - alias: Coffee Manually Off
+    trigger:
+      platform: state
+      entity_id: switch.coffee_maker
+      to: 'off'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.coffee_delay
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.coffee_response_pending
 
 
 input_boolean:

@@ -80,6 +80,14 @@ views:
           - type: horizontal-stack
             cards:
               - type: button
+                entity: light.balcony_lights
+                name: Balcony
+              - type: button
+                entity: light.closet_light
+                name: Closet
+          - type: horizontal-stack
+            cards:
+              - type: button
                 entity: switch.coffee_maker
                 name: Coffee
               - type: button
@@ -273,6 +281,10 @@ views:
 
   - path: bedroom
     title: Bedroom
+    badges:
+      - binary_sensor.bedroom_window_1
+      - binary_sensor.bedroom_window_2
+      - binary_sensor.bedroom_window_3
     cards:
       - type: vertical-stack
         cards:

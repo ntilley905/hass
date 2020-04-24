@@ -4,9 +4,10 @@
 
 # Air purifier has the following priority:
 # 1. Should always run when the HVAC is running
-# 2. Should turn off when TV is playing
-# 3. Should otherwise be on while we are home
-# 4. While we are gone, should revert to a cycle depending on pollen count
+# 2. Should always be on while windows are open
+# 3. Should turn off when TV is playing
+# 4. Should otherwise be on while we are home
+# 5. While we are gone, should revert to a cycle depending on pollen count
 
 - alias: Air Purifier On During AC
   trigger:
@@ -15,30 +16,52 @@
   action:
     service: switch.turn_on
     entity_id: switch.air_purifier
+- alias: Air Purifier On Windows Open
+  trigger:
+    platform: state
+    entity_id: input_boolean.window_open
+    to: 'on'
+    for:
+      seconds: 15
+  action:
+    service: switch.turn_on
+    entity_id: switch.air_purifier
+
 - alias: Air Purifier Off During TV
   trigger:
     platform: state
     entity_id: media_player.apple_tv
     to: 'playing'
   condition:
-    condition: state
-    entity_id: sensor.hvac_action
-    state: 'idle'
+    - condition: state
+      entity_id: sensor.hvac_action
+      state: 'idle'
+    - condition: state
+      entity_id: input_boolean.window_open
+      state: 'off'
   action:
     service: switch.turn_off
     entity_id: switch.air_purifier
-- alias: Air Purifier Off During TV After HVAC
+
+- alias: Air Purifier Off During TV After HVAC or Windows
   trigger:
-    platform: state
-    entity_id: sensor.hvac_action
-    to: 'idle'
+    - platform: state
+      entity_id: sensor.hvac_action
+      to: 'idle'
+    - platform: state
+      entity_id: input_boolean.window_open
+      to: 'off'
   condition:
-    condition: state
-    entity_id: media_player.apple_tv
-    state: 'playing'
+    - condition: state
+      entity_id: media_player.apple_tv
+      state: 'playing'
+    - condition: state
+      entity_id: input_boolean.window_open
+      state: 'off'
   action:
     service: switch.turn_off
     entity_id: switch.air_purifier
+
 - alias: Air Purifier On When Home
   trigger:
     - platform: state
@@ -52,6 +75,7 @@
   action:
     service: switch.turn_on
     entity_id: switch.air_purifier
+
 - alias: Air Purifier Cycle High
   trigger:
     platform: time_pattern
@@ -63,6 +87,7 @@
   action:
     service: input_boolean.toggle
     entity_id: input_boolean.air_purifier_cycle
+
 - alias: Air Purifier Cycle Low
   trigger:
     platform: time_pattern
@@ -77,6 +102,7 @@
     - delay: '01:00:00'
     - service: input_boolean.turn_off
       entity_id: input_boolean.air_purifier_cycle
+
 - alias: Air Purifier Set Not Home
   trigger:
     - platform: state
