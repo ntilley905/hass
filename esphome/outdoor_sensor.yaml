@@ -37,4 +37,4 @@ sensor:
       name: "Outdoor Pressure"
     humidity:
       name: "Outdoor Humidity"
-    address: 0x76
+    address: 0x0A

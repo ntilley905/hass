@@ -73,7 +73,7 @@ history:
       - binary_sensor.living_room_motion_z
       - climate.ct_100
       - switch.coffee_maker
-      - weather.katl
+      - weather.katl_hourly
   exclude:
     entities:
       - sensor.atl_end_time
@@ -206,10 +206,6 @@ notify:
     services:
       - service: mobile_app_nathans_iphone
       - service: mobile_app_saras_iphone
-
-weather:
-  - platform: nws
-    api_key: !secret email_address
 
 camera:
   - platform: nwsradar

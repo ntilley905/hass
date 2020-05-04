@@ -166,7 +166,7 @@ views:
           - sensor.outdoor_temperature
         title: Status
       - type: weather-forecast
-        entity: weather.katl
+        entity: weather.katl_hourly
       - type: picture-entity
         entity: camera.amcrest_camera
       - type: picture-entity

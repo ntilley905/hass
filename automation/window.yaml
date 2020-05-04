@@ -20,6 +20,11 @@
   action:
     service: input_boolean.turn_on
     entity_id: input_boolean.window_open
+
+# This automation has triggers for all of the binary sensors as well as
+# conditions for all to ensure that it triggers any time one is closed but only
+# runs when all are closed.
+
 - alias: Window or Door Closed
   trigger:
     - platform: state
@@ -34,6 +39,19 @@
     - platform: state
       entity_id: binary_sensor.bedroom_window_3
       to: 'off'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.front_door
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.bedroom_window_1
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.bedroom_window_2
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.bedroom_window_3
+      state: 'off'
   action:
     service: input_boolean.turn_off
     entity_id: input_boolean.window_open
