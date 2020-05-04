@@ -11,14 +11,14 @@
       unit_of_measurement: '°F'
     precip_type:
       value_template: >
-        {% if states("weather.katl") in ['clear-night', 'cloudy', 'fog', 'partlycloudy', 'sunny', 'windy', 'windy-variant'] %}
+        {% if states("weather.katl_hourly") in ['clear-night', 'cloudy', 'fog', 'partlycloudy', 'sunny', 'windy', 'windy-variant'] %}
         None
         {% else %}
-        {{ states("weather.katl") }}
+        {{ states("weather.katl_hourly") }}
         {% endif %}
     outdoor_temperature:
       friendly_name: Outdoor Temperature
-      value_template: '{{ state_attr("weather.katl", "temperature") }}'
+      value_template: '{{ state_attr("weather.katl_hourly", "temperature") }}'
       unit_of_measurement: '°F'
 - platform: time_date
   display_options:
