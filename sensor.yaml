@@ -16,8 +16,12 @@
         {% else %}
         {{ states("weather.katl_hourly") }}
         {% endif %}
-    outdoor_temperature:
-      friendly_name: Outdoor Temperature
+    corrected_pressure:
+      friendly_name: Sea Level Pressure
+      value_template: '{{ (0.02952998751 * (float(states.sensor.outdoor_pressure.state) + 280 / 8.3)) | round(2) }}'
+      unit_of_measurement: 'inHg'
+    nws_temperature:
+      friendly_name: NWS Temperature
       value_template: '{{ state_attr("weather.katl_hourly", "temperature") }}'
       unit_of_measurement: '°F'
 - platform: time_date

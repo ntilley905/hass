@@ -3,6 +3,8 @@
 homeassistant:
   customize: !include customize.yaml
   packages: !include_dir_named packages
+  auth_mfa_modules:
+    - type: totp
 
 default_config:
 
@@ -10,8 +12,8 @@ http:
   base_url: !secret base_url
   use_x_forwarded_for: true
   trusted_proxies: 127.0.0.1
-  ip_ban_enabled: true
-  login_attempts_threshold: 5
+  #ip_ban_enabled: true
+  #login_attempts_threshold: 5
 
 cloudflare:
   email: !secret email_address
@@ -46,6 +48,11 @@ lovelace:
 
 frontend:
   themes: !include_dir_merge_named themes
+
+panel_iframe:
+  garden:
+    title: Garden Graphs
+    url: 'http://homeassistant.local:8123/api/hassio_ingress/3vY55CxOPACVCRMfqPx9dxWRhLyzorKwSGQjoywtnxM/d/v56dxPmRz/garden?orgId=1&refresh=1m'
 
 logger:
   default: warning

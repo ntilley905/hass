@@ -43,3 +43,12 @@ binary_sensor:
       mode: INPUT_PULLUP
     name: "Bedroom Window 3"
     device_class: window
+
+sensor:
+  - platform: dht
+    pin: D2
+    model: AM2302
+    temperature:
+      name: "Bedroom Temperature"
+    humidity:
+      name: "Bedroom Humidity"

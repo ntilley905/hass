@@ -8,6 +8,7 @@ esphome:
 wifi:
   ssid: !secret ssid
   password: !secret wifipw
+  use_address: 192.168.20.109
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
@@ -24,10 +25,28 @@ api:
 
 ota:
 
+#deep_sleep:
+#  run_duration: 10s
+#  sleep_duration: 10min
+#  id: deep_sleep_1
+  
+#mqtt:
+#  broker: !secret mqtt_broker
+#  username: !secret mqtt_user
+#  password: !secret mqtt_pass
+#  on_message:
+#    topic: outdoor/ota_mode
+#    payload: 'ON'
+#    then:
+#      deep_sleep.prevent: deep_sleep_1
+
 i2c:
   sda: 21
   scl: 22
   scan: True
+
+dallas:
+  pin: 19
 
 sensor:
   - platform: bme280
@@ -37,4 +56,10 @@ sensor:
       name: "Outdoor Pressure"
     humidity:
       name: "Outdoor Humidity"
-    address: 0x0A
+    address: 0x76
+  - platform: dallas
+    address: 0xBC80000027A57828
+    name: "Soil Temperature 1"
+  - platform: dallas
+    address: 0x0880000027A54B28
+    name: "Soil Temperature 2"

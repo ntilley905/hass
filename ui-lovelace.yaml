@@ -26,6 +26,7 @@ views:
           - person.nathan
           - person.sara
           - sensor.indoor_temperature
+          - sensor.nws_temperature
           - sensor.outdoor_temperature
           - sensor.cabinet_temperature
       - type: custom:stack-in-card
@@ -171,6 +172,26 @@ views:
         entity: camera.amcrest_camera
       - type: picture-entity
         entity: camera.ffc
+
+  - path: garden
+    title: Garden
+    icon: mdi:chili-mild
+    cards:
+      - type: sensor
+        entity: sensor.soil_temperature_1
+        name: Big Pot Temp
+        graph: line
+        detail: 2
+      - type: sensor
+        entity: sensor.soil_temperature_2
+        name: Small Pot Temp
+        graph: line
+        detail: 2
+      - type: sensor
+        entity: sensor.outdoor_temperature
+        name: Balcony Air Temp
+        graph: line
+        detail: 2
 
   - path: covid-19
     title: Covid 19
