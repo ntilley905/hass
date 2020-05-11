@@ -46,7 +46,7 @@ automation:
               apns_headers:
                 'apns-collapse-id': 'coffee'
 
-# This automation handles the COFFEE_OFF iOS action.
+  # This automation handles the COFFEE_OFF iOS action.
   - alias: iOS Coffee Off
     trigger:
       platform: event
@@ -57,7 +57,7 @@ automation:
       - service: switch.turn_off
         entity_id: switch.coffee_maker
 
-# This automation handles the COFFEE_DELAY iOS action.
+  # This automation handles the COFFEE_DELAY iOS action.
   - alias: iOS Coffee Delay
     trigger:
       platform: event
@@ -70,8 +70,8 @@ automation:
       - service: input_boolean.turn_off
         entity_id: input_boolean.coffee_response_pending
 
-# This automation runs if there is no response to the notification after 5
-# minutes by turning off the coffee maker.
+  # This automation runs if there is no response to the notification after 5
+  # minutes by turning off the coffee maker.
   - alias: Notify Coffee No Response
     trigger:
       platform: state
@@ -99,9 +99,9 @@ automation:
               apns_headers:
                 'apns-collapse-id': 'coffee'
 
-# This automation turns off the input booleans when the coffee maker is turned
-# off. This prevents the automations from running multiple times or if the
-# coffee maker is turned off manually.
+  # This automation turns off the input booleans when the coffee maker is turned
+  # off. This prevents the automations from running multiple times or if the
+  # coffee maker is turned off manually.
 
   - alias: Coffee Manually Off
     trigger:

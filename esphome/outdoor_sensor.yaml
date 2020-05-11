@@ -25,20 +25,20 @@ api:
 
 ota:
 
-#deep_sleep:
-#  run_duration: 10s
-#  sleep_duration: 10min
-#  id: deep_sleep_1
-  
-#mqtt:
-#  broker: !secret mqtt_broker
-#  username: !secret mqtt_user
-#  password: !secret mqtt_pass
-#  on_message:
-#    topic: outdoor/ota_mode
-#    payload: 'ON'
-#    then:
-#      deep_sleep.prevent: deep_sleep_1
+# deep_sleep:
+#   run_duration: 10s
+#   sleep_duration: 10min
+#   id: deep_sleep_1
+
+# mqtt:
+#   broker: !secret mqtt_broker
+#   username: !secret mqtt_user
+#   password: !secret mqtt_pass
+#   on_message:
+#     topic: outdoor/ota_mode
+#     payload: 'ON'
+#     then:
+#       deep_sleep.prevent: deep_sleep_1
 
 i2c:
   sda: 21
