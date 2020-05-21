@@ -1,0 +1,44 @@
+esphome:
+  name: test
+  platform: ESP32
+  board: esp32dev
+
+wifi:
+  ssid: !secret ssid
+  password: !secret wifipw
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Test Fallback Hotspot"
+    password: "ceeZSEGJ0OCV"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+sensor:
+  - platform: adc
+    pin: GPIO36
+    name: Soil Moisture 1
+    attenuation: 11db
+    unit_of_measurement: '%'
+    filters:
+      - lambda: |-
+          if (x > 2.7)
+          {
+            return 0;
+          }
+          else if (x < 1.35)
+          {
+            return 100;
+          }
+          else
+          {
+            return ((x - 1.35) / 1.35) * 100;
+          }

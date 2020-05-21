@@ -11,7 +11,7 @@ default_config:
 http:
   base_url: !secret base_url
   use_x_forwarded_for: true
-  trusted_proxies: 127.0.0.1
+  trusted_proxies: !secret nginx_ip
   # ip_ban_enabled: true
   # login_attempts_threshold: 5
 
