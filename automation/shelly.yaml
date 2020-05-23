@@ -24,4 +24,5 @@
       id: '{{ trigger.payload_json.id }}'
       mac: '{{ trigger.payload_json.mac }}'
       fw_ver: '{{ trigger.payload_json.fw_ver }}'
-      shellyswitch-10B831-relay-0: 'fan'
+      shellyswitch25-10B831:
+        relay-0: "fan"

@@ -193,6 +193,35 @@ views:
         graph: line
         detail: 2
 
+  - path: vacuum
+    title: Vacuum
+    icon: mdi:robot-vacuum
+    cards:
+      - type: 'custom:vacuum-card'
+        entity: vacuum.rockrobo
+        map: camera.rockrobo_map
+        stats:
+          default:
+            - attribute: mainBrush
+              unit: h
+              subtitle: Brush
+            - attribute: sideBrush
+              unit: h
+              subtitle: Side
+            - attribute: filter
+              unit: h
+              subtitle: Filter
+            - attribute: sensor
+              unit: h
+              subtitle: Sensor
+          cleaning:
+            - attribute: cleanTime
+              unit: minutes
+              subtitle: Time
+            - attribute: cleanArea
+              unit: m2
+              subtitle: Area
+
   - path: covid-19
     title: Covid 19
     icon: mdi:hospital-box
@@ -243,8 +272,8 @@ views:
       - binary_sensor.front_door
       - binary_sensor.amcrest_camera_motion_detected
       - binary_sensor.freezer_door
-      - sensor.shelly2_5_10b831_power_0
-      - sensor.shelly2_5_10b831_energy_0
+      - sensor.living_room_fan_power
+      - sensor.living_room_fan_energy
     cards:
       - type: vertical-stack
         cards:

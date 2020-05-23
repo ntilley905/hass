@@ -47,6 +47,7 @@ I use issues to document things that I want to implement in the future or things
 * Marantz SR5012 Audio Receiver
 * Volumio on Raspberry Pi 3B+
 * 2x Wemo Smart Plug 1st Gen
+* Roborock S55 Vacuum
 
 ## Integrations
 

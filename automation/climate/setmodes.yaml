@@ -69,3 +69,5 @@
       data_template:
         entity_id: input_number.climate_cool_point
         value: '{{ states("input_number.climate_cool_default") | int + states("input_number.climate_sleep_offset") | int }}'
+    - service: fan.turn_off
+      entity_id: fan.living_room

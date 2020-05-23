@@ -9,7 +9,6 @@ homeassistant:
 default_config:
 
 http:
-  base_url: !secret base_url
   use_x_forwarded_for: true
   trusted_proxies: !secret nginx_ip
   # ip_ban_enabled: true
@@ -39,6 +38,10 @@ lovelace:
     - url: /hacsfiles/stack-in-card/stack-in-card.js
       type: module
     - url: /hacsfiles/light-brightness-preset-row/light-brightness-preset-row.js
+      type: module
+    - url: /hacsfiles/vacuum-card/vacuum-card.js
+      type: module
+    - url: /hacsfiles/lovelace-valetudo-map-card/valetudo-map-card.js
       type: module
   dashboards:
     lovelace-mobile:
@@ -235,28 +238,6 @@ media_player:
   - platform: mpd
     name: volumio_mpd
     host: !secret volumio_ip
-
-fan:
-  - platform: template
-    fans:
-      living_room:
-        friendly_name: 'Living Room Fan'
-        value_template: '{{ states("switch.shelly2_5_10b831_relay_0") }}'
-        availability_template: >
-          {% if states('switch.shelly2_5_10b831_relay_0') == 'unavailable' %}
-          false
-          {% else %}
-          true
-          {% endif %}
-        turn_on:
-          service: switch.turn_on
-          data:
-            entity_id: switch.shelly2_5_10b831_relay_0
-        turn_off:
-          service: switch.turn_off
-          data:
-            entity_id: switch.shelly2_5_10b831_relay_0
-
 
 python_script:
 
