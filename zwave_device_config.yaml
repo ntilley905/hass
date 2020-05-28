@@ -39,9 +39,6 @@ sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_indicator_4:
 sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_indicator_3:
   ignored: true
   polling_intensity: 0
-climate.ct_100_cool:
-  ignored: false
-  polling_intensity: 1
 climate.thermostat:
   ignored: false
   polling_intensity: 1

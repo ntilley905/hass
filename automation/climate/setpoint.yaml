@@ -13,9 +13,7 @@
       entity_id: input_number.climate_heat_point
     - platform: state
       entity_id: input_boolean.climate_override
-      to: 'on'
-      for:
-        hours: 1
+      to: 'off'
     - platform: state
       entity_id: climate.thermostat
       to: 'heat_cool'
@@ -29,5 +27,3 @@
         entity_id: climate.thermostat
         target_temp_high: '{{ states("input_number.climate_cool_point") }}'
         target_temp_low: '{{ states("input_number.climate_heat_point") }}'
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.climate_override

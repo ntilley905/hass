@@ -81,7 +81,7 @@ history:
       - binary_sensor.front_door
       - binary_sensor.hallway_motion_z
       - binary_sensor.living_room_motion_z
-      - climate.ct_100
+      - climate.thermostat
       - switch.coffee_maker
       - weather.katl_hourly
   exclude:

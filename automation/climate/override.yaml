@@ -1,0 +1,15 @@
+---
+
+# This automation disables the climate override after one hour.
+
+- alias: Climate Override Off
+  trigger:
+    platform: state
+    entity_id: input_boolean.climate_override
+    to: 'on'
+    for:
+      hours: 1
+  action:
+    - service: input_boolean.turn_off
+      data_template:
+        entity_id: input_boolean.climate_override
