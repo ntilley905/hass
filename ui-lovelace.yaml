@@ -399,6 +399,7 @@ views:
       - type: entities
         entities:
           - input_select.climate_mode
+          - input_boolean.climate_override
           - input_number.climate_heat_point
           - input_number.climate_cool_point
           - input_number.climate_heat_default
