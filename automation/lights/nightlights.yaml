@@ -5,42 +5,44 @@
 # is detected for 5 minutes, they then turn off again. They are also turned off
 # 15 minutes after sunrise assuming they have not been made brighter.
 
-- alias: Night Lights
-  trigger:
-    platform: state
-    entity_id: binary_sensor.hallway_motion_z
-    to: 'on'
-  condition:
-    condition: state
-    entity_id: input_boolean.sleep_mode
-    state: 'on'
-  action:
-    - service: light.turn_on
-      data:
-        entity_id: light.island_dimmer
-        brightness: 8
-- alias: Night Lights Off
-  trigger:
-    platform: state
-    entity_id: binary_sensor.hallway_motion_z
-    to: 'off'
-    for:
-      minutes: 5
-  condition:
-    condition: state
-    entity_id: input_boolean.sleep_mode
-    state: 'on'
-  action:
-    service: light.turn_off
-    entity_id: light.island_dimmer
-- alias: Night Lights Off in Morning
-  trigger:
-    platform: sun
-    event: sunrise
-    offset: '+00:15:00'
-  condition:
-    condition: template
-    value_template: "{{ state_attr('light.island_dimmer', 'brightness') < 10 }}"
-  action:
-    service: light.turn_off
-    entity_id: light.island_dimmer
+# Currently disabled due to repurposing the hallway sensor for the kitchen sensor.
+
+#- alias: Night Lights
+#  trigger:
+#    platform: state
+#    entity_id: binary_sensor.hallway_motion_z
+#    to: 'on'
+#  condition:
+#    condition: state
+#    entity_id: input_boolean.sleep_mode
+#    state: 'on'
+#  action:
+#    - service: light.turn_on
+#     data:
+#        entity_id: light.island_dimmer
+#        brightness: 8
+#- alias: Night Lights Off
+#  trigger:
+#    platform: state
+#    entity_id: binary_sensor.hallway_motion_z
+#    to: 'off'
+#    for:
+#      minutes: 5
+#  condition:
+#    condition: state
+#    entity_id: input_boolean.sleep_mode
+#    state: 'on'
+#  action:
+#    service: light.turn_off
+#    entity_id: light.island_dimmer
+#- alias: Night Lights Off in Morning
+#  trigger:
+#    platform: sun
+#    event: sunrise
+#    offset: '+00:15:00'
+#  condition:
+#    condition: template
+#    value_template: "{{ state_attr('light.island_dimmer', 'brightness') < 10 }}"
+#  action:
+#    service: light.turn_off
+#    entity_id: light.island_dimmer

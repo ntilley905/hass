@@ -69,13 +69,12 @@ history:
       - sensor
       - sun
     entities:
-      - binary_sensor.amcrest_camera_motion_detected
       - binary_sensor.bathroom_motion
       - binary_sensor.bathroom_motion_z
       - binary_sensor.bedroom_motion
       - binary_sensor.bedroom_motion_z
       - binary_sensor.front_door
-      - binary_sensor.hallway_motion_z
+      - binary_sensor.kitchen_motion_z
       - binary_sensor.living_room_motion_z
       - climate.thermostat
       - switch.coffee_maker
@@ -103,11 +102,11 @@ history:
       - sensor.ecolink_door_window_sensor_power_management
       - sensor.ecolink_door_window_sensor_sourcenodeid
       - sensor.hacs
-      - sensor.hallway_alarm_level_z
-      - sensor.hallway_alarm_type_z
-      - sensor.hallway_burglar_z
-      - sensor.hallway_power_management_z
-      - sensor.hallway_sourcenodeid_z
+      - sensor.kitchen_alarm_level_z
+      - sensor.kitchen_alarm_type_z
+      - sensor.kitchen_burglar_z
+      - sensor.kitchen_power_management_z
+      - sensor.kitchen_sourcenodeid_z
       - sensor.jfk_end_time
       - sensor.lga_end_time
       - sensor.living_room_alarm_type_z

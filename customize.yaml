@@ -30,16 +30,6 @@ sensor.bedroom_temperature_z:
   unit_of_measurement: °F
 switch.coffee_maker:
   icon: mdi:coffee
-sensor.hallway_humidity_z:
-  icon: mdi:water-percent
-  unit_of_measurement: '%'
-sensor.hallway_luminance_z:
-  icon: mdi:lightbulb-on-outline
-  unit_of_measurement: '%'
-binary_sensor.hallway_motion_z: {}
-sensor.hallway_temperature_z:
-  icon: mdi:thermometer
-  unit_of_measurement: °F
 sensor.indoor_temperature:
   icon: mdi:thermometer
 binary_sensor.front_door:

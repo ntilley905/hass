@@ -278,12 +278,12 @@ views:
       - type: vertical-stack
         cards:
           - type: glance
-            title: Hallway Sensor
+            title: Kitchen Sensor
             entities:
-              - sensor.hallway_temperature_z
-              - sensor.hallway_humidity_z
-              - sensor.hallway_luminance_z
-              - binary_sensor.hallway_motion_z
+              - sensor.kitchen_temperature_z
+              - sensor.kitchen_humidity_z
+              - sensor.kitchen_luminance_z
+              - binary_sensor.kitchen_motion_z
             show_name: false
           - type: entity-button
             entity: light.hallway_light
