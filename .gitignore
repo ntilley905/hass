@@ -6,6 +6,7 @@
 *.txt
 *._
 __pycache__/
+.pip_progress
 
 #directory ignores
 /tts

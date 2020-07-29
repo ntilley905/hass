@@ -26,21 +26,5 @@ ota:
 
 sensor:
   - platform: adc
-    pin: GPIO36
-    name: Soil Moisture 1
-    attenuation: 11db
-    unit_of_measurement: '%'
-    filters:
-      - lambda: |-
-          if (x > 2.7)
-          {
-            return 0;
-          }
-          else if (x < 1.35)
-          {
-            return 100;
-          }
-          else
-          {
-            return ((x - 1.35) / 1.35) * 100;
-          }
+    pin: 34
+    name: "Solar Battery Voltage"

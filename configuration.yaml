@@ -52,16 +52,12 @@ lovelace:
 frontend:
   themes: !include_dir_merge_named themes
 
-panel_iframe:
-  garden:
-    title: Garden Graphs
-    url: 'http://homeassistant.local:8123/api/hassio_ingress/3vY55CxOPACVCRMfqPx9dxWRhLyzorKwSGQjoywtnxM/d/v56dxPmRz/garden?orgId=1&refresh=1m'
-
 logger:
   default: warning
   logs:
     custom_components.faastatus: debug
     custom_components.weatheralerts: debug
+    custom_components.xfinity: debug
 
 history:
   include:
@@ -224,12 +220,12 @@ camera:
 iqvia:
   zip_code: !secret zip_code
 
-amcrest:
-  host: !secret amcrest_host
-  username: !secret amcrest_user
-  password: !secret amcrest_pass
-  binary_sensors:
-    - motion_detected
+# amcrest:
+#  host: !secret amcrest_host
+#  username: !secret amcrest_user
+#  password: !secret amcrest_pass
+#  binary_sensors:
+#   - motion_detected
 
 heos:
   host: !secret marantz_ip

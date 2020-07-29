@@ -59,8 +59,11 @@
     - condition: state
       entity_id: person.nathan
       state: 'home'
-    - condition: template
-      value_template: "{{ not is_state('sensor.nathans_iphone_activity', 'Automotive') }}"
+    - condition: not
+      conditions:
+        condition: state
+        entity_id: sensor.nathans_iphone_activity
+        state: 'Automotive'
   action:
     service: notify.mobile_app_nathans_iphone
     data_template:

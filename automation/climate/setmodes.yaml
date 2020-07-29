@@ -30,8 +30,11 @@
       entity_id: input_boolean.trip_mode
       to: 'off'
   condition:
-    condition: template
-    value_template: '{{ not is_state("input_boolean.trip_mode", "on") }}'
+    condition: not
+    conditions:
+      - condition: state
+        entity_id: input_boolean.trip_mode
+        state: 'on'
   action:
     - service: input_number.set_value
       data_template:

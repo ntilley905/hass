@@ -168,8 +168,8 @@ views:
         title: Status
       - type: weather-forecast
         entity: weather.katl_hourly
-      - type: picture-entity
-        entity: camera.amcrest_camera
+        #- type: picture-entity
+        #  entity: camera.amcrest_camera
       - type: picture-entity
         entity: camera.ffc
 
@@ -270,7 +270,7 @@ views:
     title: Living Room
     badges:
       - binary_sensor.front_door
-      - binary_sensor.amcrest_camera_motion_detected
+      # - binary_sensor.amcrest_camera_motion_detected
       - binary_sensor.freezer_door
       - sensor.living_room_fan_power
       - sensor.living_room_fan_energy

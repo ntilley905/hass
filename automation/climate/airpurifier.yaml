@@ -70,8 +70,11 @@
     - platform: state
       entity_id: media_player.apple_tv
   condition:
-    condition: template
-    value_template: '{{ not is_state("media_player.apple_tv", "playing") }}'
+    condition: not
+    conditions:
+      - condition: state
+        entity_id: media_player.apple_tv
+        state: playing"
   action:
     service: switch.turn_on
     entity_id: switch.air_purifier

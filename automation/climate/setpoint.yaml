@@ -18,8 +18,11 @@
       entity_id: climate.thermostat
       to: 'heat_cool'
   condition:
-    condition: template
-    value_template: '{{ not is_state("climate.thermostat", "off") }}'
+    condition: not
+    conditions:
+      - condition: state
+        entity_id: climate.thermostat
+        state: 'off'
   action:
     - delay: '00:00:02'
     - service: climate.set_temperature

@@ -13,8 +13,11 @@
     - condition: state
       entity_id: group.home_devices
       state: 'home'
-    - condition: template
-      value_template: "{{ not is_state('media_player.apple_tv', 'playing') }}"
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: media_player.apple_tv
+          state: 'playing'
   action:
     service: scene.turn_on
     entity_id: scene.normal_lights
