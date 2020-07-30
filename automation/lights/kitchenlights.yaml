@@ -1,12 +1,12 @@
 ---
 
-# This automation triggers the kitchen lights based on motion. It also turns them off after a period of no motion. 
+# This automation triggers the kitchen lights based on motion. It also turns them off after a period of no motion.
 # This is still a work in progress.
 
 - alias: Kitchen Lights On
   trigger:
     platform: state
-    entity_id:  binary_sensor.kitchen_motion_z
+    entity_id: binary_sensor.kitchen_motion_z
     to: 'on'
   condition:
     condition: state
@@ -17,7 +17,7 @@
     entity_id: light.kitchen_lights
 
 - alias: Kitchen Lights Off
-  trigger: 
+  trigger:
     platform: state
     entity_id: binary_sensor.kitchen_motion_z
     to: 'off'
