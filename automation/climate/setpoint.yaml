@@ -1,7 +1,8 @@
 ---
 
 # This automation sets the setpoint on the thermostat when the climate setpoint
-# input numbers change. It also runs any time the thermostat is turned on in
+# input numbers change. It only checks the cool point as that one is always
+# changed last. It also runs any time the thermostat is turned on in
 # case the setpoint has changed since it was turned off (ie. change to sleep
 # mode before windows are closed)
 
@@ -10,19 +11,17 @@
     - platform: state
       entity_id: input_number.climate_cool_point
     - platform: state
-      entity_id: input_number.climate_heat_point
-    - platform: state
       entity_id: input_boolean.climate_override
       to: 'off'
     - platform: state
       entity_id: climate.thermostat
       to: 'heat_cool'
   condition:
-    condition: not
-    conditions:
-      - condition: state
-        entity_id: climate.thermostat
-        state: 'off'
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: climate.thermostat
+          state: 'off'
   action:
     - delay: '00:00:02'
     - service: climate.set_temperature

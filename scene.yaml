@@ -32,3 +32,33 @@
     light.island_dimmer:
       state: on
       brightness: 64
+- name: Kitchen Color 1
+  entities:
+    light.kitchen_stove_led:
+      state: on
+      brightness: 46
+      rgb_color: [126, 255, 0]
+    light.kitchen_sink_led:
+      state: on
+      brightness: 28
+      rgb_color: [255, 159, 0]
+- name: Kitchen Color 2
+  entities:
+    light.kitchen_sink_led:
+      state: on
+      brightness: 16
+      rgb_color: [0, 0, 255]
+    light.kitchen_stove_led:
+      state: on
+      brightness: 62
+      rgb_color: [190, 0, 255]
+- name: Kitchen Color 3
+  entities:
+    light.kitchen_sink_led:
+      state: on
+      brightness: 13
+      rgb_color: [255, 0, 0]
+    light.kitchen_stove_led:
+      state: on
+      brightness: 24
+      rgb_color: [0, 255, 255]
