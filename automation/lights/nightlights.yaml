@@ -19,7 +19,7 @@
     state: 'on'
   action:
     - service: light.turn_on
-     data:
+      data:
         entity_id: light.island_dimmer
         brightness: 15
 - alias: Night Lights Off
