@@ -219,13 +219,6 @@ camera:
 iqvia:
   zip_code: !secret zip_code
 
-# amcrest:
-#  host: !secret amcrest_host
-#  username: !secret amcrest_user
-#  password: !secret amcrest_pass
-#  binary_sensors:
-#   - motion_detected
-
 heos:
   host: !secret marantz_ip
 

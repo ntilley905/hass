@@ -35,3 +35,5 @@
     - light.bedroom_led
     - light.closet_light
     - light.balcony_lights
+    - light.kitchen_stove_leds
+    - light.kitchen_sink_leds

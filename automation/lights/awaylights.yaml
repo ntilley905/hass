@@ -9,9 +9,9 @@
     entity_id: group.home_devices
     to: 'not_home'
   action:
-    - service: homeassistant.turn_off
+    - service: light.turn_off
       data:
-        entity_id: group.lights
+        entity_id: light.all
     - service: homeassistant.turn_off
       data:
         entity_id: switch.coffee_maker

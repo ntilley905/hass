@@ -55,9 +55,10 @@
   sampling_size: 500
   max_age:
     hours: 24
-- platform: xfinity
-  username: !secret xfinity_user
-  password: !secret xfinity_pass
+# Xfinity disabled due to component bug
+# - platform: xfinity
+#   username: !secret xfinity_user
+#   password: !secret xfinity_pass
 - platform: weatheralerts
   state: GA
   county: 121

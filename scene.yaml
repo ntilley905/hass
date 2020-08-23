@@ -2,22 +2,39 @@
 
 - name: Welcome Home
   entities:
-    light.kitchen_lights: on
     light.island_dimmer:
       state: on
       brightness: 255
     light.living_room_lamp:
       state: on
       brightness: 255
-      color_temp: 380
+      color_temp: 390
+    light.kitchen_stove_led:
+      state: on
+      brightness: 40
+      rgb_color: [0, 0, 255]
+    light.kitchen_sink_led:
+      state: on
+      brightness: 40
+      rgb_color: [0, 0, 255]
 - name: Night Lights
   entities:
     light.island_dimmer:
       state: on
-      brightness: 1
+      brightness: 20
     light.bathroom:
       state: on
       brightness: 10
+    light.kitchen_stove_leds:
+      state: on
+      brightness: 255
+      rgb_color: 255, 255, 255
+      white_value: 75
+    light.kitchen_sink_leds:
+      state: on
+      brightness: 255
+      rgb_color: 255, 255, 255
+      white_value: 75
 - name: Normal Lights
   entities:
     light.living_room_lamp:
@@ -27,38 +44,16 @@
     light.island_dimmer:
       state: on
       brightness: 255
+    light.kitchen_stove_led:
+      state: on
+      brightness: 40
+      rgb_color: [0, 0, 255]
+    light.kitchen_sink_led:
+      state: on
+      brightness: 40
+      rgb_color: [0, 0, 255]
 - name: TV Lights
   entities:
     light.island_dimmer:
       state: on
       brightness: 64
-- name: Kitchen Color 1
-  entities:
-    light.kitchen_stove_led:
-      state: on
-      brightness: 46
-      rgb_color: [126, 255, 0]
-    light.kitchen_sink_led:
-      state: on
-      brightness: 28
-      rgb_color: [255, 159, 0]
-- name: Kitchen Color 2
-  entities:
-    light.kitchen_sink_led:
-      state: on
-      brightness: 16
-      rgb_color: [0, 0, 255]
-    light.kitchen_stove_led:
-      state: on
-      brightness: 62
-      rgb_color: [190, 0, 255]
-- name: Kitchen Color 3
-  entities:
-    light.kitchen_sink_led:
-      state: on
-      brightness: 13
-      rgb_color: [255, 0, 0]
-    light.kitchen_stove_led:
-      state: on
-      brightness: 24
-      rgb_color: [0, 255, 255]

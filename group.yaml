@@ -4,15 +4,3 @@ home_devices:
   entities:
     - person.nathan
     - person.sara
-lights:
-  name: 'All Lights'
-  entities:
-    - light.bathroom_lights
-    - light.bedroom_lamp
-    - light.bedroom_light
-    - light.couch
-    - light.hallway_light
-    - light.island_dimmer
-    - light.kitchen_lights
-    - light.living_room_lamp
-    - light.bedroom_led
