@@ -1,7 +1,6 @@
 ---
 
 title: Home
-background: var(--background-image)
 views:
 
   - path: default_view
@@ -255,7 +254,6 @@ views:
     title: Living Room
     badges:
       - binary_sensor.front_door
-      # - binary_sensor.amcrest_camera_motion_detected
       - binary_sensor.freezer_door
       - sensor.living_room_fan_power
       - sensor.living_room_fan_energy
@@ -669,8 +667,6 @@ views:
             secondary: "Last Updated {{ as_timestamp(states.sensor.ord_status.last_changed) | timestamp_custom('%D %-I:%M %p') }}"
 
   - path: config
-    visible:
-      - user: !secret nathan_user_id
     title: config
     icon: mdi:cog
     cards:
@@ -681,6 +677,7 @@ views:
           - input_boolean.trip_mode
           - input_boolean.sleep_mode
           - input_boolean.window_open
+          - input_boolean.dumb_mode
           - light.all
           - binary_sensor.updater
       - type: entities
@@ -715,7 +712,9 @@ views:
             icon: mdi:cloud-outline
             tap_action:
               action: call-service
-              service: pi_hole.enable
+              service: switch.turn_on
+              service_data:
+                entity_id: switch.pi_hole
 
 
       - type: entities
