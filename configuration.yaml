@@ -212,10 +212,6 @@ notify:
       - service: mobile_app_nathans_iphone
       - service: mobile_app_saras_iphone
 
-camera:
-  - platform: nwsradar
-    station: FFC
-
 iqvia:
   zip_code: !secret zip_code
 
