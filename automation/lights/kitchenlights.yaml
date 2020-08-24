@@ -15,6 +15,9 @@
     - condition: state
       entity_id: input_boolean.sleep_mode
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     - service: light.turn_on
       entity_id: light.kitchen_lights
@@ -26,6 +29,10 @@
     to: 'off'
     for:
       minutes: 3
+  condition:
+    condition: state
+    entity_id: input_boolean.dumb_mode
+    state: 'off'
   action:
     service: light.turn_off
     entity_id: light.kitchen_lights

@@ -40,3 +40,6 @@ xfinity_75_notify:
 xfinity_90_notify:
 climate_override:
 air_purifier_cycle:
+dumb_mode:
+  name: Dumb Mode
+  icon: mdi:lightbulb-group-off-outline

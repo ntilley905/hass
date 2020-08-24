@@ -39,6 +39,10 @@
       - binary_sensor.ord_ground_stop
       - binary_sensor.ord_closed
     to: 'on'
+  condition:
+    condition: state
+    entity_id: input_boolean.dumb_mode
+    state: 'off'
   action:
     service: notify.discord_webhook
     data_template:
@@ -63,6 +67,10 @@
       - binary_sensor.ord_ground_stop
       - binary_sensor.ord_closed
     to: 'off'
+  condition:
+    condition: state
+    entity_id: input_boolean.dumb_mode
+    state: 'off'
   action:
     service: notify.discord_webhook
     data_template:

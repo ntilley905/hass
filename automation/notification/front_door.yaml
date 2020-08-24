@@ -16,17 +16,14 @@
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     - service: notify.all_mobile_apps
       data:
         title: "Front Door"
         message: "The front door is open!"
-        data:
-          attachment:
-            content-type: jpeg
-          push:
-            category: camera
-          entity_id: camera.amcrest_camera
     - service: light.turn_on
       data:
         entity_id: light.all

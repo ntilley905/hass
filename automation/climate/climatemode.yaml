@@ -10,6 +10,10 @@
     to: 'on'
     for:
       seconds: 30
+  condition:
+    condition: state
+    entity_id: input_boolean.dumb_mode
+    state: 'off'
   action:
     service: climate.turn_off
     entity_id: climate.thermostat
@@ -21,9 +25,12 @@
       for:
         seconds: 30
   condition:
-    condition: state
-    entity_id: input_boolean.window_open
-    state: 'off'
+    - condition: state
+      entity_id: input_boolean.window_open
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     service: climate.set_hvac_mode
     data_template:

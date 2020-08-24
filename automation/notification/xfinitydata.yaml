@@ -11,9 +11,12 @@
     entity_id: sensor.xfinity_usage
     above: 768
   condition:
-    condition: state
-    entity_id: input_boolean.xfinity_75_notify
-    state: 'off'
+    - condition: state
+      entity_id: input_boolean.xfinity_75_notify
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     - service: notify.all_mobile_apps
       data:
@@ -28,9 +31,12 @@
     entity_id: sensor.xfinity_usage
     above: 921
   condition:
-    condition: state
-    entity_id: input_boolean.xfinity_90_notify
-    state: 'off'
+    - condition: state
+      entity_id: input_boolean.xfinity_90_notify
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     - service: notify.all_mobile_apps
       data:

@@ -13,6 +13,10 @@
   trigger:
     platform: template
     value_template: "{{ not is_state('sensor.hvac_action', 'idle') }}"
+  condition:
+    condition: state
+    entity_id: input_boolean.dumb_mode
+    state: 'off'
   action:
     service: switch.turn_on
     entity_id: switch.air_purifier
@@ -39,6 +43,9 @@
     - condition: state
       entity_id: input_boolean.window_open
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     service: switch.turn_off
     entity_id: switch.air_purifier
@@ -58,6 +65,9 @@
     - condition: state
       entity_id: input_boolean.window_open
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     service: switch.turn_off
     entity_id: switch.air_purifier
@@ -70,11 +80,14 @@
     - platform: state
       entity_id: media_player.apple_tv
   condition:
-    condition: not
-    conditions:
-      - condition: state
-        entity_id: media_player.apple_tv
-        state: "playing"
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: media_player.apple_tv
+          state: "playing"
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     service: switch.turn_on
     entity_id: switch.air_purifier
@@ -122,6 +135,9 @@
     - condition: state
       entity_id: sensor.hvac_action
       state: 'idle'
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     service_template: >
       {% if states('input_boolean.air_purifier_cycle') == 'on' %}

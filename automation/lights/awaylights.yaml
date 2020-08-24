@@ -8,6 +8,10 @@
     platform: state
     entity_id: group.home_devices
     to: 'not_home'
+  condition:
+    condition: state
+    entity_id: input_boolean.dumb_mode
+    state: 'off'
   action:
     - service: light.turn_off
       data:
@@ -15,9 +19,6 @@
     - service: homeassistant.turn_off
       data:
         entity_id: switch.coffee_maker
-    - service: homeassistant.turn_off
-      data:
-        entity_id: fan.living_room
     - service: input_boolean.turn_off
       entity_id: input_boolean.sleep_mode
     - service: fan.turn_off

@@ -11,12 +11,16 @@
     entity_id: binary_sensor.kitchen_motion_z
     to: 'on'
   condition:
-    condition: state
-    entity_id: input_boolean.sleep_mode
-    state: 'on'
+    - condition: state
+      entity_id: input_boolean.sleep_mode
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     - service: scene.turn_on
       entity_id: scene.night_lights
+
 - alias: Night Lights Off
   trigger:
     platform: state
@@ -25,9 +29,12 @@
     for:
       minutes: 3
   condition:
-    condition: state
-    entity_id: input_boolean.sleep_mode
-    state: 'on'
+    - condition: state
+      entity_id: input_boolean.sleep_mode
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     - service: light.turn_off
       entity_id: light.island_dimmer
@@ -35,14 +42,18 @@
       entity_id: light.kitchen_stove_leds
     - service: light.turn_off
       entity_id: light.kitchen_sink_leds
+
 - alias: Night Lights Off in Morning
   trigger:
     platform: sun
     event: sunrise
     offset: '+00:15:00'
   condition:
-    condition: template
-    value_template: "{{ state_attr('light.island_dimmer', 'brightness') < 16 }}"
+    - condition: template
+      value_template: "{{ state_attr('light.island_dimmer', 'brightness') < 30 }}"
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     - service: light.turn_off
       entity_id: light.island_dimmer

@@ -18,6 +18,9 @@
         - condition: state
           entity_id: media_player.apple_tv
           state: 'playing'
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     service: scene.turn_on
     entity_id: scene.normal_lights
@@ -34,23 +37,9 @@
       state: 'home'
     - condition: template
       value_template: "{{ is_state('media_player.apple_tv', 'playing') }}"
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     service: scene.turn_on
     entity_id: scene.tv_lights
-
-- alias: Balcony Lights On at Sunset
-  trigger:
-    platform: sun
-    event: sunset
-    offset: '-00:15:00'
-  action:
-    service: light.turn_on
-    entity_id: light.balcony_lights
-
-- alias: Balcony Lights Off at 10 PM
-  trigger:
-    platform: time
-    at: '22:00:00'
-  action:
-    service: light.turn_off
-    entity_id: light.balcony_lights

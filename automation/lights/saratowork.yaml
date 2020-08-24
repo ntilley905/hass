@@ -21,6 +21,9 @@
     - condition: time
       after: '04:00:00'
       before: '08:00:00'
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     service: light.turn_off
     entity_id: light.all

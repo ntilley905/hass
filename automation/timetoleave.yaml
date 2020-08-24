@@ -26,6 +26,9 @@
     - condition: state
       entity_id: person.nathan
       state: 'home'
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     service: input_datetime.set_datetime
     data_template:
@@ -44,6 +47,9 @@
     - condition: state
       entity_id: person.nathan
       state: 'home'
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     service: notify.mobile_app_nathans_iphone
     data_template:
@@ -64,6 +70,9 @@
         condition: state
         entity_id: sensor.nathans_iphone_activity
         state: 'Automotive'
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     service: notify.mobile_app_nathans_iphone
     data_template:

@@ -7,12 +7,16 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.freezer_temperature
-      above: 20
+      above: 28
       for:
         minutes: 5
     - platform: numeric_state
       entity_id: sensor.freezer_temperature
       above: 32
+  condition:
+    condition: state
+    entity_id: input_boolean.dumb_mode
+    state: 'off'
   action:
     service: notify.all_mobile_apps
     data_template:
@@ -25,6 +29,10 @@
     to: 'on'
     for:
       minutes: 1
+  condition:
+    condition: state
+    entity_id: input_boolean.dumb_mode
+    state: 'off'
   action:
     - service: notify.all_mobile_apps
       data:

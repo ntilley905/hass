@@ -22,6 +22,9 @@
         - condition: state
           entity_id: climate.thermostat
           state: 'off'
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     - delay: '00:00:02'
     - service: climate.set_temperature

@@ -18,6 +18,9 @@
       value_template: '{{ state_attr("sensor.fulton_county", "alerts")[0].event != "Flood Warning" }}'
     - condition: template
       value_template: '{{ trigger.from_state.state != "unavailable" }}'
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     - service: notify.all_mobile_apps
       data_template:
@@ -51,6 +54,9 @@
       value_template: '{{ not trigger.to_state.state | int < trigger.from_state.state | int }}'
     - condition: template
       value_template: '{{ trigger.from_state.state != "unavailable" }}'
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     - service: notify.all_mobile_apps
       data_template:

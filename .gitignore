@@ -29,6 +29,7 @@ google_calendars.yaml
 #os file ignores
 .DS_Store
 ._.DS_Store
+.Trash-1000
 
 #specific allows
 !.test/secrets.yaml

@@ -13,6 +13,9 @@
     - condition: numeric_state
       entity_id: sensor.allergy_index_today
       above: 6.0
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
   action:
     service: notify.mobile_app_nathans_iphone
     data_template:
