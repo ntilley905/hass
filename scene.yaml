@@ -1,22 +1,5 @@
 ---
 
-- name: Welcome Home
-  entities:
-    light.island_dimmer:
-      state: on
-      brightness: 255
-    light.living_room_lamp:
-      state: on
-      brightness: 255
-      color_temp: 390
-    light.kitchen_stove_led:
-      state: on
-      brightness: 40
-      rgb_color: [0, 0, 255]
-    light.kitchen_sink_led:
-      state: on
-      brightness: 40
-      rgb_color: [0, 0, 255]
 - name: Night Lights
   entities:
     light.island_dimmer:

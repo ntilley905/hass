@@ -52,4 +52,4 @@
           entity_id: camera.amcrest_camera
     - service: scene.turn_on
       data:
-        entity_id: scene.welcome_home
+        entity_id: scene.normal_lights

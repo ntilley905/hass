@@ -17,4 +17,4 @@
       state: 'off'
   action:
     service: scene.turn_on
-    entity_id: scene.welcome_home
+    entity_id: scene.normal_lights

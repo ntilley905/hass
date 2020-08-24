@@ -720,7 +720,6 @@ views:
       - type: entities
         title: Scenes
         entities:
-          - scene.welcome_home
           - scene.night_lights
           - scene.normal_lights
           - scene.tv_lights
