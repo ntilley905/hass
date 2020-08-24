@@ -1,19 +1,5 @@
 ---
 
-rain_tts:
-  alias: Rain TTS
-  sequence:
-    - service: media_player.media_stop
-      data:
-        entity_id: media_player.volumio_mpd
-    - service: media_player.volume_set
-      data:
-        entity_id: media_player.volumio_volumio_local
-        volume_level: 0.4
-    - service: tts.google_translate_say
-      data_template:
-        entity_id: media_player.volumio_mpd
-        message: "Attention! The windows are open and the weather is {{ states('sensor.precip_type') }}."
 house_cold:
   alias: It's Cold
   sequence:

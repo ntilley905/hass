@@ -222,11 +222,6 @@ iqvia:
 heos:
   host: !secret marantz_ip
 
-media_player:
-  - platform: mpd
-    name: volumio_mpd
-    host: !secret volumio_ip
-
 python_script:
 
 tts:

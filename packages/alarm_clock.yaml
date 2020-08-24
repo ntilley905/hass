@@ -19,9 +19,6 @@ input_boolean:
   alarm_clock_lights:
     name: Enable Lights
     icon: mdi:lightbulb
-  alarm_clock_tts:
-    name: Enable Announcements
-    icon: mdi:volume-high
 
 automation:
   - alias: Alarm Clock Lights
@@ -72,41 +69,3 @@ automation:
         entity_id: switch.coffee_maker
       - service: input_boolean.turn_off
         entity_id: input_boolean.alarm_clock_coffee
-  - alias: Alarm Clock TTS
-    trigger:
-      platform: template
-      # Right at alarm time
-      value_template: "{{ states('sensor.time') == (state_attr('input_datetime.alarm_clock', 'timestamp') | timestamp_custom('%H:%M', False)) }}"
-    condition:
-      - condition: state
-        entity_id: input_boolean.alarm_clock_enable
-        state: 'on'
-      - condition: state
-        entity_id: input_boolean.alarm_clock_tts
-        state: 'on'
-    action:
-      - service: script.morning_tts
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.alarm_clock_tts
-
-script:
-  morning_tts:
-    alias: Morning TTS
-    sequence:
-      - service: media_player.media_stop
-        data:
-          entity_id: media_player.volumio_mpd
-      - service: media_player.volume_set
-        data:
-          entity_id: media_player.volumio_volumio_local
-          volume_level: 0.22
-      - service: tts.google_translate_say
-        data_template:
-          entity_id: media_player.volumio_mpd
-          message: "Good morning! The current time is {{ now().strftime('%H:%M') }}. Today's weather is {{ state_attr('weather.katl', 'forecast')[0].detailed_description }}. Here's the news."
-      - wait_template: "{{ not is_state('media_player.volumio_mpd', 'playing') }}"
-      - service: media_player.play_media
-        data_template:
-          entity_id: media_player.volumio_mpd
-          media_content_type: music
-          media_content_id: "{{ states('sensor.npr_news_scrape') }}"

@@ -1,9 +1,6 @@
 ---
 
-# These automations manage our night lights. The island lights turn on at a
-# minimum brightness if motion is detected outisde of the bedroom. If no motion
-# is detected for 5 minutes, they then turn off again. They are also turned off
-# 15 minutes after sunrise assuming they have not been made brighter.
+# These automations manage our night lights.
 
 # Currently using kitchen instead of hallway sensor due to repurposing the
 # hallway sensor for the kitchen sensor.
@@ -18,10 +15,8 @@
     entity_id: input_boolean.sleep_mode
     state: 'on'
   action:
-    - service: light.turn_on
-      data:
-        entity_id: light.island_dimmer
-        brightness: 15
+    - service: scene.turn_on
+      entity_id: scene.night_lights
 - alias: Night Lights Off
   trigger:
     platform: state
@@ -34,8 +29,12 @@
     entity_id: input_boolean.sleep_mode
     state: 'on'
   action:
-    service: light.turn_off
-    entity_id: light.island_dimmer
+    - service: light.turn_off
+      entity_id: light.island_dimmer
+    - service: light.turn_off
+      entity_id: light.kitchen_stove_leds
+    - service: light.turn_off
+      entity_id: light.kitchen_sink_leds
 - alias: Night Lights Off in Morning
   trigger:
     platform: sun
@@ -45,5 +44,9 @@
     condition: template
     value_template: "{{ state_attr('light.island_dimmer', 'brightness') < 16 }}"
   action:
-    service: light.turn_off
-    entity_id: light.island_dimmer
+    - service: light.turn_off
+      entity_id: light.island_dimmer
+    - service: light.turn_off
+      entity_id: light.kitchen_stove_leds
+    - service: light.turn_off
+      entity_id: light.kitchen_sink_leds

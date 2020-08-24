@@ -22,18 +22,15 @@
     light.island_dimmer:
       state: on
       brightness: 20
-    light.bathroom:
-      state: on
-      brightness: 10
     light.kitchen_stove_leds:
       state: on
       brightness: 255
-      rgb_color: 255, 255, 255
+      rgb_color: [255, 255, 255]
       white_value: 75
     light.kitchen_sink_leds:
       state: on
       brightness: 255
-      rgb_color: 255, 255, 255
+      rgb_color: [255, 255, 255]
       white_value: 75
 - name: Normal Lights
   entities:
