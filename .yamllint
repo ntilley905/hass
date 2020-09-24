@@ -12,3 +12,4 @@ ignore: |
   .github/workflows/check_config.yaml
   .gitlab-ci.yml
   /themes/
+  packages/weatheralerts_1.yaml
