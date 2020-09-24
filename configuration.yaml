@@ -11,8 +11,6 @@ default_config:
 http:
   use_x_forwarded_for: true
   trusted_proxies: !secret nginx_ip
-  # ip_ban_enabled: true
-  # login_attempts_threshold: 5
 
 cloudflare:
   email: !secret email_address
@@ -24,171 +22,21 @@ cloudflare:
 updater:
   include_used_components: true
 
-discovery:
-  ignore:
-    - denonavr
-
 lovelace:
   mode: yaml
   resources:
-    - url: /hacsfiles/lovelace-template-entity-row/template-entity-row.js
-      type: module
-    - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
-      type: module
     - url: /hacsfiles/stack-in-card/stack-in-card.js
       type: module
     - url: /hacsfiles/light-brightness-preset-row/light-brightness-preset-row.js
       type: module
     - url: /hacsfiles/vacuum-card/vacuum-card.js
       type: module
-    - url: /hacsfiles/lovelace-valetudo-map-card/valetudo-map-card.js
+    - url: /hacsfiles/lovelace-template-entity-row/template-entity-row.js
       type: module
-  dashboards:
-    lovelace-mobile:
-      mode: yaml
-      filename: ui-mobile.yaml
-      title: Mobile
-
-frontend:
-  themes: !include_dir_merge_named themes
-
-logger:
-  default: warning
-  logs:
-    custom_components.faastatus: debug
-    custom_components.weatheralerts: debug
-    custom_components.xfinity: debug
-
-history:
-  include:
-    domains:
-      - device_tracker
-      - fan
-      - light
-      - person
-      - sensor
-      - sun
-    entities:
-      - binary_sensor.bathroom_motion
-      - binary_sensor.bathroom_motion_z
-      - binary_sensor.bedroom_motion
-      - binary_sensor.bedroom_motion_z
-      - binary_sensor.front_door
-      - binary_sensor.kitchen_motion_z
-      - binary_sensor.living_room_motion_z
-      - climate.thermostat
-      - switch.coffee_maker
-      - weather.katl_hourly
-  exclude:
-    entities:
-      - sensor.atl_end_time
-      - sensor.bathroom_alarm_level_z
-      - sensor.bathroom_alarm_type_z
-      - sensor.bathroom_burglar_z
-      - sensor.bathroom_sourcenodeid_z
-      - sensor.bedroom_alarm_level_z
-      - sensor.bedroom_alarm_type_z
-      - sensor.bedroom_burglar_z
-      - sensor.bedroom_power_management_z
-      - sensor.bedroom_sourcenodeid_z
-      - sensor.bedroom_system_z
-      - sensor.bos_end_time
-      - sensor.date
-      - sensor.dtw_end_time
-      - sensor.ecolink_door_window_sensor_access_control
-      - sensor.ecolink_door_window_sensor_alarm_level
-      - sensor.ecolink_door_window_sensor_alarm_type
-      - sensor.ecolink_door_window_sensor_burglar
-      - sensor.ecolink_door_window_sensor_power_management
-      - sensor.ecolink_door_window_sensor_sourcenodeid
-      - sensor.hacs
-      - sensor.kitchen_alarm_level_z
-      - sensor.kitchen_alarm_type_z
-      - sensor.kitchen_burglar_z
-      - sensor.kitchen_power_management_z
-      - sensor.kitchen_sourcenodeid_z
-      - sensor.jfk_end_time
-      - sensor.lga_end_time
-      - sensor.living_room_alarm_type_z
-      - sensor.living_room_burglar_z
-      - sensor.living_room_sourcenodeid_z
-      - sensor.living_room_system_z
-      - sensor.nathan_ipad_bssid
-      - sensor.nathan_ipad_sim_1
-      - sensor.nathan_iphone_bssid
-      - sensor.nathan_iphone_sim_1
-      - sensor.npr_news_scrape
-      - sensor.ord_end_time
-      - sensor.outdoor_temperature_stats
-      - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_battery_level
-      - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_battery_level_2
-      - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_indicator_3
-      - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_indicator_4
-      - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_relative_humidity_2
-      - sensor.radio_thermostat_company_of_america_ct100_plus_thermostat_temperature_2
-      - sensor.sara_iphone_bssid
-      - sensor.sara_iphone_sim_1
-      - sensor.sara_iphone_ssid
-      - sensor.time
-      - sensor.time_date
-      - sensor.time_utc
-
-
-influxdb:
-  host: a0d7b954-influxdb
-  port: 8086
-  database: homeassistant
-  username: !secret influx_user
-  password: !secret influx_pass
-  max_retries: 3
-  default_measurement: state
-
-recorder:
-  purge_keep_days: 2
-
-zone:
-  - name: ATL
-    latitude: !secret atl_latitude
-    longitude: !secret atl_longitude
-    icon: mdi:airplane
-  - name: GDOT
-    latitude: !secret gdot_latitude
-    longitude: !secret gdot_longitude
-    icon: mdi:office-building
-
-zwave:
-  usb_path: /dev/serial/by-id/usb-0658_0200-if00
-  network_key: !secret zwave_key
-  polling_interval: 30000
-  device_config:
-    light.island_dimmer:
-      refresh_value: true
-      delay: 3
-
-mobile_app:
 
 ios:
   push:
     categories:
-      - name: Camera With Actions
-        identifier: 'camera'
-        actions:
-          - identifier: 'STOP_LOOP'
-            title: 'Stop Loop'
-            authenticationRequired: true
-      - name: Alarm Clock
-        identifier: 'alarm_clock'
-        actions:
-          - identifier: 'SNOOZE_ALARM_CLOCK'
-            title: 'Snooze'
-          - identifier: 'STOP_ALARM_CLOCK'
-            title: 'Turn Off'
-            destructive: true
-      - name: Windows
-        identifier: 'window'
-        actions:
-          - identifier: 'OOPS'
-            title: "No I Didn't"
       - name: Coffee
         identifier: 'coffee'
         actions:
@@ -212,32 +60,15 @@ notify:
       - service: mobile_app_nathans_iphone
       - service: mobile_app_saras_iphone
 
-iqvia:
-  zip_code: !secret zip_code
-
-heos:
-  host: !secret marantz_ip
-
-python_script:
-
-tts:
-  - platform: google_translate
-    base_url: !secret internal_ip
-
 wemo:
   static:
     - !secret wemo_coffee_switch_ip
     - !secret wemo_air_purifier_ip
 
-google:
-  client_id: !secret google_client_id
-  client_secret: !secret google_client_secret
-
 automation: !include_dir_merge_list automation
 input_number: !include input_number.yaml
 input_boolean: !include input_boolean.yaml
 input_datetime: !include input_datetime.yaml
-input_select: !include input_select.yaml
 sensor: !include sensor.yaml
 binary_sensor: !include binary_sensor.yaml
 light: !include light.yaml

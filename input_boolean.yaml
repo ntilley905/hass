@@ -6,38 +6,12 @@ trip_mode:
 sleep_mode:
   name: Sleep Mode
   icon: mdi:hotel
-atl_discord_notify:
-  name: ATL Discord Notify
-atl_ios_notify:
-  name: ATL iOS Notify
-dtw_discord_notify:
-  name: DTW Discord Notify
-dtw_ios_notify:
-  name: DTW iOS Notify
-lga_discord_notify:
-  name: LGA Discord Notify
-lga_ios_notify:
-  name: LGA iOS Notify
-jfk_discord_notify:
-  name: JFK Discord Notify
-jfk_ios_notify:
-  name: JFK iOS Notify
-bos_discord_notify:
-  name: BOS Discord Notify
-bos_ios_notify:
-  name: BOS iOS Notify
-ord_discord_notify:
-  name: ORD Discord Notify
-ord_ios_notify:
-  name: ORD iOS Notify
 guest_mode:
   name: Guest Mode
   icon: mdi:account
 window_open:
   name: Window Open
   icon: mdi:window-open
-xfinity_75_notify:
-xfinity_90_notify:
 climate_override:
 air_purifier_cycle:
 dumb_mode:

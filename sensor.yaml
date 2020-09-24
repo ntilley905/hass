@@ -7,7 +7,7 @@
       value_template: '{{ state_attr("climate.thermostat", "hvac_action") }}'
     indoor_temperature:
       friendly_name: Indoor Temperature
-      value_template: '{{ ((float(states.sensor.bathroom_temperature.state) + float(states.sensor.thermostat_temperature.state) + float(states.sensor.bathroom_temperature_z.state) + float(states.sensor.bedroom_temperature_z.state) + float(states.sensor.bedroom_temperature.state) + float(states.sensor.kitchen_temperature_z.state) + float(states.sensor.living_room_temperature_z.state)) / 7) | round(1) }}'
+      value_template: '{{ ((float(states.sensor.bathroom_temperature.state) + float(states.sensor.thermostat_temperature.state) + float(states.sensor.bathroom_temperature_z.state) + float(states.sensor.bedroom_temperature_z.state) + float(states.sensor.bedroom_temperature.state) + float(states.sensor.kitchen_temperature_z.state)) / 6) | round(1) }}'
       unit_of_measurement: '°F'
     precip_type:
       value_template: >
@@ -100,3 +100,19 @@
   name: ATL METAR
   value_template: '{{ value_json.response.data.METAR.flight_category }}'
   json_attributes_path: '{{ value_json.response.data.METAR }}'
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+    - type: memory_use_percent
+    - type: load_15m
+    - type: network_in
+      arg: eth0
+    - type: network_out
+      arg: eth0
+    - type: ipv4_address
+      arg: eth0
+    - type: ipv6_address
+      arg: eth0
+    - type: processor_use
+    - type: processor_temperature
+    - type: last_boot

@@ -35,8 +35,8 @@ jobs:
         uses: actions/checkout@v1
       - name: Copy secrets into main configuration directory
         run: cp  ./.test/secrets.yaml ./secrets.yaml
-      - name: Remove DHT integration
-        run: rm -f ./packages/dht.yaml
+#      - name: Remove DHT integration
+#        run: rm -f ./packages/dht.yaml
       - name: Home Assistant Version
         uses: "docker://homeassistant/home-assistant:stable"
         with:
@@ -55,8 +55,8 @@ jobs:
         uses: actions/checkout@v1
       - name: Copy secrets into main configuration directory
         run: cp  ./.test/secrets.yaml ./secrets.yaml
-      - name: Remove DHT integration
-        run: rm -f ./packages/dht.yaml
+#      - name: Remove DHT integration
+#        run: rm -f ./packages/dht.yaml
       - name: Home Assistant Version
         uses: "docker://homeassistant/home-assistant:beta"
         with:
@@ -75,8 +75,8 @@ jobs:
         uses: actions/checkout@v1
       - name: Copy secrets into main configuration directory
         run: cp  ./.test/secrets.yaml ./secrets.yaml
-      - name: Remove DHT integration
-        run: rm -f ./packages/dht.yaml
+#      - name: Remove DHT integration
+#        run: rm -f ./packages/dht.yaml
       - name: Home Assistant Version
         uses: "docker://homeassistant/home-assistant:dev"
         with:

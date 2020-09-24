@@ -11,10 +11,10 @@
   entity_id: switch.bedroom_light
 - platform: switch
   name: Closet Light
-  entity_id: switch.shelly1_c487e3_relay_0
+  entity_id: switch.closet_light
 - platform: switch
   name: Balcony Lights
-  entity_id: switch.shelly1_b90377_relay_0
+  entity_id: switch.balcony_lights
 - platform: group
   name: Bathroom Lights
   entities:
@@ -35,5 +35,5 @@
     - light.bedroom_led
     - light.closet_light
     - light.balcony_lights
-    - light.kitchen_stove_leds
-    - light.kitchen_sink_leds
+#    - light.kitchen_stove_leds
+#    - light.kitchen_sink_leds

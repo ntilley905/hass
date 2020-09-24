@@ -6,22 +6,22 @@ views:
   - path: default_view
     title: Home
     cards:
-      - type: conditional
-        conditions:
-          - entity: sensor.fulton_county
-            state_not: '0'
-        card:
-          type: markdown
-          content: >
-            ## Active Weather Alerts:
-
-            {% for alert in state_attr("sensor.fulton_county", "alerts") %}
-              {{ alert.event }}
-            {%- endfor %}
+#      - type: conditional
+#        conditions:
+#          - entity: sensor.fulton_county
+#            state_not: '0'
+#        card:
+#          type: markdown
+#          content: >
+#            ## Active Weather Alerts:
+#
+#            {% for alert in state_attr("sensor.fulton_county", "alerts") %}
+#              {{ alert.event }}
+#            {%- endfor %}
       - type: glance
         entities:
-          - binary_sensor.weather_alert
-          - binary_sensor.front_door
+#          - binary_sensor.weather_alert
+#          - binary_sensor.front_door
           - person.nathan
           - person.sara
           - sensor.indoor_temperature
@@ -48,7 +48,7 @@ views:
                 entity: light.kitchen_lights
                 name: Kitchen
               - type: button
-                entity: fan.living_room
+                entity: switch.living_room_fan
                 name: Fan
           - type: entities
             entities:
@@ -170,7 +170,7 @@ views:
         #- type: picture-entity
         #  entity: camera.amcrest_camera
       - type: picture-entity
-        entity: camera.ffc
+        entity: camera.nwsradar_ffc_standard_composite_reflectivity_loop
 
   - path: vacuum
     title: Vacuum
@@ -295,7 +295,7 @@ views:
                 entity: light.island_dimmer
                 name: Island
               - type: entity-button
-                entity: fan.living_room
+                entity: switch.living_room_fan
                 name: Fan
           - type: horizontal-stack
             cards:
@@ -381,7 +381,6 @@ views:
         entity: climate.thermostat
       - type: entities
         entities:
-          - input_select.climate_mode
           - input_boolean.climate_override
           - input_number.climate_heat_point
           - input_number.climate_cool_point
@@ -723,11 +722,15 @@ views:
           - scene.night_lights
           - scene.normal_lights
           - scene.tv_lights
-      - type: custom:auto-entities
-        card:
-          type: glance
-        title: Network Devices
-        filter:
-          include:
-            - attributes:
-                source_type: 'router'
+      - type: gauge
+        name: CPU Usage
+        entity: sensor.processor_use
+      - type: gauge
+        name: Memory Usage
+        entity: sensor.memory_use_percent
+      - type: gauge
+        name: Disk Usage
+        entity: sensor.disk_use_percent
+      - type: sensor
+        name: CPU Temp
+        entity: sensor.processor_temperature

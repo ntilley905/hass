@@ -2,22 +2,6 @@
 
 - platform: template
   sensors:
-    living_room_motion_z:
-      friendly_name: "Living Room Motion"
-      device_class: motion
-      value_template: "{{ is_state('sensor.living_room_burglar_z', '8') }}"
-    kitchen_motion_z:
-      friendly_name: "Kitchen Motion"
-      device_class: motion
-      value_template: "{{ is_state('sensor.kitchen_burglar_z', '8') }}"
-    bedroom_motion_z:
-      friendly_name: "Bedroom Motion"
-      device_class: motion
-      value_template: "{{ is_state('sensor.bedroom_burglar_z', '8') }}"
-    bathroom_motion_z:
-      friendly_name: "Bathroom Motion"
-      device_class: motion
-      value_template: "{{ is_state('sensor.bathroom_burglar_z', '8') }}"
     atl_departure_delay:
       friendly_name: "ATL Departure Delay"
       value_template: "{{ state_attr('sensor.atl_status', 'departure_delay') }}"
