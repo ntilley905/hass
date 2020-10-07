@@ -35,7 +35,7 @@
             apns_headers:
               'apns-collapse-id': 'coffee'
     - wait_for_trigger:
-      - platform: event
+      - platform: event # yamllint disable-line rule:indentation
         event_type: ios.notification_action_fired
         event_data:
           actionName: COFFEE_OFF
