@@ -18,6 +18,6 @@
       state: 'off'
   action:
     service: notify.mobile_app_nathans_iphone
-    data_template:
+    data:
       title: "{{ states.sensor.allergy_index_today.attributes.rating }} Pollen Today"
       message: "The pollen level today is {{ states.sensor.allergy_index_today.state }}. Present allergens include {{ states.sensor.allergy_index_today.attributes.allergen_name_1 }} {{ states.sensor.allergy_index_today.attributes.allergen_type_1 }}, {{ states.sensor.allergy_index_today.attributes.allergen_name_2 }} {{ states.sensor.allergy_index_today.attributes.allergen_type_2 }}, and {{ states.sensor.allergy_index_today.attributes.allergen_name_3 }} {{ states.sensor.allergy_index_today.attributes.allergen_type_3 }}."

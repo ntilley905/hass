@@ -15,7 +15,7 @@
       state: 'off'
   action:
     - service: notify.mobile_app_nathans_iphone
-      data_template:
+      data:
         title: "Failed Home Assistant login attempt!"
         message: "{{ trigger.to_state.attributes.message }}"
         data:

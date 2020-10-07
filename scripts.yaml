@@ -4,7 +4,7 @@ house_cold:
   alias: It's Cold
   sequence:
     - service: climate.set_temperature
-      data_template:
+      data:
         entity_id: climate.thermostat
         target_temp_low: "{{ state_attr('climate.thermostat', 'current_temperature') + 1 }}"
         target_temp_high: "{{ state_attr('climate.thermostat', 'current_temperature') + 3 }}"
@@ -14,7 +14,7 @@ house_hot:
   alias: It's Hot
   sequence:
     - service: climate.set_temperature
-      data_template:
+      data:
         entity_id: climate.thermostat
         target_temp_low: "{{ state_attr('climate.thermostat', 'current_temperature') - 3 }}"
         target_temp_high: "{{ state_attr('climate.thermostat', 'current_temperature') - 1 }}"

@@ -31,7 +31,7 @@
       state: 'off'
   action:
     service: input_datetime.set_datetime
-    data_template:
+    data:
       entity_id: input_datetime.time_to_leave
       time: >
         {% set stamp = (state_attr('calendar.report', 'start_time')|as_timestamp() - (states('sensor.travel_home_to_atl')|round(0, 'ceil')|int() * 60) - 1800) %}
@@ -52,7 +52,7 @@
       state: 'off'
   action:
     service: notify.mobile_app_nathans_iphone
-    data_template:
+    data:
       title: 'Time to Leave!'
       message: "Leave at {{ state_attr('input_datetime.time_to_leave', 'timestamp') | timestamp_custom('%-I:%M %p', False) }} to arrive on time. Take {{ state_attr('sensor.travel_home_to_atl', 'route') }}."
 - alias: Leave Now
@@ -75,6 +75,6 @@
       state: 'off'
   action:
     service: notify.mobile_app_nathans_iphone
-    data_template:
+    data:
       title: 'Leave Now!'
       message: "Leave at {{ state_attr('input_datetime.time_to_leave', 'timestamp') | timestamp_custom('%-I:%M %p', False) }} to arrive on time. Take {{ state_attr('sensor.travel_home_to_atl', 'route') }}."

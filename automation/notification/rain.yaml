@@ -16,7 +16,7 @@
       state: 'off'
   action:
     - service: notify.mobile_app_nathans_iphone
-      data_template:
+      data:
         title: "Precip Detected!"
         message: "Windows are open and the weather is {{ states('sensor.precip_type') }}!"
 - alias: Windows Open When Leaving

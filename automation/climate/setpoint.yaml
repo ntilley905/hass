@@ -28,7 +28,7 @@
   action:
     - delay: '00:00:02'
     - service: climate.set_temperature
-      data_template:
+      data:
         entity_id: climate.thermostat
         target_temp_high: '{{ states("input_number.climate_cool_point") }}'
         target_temp_low: '{{ states("input_number.climate_heat_point") }}'

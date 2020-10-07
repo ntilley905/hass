@@ -9,6 +9,6 @@
     entity_id: binary_sensor.updater
   action:
     service: notify.mobile_app_nathans_iphone
-    data_template:
+    data:
       title: "HA Update"
       message: "Version {{ state_attr('binary_sensor.updater', 'newest_version') }} now available."

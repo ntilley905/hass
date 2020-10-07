@@ -33,6 +33,6 @@
       state: 'off'
   action:
     service: climate.set_hvac_mode
-    data_template:
+    data:
       entity_id: climate.thermostat
       hvac_mode: 'heat_cool'

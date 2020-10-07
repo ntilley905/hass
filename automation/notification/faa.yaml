@@ -5,6 +5,7 @@
 # since been canceled.
 
 - alias: FAA Notification
+  mode: queued
   trigger:
     platform: state
     entity_id:
@@ -45,7 +46,7 @@
     state: 'off'
   action:
     service: notify.discord_webhook
-    data_template:
+    data:
       message: >
         {{ trigger.to_state.name }}
         Reason: {{ trigger.to_state.attributes.reason }}
@@ -73,6 +74,6 @@
     state: 'off'
   action:
     service: notify.discord_webhook
-    data_template:
+    data:
       message: >
         {{ trigger.to_state.name }} Canceled

@@ -11,5 +11,5 @@
       hours: 1
   action:
     - service: input_boolean.turn_off
-      data_template:
+      data:
         entity_id: input_boolean.climate_override

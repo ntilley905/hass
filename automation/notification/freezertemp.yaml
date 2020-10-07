@@ -19,7 +19,7 @@
     state: 'off'
   action:
     service: notify.all_mobile_apps
-    data_template:
+    data:
       title: "Freezer Temp High!"
       message: "The freezer temp is indicating {{ states('sensor.freezer_temperature') }}°F."
 - alias: Freezer Door Open

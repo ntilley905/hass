@@ -14,11 +14,11 @@
       to: 'off'
   action:
     - service: input_number.set_value
-      data_template:
+      data:
         entity_id: input_number.climate_heat_point
         value: '{{ states("input_number.climate_heat_default") | int }}'
     - service: input_number.set_value
-      data_template:
+      data:
         entity_id: input_number.climate_cool_point
         value: '{{ states("input_number.climate_cool_default") | int }}'
 - alias: Climate Set Away
@@ -37,11 +37,11 @@
         state: 'on'
   action:
     - service: input_number.set_value
-      data_template:
+      data:
         entity_id: input_number.climate_heat_point
         value: '{{ states("input_number.climate_heat_default") | int - states("input_number.climate_away_offset") | int }}'
     - service: input_number.set_value
-      data_template:
+      data:
         entity_id: input_number.climate_cool_point
         value: '{{ states("input_number.climate_cool_default") | int + states("input_number.climate_away_offset") | int }}'
 - alias: Climate Set Trip
@@ -51,11 +51,11 @@
     to: 'on'
   action:
     - service: input_number.set_value
-      data_template:
+      data:
         entity_id: input_number.climate_heat_point
         value: '{{ states("input_number.climate_heat_default") | int - states("input_number.climate_trip_offset") | int }}'
     - service: input_number.set_value
-      data_template:
+      data:
         entity_id: input_number.climate_cool_point
         value: '{{ states("input_number.climate_cool_default") | int + states("input_number.climate_trip_offset") | int }}'
 - alias: Climate Set Sleep
@@ -65,10 +65,10 @@
     to: 'on'
   action:
     - service: input_number.set_value
-      data_template:
+      data:
         entity_id: input_number.climate_heat_point
         value: '{{ states("input_number.climate_heat_default") | int + states("input_number.climate_sleep_offset") | int }}'
     - service: input_number.set_value
-      data_template:
+      data:
         entity_id: input_number.climate_cool_point
         value: '{{ states("input_number.climate_cool_default") | int + states("input_number.climate_sleep_offset") | int }}'

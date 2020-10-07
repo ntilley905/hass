@@ -11,8 +11,10 @@
 
 - alias: Air Purifier On During AC
   trigger:
-    platform: template
-    value_template: "{{ not is_state('sensor.hvac_action', 'idle') }}"
+    platform: state
+    entity_id: climate.thermostat
+    attribute: hvac_action
+    from: "idle"
   condition:
     condition: state
     entity_id: input_boolean.dumb_mode
@@ -38,7 +40,8 @@
     to: 'playing'
   condition:
     - condition: state
-      entity_id: sensor.hvac_action
+      entity_id: climate.thermostat
+      attribute: 'hvac_action'
       state: 'idle'
     - condition: state
       entity_id: input_boolean.window_open
@@ -53,7 +56,8 @@
 - alias: Air Purifier Off During TV After HVAC or Windows
   trigger:
     - platform: state
-      entity_id: sensor.hvac_action
+      entity_id: climate.thermostat
+      attribute: 'hvac_action'
       to: 'idle'
     - platform: state
       entity_id: input_boolean.window_open
@@ -125,7 +129,8 @@
       entity_id: group.home_devices
       to: 'not_home'
     - platform: state
-      entity_id: sensor.hvac_action
+      entity_id: climate.thermostat
+      attribute: 'hvac_action'
     - platform: state
       entity_id: input_boolean.air_purifier_cycle
   condition:
@@ -133,13 +138,14 @@
       entity_id: group.home_devices
       state: 'not_home'
     - condition: state
-      entity_id: sensor.hvac_action
+      entity_id: climate.thermostat
+      attribute: 'hvac_action'
       state: 'idle'
     - condition: state
       entity_id: input_boolean.dumb_mode
       state: 'off'
   action:
-    service_template: >
+    service: >
       {% if states('input_boolean.air_purifier_cycle') == 'on' %}
       switch.turn_on
       {% else %}

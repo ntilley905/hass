@@ -1,0 +1,74 @@
+---
+
+# This automation notifies us if the coffee maker has been on for over an hour.
+# We can either turn it off manually or via an actionable notification, or if
+# we do not respond within 5 minutes, it'll turn off automatically.
+# No one likes burnt coffee!
+
+- alias: Coffee Maker Still On
+  mode: queued
+  max: 2
+  trigger:
+    - platform: state
+      entity_id: switch.coffee_maker
+      to: 'on'
+      for:
+        minutes: 1
+    - platform: event
+      event_type: coffee_delay_over
+  action:
+    - service: >
+        {% if is_state("person.nathan", "home") and
+              is_state("person.sara", "home") %}
+        notify.all_mobile_apps
+        {% elif is_state("person.nathan", "home") %}
+        notify.mobile_app_nathans_iphone
+        {% elif is_state("person.sara", "home") %}
+        notify.mobile_app_saras_iphone
+        {% endif %}
+      data:
+        title: 'Coffee Maker Still On'
+        message: 'The coffee maker has been on for {{ relative_time(states.switch.coffee_maker.last_changed) }}'
+        data:
+          push:
+            category: 'coffee'
+            apns_headers:
+              'apns-collapse-id': 'coffee'
+    - wait_for_trigger:
+      - platform: event
+        event_type: ios.notification_action_fired
+        event_data:
+          actionName: COFFEE_OFF
+      - platform: event
+        event_type: ios.notification_action_fired
+        event_data:
+          actionName: COFFEE_DELAY
+      timeout: "00:01:00"
+    - choose:
+        - conditions: '{{wait.trigger.event.data.actionName == "COFFEE_OFF" or wait.trigger == None}}'
+          sequence:
+            - service: switch.turn_off
+              entity_id: switch.coffee_maker
+        - conditions: '{{wait.trigger.event.data.actionName == "COFFEE_DELAY"}}'
+          sequence:
+            - delay: "00:30:00"
+            - event: coffee_delay_over
+      default:
+        - service: switch.turn_off
+          entity_id: switch.coffee_maker
+        - service: >
+            {% if is_state("person.nathan", "home") and
+                  is_state("person.sara", "home") %}
+            notify.all_mobile_apps
+            {% elif is_state("person.nathan", "home") %}
+            notify.mobile_app_nathans_iphone
+            {% elif is_state("person.sara", "home") %}
+            notify.mobile_app_saras_iphone
+            {% endif %}
+          data:
+            title: 'Coffee Maker Turned Off'
+            message: 'Since you did not respond, the coffee maker is now off.'
+            data:
+              push:
+                apns_headers:
+                  'apns-collapse-id': 'coffee'

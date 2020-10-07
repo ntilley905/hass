@@ -1280,7 +1280,7 @@ automation:
             value_template: "{{ state_attr('sensor.weatheralerts_1_alert_1', 'alert_id') not in states('input_text.weatheralerts_1_triggered_ui_alert_ids') }}"
     action:
       - service: script.weatheralerts_1_popup_on_wx_alert
-        data_template:
+        data:
           title: >
             {% if (states('sensor.weatheralerts_1_alert_1') == 'on') and ((as_timestamp(now()) - as_timestamp(state_attr('sensor.weatheralerts_1_alert_1', 'alert_effective'))|float) <= 3600) %}
               {{ state_attr('sensor.weatheralerts_1_alert_1', 'display_title') }}
@@ -1323,7 +1323,7 @@ automation:
               <hr>Alert: <br>{{ state_attr('sensor.weatheralerts_1_alert_5', 'display_title') }}
             {% endif %}
       - service: input_text.set_value
-        data_template:
+        data:
           entity_id: input_text.weatheralerts_1_triggered_ui_alert_ids
           value: "{{ state_attr('sensor.weatheralerts_1_alert_1', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_2', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_3', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_4', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_5', 'alert_id') }}"
 
@@ -1363,7 +1363,7 @@ automation:
             value_template: "{{ state_attr('sensor.weatheralerts_1_alert_1', 'alert_id') not in states('input_text.weatheralerts_1_triggered_notify_alert_ids') }}"
     action:
       - service: notify.all_mobile_apps
-        data_template:
+        data:
           message: >
             Current NWS Weather Alerts:
 
@@ -1390,7 +1390,7 @@ automation:
             {{ states.sensor.weatheralerts_1_alert_5.attributes.display_title }} for {{ state_attr('sensor.weatheralerts_1', 'friendly_name') }}
             {% endif %}
       - service: input_text.set_value
-        data_template:
+        data:
           entity_id: input_text.weatheralerts_1_triggered_notify_alert_ids
           value: "{{ state_attr('sensor.weatheralerts_1_alert_1', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_2', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_3', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_4', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_5', 'alert_id') }}"
 
@@ -1412,11 +1412,11 @@ script:
         data:
           notification_id: "weatheralerts_1_alert"
         ## Create a new persistant notification in the UI for a new alert
-      - service_template: >
+      - service: >
           {% if states.sensor.weatheralerts_1.state != '0' %}
             persistent_notification.create
           {% endif %}
-        data_template:
+        data:
           notification_id: "weatheralerts_1_alert"
           message: "{{ message }}"
           title: "{{ title }}"

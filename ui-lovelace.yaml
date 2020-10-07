@@ -26,8 +26,8 @@ views:
           - person.sara
           - sensor.indoor_temperature
           - sensor.nws_temperature
-          - sensor.outdoor_temperature
-          - sensor.cabinet_temperature
+#          - sensor.outdoor_temperature
+#          - sensor.cabinet_temperature
       - type: custom:stack-in-card
         title: Lights and Switches
         cards:
