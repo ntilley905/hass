@@ -265,7 +265,7 @@ views:
             entities:
               - sensor.kitchen_temperature_z
               - sensor.kitchen_humidity_z
-              - sensor.kitchen_luminance_z
+              - sensor.kitchen_illuminance_z
               - binary_sensor.kitchen_motion_z
             show_name: false
           - type: entity-button
@@ -278,7 +278,7 @@ views:
             entities:
               - sensor.living_room_temperature_z
               - sensor.living_room_humidity_z
-              - sensor.living_room_luminance_z
+              - sensor.living_room_illuminance_z
               - binary_sensor.living_room_motion_z
             show_name: false
           - type: horizontal-stack
@@ -326,7 +326,7 @@ views:
             entities:
               - sensor.bedroom_temperature_z
               - sensor.bedroom_humidity_z
-              - sensor.bedroom_luminance_z
+              - sensor.bedroom_illuminance_z
               - binary_sensor.bedroom_motion_z
             show_name: false
           - type: glance
@@ -353,7 +353,7 @@ views:
             entities:
               - sensor.bathroom_temperature_z
               - sensor.bathroom_humidity_z
-              - sensor.bathroom_luminance_z
+              - sensor.bathroom_illuminance_z
               - binary_sensor.bathroom_motion_z
             show_name: false
           - type: glance
