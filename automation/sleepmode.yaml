@@ -37,5 +37,5 @@
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.sleep_mode
-    - service: fan.turn_off
-      entity_id: fan.living_room
+    - service: switch.turn_off
+      entity_id: switch.living_room_fan
