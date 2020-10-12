@@ -13,7 +13,7 @@
       entity_id: switch.coffee_maker
       to: 'on'
       for:
-        minutes: 1
+        hours: 1
     - platform: event
       event_type: coffee_delay_over
   action:
@@ -43,7 +43,7 @@
         event_type: ios.notification_action_fired
         event_data:
           actionName: COFFEE_DELAY
-      timeout: "00:01:00"
+      timeout: "00:05:00"
     - choose:
         - conditions: '{{wait.trigger.event.data.actionName == "COFFEE_OFF" or wait.trigger == None}}'
           sequence:
