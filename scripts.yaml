@@ -45,7 +45,7 @@ apple_tv_off:
 led_on:
   sequence:
     - choose:
-      - conditions:
+      - conditions: # yamllint disable-line rule:indentation
           - condition: state
             entity_id: input_boolean.holiday_mode
             state: 'on'
