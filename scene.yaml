@@ -2,19 +2,24 @@
 
 - name: Night Lights
   entities:
-    light.island_dimmer:
+    light.wled_kitchen_master:
       state: on
-      brightness: 20
-    light.kitchen_stove_leds:
-      state: on
-      brightness: 255
-      rgb_color: [255, 255, 255]
-      white_value: 75
-    light.kitchen_sink_leds:
+    light.wled_fridge_cabinet:
       state: on
       brightness: 255
-      rgb_color: [255, 255, 255]
-      white_value: 75
+      rgb_color:
+        - 0
+        - 0
+        - 0
+      white_value: 255
+    light.wled_sink_cabinet:
+      state: on
+      brightness: 255
+      rgb_color:
+        - 0
+        - 0
+        - 0
+      white_value: 255
 - name: Normal Lights
   entities:
     light.living_room_lamp:
@@ -24,16 +29,44 @@
     light.island_dimmer:
       state: on
       brightness: 255
-    light.kitchen_stove_led:
-      state: on
-      brightness: 40
-      rgb_color: [0, 0, 255]
-    light.kitchen_sink_led:
-      state: on
-      brightness: 40
-      rgb_color: [0, 0, 255]
 - name: TV Lights
   entities:
     light.island_dimmer:
       state: on
       brightness: 64
+- name: Holiday Lights
+  entities:
+    light.wled_fridge_cabinet:
+      state: on
+      brightness: 130
+      rgb_color:
+        - 255
+        - 0
+        - 0
+      white_value: 0
+    light.wled_sink_cabinet:
+      state: on
+      brightness: 130
+      rgb_color:
+        - 0
+        - 255
+        - 0
+      white_value: 0
+- name: LED Ambiance
+  entities:
+    light.wled_fridge_cabinet:
+      state: on
+      brightness: 130
+      rgb_color:
+        - 0
+        - 0
+        - 255
+      white_value: 100
+    light.wled_sink_cabinet:
+      state: on
+      brightness: 130
+      rgb_color:
+        - 0
+        - 0
+        - 255
+      white_value: 100

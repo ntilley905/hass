@@ -36,3 +36,25 @@
   action:
     service: light.turn_off
     entity_id: light.kitchen_lights
+
+- alias: Kitchen Cabinet Lights
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.kitchen_motion_z
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.living_room_motion_z
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: group.home_devices
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.sleep_mode
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.dumb_mode
+      state: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.wled_kitchen_master

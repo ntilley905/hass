@@ -9,12 +9,13 @@
     entity_id: group.home_devices
     to: 'home'
   condition:
-    - condition: sun
-      after: sunset
-      after_offset: "-01:00:00"
     - condition: state
       entity_id: input_boolean.dumb_mode
       state: 'off'
   action:
-    service: scene.turn_on
-    entity_id: scene.normal_lights
+    - service: script.led_on
+    - condition: sun
+      after: sunset
+      after_offset: "-01:00:00"
+    - service: scene.turn_on
+      entity_id: scene.normal_lights

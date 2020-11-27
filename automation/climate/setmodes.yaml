@@ -67,7 +67,7 @@
     - service: input_number.set_value
       data:
         entity_id: input_number.climate_heat_point
-        value: '{{ states("input_number.climate_heat_default") | int + states("input_number.climate_sleep_offset") | int }}'
+        value: '{{ states("input_number.climate_heat_default") | int }}'
     - service: input_number.set_value
       data:
         entity_id: input_number.climate_cool_point

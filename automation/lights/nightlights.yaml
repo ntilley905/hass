@@ -39,9 +39,7 @@
     - service: light.turn_off
       entity_id: light.island_dimmer
     - service: light.turn_off
-      entity_id: light.kitchen_stove_leds
-    - service: light.turn_off
-      entity_id: light.kitchen_sink_leds
+      entity_id: light.wled_kitchen_master
 
 - alias: Night Lights Off in Morning
   trigger:
@@ -57,7 +55,4 @@
   action:
     - service: light.turn_off
       entity_id: light.island_dimmer
-    - service: light.turn_off
-      entity_id: light.kitchen_stove_leds
-    - service: light.turn_off
-      entity_id: light.kitchen_sink_leds
+    - service: script.led_on

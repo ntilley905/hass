@@ -1,0 +1,7 @@
+---
+
+# This automation controls the actions of the LEDs in the morning.
+# If the coffee maker is turned on before sunrise, they do the WLED
+# sunrise effect. Otherwise, they go to normal mode.
+
+# TODO

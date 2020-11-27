@@ -42,3 +42,18 @@ apple_tv_off:
         command: 'select'
     - service: remote.turn_off
       entity_id: remote.apple_tv
+led_on:
+  sequence:
+    - choose:
+      - conditions:
+          - condition: state
+            entity_id: input_boolean.holiday_mode
+            state: 'on'
+        sequence:
+          - service: scene.turn_on
+            entity_id: scene.holiday_lights
+      default:
+        service: scene.turn_on
+        entity_id: scene.led_ambiance
+    - service: light.turn_on
+      entity_id: light.wled_kitchen_master

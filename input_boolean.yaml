@@ -17,3 +17,6 @@ air_purifier_cycle:
 dumb_mode:
   name: Dumb Mode
   icon: mdi:lightbulb-group-off-outline
+holiday_mode:
+  name: Holiday Mode
+  icon: mdi:string-lights
