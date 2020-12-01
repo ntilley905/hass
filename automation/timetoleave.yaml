@@ -4,46 +4,11 @@
 # what time he needs to be there, and then notifies him of when that time is
 # 15 and 5 minutes away.
 
-- alias: Time to Leave
-  trigger:
-    - platform: state
-      entity_id: sensor.travel_home_to_atl
-    - platform: template
-      value_template: >
-        {% if state_attr('calendar.report', 'start_time') %}
-        {{ state_attr('calendar.report', 'start_time')|as_timestamp() - now()|as_timestamp() == 21600 }}
-        {% else %}
-        False
-        {% endif %}
-  condition:
-    - condition: template
-      value_template: >
-        {% if state_attr('calendar.report', 'start_time') %}
-        {{ state_attr('calendar.report', 'start_time')|as_timestamp() - now()|as_timestamp() < 43200 }}"
-        {% else %}
-        False
-        {% endif %}
-    - condition: state
-      entity_id: person.nathan
-      state: 'home'
-    - condition: state
-      entity_id: input_boolean.dumb_mode
-      state: 'off'
-  action:
-    service: input_datetime.set_datetime
-    data:
-      entity_id: input_datetime.time_to_leave
-      time: >
-        {% set stamp = (state_attr('calendar.report', 'start_time')|as_timestamp() - (states('sensor.travel_home_to_atl')|round(0, 'ceil')|int() * 60) - 1800) %}
-        {% set rounddown = stamp - (stamp % 600) %}
-        {{ rounddown|timestamp_custom('%H:%M:%S') }}
-- alias: Notify to Leave
+- alias: Notify Leave Soon
   trigger:
     platform: template
-    value_template: "{{ states('sensor.time') == ((state_attr('input_datetime.time_to_leave', 'timestamp') - 900) | int | timestamp_custom('%H:%M', False)) }}"
+    value_template: "{{ states('sensor.time_date') == (states('sensor.time_to_leave') | as_timestamp() - 900) | timestamp_custom('%H:%M, %Y-%m-%d') }}"
   condition:
-    - condition: template
-      value_template: "{{ state_attr('calendar.report', 'start_time')|as_timestamp() - now()|as_timestamp() < 43200 }}"
     - condition: state
       entity_id: person.nathan
       state: 'home'
@@ -54,14 +19,12 @@
     service: notify.mobile_app_nathans_iphone
     data:
       title: 'Time to Leave!'
-      message: "Leave at {{ state_attr('input_datetime.time_to_leave', 'timestamp') | timestamp_custom('%-I:%M %p', False) }} to arrive on time. Take {{ state_attr('sensor.travel_home_to_atl', 'route') }}."
-- alias: Leave Now
+      message: "Trip {{ state_attr('calendar.work', 'message') }} reports at {{ states('sensor.next_report_time') | as_timestamp() | timestamp_custom('%-I:%M %p') }}. Leave by {{ states('sensor.time_to_leave') | as_timestamp() | timestamp_custom('%-I:%M %p') }} to arrive on time. Take {{ state_attr('sensor.travel_home_to_atl', 'route') }}."
+- alias: Notify Leave Now
   trigger:
     platform: template
-    value_template: "{{ states('sensor.time') == ((state_attr('input_datetime.time_to_leave', 'timestamp') - 300) | int | timestamp_custom('%H:%M', False)) }}"
+    value_template: "{{ states('sensor.time_date') == (states('sensor.time_to_leave') | as_timestamp() - 300) | timestamp_custom('%H:%M, %Y-%m-%d') }}"
   condition:
-    - condition: template
-      value_template: "{{ state_attr('calendar.report', 'start_time')|as_timestamp() - now()|as_timestamp() < 43200 }}"
     - condition: state
       entity_id: person.nathan
       state: 'home'
@@ -77,4 +40,4 @@
     service: notify.mobile_app_nathans_iphone
     data:
       title: 'Leave Now!'
-      message: "Leave at {{ state_attr('input_datetime.time_to_leave', 'timestamp') | timestamp_custom('%-I:%M %p', False) }} to arrive on time. Take {{ state_attr('sensor.travel_home_to_atl', 'route') }}."
+      message: "Trip {{ state_attr('calendar.work', 'message') }} reports at {{ states('sensor.next_report_time') | as_timestamp() | timestamp_custom('%-I:%M %p') }}. Leave by {{ states('sensor.time_to_leave') | as_timestamp() | timestamp_custom('%-I:%M %p') }} to arrive on time. Take {{ state_attr('sensor.travel_home_to_atl', 'route') }}."

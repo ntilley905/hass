@@ -1,0 +1,28 @@
+---
+
+- alias: Notify Laundry Done
+  trigger:
+    platform: state
+    entity_id: binary_sensor.washer_sensor_vibration
+    to: 'on'
+    for:
+      minutes: 30
+  action:
+    - wait_for_trigger:
+        platform: state
+        entity_id: binary_sensor.washer_sensor_vibration
+        to: 'off'
+        for:
+          minutes: 3
+    - service: >
+        {% if is_state("person.nathan", "home") and
+              is_state("person.sara", "home") %}
+        notify.all_mobile_apps
+        {% elif is_state("person.nathan", "home") %}
+        notify.mobile_app_nathans_iphone
+        {% elif is_state("person.sara", "home") %}
+        notify.mobile_app_saras_iphone
+        {% endif %}
+      data:
+        title: 'Laundry done!'
+        message: 'The washer/dryer has finished its cycle.'

@@ -37,6 +37,8 @@ ios:
             title: 'Turn Off'
           - identifier: 'COFFEE_DELAY'
             title: 'Remind me in 30 minutes'
+  actions:
+    - name: All Lights Off
 
 notify:
   - platform: rest
@@ -61,6 +63,12 @@ wemo:
 calendar:
   - platform: todoist
     token: !secret todoist_token
+
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
+
+python_script:
 
 automation: !include_dir_merge_list automation
 input_number: !include input_number.yaml

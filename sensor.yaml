@@ -16,6 +16,21 @@
         {% else %}
         {{ states("weather.katl_hourly") }}
         {% endif %}
+    next_report_time:
+      value_template: >
+        {{ strptime(state_attr('calendar.work', 'description').split('\n')[0] | replace('Report: ', '') | replace('L', '') + state_attr('calendar.work', 'start_time').split(' ')[0], '%H%M%Y-%m-%d') }}
+      availability_template: >
+        {{ 'Report' in state_attr('calendar.work', 'description') }}
+    time_to_leave:
+      value_template: >
+        {% set stamp = (states('sensor.next_report_time')|as_timestamp() - (states('sensor.travel_home_to_atl')|round(0, 'ceil')|int() * 60) - 1800) %}
+        {{ (stamp - (stamp % 600)) | timestamp_local() }}
+      availability_template: >
+        {% if states('sensor.next_report_time') %}
+        True
+        {% else %}
+        False
+        {% endif %}
 #    corrected_pressure:
 #      friendly_name: Sea Level Pressure
 #      value_template: '{{ (0.02952998751 * (float(states.sensor.outdoor_pressure.state) + 280 / 8.3)) | round(2) }}'
@@ -83,18 +98,6 @@
   destination: zone.home
   region: 'US'
   name: Travel GDOT to Home
-- platform: faastatus
-  id: ATL
-- platform: faastatus
-  id: DTW
-- platform: faastatus
-  id: LGA
-- platform: faastatus
-  id: JFK
-- platform: faastatus
-  id: BOS
-- platform: faastatus
-  id: ORD
 - platform: rest
   resource: https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=3&mostRecent=true&stationString=KATL
   name: ATL METAR

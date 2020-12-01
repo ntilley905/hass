@@ -83,8 +83,8 @@ views:
                 entity: light.balcony_lights
                 name: Balcony
               - type: button
-                entity: light.closet_light
-                name: Closet
+                entity: switch.christmas_tree
+                name: Christmas Tree
           - type: horizontal-stack
             cards:
               - type: button

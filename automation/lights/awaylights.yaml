@@ -23,3 +23,8 @@
       entity_id: input_boolean.sleep_mode
     - service: switch.turn_off
       entity_id: switch.living_room_fan
+    - condition: state
+      entity_id: input_boolean.holiday_mode
+      state: 'on'
+    - service: switch.turn_off
+      entity_id: switch.christmas_tree
