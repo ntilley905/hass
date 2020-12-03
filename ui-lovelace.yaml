@@ -274,12 +274,12 @@ views:
       - type: vertical-stack
         cards:
           - type: glance
-            title: Living Room Sensor
+            title: Hallway Sensor
             entities:
-              - sensor.living_room_temperature_z
-              - sensor.living_room_humidity_z
-              - sensor.living_room_illuminance_z
-              - binary_sensor.living_room_motion_z
+              - sensor.hallway_temperature_z
+              - sensor.hallway_humidity_z
+              - sensor.hallway_illuminance_z
+              - binary_sensor.hallway_motion_z
             show_name: false
           - type: horizontal-stack
             cards:

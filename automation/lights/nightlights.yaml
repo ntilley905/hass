@@ -2,13 +2,10 @@
 
 # These automations manage our night lights.
 
-# Currently using kitchen instead of hallway sensor due to repurposing the
-# hallway sensor for the kitchen sensor.
-
 - alias: Night Lights
   trigger:
     platform: state
-    entity_id: binary_sensor.kitchen_motion_z
+    entity_id: binary_sensor.hallway_motion_z
     to: 'on'
   condition:
     - condition: state
