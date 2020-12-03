@@ -6,7 +6,7 @@
 - alias: Climate Turn Off
   trigger:
     platform: state
-    entity_id: input_boolean.window_open
+    entity_id: group.outdoor_doors_windows
     to: 'on'
     for:
       seconds: 30
@@ -17,16 +17,17 @@
   action:
     service: climate.turn_off
     entity_id: climate.thermostat
+
 - alias: Climate Turn On
   trigger:
     - platform: state
-      entity_id: input_boolean.window_open
+      entity_id: group.outdoor_doors_windows
       to: 'off'
       for:
         seconds: 30
   condition:
     - condition: state
-      entity_id: input_boolean.window_open
+      entity_id: group.outdoor_doors_windows
       state: 'off'
     - condition: state
       entity_id: input_boolean.dumb_mode

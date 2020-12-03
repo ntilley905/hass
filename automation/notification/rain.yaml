@@ -9,30 +9,30 @@
     value_template: "{{ not is_state('sensor.precip_type', 'None') }}"
   condition:
     - condition: state
-      entity_id: input_boolean.window_open
+      entity_id: group.outdoor_doors_windows
       state: "on"
     - condition: state
       entity_id: input_boolean.dumb_mode
       state: 'off'
   action:
-    - service: notify.mobile_app_nathans_iphone
+    - service: notify.all_mobile_apps
       data:
-        title: "Precip Detected!"
+        title: 'Precip Detected!'
         message: "Windows are open and the weather is {{ states('sensor.precip_type') }}!"
 - alias: Windows Open When Leaving
   trigger:
     platform: state
     entity_id: group.home_devices
-    to: "not_home"
+    to: 'not_home'
   condition:
     - condition: state
-      entity_id: input_boolean.window_open
-      state: "on"
+      entity_id: group.outdoor_doors_windows
+      state: 'on'
     - condition: state
       entity_id: input_boolean.dumb_mode
       state: 'off'
   action:
     service: notify.mobile_app_nathans_iphone
     data:
-      title: "Windows Open!"
-      message: "You forgot to close the windows."
+      title: 'Windows Open!'
+      message: 'You forgot to close the windows.'

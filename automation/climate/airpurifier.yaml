@@ -25,7 +25,7 @@
 - alias: Air Purifier On Windows Open
   trigger:
     platform: state
-    entity_id: input_boolean.window_open
+    entity_id: group.outdoor_doors_windows
     to: 'on'
     for:
       seconds: 15
@@ -44,7 +44,7 @@
       attribute: 'hvac_action'
       state: 'idle'
     - condition: state
-      entity_id: input_boolean.window_open
+      entity_id: group.outdoor_doors_windows
       state: 'off'
     - condition: state
       entity_id: input_boolean.dumb_mode
@@ -60,14 +60,14 @@
       attribute: 'hvac_action'
       to: 'idle'
     - platform: state
-      entity_id: input_boolean.window_open
+      entity_id: group.outdoor_doors_windows
       to: 'off'
   condition:
     - condition: state
       entity_id: media_player.apple_tv
       state: 'playing'
     - condition: state
-      entity_id: input_boolean.window_open
+      entity_id: group.outdoor_doors_windows
       state: 'off'
     - condition: state
       entity_id: input_boolean.dumb_mode

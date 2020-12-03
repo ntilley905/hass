@@ -9,9 +9,6 @@ sleep_mode:
 guest_mode:
   name: Guest Mode
   icon: mdi:account
-window_open:
-  name: Window Open
-  icon: mdi:window-open
 climate_override:
 air_purifier_cycle:
 dumb_mode:

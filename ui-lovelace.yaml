@@ -675,7 +675,7 @@ views:
         entities:
           - input_boolean.trip_mode
           - input_boolean.sleep_mode
-          - input_boolean.window_open
+          - group.outdoor_doors_windows
           - input_boolean.dumb_mode
           - light.all
           - binary_sensor.updater
