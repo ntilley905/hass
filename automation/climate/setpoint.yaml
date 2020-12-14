@@ -33,8 +33,8 @@
   action:
     - delay: '00:00:05'
     - choose:
-      - conditions:
-        - condition: state
+      - conditions: # yamllint disable-line rule:indentation
+        - condition: state # yamllint disable-line rule:indentation
           entity_id: climate.thermostat
           state: 'heat'
         sequence:
@@ -43,7 +43,7 @@
               entity_id: climate.thermostat
               temperature: '{{ states("input_number.climate_heat_point") }}'
       - conditions:
-        - condition: state
+        - condition: state # yamllint disable-line rule:indentation
           entity_id: climate.thermostat
           state: 'cool'
         sequence:
