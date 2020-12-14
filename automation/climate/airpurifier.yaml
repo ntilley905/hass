@@ -9,6 +9,9 @@
 # 4. Should otherwise be on while we are home
 # 5. While we are gone, should revert to a cycle depending on pollen count
 
+# Additionally, the automations will wait until it has been at least 30 seconds
+# from the last state change to not cycle it frequently.
+
 - alias: Air Purifier On During AC
   trigger:
     platform: state
@@ -20,8 +23,9 @@
     entity_id: input_boolean.dumb_mode
     state: 'off'
   action:
-    service: switch.turn_on
-    entity_id: switch.air_purifier
+    - wait_template: "{{ as_timestamp(states.sensor.date_time_iso.state) - as_timestamp(states.switch.air_purifier.last_changed) > 30}}"
+    - service: switch.turn_on
+      entity_id: switch.air_purifier
 - alias: Air Purifier On Windows Open
   trigger:
     platform: state
@@ -30,8 +34,9 @@
     for:
       seconds: 15
   action:
-    service: switch.turn_on
-    entity_id: switch.air_purifier
+    - wait_template: "{{ as_timestamp(states.sensor.date_time_iso.state) - as_timestamp(states.switch.air_purifier.last_changed) > 30}}"
+    - service: switch.turn_on
+      entity_id: switch.air_purifier
 
 - alias: Air Purifier Off During TV
   trigger:
@@ -50,8 +55,9 @@
       entity_id: input_boolean.dumb_mode
       state: 'off'
   action:
-    service: switch.turn_off
-    entity_id: switch.air_purifier
+    - wait_template: "{{ as_timestamp(states.sensor.date_time_iso.state) - as_timestamp(states.switch.air_purifier.last_changed) > 30}}"
+    - service: switch.turn_off
+      entity_id: switch.air_purifier
 
 - alias: Air Purifier Off During TV After HVAC or Windows
   trigger:
@@ -73,8 +79,9 @@
       entity_id: input_boolean.dumb_mode
       state: 'off'
   action:
-    service: switch.turn_off
-    entity_id: switch.air_purifier
+    - wait_template: "{{ as_timestamp(states.sensor.date_time_iso.state) - as_timestamp(states.switch.air_purifier.last_changed) > 30}}"
+    - service: switch.turn_off
+      entity_id: switch.air_purifier
 
 - alias: Air Purifier On When Home
   trigger:
@@ -93,8 +100,9 @@
       entity_id: input_boolean.dumb_mode
       state: 'off'
   action:
-    service: switch.turn_on
-    entity_id: switch.air_purifier
+    - wait_template: "{{ as_timestamp(states.sensor.date_time_iso.state) - as_timestamp(states.switch.air_purifier.last_changed) > 30}}"
+    - service: switch.turn_on
+      entity_id: switch.air_purifier
 
 - alias: Air Purifier Cycle High
   trigger:

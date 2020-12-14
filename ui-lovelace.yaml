@@ -257,6 +257,12 @@ views:
       - binary_sensor.freezer_door
       - sensor.living_room_fan_power
       - sensor.living_room_fan_energy
+      - sensor.kitchen_light_switch_power
+      - sensor.kitchen_light_switch_energy
+      - sensor.christmas_tree_power
+      - sensor.christmas_tree_energy
+      - sensor.balcony_christmas_light_plug_power
+      - sensor.balcony_christmas_light_plug_energy
     cards:
       - type: vertical-stack
         cards:

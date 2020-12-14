@@ -31,10 +31,14 @@
         {% else %}
         False
         {% endif %}
-#    corrected_pressure:
-#      friendly_name: Sea Level Pressure
-#      value_template: '{{ (0.02952998751 * (float(states.sensor.outdoor_pressure.state) + 280 / 8.3)) | round(2) }}'
-#      unit_of_measurement: 'inHg'
+    sea_level_pressure:
+      friendly_name: Sea Level Pressure
+      value_template: "{{ (states('sensor.outdoor_pressure') | float * (1 - 1.9175/(((states('sensor.outdoor_temperature') | float - 32) / 1.8) + 275.0675)) ** -5.257)  | round(2)}}"
+      unit_of_measurement: hPa
+    altimeter:
+      friendly_name: Altimeter Setting
+      value_template: "{{ (states('sensor.sea_level_pressure') | float /  33.863886666667) | round(2) }}"
+      unit_of_measurement: inHg
     nws_temperature:
       friendly_name: NWS Temperature
       value_template: '{{ state_attr("weather.katl_hourly", "temperature") }}'
@@ -44,6 +48,7 @@
     - 'time'
     - 'date'
     - 'time_date'
+    - 'date_time_iso'
     - 'time_utc'
 - platform: history_stats
   name: AC Cool Today
