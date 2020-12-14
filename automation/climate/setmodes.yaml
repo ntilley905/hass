@@ -21,6 +21,7 @@
       data:
         entity_id: input_number.climate_cool_point
         value: '{{ states("input_number.climate_cool_default") | int }}'
+
 - alias: Climate Set Away
   trigger:
     - platform: state
@@ -44,6 +45,7 @@
       data:
         entity_id: input_number.climate_cool_point
         value: '{{ states("input_number.climate_cool_default") | int + states("input_number.climate_away_offset") | int }}'
+
 - alias: Climate Set Trip
   trigger:
     platform: state
@@ -58,6 +60,7 @@
       data:
         entity_id: input_number.climate_cool_point
         value: '{{ states("input_number.climate_cool_default") | int + states("input_number.climate_trip_offset") | int }}'
+
 - alias: Climate Set Sleep
   trigger:
     platform: state

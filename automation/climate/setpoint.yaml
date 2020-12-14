@@ -1,21 +1,26 @@
 ---
 
 # This automation sets the setpoint on the thermostat when the climate setpoint
-# input numbers change. It only checks the cool point as that one is always
-# changed last. It also runs any time the thermostat is turned on in
+# input numbers change. It also runs any time the thermostat is turned on in
 # case the setpoint has changed since it was turned off (ie. change to sleep
 # mode before windows are closed)
 
 - alias: Climate Set Point
+  mode: restart
   trigger:
     - platform: state
       entity_id: input_number.climate_cool_point
+    - platform: state
+      entity_id: input_number.climate_heat_point
     - platform: state
       entity_id: input_boolean.climate_override
       to: 'off'
     - platform: state
       entity_id: climate.thermostat
-      to: 'heat_cool'
+      to: 'heat'
+    - platform: state
+      entity_id: climate.thermostat
+      to: 'cool'
   condition:
     - condition: not
       conditions:
@@ -26,9 +31,23 @@
       entity_id: input_boolean.dumb_mode
       state: 'off'
   action:
-    - delay: '00:00:02'
-    - service: climate.set_temperature
-      data:
-        entity_id: climate.thermostat
-        target_temp_high: '{{ states("input_number.climate_cool_point") }}'
-        target_temp_low: '{{ states("input_number.climate_heat_point") }}'
+    - delay: '00:00:05'
+    - choose:
+      - conditions:
+        - condition: state
+          entity_id: climate.thermostat
+          state: 'heat'
+        sequence:
+          - service: climate.set_temperature
+            data:
+              entity_id: climate.thermostat
+              temperature: '{{ states("input_number.climate_heat_point") }}'
+      - conditions:
+        - condition: state
+          entity_id: climate.thermostat
+          state: 'cool'
+        sequence:
+          - service: climate.set_temperature
+            data:
+              entity_id: climate.thermostat
+              temperature: '{{ states("input_number.climate_cool_point") }}'
