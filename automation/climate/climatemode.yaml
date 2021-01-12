@@ -25,6 +25,9 @@
       to: 'off'
       for:
         seconds: 30
+    - platform: state
+      entity_id: binary_sensor.smoke_detector_smoke_detected
+      to: 'off'
   condition:
     - condition: state
       entity_id: group.outdoor_doors_windows

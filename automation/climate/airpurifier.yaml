@@ -90,6 +90,9 @@
       to: 'home'
     - platform: state
       entity_id: media_player.apple_tv
+    - platform: state
+      entity_id: binary_sensor.smoke_detector_smoke_detected
+      to: 'off'
   condition:
     - condition: not
       conditions:
