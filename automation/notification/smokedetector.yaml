@@ -33,6 +33,7 @@
   trigger:
     platform: state
     entity_id: binary_sensor.smoke_detector_smoke_detected
+    from: 'on'
     to: 'off'
   action:
     - service: notify.all_mobile_apps

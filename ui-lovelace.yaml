@@ -167,10 +167,6 @@ views:
         title: Status
       - type: weather-forecast
         entity: weather.katl_hourly
-        #- type: picture-entity
-        #  entity: camera.amcrest_camera
-      - type: picture-entity
-        entity: camera.nwsradar_ffc_standard_composite_reflectivity_loop
 
   - path: vacuum
     title: Vacuum
