@@ -163,7 +163,7 @@ views:
       - type: history-graph
         entities:
           - sensor.indoor_temperature
-          - sensor.outdoor_temperature
+          - sensor.nws_temperature
         title: Status
       - type: weather-forecast
         entity: weather.katl_hourly
@@ -522,7 +522,9 @@ views:
           - group.outdoor_doors_windows
           - input_boolean.dumb_mode
           - light.all
+          - group.home_devices
           - binary_sensor.updater
+          - sensor.hacs
       - type: entities
         title: Pi-Hole
         entities:
