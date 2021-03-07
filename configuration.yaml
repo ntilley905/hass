@@ -70,6 +70,12 @@ google:
 
 python_script:
 
+climate:
+  - platform: radiotherm
+    host:
+      - !secret thermostat_ip
+    hold_temp: true
+
 automation: !include_dir_merge_list automation
 input_number: !include input_number.yaml
 input_boolean: !include input_boolean.yaml

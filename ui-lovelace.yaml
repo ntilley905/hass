@@ -453,6 +453,9 @@ views:
   - path: delays
     title: Delays
     icon: mdi:airplane
+    badges:
+      - sensor.next_report_time
+      - sensor.time_to_leave
     cards:
       - type: entities
         title: ATL Status
