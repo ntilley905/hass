@@ -23,7 +23,7 @@
               critical: 1
               volume: 1.0
     - service: climate.turn_off
-      entity_id: climate.thermostat_77_05_2a
+      entity_id: climate.thermostat
     - service: switch.turn_off
       entity_id: switch.living_room_fan
     - service: switch.turn_off

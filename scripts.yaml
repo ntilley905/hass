@@ -5,8 +5,8 @@ house_cold:
   sequence:
     - service: climate.set_temperature
       data:
-        entity_id: climate.thermostat_77_05_2a
-        temperature: "{{ state_attr('climate.thermostat_77_05_2a', 'current_temperature') + 1 | round(0, 'ceil') }}"
+        entity_id: climate.thermostat
+        temperature: "{{ state_attr('climate.thermostat', 'current_temperature') + 1 | round(0, 'ceil') }}"
     - service: input_boolean.turn_on
       entity_id: input_boolean.climate_override
 house_hot:
@@ -14,8 +14,8 @@ house_hot:
   sequence:
     - service: climate.set_temperature
       data:
-        entity_id: climate.thermostat_77_05_2a
-        temperature: "{{ state_attr('climate.thermostat_77_05_2a', 'current_temperature') - 1 | round(0, 'ceil') }}"
+        entity_id: climate.thermostat
+        temperature: "{{ state_attr('climate.thermostat', 'current_temperature') - 1 | round(0, 'ceil') }}"
     - service: input_boolean.turn_on
       entity_id: input_boolean.climate_override
 apple_tv_on:

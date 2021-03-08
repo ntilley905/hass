@@ -15,7 +15,7 @@
 - alias: Air Purifier On During AC
   trigger:
     platform: state
-    entity_id: climate.thermostat_77_05_2a
+    entity_id: climate.thermostat
     attribute: hvac_action
     from: "idle"
   condition:
@@ -45,7 +45,7 @@
     to: 'playing'
   condition:
     - condition: state
-      entity_id: climate.thermostat_77_05_2a
+      entity_id: climate.thermostat
       attribute: 'hvac_action'
       state: 'idle'
     - condition: state
@@ -62,7 +62,7 @@
 - alias: Air Purifier Off During TV After HVAC or Windows
   trigger:
     - platform: state
-      entity_id: climate.thermostat_77_05_2a
+      entity_id: climate.thermostat
       attribute: 'hvac_action'
       to: 'idle'
     - platform: state
@@ -140,7 +140,7 @@
       entity_id: group.home_devices
       to: 'not_home'
     - platform: state
-      entity_id: climate.thermostat_77_05_2a
+      entity_id: climate.thermostat
       attribute: 'hvac_action'
     - platform: state
       entity_id: input_boolean.air_purifier_cycle
@@ -149,7 +149,7 @@
       entity_id: group.home_devices
       state: 'not_home'
     - condition: state
-      entity_id: climate.thermostat_77_05_2a
+      entity_id: climate.thermostat
       attribute: 'hvac_action'
       state: 'idle'
     - condition: state

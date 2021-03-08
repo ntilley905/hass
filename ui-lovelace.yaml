@@ -367,12 +367,13 @@ views:
     icon: mdi:air-conditioner
     badges:
       - sensor.thermostat_temperature
+      - sensor.thermostat_humidity
       - sensor.hvac_action
       - sensor.ac_cool_today
       - sensor.ac_heat_today
     cards:
       - type: thermostat
-        entity: climate.thermostat_77_05_2a
+        entity: climate.thermostat
       - type: entities
         entities:
           - input_boolean.climate_override

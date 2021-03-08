@@ -16,16 +16,16 @@
       entity_id: input_boolean.climate_override
       to: 'off'
     - platform: state
-      entity_id: climate.thermostat_77_05_2a
+      entity_id: climate.thermostat
       to: 'heat'
     - platform: state
-      entity_id: climate.thermostat_77_05_2a
+      entity_id: climate.thermostat
       to: 'cool'
   condition:
     - condition: not
       conditions:
         - condition: state
-          entity_id: climate.thermostat_77_05_2a
+          entity_id: climate.thermostat
           state: 'off'
     - condition: state
       entity_id: input_boolean.dumb_mode
@@ -35,19 +35,19 @@
     - choose:
       - conditions: # yamllint disable-line rule:indentation
         - condition: state # yamllint disable-line rule:indentation
-          entity_id: climate.thermostat_77_05_2a
+          entity_id: climate.thermostat
           state: 'heat'
         sequence:
           - service: climate.set_temperature
             data:
-              entity_id: climate.thermostat_77_05_2a
+              entity_id: climate.thermostat
               temperature: '{{ states("input_number.climate_heat_point") }}'
       - conditions:
         - condition: state # yamllint disable-line rule:indentation
-          entity_id: climate.thermostat_77_05_2a
+          entity_id: climate.thermostat
           state: 'cool'
         sequence:
           - service: climate.set_temperature
             data:
-              entity_id: climate.thermostat_77_05_2a
+              entity_id: climate.thermostat
               temperature: '{{ states("input_number.climate_cool_point") }}'

@@ -16,7 +16,7 @@
     state: 'off'
   action:
     service: climate.turn_off
-    entity_id: climate.thermostat_77_05_2a
+    entity_id: climate.thermostat
 
 - alias: Climate Turn On
   trigger:
@@ -38,7 +38,7 @@
   action:
     service: climate.turn_on
     data:
-      entity_id: climate.thermostat_77_05_2a
+      entity_id: climate.thermostat
 
 - alias: Climate Set Mode
   trigger:
@@ -47,7 +47,7 @@
     - platform: template
       value_template: "{{ states('sensor.thermostat_temperature') < states('input_number.climate_heat_point') }}"
     - platform: state
-      entity_id: climate.thermostat_77_05_2a
+      entity_id: climate.thermostat
       from: 'off'
   condition:
     - condition: state
@@ -56,11 +56,11 @@
     - condition: not
       conditions:
         - condition: state
-          entity_id: climate.thermostat_77_05_2a
+          entity_id: climate.thermostat
           state: 'off'
   action:
     - service: climate.set_hvac_mode
-      entity_id: climate.thermostat_77_05_2a
+      entity_id: climate.thermostat
       data_template:
         hvac_mode: >
           {% if states('sensor.thermostat_temperature') < states('input_number.climate_heat_point') %}
