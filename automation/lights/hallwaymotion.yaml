@@ -14,6 +14,9 @@
     - condition: numeric_state
       entity_id: sensor.hallway_illuminance_z
       below: 50
+    - condition: state
+      entity_id: input_boolean.sleep_mode
+      state: 'off'
   action:
     - service: light.turn_on
       entity_id: light.hallway_light
