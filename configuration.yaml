@@ -1,5 +1,4 @@
 ---
-
 homeassistant:
   customize: !include customize.yaml
   packages: !include_dir_named packages
@@ -31,12 +30,19 @@ ios:
   push:
     categories:
       - name: Coffee
-        identifier: 'coffee'
+        identifier: "coffee"
         actions:
-          - identifier: 'COFFEE_OFF'
-            title: 'Turn Off'
-          - identifier: 'COFFEE_DELAY'
-            title: 'Remind me in 30 minutes'
+          - identifier: "COFFEE_OFF"
+            title: "Turn Off"
+          - identifier: "COFFEE_DELAY"
+            title: "Remind me in 30 minutes"
+      - name: Vacuum
+        identifier: "vacuum"
+        actions:
+          - identifier: "RUN_VACUUM_NOW"
+            title: "Run Vacuum Now"
+          - identifier: "RUN_VACUUM_15M"
+            title: "Run Vacuum in 15 min"
   actions:
     - name: All Lights Off
 

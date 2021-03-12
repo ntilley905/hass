@@ -1,0 +1,70 @@
+---
+# These automations are to notify us when a task is coming due.
+
+- alias: Air Filter Notify 10 Days
+  trigger:
+    - platform: time
+      at: "09:00:00"
+  condition:
+    - condition: template
+      # within 10 days
+      value_template: "{{ state_attr('sensor.next_air_filter', 'timestamp') - 864000 < states('sensor.date_time_iso') | as_timestamp() }}"
+    - condition: state
+      entity_id: input_boolean.air_filter_notified
+      state: "off"
+  action:
+    - service: notify.all_mobile_apps
+      data:
+        message: 'The air filter needs to be changed in {{ ((state_attr("sensor.next_air_filter", "timestamp") - now() | as_timestamp()) / 86400) | round(0, "floor") }} days.'
+        title: "Change Air Filter Soon"
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.air_filter_notified
+
+- alias: Air Filter Notify Now
+  mode: single
+  max_exceeded: silent
+  trigger:
+    - platform: time
+      at: "09:00:00"
+  condition:
+    condition: template
+    value_template: "{{ state_attr('sensor.next_air_filter', 'timestamp') < states('sensor.date_time_iso') | as_timestamp() }}"
+  action:
+    - wait_template: '{{ is_state("group.home_devices", "home") }}'
+    - service: notify.all_mobile_apps
+      data:
+        message: "The air filter needs to be changed."
+        title: "Change Air Filter Now"
+
+- alias: Litter Box Notify Now
+  mode: single
+  max_exceeded: silent
+  trigger:
+    - platform: template
+      value_template: '{{ state_attr("sensor.next_litter_box", "timestamp") == states("sensor.date_time_iso") | as_timestamp() }}'
+    - platform: time_pattern
+      hours: "21"
+  action:
+    - wait_template: '{{ is_state("group.home_devices", "home") }}'
+    - service: notify.all_mobile_apps
+      data:
+        message: "Poop dust is dirty."
+        title: "Litter Box Needs Cleaning"
+
+- alias: Vacuum Notify Now
+  mode: single
+  max_exceeded: silent
+  trigger:
+    - platform: template
+      value_template: '{{ states("sensor.next_vacuum") | as_timestamp() == states("sensor.date_time_iso") | as_timestamp() }}'
+    - platform: time_pattern
+      hours: "16"
+  action:
+    - wait_template: '{{ is_state("group.home_devices", "home") }}'
+    - service: notify.all_mobile_apps
+      data:
+        message: 'The vacuum has not been run in {{ ((now() | as_timestamp() - states("sensor.last_vacuum") | as_timestamp()) / 86400) | round(0) }} days.'
+        title: "Run The Vacuum Soon"
+        data:
+          push:
+            category: "vacuum"

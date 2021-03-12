@@ -1,5 +1,4 @@
 ---
-
 house_cold:
   alias: It's Cold
   sequence:
@@ -23,7 +22,7 @@ apple_tv_on:
     - service: remote.send_command
       data:
         entity_id: remote.apple_tv
-        command: 'wakeup'
+        command: "wakeup"
     - service: remote.turn_on
       entity_id: remote.apple_tv
 apple_tv_off:
@@ -31,27 +30,39 @@ apple_tv_off:
     - service: remote.send_command
       data:
         entity_id: remote.apple_tv
-        command: 'home_hold'
+        command: "home_hold"
     - delay:
         seconds: 2
     - service: remote.send_command
       data:
         entity_id: remote.apple_tv
-        command: 'select'
+        command: "select"
     - service: remote.turn_off
       entity_id: remote.apple_tv
 led_on:
   sequence:
     - choose:
-      - conditions: # yamllint disable-line rule:indentation
-          - condition: state
-            entity_id: input_boolean.holiday_mode
-            state: 'on'
-        sequence:
-          - service: scene.turn_on
-            entity_id: scene.holiday_lights
+        - conditions: # yamllint disable-line rule:indentation
+            - condition: state
+              entity_id: input_boolean.holiday_mode
+              state: "on"
+          sequence:
+            - service: scene.turn_on
+              entity_id: scene.holiday_lights
       default:
         service: scene.turn_on
         entity_id: scene.led_ambiance
     - service: light.turn_on
       entity_id: light.wled_kitchen_master
+air_filter_done:
+  sequence:
+    - service: input_datetime.set_datetime
+      data:
+        entity_id: input_datetime.last_air_filter
+        timestamp: "{{ now().timestamp() }}"
+litter_box_done:
+  sequence:
+    - service: input_datetime.set_datetime
+      data:
+        entity_id: input_datetime.last_air_filter
+        timestamp: "{{ now().timestamp() }}"

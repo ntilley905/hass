@@ -1,1 +1,14 @@
 ---
+
+last_air_filter:
+  name: Last Changed
+  has_date: true
+  has_time: true
+last_litter_box:
+  name: Last Cleaned
+  has_date: true
+  has_time: true
+last_vacuum:
+  name: Last Run
+  has_date: true
+  has_time: true

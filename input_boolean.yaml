@@ -1,5 +1,4 @@
 ---
-
 trip_mode:
   name: Trip Mode
   icon: mdi:airplane
@@ -17,3 +16,4 @@ dumb_mode:
 holiday_mode:
   name: Holiday Mode
   icon: mdi:string-lights
+air_filter_notified:

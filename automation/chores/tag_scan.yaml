@@ -1,0 +1,24 @@
+---
+# This automation will dynamically update any chore if its tag is scanned.
+
+- alias: Tag Chore Update
+  mode: queued
+  variables:
+    tags:
+      30b5a621-68d1-44ad-94f3-d0acf62e5761:
+        chore: air_filter
+      3c68131c-1053-4ec6-bae5-09d180113705:
+        chore: litter_box
+  trigger:
+    - platform: event
+      event_type: tag_scanned
+  condition:
+    - "{{ trigger.event.data.tag_id in tags }}"
+  action:
+    - variables:
+        chore_id: '{{ "input_datetime.next_" + tags[trigger.event.data.tag_id].chore}}'
+    - service: input_datetime.set_datetime
+      target:
+        entity_id: "{{ chore_id }}"
+      data:
+        timestamp: "{{ now().timestamp() }}"

@@ -1,33 +1,31 @@
 ---
-
 title: Home
 views:
-
   - path: default_view
     title: Home
     cards:
-#      - type: conditional
-#        conditions:
-#          - entity: sensor.fulton_county
-#            state_not: '0'
-#        card:
-#          type: markdown
-#          content: >
-#            ## Active Weather Alerts:
-#
-#            {% for alert in state_attr("sensor.fulton_county", "alerts") %}
-#              {{ alert.event }}
-#            {%- endfor %}
+      #      - type: conditional
+      #        conditions:
+      #          - entity: sensor.fulton_county
+      #            state_not: '0'
+      #        card:
+      #          type: markdown
+      #          content: >
+      #            ## Active Weather Alerts:
+      #
+      #            {% for alert in state_attr("sensor.fulton_county", "alerts") %}
+      #              {{ alert.event }}
+      #            {%- endfor %}
       - type: glance
         entities:
-#          - binary_sensor.weather_alert
+          #          - binary_sensor.weather_alert
           - binary_sensor.front_door
           - person.nathan
           - person.sara
           - sensor.indoor_temperature
           - sensor.nws_temperature
-#          - sensor.outdoor_temperature
-#          - sensor.cabinet_temperature
+      #          - sensor.outdoor_temperature
+      #          - sensor.cabinet_temperature
       - type: custom:stack-in-card
         title: Lights and Switches
         cards:
@@ -172,7 +170,7 @@ views:
     title: Vacuum
     icon: mdi:robot-vacuum
     cards:
-      - type: 'custom:vacuum-card'
+      - type: "custom:vacuum-card"
         entity: vacuum.rockrobo
         map: camera.rockrobo_map
         stats:
@@ -204,7 +202,7 @@ views:
               entity_id: vacuum.rockrobo
               command: zoned_cleanup
               params:
-                'zone_ids': ['Bedroom']
+                "zone_ids": ["Bedroom"]
           - name: Clean Bathroom
             icon: mdi:shower
             service: vacuum.send_command
@@ -212,7 +210,7 @@ views:
               entity_id: vacuum.rockrobo
               command: zoned_cleanup
               params:
-                'zone_ids': ['Bathroom']
+                "zone_ids": ["Bathroom"]
           - name: Clean Kitchen
             icon: mdi:stove
             service: vacuum.send_command
@@ -220,7 +218,7 @@ views:
               entity_id: vacuum.rockrobo
               command: zoned_cleanup
               params:
-                'zone_ids': ['Kitchen']
+                "zone_ids": ["Kitchen"]
           - name: Clean Litter Box
             icon: mdi:cat
             service: vacuum.send_command
@@ -228,7 +226,7 @@ views:
               entity_id: vacuum.rockrobo
               command: zoned_cleanup
               params:
-                'zone_ids': ['Litter Box']
+                "zone_ids": ["Litter Box"]
 
   - path: alarm_clock
     title: Alarm Clock
@@ -385,6 +383,51 @@ views:
           - input_number.climate_trip_offset
           - input_number.climate_sleep_offset
 
+  - path: chores
+    title: Chores
+    icon: mdi:broom
+    cards:
+      - type: entities
+        title: Air Filter
+        entities:
+          - sensor.last_air_filter
+          - sensor.next_air_filter
+          - type: button
+            name: Done Now
+            icon: mdi:check
+            tap_action:
+              action: call-service
+              service: script.air_filter_done
+            action_name: Done
+      - type: entities
+        title: Litter Box
+        entities:
+          - sensor.last_litter_box
+          - sensor.next_litter_box
+          - type: button
+            name: Done Now
+            icon: mdi:check
+            tap_action:
+              action: call-service
+              service: script.litter_box_done
+            action_name: Done
+      - type: entities
+        title: Vacuum
+        entities:
+          - sensor.last_vacuum
+          - sensor.next_vacuum
+          - type: button
+            name: Run Now
+            icon: mdi:check
+            tap_action:
+              action: call-service
+              service: vacuum.start
+              service_data:
+                entity_id: vacuum.rockrobo
+              confirmation:
+                text: Is everything off the ground?
+            action_name: Start Vacuum
+
   - path: media-player
     title: Media Player
     icon: mdi:music
@@ -419,7 +462,7 @@ views:
                   service: remote.send_command
                   service_data:
                     entity_id: remote.apple_tv
-                    command: 'up'
+                    command: "up"
               - type: vertical-stack
                 cards:
                   - type: button
@@ -430,7 +473,7 @@ views:
                       service: remote.send_command
                       service_data:
                         entity_id: remote.apple_tv
-                        command: 'left'
+                        command: "left"
                   - type: button
                     name: Right
                     icon: mdi:arrow-right
@@ -439,7 +482,7 @@ views:
                       service: remote.send_command
                       service_data:
                         entity_id: remote.apple_tv
-                        command: 'right'
+                        command: "right"
               - type: button
                 name: Down
                 icon: mdi:arrow-down
@@ -448,7 +491,7 @@ views:
                   service: remote.send_command
                   service_data:
                     entity_id: remote.apple_tv
-                    command: 'down'
+                    command: "down"
 
   - path: delays
     title: Delays
@@ -563,7 +606,6 @@ views:
               service: switch.turn_on
               service_data:
                 entity_id: switch.pi_hole
-
 
       - type: entities
         title: Scenes

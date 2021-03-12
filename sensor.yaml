@@ -1,5 +1,4 @@
 ---
-
 - platform: template
   sensors:
     hvac_action:
@@ -7,8 +6,8 @@
       value_template: '{{ state_attr("climate.thermostat", "hvac_action") }}'
     indoor_temperature:
       friendly_name: Indoor Temperature
-      value_template: '{{ ((float(states.sensor.bathroom_temperature.state) + float(states.sensor.thermostat_temperature.state) + float(states.sensor.bathroom_temperature_z.state) + float(states.sensor.bedroom_temperature_z.state) + float(states.sensor.bedroom_temperature.state) + float(states.sensor.kitchen_temperature_z.state) + float(states.sensor.hallway_temperature_z.state)) / 7) | round(1) }}'
-      unit_of_measurement: '°F'
+      value_template: "{{ ((float(states.sensor.bathroom_temperature.state) + float(states.sensor.thermostat_temperature.state) + float(states.sensor.bathroom_temperature_z.state) + float(states.sensor.bedroom_temperature_z.state) + float(states.sensor.bedroom_temperature.state) + float(states.sensor.kitchen_temperature_z.state) + float(states.sensor.hallway_temperature_z.state)) / 7) | round(1) }}"
+      unit_of_measurement: "°F"
     precip_type:
       value_template: >
         {% if states("weather.katl_hourly") in ['clear-night', 'cloudy', 'fog', 'partlycloudy', 'sunny', 'windy', 'windy-variant'] %}
@@ -42,33 +41,61 @@
     nws_temperature:
       friendly_name: NWS Temperature
       value_template: '{{ state_attr("weather.katl_hourly", "temperature") }}'
-      unit_of_measurement: '°F'
+      unit_of_measurement: "°F"
+    last_air_filter:
+      friendly_name: Last Replacement
+      value_template: '{{ states("input_datetime.last_air_filter") }}'
+      device_class: timestamp
+    next_air_filter:
+      friendly_name: Next Replacement
+      value_template: '{{ (state_attr("input_datetime.last_air_filter", "timestamp") +  7776000) | timestamp_local() }}'
+      attribute_templates:
+        timestamp: '{{ (state_attr("input_datetime.last_air_filter", "timestamp") +  7776000) }}'
+      device_class: timestamp
+    last_litter_box:
+      friendly_name: Last Replacement
+      value_template: '{{ states("input_datetime.last_litter_box") }}'
+      device_class: timestamp
+    next_litter_box:
+      friendly_name: Next Cleaning
+      value_template: '{{ (state_attr("input_datetime.last_litter_box", "timestamp") + 172800) | timestamp_local() }}'
+      attribute_templates:
+        timestamp: '{{ (state_attr("input_datetime.last_litter_box", "timestamp") + 172800) }}'
+      device_class: timestamp
+    last_vacuum:
+      friendly_name: Last Vacuum Run
+      value_template: "{{ states.vacuum.rockrobo.last_changed.isoformat() }}"
+      device_class: timestamp
+    next_vacuum:
+      friendly_name: Next Vacuum
+      value_template: '{{ (states("sensor.last_vacuum") | as_timestamp() + 259200) | timestamp_local() }}'
+      device_class: timestamp
 - platform: time_date
   display_options:
-    - 'time'
-    - 'date'
-    - 'time_date'
-    - 'date_time_iso'
-    - 'time_utc'
+    - "time"
+    - "date"
+    - "time_date"
+    - "date_time_iso"
+    - "time_utc"
 - platform: history_stats
   name: AC Cool Today
   entity_id: sensor.hvac_action
-  state: 'cooling'
+  state: "cooling"
   type: time
-  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
-  end: '{{ now() }}'
+  start: "{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}"
+  end: "{{ now() }}"
 - platform: history_stats
   name: AC Heat Today
   entity_id: sensor.hvac_action
-  state: 'heating'
+  state: "heating"
   type: time
-  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
-  end: '{{ now() }}'
+  start: "{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}"
+  end: "{{ now() }}"
 - platform: scrape
   name: NPR News Scrape
   resource: https://www.npr.org/rss/podcast.php?id=500005
-  select: 'enclosure'
-  attribute: 'url'
+  select: "enclosure"
+  attribute: "url"
 - platform: statistics
   name: Outdoor Temperature Stats
   entity_id: sensor.outdoor_temperature
@@ -86,28 +113,28 @@
 - platform: waze_travel_time
   origin: zone.home
   destination: zone.atl
-  region: 'US'
+  region: "US"
   name: Travel Home to ATL
 - platform: waze_travel_time
   origin: zone.atl
   destination: zone.home
-  region: 'US'
+  region: "US"
   name: Travel ATL to Home
 - platform: waze_travel_time
   origin: zone.home
   destination: zone.gdot
-  region: 'US'
+  region: "US"
   name: Travel Home to GDOT
 - platform: waze_travel_time
   origin: zone.gdot
   destination: zone.home
-  region: 'US'
+  region: "US"
   name: Travel GDOT to Home
 - platform: rest
   resource: https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=3&mostRecent=true&stationString=KATL
   name: ATL METAR
-  value_template: '{{ value_json.response.data.METAR.flight_category }}'
-  json_attributes_path: '{{ value_json.response.data.METAR }}'
+  value_template: "{{ value_json.response.data.METAR.flight_category }}"
+  json_attributes_path: "{{ value_json.response.data.METAR }}"
 - platform: systemmonitor
   resources:
     - type: disk_use_percent

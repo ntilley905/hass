@@ -1,0 +1,25 @@
+---
+# Automations to start the vacuum when the iOS events are fired.
+
+- alias: iOS Vacuum Now
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: RUN_VACUUM_NOW
+  action:
+    - service: vacuum.start
+      data:
+        entity_id: vacuum.rockrobo
+
+- alias: iOS Vacuum 15M
+  trigger:
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: RUN_VACUUM_15M
+  action:
+    - delay: "00:15:00"
+    - service: vacuum.start
+      data:
+        entity_id: vacuum.rockrobo
