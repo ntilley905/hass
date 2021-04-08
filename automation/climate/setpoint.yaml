@@ -5,6 +5,7 @@
 # mode before windows are closed)
 
 - alias: Climate Set Point
+  id: "climate_set_point"
   mode: restart
   trigger:
     - platform: state
