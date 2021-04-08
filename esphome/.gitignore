@@ -7,8 +7,7 @@
 **/lib/
 **/src/
 **/platformio.ini
-/secrets.yaml
 /*/
 
-#specific allows
-!.test/secrets.yaml
+# specific allows
+!/secrets.yaml
