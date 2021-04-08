@@ -12,6 +12,9 @@
     - platform: sun
       event: sunrise
       offset: "+00:15:00"
+    - platform: state
+      entity_id: device_tracker.sara_work_laptop
+      to: "home"
   condition:
     - condition: state
       entity_id: input_boolean.dumb_mode
