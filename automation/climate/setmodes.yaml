@@ -48,7 +48,7 @@
         value: '{{ states("input_number.climate_cool_default") | int + states("input_number.climate_away_offset") | int }}'
 
 - alias: Climate Set Trip
-  id: "climate_set_away"
+  id: "climate_set_trip"
   trigger:
     platform: state
     entity_id: input_boolean.trip_mode
