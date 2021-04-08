@@ -62,7 +62,7 @@ jobs:
           pip list
           esphome version
       - name: Copy stub files into configuration folder
-        run: cp -R ./.test/* ./esphome/
+        run: cp -R ./esphome/.test/* ./esphome/
       - name: Run esphome on all files
         # yamllint disable rule:line-length
         run: |
