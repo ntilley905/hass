@@ -1,1 +1,2 @@
----
+sensor.indoor_temperature:
+  icon: mdi:thermometer

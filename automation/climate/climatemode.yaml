@@ -1,5 +1,4 @@
 ---
-
 # This automation turns the climate on or off when the windows are opened or
 # closed.
 
@@ -7,13 +6,13 @@
   trigger:
     platform: state
     entity_id: group.outdoor_doors_windows
-    to: 'on'
+    to: "on"
     for:
       seconds: 30
   condition:
     condition: state
     entity_id: input_boolean.dumb_mode
-    state: 'off'
+    state: "off"
   action:
     service: climate.turn_off
     entity_id: climate.thermostat
@@ -22,49 +21,20 @@
   trigger:
     - platform: state
       entity_id: group.outdoor_doors_windows
-      to: 'off'
+      to: "off"
       for:
         seconds: 30
     - platform: state
       entity_id: binary_sensor.smoke_detector_smoke_detected
-      to: 'off'
+      to: "off"
   condition:
     - condition: state
       entity_id: group.outdoor_doors_windows
-      state: 'off'
+      state: "off"
     - condition: state
       entity_id: input_boolean.dumb_mode
-      state: 'off'
+      state: "off"
   action:
     service: climate.turn_on
     data:
       entity_id: climate.thermostat
-
-- alias: Climate Set Mode
-  trigger:
-    - platform: template
-      value_template: "{{ states('sensor.thermostat_temperature') > states('input_number.climate_cool_point') }}"
-    - platform: template
-      value_template: "{{ states('sensor.thermostat_temperature') < states('input_number.climate_heat_point') }}"
-    - platform: state
-      entity_id: climate.thermostat
-      from: 'off'
-  condition:
-    - condition: state
-      entity_id: input_boolean.dumb_mode
-      state: 'off'
-    - condition: not
-      conditions:
-        - condition: state
-          entity_id: climate.thermostat
-          state: 'off'
-  action:
-    - service: climate.set_hvac_mode
-      entity_id: climate.thermostat
-      data_template:
-        hvac_mode: >
-          {% if states('sensor.thermostat_temperature') < states('input_number.climate_heat_point') %}
-            heat
-          {% else %}
-            cool
-          {% endif %}

@@ -40,9 +40,6 @@
 #
 ################################################################################
 
-
-
-
 ################################################################################
 ## sensor ##
 
@@ -56,15 +53,15 @@ sensor:
         unit_of_measurement: Alerts
         icon_template: mdi:alert-rhombus
         value_template: >-
-            {% set alerts_total = namespace(count=0) %}
-            {% if (state_attr('sensor.weatheralerts_1', 'alerts')) %}
-              {% for alert in state_attr('sensor.weatheralerts_1', 'alerts') %}
-                {% if as_timestamp(alert['endsExpires']) - as_timestamp(now()) > 0 %}
-                  {% set alerts_total.count = alerts_total.count + 1 %}
-                {% endif %}
-              {% endfor %}
-            {% endif %}
-            {{ alerts_total.count }}
+          {% set alerts_total = namespace(count=0) %}
+          {% if (state_attr('sensor.weatheralerts_1', 'alerts')) %}
+            {% for alert in state_attr('sensor.weatheralerts_1', 'alerts') %}
+              {% if as_timestamp(alert['endsExpires']) - as_timestamp(now()) > 0 %}
+                {% set alerts_total.count = alerts_total.count + 1 %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+          {{ alerts_total.count }}
         attribute_templates:
           warning_count: >-
             {% set warnings = namespace(count=0) %}
@@ -1125,17 +1122,17 @@ sensor:
             {% endif %}
       weatheralerts_1_alert_4_most_recent_active_alert:
         value_template: >-
-            {% if states('sensor.weatheralerts_1_alert_4_most_recent_active_alert') == '' and states('sensor.weatheralerts_1_alert_4') != 'on' %}
-              unavailable
-            {% elif states('sensor.weatheralerts_1_alert_4_most_recent_active_alert') == 'unavailable' and states('sensor.weatheralerts_1_alert_4') != 'on' %}
-              unavailable
-            {% elif states('sensor.weatheralerts_1_alert_4_most_recent_active_alert') == 'unknown' and states('sensor.weatheralerts_1_alert_4') != 'on' %}
-              unavailable
-            {% elif states('sensor.weatheralerts_1_alert_4') == 'on' %}
-              {{ state_attr('sensor.weatheralerts_1_alert_4', 'alert_event') }}
-            {% else %}
-              {{ states('sensor.weatheralerts_1_alert_4_most_recent_active_alert') }}
-            {% endif %}
+          {% if states('sensor.weatheralerts_1_alert_4_most_recent_active_alert') == '' and states('sensor.weatheralerts_1_alert_4') != 'on' %}
+            unavailable
+          {% elif states('sensor.weatheralerts_1_alert_4_most_recent_active_alert') == 'unavailable' and states('sensor.weatheralerts_1_alert_4') != 'on' %}
+            unavailable
+          {% elif states('sensor.weatheralerts_1_alert_4_most_recent_active_alert') == 'unknown' and states('sensor.weatheralerts_1_alert_4') != 'on' %}
+            unavailable
+          {% elif states('sensor.weatheralerts_1_alert_4') == 'on' %}
+            {{ state_attr('sensor.weatheralerts_1_alert_4', 'alert_event') }}
+          {% else %}
+            {{ states('sensor.weatheralerts_1_alert_4_most_recent_active_alert') }}
+          {% endif %}
         attribute_templates:
           alert_effective: >-
             {% if states('sensor.weatheralerts_1_alert_4_most_recent_active_alert') == '' and states('sensor.weatheralerts_1_alert_4') != 'on' %}
@@ -1210,9 +1207,6 @@ sensor:
             No
           {% endif %}
 
-
-
-
 ################################################################################
 ## input_text ##
 
@@ -1229,9 +1223,6 @@ input_text:
     max: 255
     initial: None
 
-
-
-
 ################################################################################
 ## automation ##
 
@@ -1239,7 +1230,7 @@ automation:
   ## Automation to trigger a UI notification when there is an active weather alert.
   ## weatheralerts_1_alert_1 should always contain most recent alert.
   - alias: Weather Alert UI Notification - 1
-    initial_state: 'on'
+    initial_state: True
     trigger:
       - platform: state
         entity_id: sensor.weatheralerts_1_alert_1_last_changed
@@ -1385,12 +1376,15 @@ automation:
                 name: default
                 critical: 1
                 volume: 1.0
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.weatheralerts_1_triggered_notify_alert_ids
+          value: "{{ state_attr('sensor.weatheralerts_1_alert_1', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_2', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_3', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_4', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_5', 'alert_id') }}"
       - condition: state
         entity_id: group.home_devices
-        state: 'home'
+        state: "home"
       - service: light.turn_on
         entity_id: light.all
-
 
 ################################################################################
 ## script ##
@@ -1400,9 +1394,9 @@ script:
   weatheralerts_1_popup_on_wx_alert:
     alias: Weather Alert Pop Up - 1
     sequence:
-        ## Dismiss any current alert so the UI isn't filled
-        ## up with these if there are more then one.
-        ## Only show the most recent alert
+      ## Dismiss any current alert so the UI isn't filled
+      ## up with these if there are more then one.
+      ## Only show the most recent alert
       - service: persistent_notification.dismiss
         data:
           notification_id: "weatheralerts_1_alert"

@@ -16,7 +16,7 @@
     - "{{ trigger.event.data.tag_id in tags }}"
   action:
     - variables:
-        chore_id: '{{ "input_datetime.next_" + tags[trigger.event.data.tag_id].chore}}'
+        chore_id: '{{ "input_datetime.last_" + tags[trigger.event.data.tag_id].chore}}'
     - service: input_datetime.set_datetime
       target:
         entity_id: "{{ chore_id }}"

@@ -44,6 +44,9 @@
       value_template: '{{ state_attr("sensor.next_litter_box", "timestamp") == states("sensor.date_time_iso") | as_timestamp() }}'
     - platform: time_pattern
       hours: "21"
+  condition:
+    - condition: template
+      value_template: '{{ state_attr("sensor.next_litter_box", "timestamp") <= states("sensor.date_time_iso") | as_timestamp() }}'
   action:
     - wait_template: '{{ is_state("group.home_devices", "home") }}'
     - service: notify.all_mobile_apps
@@ -59,6 +62,9 @@
       value_template: '{{ states("sensor.next_vacuum") | as_timestamp() == states("sensor.date_time_iso") | as_timestamp() }}'
     - platform: time_pattern
       hours: "16"
+  condition:
+    - condition: template
+      value_template: '{{ states("sensor.next_vacuum") | as_timestamp() <= states("sensor.date_time_iso") | as_timestamp() }}'
   action:
     - wait_template: '{{ is_state("group.home_devices", "home") }}'
     - service: notify.all_mobile_apps

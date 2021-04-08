@@ -1,5 +1,4 @@
 ---
-
 # This automation notifies through Discord if there is a delay at a tracked
 # airport. It also notifies if there was a ground stop or closure that has
 # since been canceled.
@@ -39,11 +38,12 @@
       - binary_sensor.ord_ground_delay
       - binary_sensor.ord_ground_stop
       - binary_sensor.ord_closed
-    to: 'on'
+    from: "off"
+    to: "on"
   condition:
     condition: state
     entity_id: input_boolean.dumb_mode
-    state: 'off'
+    state: "off"
   action:
     service: notify.discord_webhook
     data:
@@ -67,11 +67,12 @@
       - binary_sensor.bos_closed
       - binary_sensor.ord_ground_stop
       - binary_sensor.ord_closed
-    to: 'off'
+    from: "on"
+    to: "off"
   condition:
     condition: state
     entity_id: input_boolean.dumb_mode
-    state: 'off'
+    state: "off"
   action:
     service: notify.discord_webhook
     data:

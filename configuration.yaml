@@ -11,8 +11,11 @@ http:
   use_x_forwarded_for: true
   trusted_proxies: !secret nginx_ip
 
-updater:
-  include_used_components: true
+history:
+  exclude:
+    entity_globs:
+      - sensor.date*
+      - sensor.time*
 
 lovelace:
   mode: yaml

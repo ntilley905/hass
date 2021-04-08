@@ -4,10 +4,6 @@
     hvac_action:
       friendly_name: HVAC Action
       value_template: '{{ state_attr("climate.thermostat", "hvac_action") }}'
-    indoor_temperature:
-      friendly_name: Indoor Temperature
-      value_template: "{{ ((float(states.sensor.bathroom_temperature.state) + float(states.sensor.thermostat_temperature.state) + float(states.sensor.bathroom_temperature_z.state) + float(states.sensor.bedroom_temperature_z.state) + float(states.sensor.bedroom_temperature.state) + float(states.sensor.kitchen_temperature_z.state) + float(states.sensor.hallway_temperature_z.state)) / 7) | round(1) }}"
-      unit_of_measurement: "°F"
     precip_type:
       value_template: >
         {% if states("weather.katl_hourly") in ['clear-night', 'cloudy', 'fog', 'partlycloudy', 'sunny', 'windy', 'windy-variant'] %}
@@ -53,7 +49,7 @@
         timestamp: '{{ (state_attr("input_datetime.last_air_filter", "timestamp") +  7776000) }}'
       device_class: timestamp
     last_litter_box:
-      friendly_name: Last Replacement
+      friendly_name: Last Cleaning
       value_template: '{{ states("input_datetime.last_litter_box") }}'
       device_class: timestamp
     next_litter_box:
@@ -91,11 +87,6 @@
   type: time
   start: "{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}"
   end: "{{ now() }}"
-- platform: scrape
-  name: NPR News Scrape
-  resource: https://www.npr.org/rss/podcast.php?id=500005
-  select: "enclosure"
-  attribute: "url"
 - platform: statistics
   name: Outdoor Temperature Stats
   entity_id: sensor.outdoor_temperature
@@ -151,3 +142,15 @@
     - type: processor_use
     - type: processor_temperature
     - type: last_boot
+- platform: min_max
+  entity_ids:
+    - sensor.bathroom_temperature
+    - sensor.bathroom_temperature_z
+    - sensor.bedroom_temperature
+    - sensor.bedroom_temperature_z
+    - sensor.ecolink_z_wave_plus_firefighter_air_temperature
+    - sensor.hallway_temperature_z
+    - sensor.kitchen_temperature_z
+    - sensor.thermostat_temperature
+  type: mean
+  name: Indoor Temperature

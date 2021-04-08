@@ -1,0 +1,14 @@
+---
+# This serves as a workaround to the Z-Wave thermostat not updating values.
+
+- alias: Update Thermostat Values
+  trigger:
+    - platform: time_pattern
+      minutes: "/5"
+  action:
+    - service: zwave_js.refresh_value
+      data:
+        entity_id: sensor.thermostat_temperature
+    - service: zwave_js.refresh_value
+      data:
+        entity_id: sensor.thermostat_humidity
