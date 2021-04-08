@@ -1,17 +1,17 @@
 ---
-
 # This automation turns on our welcome lights if it is after one hour before
 # sunset to ensure we don't come home to a dark home.
 
 - alias: Home Lights
+  id: "home_lights"
   trigger:
     platform: state
     entity_id: group.home_devices
-    to: 'home'
+    to: "home"
   condition:
     - condition: state
       entity_id: input_boolean.dumb_mode
-      state: 'off'
+      state: "off"
   action:
     - service: script.led_on
     - condition: sun

@@ -1,45 +1,46 @@
 ---
-
 # This turns some lights on at sunset, which lights depends on whether or not
 # we are watching TV.
 
 - alias: Lights at Sunset
+  id: "lights_at_sunset"
   trigger:
     platform: numeric_state
     entity_id: sun.sun
-    attribute: 'elevation'
+    attribute: "elevation"
     below: 5.0
   condition:
     - condition: state
       entity_id: group.home_devices
-      state: 'home'
+      state: "home"
     - condition: not
       conditions:
         - condition: state
           entity_id: media_player.apple_tv
-          state: 'playing'
+          state: "playing"
     - condition: state
       entity_id: input_boolean.dumb_mode
-      state: 'off'
+      state: "off"
   action:
     service: scene.turn_on
     entity_id: scene.normal_lights
 
 - alias: Lights at Sunset TV On
+  id: "lights_at_sunset_tv_on"
   trigger:
     platform: numeric_state
     entity_id: sun.sun
-    attribute: 'elevation'
+    attribute: "elevation"
     below: 5.0
   condition:
     - condition: state
       entity_id: group.home_devices
-      state: 'home'
+      state: "home"
     - condition: template
       value_template: "{{ is_state('media_player.apple_tv', 'playing') }}"
     - condition: state
       entity_id: input_boolean.dumb_mode
-      state: 'off'
+      state: "off"
   action:
     service: scene.turn_on
     entity_id: scene.tv_lights

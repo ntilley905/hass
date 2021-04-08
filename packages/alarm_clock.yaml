@@ -1,5 +1,4 @@
 ---
-
 # This package sets up the alarm clock. It is configurable via input booleans
 # and an input date time, and has several automations that run to manage each
 # individual portion.
@@ -22,6 +21,7 @@ input_boolean:
 
 automation:
   - alias: Alarm Clock Lights
+    id: "alarm_clock_lights"
     trigger:
       platform: template
       # 3 minutes before alarm clock time
@@ -29,10 +29,10 @@ automation:
     condition:
       - condition: state
         entity_id: input_boolean.alarm_clock_enable
-        state: 'on'
+        state: "on"
       - condition: state
         entity_id: input_boolean.alarm_clock_lights
-        state: 'on'
+        state: "on"
     action:
       - service: light.turn_on
         data:
@@ -40,19 +40,21 @@ automation:
           kelvin: 4500
           brightness: 255
           transition: 120
-      - delay: '00:01:30'
+      - delay: "00:01:30"
       - service: light.turn_on
         data:
           entity_id: light.bedroom_lamp
           kelvin: 4500
           brightness: 255
           transition: 90
-      - delay: '00:01:00'
+      - delay: "00:01:00"
       - service: light.turn_on
         entity_id: light.bedroom_light
       - service: input_boolean.turn_off
         entity_id: input_boolean.alarm_clock_lights
+
   - alias: Alarm Clock Coffee
+    id: "alarm_clock_coffee"
     trigger:
       platform: template
       # Right at alarm time
@@ -60,10 +62,10 @@ automation:
     condition:
       - condition: state
         entity_id: input_boolean.alarm_clock_enable
-        state: 'on'
+        state: "on"
       - condition: state
         entity_id: input_boolean.alarm_clock_coffee
-        state: 'on'
+        state: "on"
     action:
       - service: switch.turn_on
         entity_id: switch.coffee_maker

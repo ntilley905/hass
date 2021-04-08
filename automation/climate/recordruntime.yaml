@@ -1,10 +1,10 @@
 ---
-
 # This is an automation run once a day to record the value of how much the
 # HVAC runs and the average temperature. Used for long term data analysis
 # through InfluxDB.
 
 - alias: Record AC Cool Time
+  id: "record_ac_cool_time"
   trigger:
     platform: time
     at: "23:59:45"
@@ -13,7 +13,9 @@
     data:
       entity_id: input_number.previous_day_ac_cool
       value: "{{ states('sensor.ac_cool_today') }}"
+
 - alias: Record AC Heat Time
+  id: "record_ac_heat_time"
   trigger:
     platform: time
     at: "23:59:45"
@@ -22,7 +24,9 @@
     data:
       entity_id: input_number.previous_day_ac_heat
       value: "{{ states('sensor.ac_heat_today') }}"
-- alias: Record Average
+
+- alias: Record Average Temperature
+  id: "record_average_temperature"
   trigger:
     platform: time
     at: "23:59:45"

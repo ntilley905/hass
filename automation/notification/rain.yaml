@@ -1,9 +1,9 @@
 ---
-
 # This automation sends a notification if the windows are open and it starts to
 # rain or if we leave home and have left the windows open.
 
 - alias: Rain Notification
+  id: "rain_notification"
   trigger:
     platform: template
     value_template: "{{ not is_state('sensor.precip_type', 'None') }}"
@@ -13,26 +13,28 @@
       state: "on"
     - condition: state
       entity_id: input_boolean.dumb_mode
-      state: 'off'
+      state: "off"
   action:
     - service: notify.all_mobile_apps
       data:
-        title: 'Precip Detected!'
+        title: "Precip Detected!"
         message: "Windows are open and the weather is {{ states('sensor.precip_type') }}!"
+
 - alias: Windows Open When Leaving
+  id: "windows_open_when_leaving"
   trigger:
     platform: state
     entity_id: group.home_devices
-    to: 'not_home'
+    to: "not_home"
   condition:
     - condition: state
       entity_id: group.outdoor_doors_windows
-      state: 'on'
+      state: "on"
     - condition: state
       entity_id: input_boolean.dumb_mode
-      state: 'off'
+      state: "off"
   action:
     service: notify.mobile_app_nathans_iphone
     data:
-      title: 'Windows Open!'
-      message: 'You forgot to close the windows.'
+      title: "Windows Open!"
+      message: "You forgot to close the windows."

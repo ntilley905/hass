@@ -1,17 +1,17 @@
 ---
-
 # This automation notifies us if the coffee maker has been on for over an hour.
 # We can either turn it off manually or via an actionable notification, or if
 # we do not respond within 5 minutes, it'll turn off automatically.
 # No one likes burnt coffee!
 
 - alias: Coffee Maker Still On
+  id: "coffee_maker_still_on"
   mode: queued
   max: 2
   trigger:
     - platform: state
       entity_id: switch.coffee_maker
-      to: 'on'
+      to: "on"
       for:
         hours: 1
     - platform: event
@@ -27,22 +27,22 @@
         notify.mobile_app_saras_iphone
         {% endif %}
       data:
-        title: 'Coffee Maker Still On'
-        message: 'The coffee maker has been on for {{ relative_time(states.switch.coffee_maker.last_changed) }}'
+        title: "Coffee Maker Still On"
+        message: "The coffee maker has been on for {{ relative_time(states.switch.coffee_maker.last_changed) }}"
         data:
           push:
-            category: 'coffee'
+            category: "coffee"
             apns_headers:
-              'apns-collapse-id': 'coffee'
+              "apns-collapse-id": "coffee"
     - wait_for_trigger:
-      - platform: event # yamllint disable-line rule:indentation
-        event_type: ios.notification_action_fired
-        event_data:
-          actionName: COFFEE_OFF
-      - platform: event
-        event_type: ios.notification_action_fired
-        event_data:
-          actionName: COFFEE_DELAY
+        - platform: event # yamllint disable-line rule:indentation
+          event_type: ios.notification_action_fired
+          event_data:
+            actionName: COFFEE_OFF
+        - platform: event
+          event_type: ios.notification_action_fired
+          event_data:
+            actionName: COFFEE_DELAY
       timeout: "00:05:00"
     - choose:
         - conditions: '{{wait.trigger.event.data.actionName == "COFFEE_OFF" or wait.trigger == None}}'
@@ -66,9 +66,9 @@
             notify.mobile_app_saras_iphone
             {% endif %}
           data:
-            title: 'Coffee Maker Turned Off'
-            message: 'Since you did not respond, the coffee maker is now off.'
+            title: "Coffee Maker Turned Off"
+            message: "Since you did not respond, the coffee maker is now off."
             data:
               push:
                 apns_headers:
-                  'apns-collapse-id': 'coffee'
+                  "apns-collapse-id": "coffee"

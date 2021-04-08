@@ -2,6 +2,7 @@
 # These automations are to notify us when a task is coming due.
 
 - alias: Air Filter Notify 10 Days
+  id: "air_filter_notify_10_days"
   trigger:
     - platform: time
       at: "09:00:00"
@@ -21,6 +22,7 @@
       entity_id: input_boolean.air_filter_notified
 
 - alias: Air Filter Notify Now
+  id: "air_filter_notify_now"
   mode: single
   max_exceeded: silent
   trigger:
@@ -37,6 +39,7 @@
         title: "Change Air Filter Now"
 
 - alias: Litter Box Notify Now
+  id: "litter_box_notify_now"
   mode: single
   max_exceeded: silent
   trigger:
@@ -55,6 +58,7 @@
         title: "Litter Box Needs Cleaning"
 
 - alias: Vacuum Notify Now
+  id: "vacuum_notify_now"
   mode: single
   max_exceeded: silent
   trigger:

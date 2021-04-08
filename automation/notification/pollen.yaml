@@ -1,8 +1,8 @@
 ---
-
 # This automation sends a daily notification if the pollen is high.
 
 - alias: Pollen Notification
+  id: "pollen_notification"
   trigger:
     platform: time
     at: "08:00:00"
@@ -15,7 +15,7 @@
       above: 6.0
     - condition: state
       entity_id: input_boolean.dumb_mode
-      state: 'off'
+      state: "off"
   action:
     service: notify.mobile_app_nathans_iphone
     data:

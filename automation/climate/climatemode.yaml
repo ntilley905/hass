@@ -3,6 +3,7 @@
 # closed.
 
 - alias: Climate Turn Off
+  id: "climate_turn_off"
   trigger:
     platform: state
     entity_id: group.outdoor_doors_windows
@@ -18,6 +19,7 @@
     entity_id: climate.thermostat
 
 - alias: Climate Turn On
+  id: "climate_turn_on"
   trigger:
     - platform: state
       entity_id: group.outdoor_doors_windows

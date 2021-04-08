@@ -5,6 +5,7 @@
 # is still in bed).
 
 - alias: Sara to Work
+  id: "sara_to_work"
   trigger:
     platform: state
     entity_id: person.sara

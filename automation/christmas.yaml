@@ -1,17 +1,17 @@
 ---
-
 - alias: Christmas Lights On
+  id: "christmas_lights_on"
   trigger:
     - platform: state
       entity_id: group.home_devices
-      to: 'home'
+      to: "home"
     - platform: state
       entity_id: input_boolean.sleep_mode
-      to: 'off'
+      to: "off"
   condition:
     condition: state
     entity_id: input_boolean.dumb_mode
-    state: 'off'
+    state: "off"
   action:
     - service: switch.turn_on
       entity_id: switch.christmas_tree
@@ -19,17 +19,18 @@
       entity_id: light.christmas_tree_wled
 
 - alias: Christmas Lights Off
+  id: "christmas_lights_off"
   trigger:
     - platform: state
       entity_id: group.home_devices
-      to: 'not_home'
+      to: "not_home"
     - platform: state
       entity_id: input_boolean.sleep_mode
-      to: 'on'
+      to: "on"
   condition:
     condition: state
     entity_id: input_boolean.dumb_mode
-    state: 'off'
+    state: "off"
   action:
     - service: switch.turn_off
       entity_id: switch.christmas_tree
@@ -37,6 +38,7 @@
       entity_id: light.christmas_tree_wled
 
 - alias: Christmas Balcony Lights On
+  id: "christmas_balcony_lights_on"
   trigger:
     - platform: sun
       event: sunset
@@ -44,19 +46,20 @@
   condition:
     condition: state
     entity_id: input_boolean.dumb_mode
-    state: 'off'
+    state: "off"
   action:
     - service: switch.turn_on
       entity_id: switch.balcony_christmas_light_plug
 
 - alias: Christmas Balcony Lights Off
+  id: "christmas_balcony_lights_off"
   trigger:
     - platform: time
       at: "23:00:00"
   condition:
     - condition: state
       entity_id: input_boolean.dumb_mode
-      state: 'off'
+      state: "off"
     - condition: template
       value_template: "{{ not (now().month == 12 and now().day == 24 or now().month == 12 and now().day == 25) }}"
   action:

@@ -2,6 +2,7 @@
 # Automations to start the vacuum when the iOS events are fired.
 
 - alias: iOS Vacuum Now
+  id: "ios_vacuum_now"
   trigger:
     platform: event
     event_type: ios.notification_action_fired
@@ -13,6 +14,7 @@
         entity_id: vacuum.rockrobo
 
 - alias: iOS Vacuum 15M
+  id: "ios_vacuum_15m"
   trigger:
     - platform: event
       event_type: ios.notification_action_fired

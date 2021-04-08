@@ -1,43 +1,45 @@
 ---
-
 # These automations calculate the time for Nathan to drive to work based on
 # what time he needs to be there, and then notifies him of when that time is
 # 15 and 5 minutes away.
 
 - alias: Notify Leave Soon
+  id: "notify_leave_soon"
   trigger:
     platform: template
     value_template: "{{ states('sensor.time_date') == (states('sensor.time_to_leave') | as_timestamp() - 900) | timestamp_custom('%H:%M, %Y-%m-%d') }}"
   condition:
     - condition: state
       entity_id: person.nathan
-      state: 'home'
+      state: "home"
     - condition: state
       entity_id: input_boolean.dumb_mode
-      state: 'off'
+      state: "off"
   action:
     service: notify.mobile_app_nathans_iphone
     data:
-      title: 'Time to Leave!'
+      title: "Time to Leave!"
       message: "Trip {{ state_attr('calendar.work', 'message') }} reports at {{ states('sensor.next_report_time') | as_timestamp() | timestamp_custom('%-I:%M %p') }}. Leave by {{ states('sensor.time_to_leave') | as_timestamp() | timestamp_custom('%-I:%M %p') }} to arrive on time. Take {{ state_attr('sensor.travel_home_to_atl', 'route') }}."
+
 - alias: Notify Leave Now
+  id: "notify_leave_now"
   trigger:
     platform: template
     value_template: "{{ states('sensor.time_date') == (states('sensor.time_to_leave') | as_timestamp() - 300) | timestamp_custom('%H:%M, %Y-%m-%d') }}"
   condition:
     - condition: state
       entity_id: person.nathan
-      state: 'home'
+      state: "home"
     - condition: not
       conditions:
         condition: state
         entity_id: sensor.nathans_iphone_activity
-        state: 'Automotive'
+        state: "Automotive"
     - condition: state
       entity_id: input_boolean.dumb_mode
-      state: 'off'
+      state: "off"
   action:
     service: notify.mobile_app_nathans_iphone
     data:
-      title: 'Leave Now!'
+      title: "Leave Now!"
       message: "Trip {{ state_attr('calendar.work', 'message') }} reports at {{ states('sensor.next_report_time') | as_timestamp() | timestamp_custom('%-I:%M %p') }}. Leave by {{ states('sensor.time_to_leave') | as_timestamp() | timestamp_custom('%-I:%M %p') }} to arrive on time. Take {{ state_attr('sensor.travel_home_to_atl', 'route') }}."

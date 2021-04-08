@@ -1,22 +1,23 @@
 ---
-
 # This automation toggles guest mode based on the presence of devices that have
 # been added to the guest devices group (mostly my parents)
 
 - alias: Turn Guest Mode On
+  id: "turn_guest_mode_on"
   trigger:
     platform: state
     entity_id: group.guest_devices
-    to: 'home'
+    to: "home"
   action:
     service: input_boolean.turn_on
     entity_id: input_boolean.guest_mode
 
 - alias: Turn Guest Mode Off
+  id: "turn_guest_mode_off"
   trigger:
     platform: state
     entity_id: group.guest_devices
-    to: 'not_home'
+    to: "not_home"
   action:
     service: input_boolean.turn_off
     entity_id: input_boolean.guest_mode

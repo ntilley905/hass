@@ -1,17 +1,17 @@
 ---
-
 # This automation turns off all lights as well as the coffee maker, fan, and
 # sleep mode when we leave home.
 
 - alias: Away Lights
+  id: "away_lights"
   trigger:
     platform: state
     entity_id: group.home_devices
-    to: 'not_home'
+    to: "not_home"
   condition:
     condition: state
     entity_id: input_boolean.dumb_mode
-    state: 'off'
+    state: "off"
   action:
     - service: light.turn_off
       data:
@@ -25,6 +25,6 @@
       entity_id: switch.living_room_fan
     - condition: state
       entity_id: input_boolean.holiday_mode
-      state: 'on'
+      state: "on"
     - service: switch.turn_off
       entity_id: switch.christmas_tree

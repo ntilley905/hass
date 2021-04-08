@@ -2,6 +2,7 @@
 # This automation will dynamically update any chore if its tag is scanned.
 
 - alias: Tag Chore Update
+  id: "tag_chore_update"
   mode: queued
   variables:
     tags:

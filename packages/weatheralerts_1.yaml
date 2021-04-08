@@ -1230,6 +1230,7 @@ automation:
   ## Automation to trigger a UI notification when there is an active weather alert.
   ## weatheralerts_1_alert_1 should always contain most recent alert.
   - alias: Weather Alert UI Notification - 1
+    id: "weather_alert_ui_notification_1"
     initial_state: True
     trigger:
       - platform: state
@@ -1297,6 +1298,7 @@ automation:
     ## Automation to dismiss UI notification if there are no active alerts for 30 minutes
     ## Disable or remove this automation if you don't want notifications to auto-dismiss
   - alias: Weather Alert UI Notification Auto-dismiss - 1
+    id: "weather_alert_ui_notification_auto_dismiss_1"
     trigger:
       - platform: state
         entity_id: sensor.weatheralerts_1_alerts_are_active
@@ -1316,6 +1318,7 @@ automation:
   ## Automation to push alerts via Pushbullet service
   ## Disable or remove this automation if you don't use Pushbullet
   - alias: Weather Alerts Mobile Notification - 1
+    id: "weather_alerts_mobile_notification_1"
     trigger:
       platform: state
       entity_id: sensor.weatheralerts_1_alert_1_last_changed
@@ -1347,6 +1350,7 @@ automation:
           value: "{{ state_attr('sensor.weatheralerts_1_alert_1', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_2', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_3', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_4', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_5', 'alert_id') }}"
 
   - alias: Weather Alerts Mobile Notification Critical
+    id: "weather_alerts_mobile_notification_critical"
     trigger:
       platform: state
       entity_id: sensor.weatheralerts_1_alert_1_last_changed

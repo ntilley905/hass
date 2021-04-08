@@ -1,24 +1,24 @@
 ---
-
 # This automation notifies us if the front door is opened while no one is home.
 # The notification includes a stream from the camera which is pointed at the
 # front door.
 
 - alias: Front Door
+  id: "front_door"
   trigger:
     platform: state
     entity_id: binary_sensor.front_door
-    to: 'on'
+    to: "on"
   condition:
     - condition: state
-      entity_id: 'group.home_devices'
-      state: 'not_home'
+      entity_id: "group.home_devices"
+      state: "not_home"
     - condition: state
       entity_id: input_boolean.guest_mode
-      state: 'off'
+      state: "off"
     - condition: state
       entity_id: input_boolean.dumb_mode
-      state: 'off'
+      state: "off"
   action:
     - service: notify.all_mobile_apps
       data:
@@ -27,29 +27,25 @@
     - service: light.turn_on
       data:
         entity_id: light.all
+
 - alias: Front Door Guest
+  id: "front_door_guest"
   trigger:
     platform: state
     entity_id: binary_sensor.front_door
-    to: 'on'
+    to: "on"
   condition:
     - condition: state
-      entity_id: 'group.home_devices'
-      state: 'not_home'
+      entity_id: "group.home_devices"
+      state: "not_home"
     - condition: state
       entity_id: input_boolean.guest_mode
-      state: 'on'
+      state: "on"
   action:
     - service: notify.all_mobile_apps
       data:
         title: "Front Door"
         message: "Cat sitter is here!"
-        data:
-          attachment:
-            content-type: jpeg
-          push:
-            category: camera
-          entity_id: camera.amcrest_camera
     - service: scene.turn_on
       data:
         entity_id: scene.normal_lights

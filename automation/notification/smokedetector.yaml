@@ -1,13 +1,13 @@
 ---
-
 # This automation alerts us if the smoke detectors go off via a Z-Wave
 # Firefighter unit. It also turns on all lights and the air conditioner.
 
 - alias: Smoke Detector
+  id: "smoke_detector"
   trigger:
     platform: state
     entity_id: binary_sensor.smoke_detector_smoke_detected
-    to: 'on'
+    to: "on"
   action:
     - service: light.turn_on
       data:
@@ -30,11 +30,12 @@
       entity_id: switch.air_purifier
 
 - alias: Smoke Cleared
+  id: "smoke_cleared"
   trigger:
     platform: state
     entity_id: binary_sensor.smoke_detector_smoke_detected
-    from: 'on'
-    to: 'off'
+    from: "on"
+    to: "off"
   action:
     - service: notify.all_mobile_apps
       data:

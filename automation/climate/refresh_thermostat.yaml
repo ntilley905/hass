@@ -2,6 +2,7 @@
 # This serves as a workaround to the Z-Wave thermostat not updating values.
 
 - alias: Update Thermostat Values
+  id: "update_thermostat_values"
   trigger:
     - platform: time_pattern
       minutes: "/5"

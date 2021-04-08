@@ -1,40 +1,41 @@
 ---
-
 # These automations turn sleep mode on and off based on our usual routines.
 
 - alias: Turn Sleep Mode Off
+  id: "turn_sleep_mode_off"
   trigger:
     - platform: state
       entity_id: switch.coffee_maker
-      to: 'on'
+      to: "on"
     - platform: state
       entity_id: binary_sensor.front_door
     - platform: sun
       event: sunrise
-      offset: '+00:15:00'
+      offset: "+00:15:00"
   condition:
     - condition: state
       entity_id: input_boolean.dumb_mode
-      state: 'off'
+      state: "off"
   action:
     service: input_boolean.turn_off
     entity_id: input_boolean.sleep_mode
 
 - alias: Turn Sleep Mode On
+  id: "turn_sleep_mode_on"
   trigger:
     platform: state
     entity_id: light.all
-    to: 'off'
+    to: "off"
   condition:
     - condition: time
-      after: '21:00:00'
-      before: '03:00:00'
+      after: "21:00:00"
+      before: "03:00:00"
     - condition: state
       entity_id: group.home_devices
-      state: 'home'
+      state: "home"
     - condition: state
       entity_id: input_boolean.dumb_mode
-      state: 'off'
+      state: "off"
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.sleep_mode

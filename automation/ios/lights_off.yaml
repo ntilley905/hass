@@ -1,13 +1,13 @@
 ---
-
 # This is an automation to turn off all lights based on an iOS action.
 
 - alias: "iOS Lights Off Action"
+  id: "ios_lights_off_action"
   trigger:
     platform: event
     event_type: ios_action_fired
     event_data:
-      actionName: 'All Lights Off'
+      actionName: "All Lights Off"
   action:
     service: light.turn_off
     entity_id: light.all

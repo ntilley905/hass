@@ -1,5 +1,4 @@
 ---
-
 # This automation is to control the Wemo smart plug that runs our air purifier.
 
 # Air purifier has the following priority:
@@ -13,6 +12,7 @@
 # from the last state change to not cycle it frequently.
 
 - alias: Air Purifier On During AC
+  id: "air_purifier_on_during_ac"
   trigger:
     platform: state
     entity_id: climate.thermostat
@@ -21,16 +21,18 @@
   condition:
     condition: state
     entity_id: input_boolean.dumb_mode
-    state: 'off'
+    state: "off"
   action:
     - wait_template: "{{ as_timestamp(states.sensor.date_time_iso.state) - as_timestamp(states.switch.air_purifier.last_changed) > 30}}"
     - service: switch.turn_on
       entity_id: switch.air_purifier
+
 - alias: Air Purifier On Windows Open
+  id: "air_purifier_on_windows_open"
   trigger:
     platform: state
     entity_id: group.outdoor_doors_windows
-    to: 'on'
+    to: "on"
     for:
       seconds: 15
   action:
@@ -39,60 +41,63 @@
       entity_id: switch.air_purifier
 
 - alias: Air Purifier Off During TV
+  id: "air_purifier_off_during_tv"
   trigger:
     platform: state
     entity_id: media_player.apple_tv
-    to: 'playing'
+    to: "playing"
   condition:
     - condition: state
       entity_id: climate.thermostat
-      attribute: 'hvac_action'
-      state: 'idle'
+      attribute: "hvac_action"
+      state: "idle"
     - condition: state
       entity_id: group.outdoor_doors_windows
-      state: 'off'
+      state: "off"
     - condition: state
       entity_id: input_boolean.dumb_mode
-      state: 'off'
+      state: "off"
   action:
     - wait_template: "{{ as_timestamp(states.sensor.date_time_iso.state) - as_timestamp(states.switch.air_purifier.last_changed) > 30}}"
     - service: switch.turn_off
       entity_id: switch.air_purifier
 
 - alias: Air Purifier Off During TV After HVAC or Windows
+  id: "air_purifier_off_during_tv_after_hvac_or_windows"
   trigger:
     - platform: state
       entity_id: climate.thermostat
-      attribute: 'hvac_action'
-      to: 'idle'
+      attribute: "hvac_action"
+      to: "idle"
     - platform: state
       entity_id: group.outdoor_doors_windows
-      to: 'off'
+      to: "off"
   condition:
     - condition: state
       entity_id: media_player.apple_tv
-      state: 'playing'
+      state: "playing"
     - condition: state
       entity_id: group.outdoor_doors_windows
-      state: 'off'
+      state: "off"
     - condition: state
       entity_id: input_boolean.dumb_mode
-      state: 'off'
+      state: "off"
   action:
     - wait_template: "{{ as_timestamp(states.sensor.date_time_iso.state) - as_timestamp(states.switch.air_purifier.last_changed) > 30}}"
     - service: switch.turn_off
       entity_id: switch.air_purifier
 
 - alias: Air Purifier On When Home
+  id: "air_purifier_on_when_home"
   trigger:
     - platform: state
       entity_id: group.home_devices
-      to: 'home'
+      to: "home"
     - platform: state
       entity_id: media_player.apple_tv
     - platform: state
       entity_id: binary_sensor.smoke_detector_smoke_detected
-      to: 'off'
+      to: "off"
   condition:
     - condition: not
       conditions:
@@ -101,16 +106,17 @@
           state: "playing"
     - condition: state
       entity_id: input_boolean.dumb_mode
-      state: 'off'
+      state: "off"
   action:
     - wait_template: "{{ as_timestamp(states.sensor.date_time_iso.state) - as_timestamp(states.switch.air_purifier.last_changed) > 30}}"
     - service: switch.turn_on
       entity_id: switch.air_purifier
 
 - alias: Air Purifier Cycle High
+  id: "air_purifier_cycle_high"
   trigger:
     platform: time_pattern
-    hours: '/1'
+    hours: "/1"
   condition:
     condition: numeric_state
     entity_id: sensor.allergy_index_today
@@ -120,9 +126,10 @@
     entity_id: input_boolean.air_purifier_cycle
 
 - alias: Air Purifier Cycle Low
+  id: "air_purifier_cycle_low"
   trigger:
     platform: time_pattern
-    hours: '/4'
+    hours: "/4"
   condition:
     condition: numeric_state
     entity_id: sensor.allergy_index_today
@@ -130,31 +137,32 @@
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.air_purifier_cycle
-    - delay: '01:00:00'
+    - delay: "01:00:00"
     - service: input_boolean.turn_off
       entity_id: input_boolean.air_purifier_cycle
 
 - alias: Air Purifier Set Not Home
+  id: "air_purifier_set_not_home"
   trigger:
     - platform: state
       entity_id: group.home_devices
-      to: 'not_home'
+      to: "not_home"
     - platform: state
       entity_id: climate.thermostat
-      attribute: 'hvac_action'
+      attribute: "hvac_action"
     - platform: state
       entity_id: input_boolean.air_purifier_cycle
   condition:
     - condition: state
       entity_id: group.home_devices
-      state: 'not_home'
+      state: "not_home"
     - condition: state
       entity_id: climate.thermostat
-      attribute: 'hvac_action'
-      state: 'idle'
+      attribute: "hvac_action"
+      state: "idle"
     - condition: state
       entity_id: input_boolean.dumb_mode
-      state: 'off'
+      state: "off"
   action:
     service: >
       {% if states('input_boolean.air_purifier_cycle') == 'on' %}
