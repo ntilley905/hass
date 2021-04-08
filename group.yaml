@@ -1,5 +1,4 @@
 ---
-
 home_devices:
   entities:
     - person.nathan
@@ -12,3 +11,17 @@ outdoor_doors_windows:
     - binary_sensor.bedroom_window_1
     - binary_sensor.bedroom_window_2
     - binary_sensor.bedroom_window_3
+updaters:
+  entities:
+    - binary_sensor.core_update_available
+    - binary_sensor.esphome_update_available
+    - binary_sensor.hacs_update_available
+    - binary_sensor.home_assistant_operating_system_update_available
+    - binary_sensor.icantbelieveitsnotvaletudo_update_available
+    - binary_sensor.mariadb_update_available
+    - binary_sensor.mosquitto_broker_update_available
+    - binary_sensor.nginx_proxy_manager_update_available
+    - binary_sensor.samba_share_update_available
+    - binary_sensor.ssh_web_terminal_update_available
+    - binary_sensor.visual_studio_code_update_available
+    - binary_sensor.z_wave_js_update_available

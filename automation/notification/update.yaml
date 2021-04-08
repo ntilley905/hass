@@ -1,14 +1,24 @@
 ---
+# This automation sends a notification when updates are available for an add on,
+# HA core, HACS component, or HA OS.
 
-# This automation sends a notification when a Home Assistant update is
-# available.
-
-- alias: HA Update
+- alias: Update Available
+  id: "update_available"
   trigger:
-    platform: state
-    entity_id: binary_sensor.updater
+    - platform: time
+      at: "09:30:00"
+  condition:
+    - alias: "Updates are available"
+      condition: state
+      entity_id: group.updaters
+      state: "on"
   action:
     service: notify.mobile_app_nathans_iphone
     data:
-      title: "HA Update"
-      message: "Version {{ state_attr('binary_sensor.updater', 'newest_version') }} now available."
+      title: "Update(s) available"
+      message: >
+        {% for entity in expand('group.updaters') %}
+        {% if entity.state == 'on' %}
+        Update available for {{ entity.attributes.friendly_name }}
+        {% endif %}
+        {% endfor %}

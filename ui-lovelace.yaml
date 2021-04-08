@@ -569,8 +569,7 @@ views:
           - input_boolean.dumb_mode
           - light.all
           - group.home_devices
-          - binary_sensor.updater
-          - sensor.hacs
+          - group.updaters
       - type: entities
         title: Pi-Hole
         entities:
