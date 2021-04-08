@@ -13,3 +13,4 @@ ignore: |
   .gitlab-ci.yml
   /themes/
   packages/weatheralerts_1.yaml
+  /blueprints/
