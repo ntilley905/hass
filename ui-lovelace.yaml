@@ -573,6 +573,7 @@ views:
       - type: entities
         title: Pi-Hole
         entities:
+          - switch.pi_hole
           - sensor.pi_hole_ads_blocked_today
           - sensor.pi_hole_ads_percentage_blocked_today
           - sensor.pi_hole_dns_queries_cached
@@ -582,29 +583,6 @@ views:
           - sensor.pi_hole_dns_unique_domains
           - sensor.pi_hole_domains_blocked
           - sensor.pi_hole_seen_clients
-      - type: horizontal-stack
-        cards:
-          - type: button
-            name: Pi-Hole Disable
-            icon: mdi:cloud-off-outline
-            tap_action:
-              action: call-service
-              service: pi_hole.disable
-              service_data:
-                duration: 00:00:30
-            double_tap_action:
-              action: call-service
-              service: pi_hole.disable
-              service_data:
-                duration: 00:05:00
-          - type: button
-            name: Pi-Hole Enable
-            icon: mdi:cloud-outline
-            tap_action:
-              action: call-service
-              service: switch.turn_on
-              service_data:
-                entity_id: switch.pi_hole
 
       - type: entities
         title: Scenes
