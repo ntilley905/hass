@@ -19,6 +19,9 @@
     time_to_leave:
       value_template: >
         {% set stamp = (states('sensor.next_report_time')|as_timestamp() - (states('sensor.travel_home_to_atl')|round(0, 'ceil')|int() * 60) - 1800) %}
+        {% if states('sensor.forester_range')|int < 80 %}
+        {% set stamp = stamp - 900 %}
+        {% endif %}
         {{ (stamp - (stamp % 600)) | timestamp_local() }}
       availability_template: >
         {% if states('sensor.next_report_time') %}
