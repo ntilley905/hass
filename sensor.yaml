@@ -43,21 +43,21 @@
       unit_of_measurement: "°F"
     last_air_filter:
       friendly_name: Last Replacement
-      value_template: '{{ states("input_datetime.last_air_filter") }}'
+      value_template: '{{ state_attr("input_datetime.last_air_filter", "timestamp") | timestamp_custom("%Y-%m-%dT%H:%M:%S%z") }}'
       device_class: timestamp
     next_air_filter:
       friendly_name: Next Replacement
-      value_template: '{{ (state_attr("input_datetime.last_air_filter", "timestamp") +  7776000) | timestamp_local() }}'
+      value_template: '{{ (state_attr("input_datetime.last_air_filter", "timestamp") +  7776000) | timestamp_custom("%Y-%m-%dT%H:%M:%S%z") }}'
       attribute_templates:
         timestamp: '{{ (state_attr("input_datetime.last_air_filter", "timestamp") +  7776000) }}'
       device_class: timestamp
     last_litter_box:
       friendly_name: Last Cleaning
-      value_template: '{{ states("input_datetime.last_litter_box") }}'
+      value_template: '{{ states.input_datetime.last_litter_box.attributes.timestamp | timestamp_custom("%Y-%m-%dT%H:%M:%S%z") }}'
       device_class: timestamp
     next_litter_box:
       friendly_name: Next Cleaning
-      value_template: '{{ (state_attr("input_datetime.last_litter_box", "timestamp") + 172800) | timestamp_local() }}'
+      value_template: '{{ (state_attr("input_datetime.last_litter_box", "timestamp") + 172800) | timestamp_custom("%Y-%m-%dT%H:%M:%S%z") }}'
       attribute_templates:
         timestamp: '{{ (state_attr("input_datetime.last_litter_box", "timestamp") + 172800) }}'
       device_class: timestamp
@@ -67,7 +67,7 @@
       device_class: timestamp
     next_vacuum:
       friendly_name: Next Vacuum
-      value_template: '{{ (states("sensor.last_vacuum") | as_timestamp() + 259200) | timestamp_local() }}'
+      value_template: '{{ (states("sensor.last_vacuum") | as_timestamp() + 259200) | timestamp_custom("%Y-%m-%dT%H:%M:%S%z") }}'
       device_class: timestamp
 - platform: time_date
   display_options:
