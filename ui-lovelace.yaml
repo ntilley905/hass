@@ -493,6 +493,28 @@ views:
                     entity_id: remote.apple_tv
                     command: "down"
 
+  - path: 3d_printer
+    title: 3D Printer
+    icon: mdi:printer-3d-nozzle
+    badges:
+      - binary_sensor.prusa_i3_mk3s_printing
+      - binary_sensor.prusa_i3_mk3s_printing_error
+    cards:
+      - type: history-graph
+        entities:
+          - sensor.prusa_i3_mk3s_target_bed_temp
+          - sensor.prusa_i3_mk3s_actual_bed_temp
+        hours_to_show: 2
+        title: Bed Temp
+      - type: history-graph
+        entities:
+          - sensor.prusa_i3_mk3s_target_tool0_temp
+          - sensor.prusa_i3_mk3s_actual_tool0_temp
+        title: Nozzle Temp
+        hours_to_show: 2
+      - type: gauge
+        entity: sensor.prusa_i3_mk3s_job_percentage
+
   - path: delays
     title: Delays
     icon: mdi:airplane
