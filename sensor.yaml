@@ -104,26 +104,6 @@
   state: GA
   county: 121
   zone: 33
-- platform: waze_travel_time
-  origin: zone.home
-  destination: zone.atl
-  region: "US"
-  name: Travel Home to ATL
-- platform: waze_travel_time
-  origin: zone.atl
-  destination: zone.home
-  region: "US"
-  name: Travel ATL to Home
-- platform: waze_travel_time
-  origin: zone.home
-  destination: zone.gdot
-  region: "US"
-  name: Travel Home to GDOT
-- platform: waze_travel_time
-  origin: zone.gdot
-  destination: zone.home
-  region: "US"
-  name: Travel GDOT to Home
 - platform: rest
   resource: https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=3&mostRecent=true&stationString=KATL
   name: ATL METAR
