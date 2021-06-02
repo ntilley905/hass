@@ -7,6 +7,8 @@ homeassistant:
 
 default_config:
 
+logger:
+
 http:
   use_x_forwarded_for: true
   trusted_proxies: !secret nginx_ip
@@ -63,15 +65,6 @@ notify:
     services:
       - service: mobile_app_nathans_iphone
       - service: mobile_app_saras_iphone
-
-wemo:
-  static:
-    - !secret wemo_coffee_switch_ip
-    - !secret wemo_air_purifier_ip
-
-calendar:
-  - platform: todoist
-    token: !secret todoist_token
 
 google:
   client_id: !secret google_client_id

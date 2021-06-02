@@ -29,16 +29,11 @@
       - binary_sensor.lga_ground_delay
       - binary_sensor.lga_ground_stop
       - binary_sensor.lga_closed
-      - binary_sensor.bos_departure_delay
-      - binary_sensor.bos_arrival_delay
-      - binary_sensor.bos_ground_delay
-      - binary_sensor.bos_ground_stop
-      - binary_sensor.bos_closed
-      - binary_sensor.ord_departure_delay
-      - binary_sensor.ord_arrival_delay
-      - binary_sensor.ord_ground_delay
-      - binary_sensor.ord_ground_stop
-      - binary_sensor.ord_closed
+      - binary_sensor.sea_departure_delay
+      - binary_sensor.sea_arrival_delay
+      - binary_sensor.sea_ground_delay
+      - binary_sensor.sea_ground_stop
+      - binary_sensor.sea_closed
     from: "off"
     to: "on"
   condition:
@@ -66,10 +61,8 @@
       - binary_sensor.jfk_closed
       - binary_sensor.lga_ground_stop
       - binary_sensor.lga_closed
-      - binary_sensor.bos_ground_stop
-      - binary_sensor.bos_closed
-      - binary_sensor.ord_ground_stop
-      - binary_sensor.ord_closed
+      - binary_sensor.sea_ground_stop
+      - binary_sensor.sea_closed
     from: "on"
     to: "off"
   condition:

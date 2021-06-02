@@ -1,20 +1,5 @@
 ---
 
-- platform: switch
-  name: Kitchen Lights
-  entity_id: switch.kitchen_lights
-- platform: switch
-  name: Hallway Light
-  entity_id: switch.hallway_light
-- platform: switch
-  name: Bedroom Light
-  entity_id: switch.bedroom_light
-- platform: switch
-  name: Closet Light
-  entity_id: switch.closet_light
-- platform: switch
-  name: Balcony Lights
-  entity_id: switch.balcony_lights
 - platform: group
   name: Bathroom Lights
   entities:
@@ -24,15 +9,4 @@
 - platform: group
   name: all
   entities:
-    - light.bathroom_lights
     - light.bedroom_lamp
-    - light.bedroom_light
-    - light.couch
-    - light.hallway_light
-    - light.island_dimmer
-    - light.kitchen_lights
-    - light.living_room_lamp
-    - light.bedroom_led
-    - light.closet_light
-    - light.balcony_lights
-    - light.wled_kitchen_master

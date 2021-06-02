@@ -19,159 +19,50 @@ views:
       - type: glance
         entities:
           #          - binary_sensor.weather_alert
-          - binary_sensor.front_door
           - person.nathan
           - person.sara
           - sensor.indoor_temperature
-          - sensor.nws_temperature
-      #          - sensor.outdoor_temperature
-      #          - sensor.cabinet_temperature
-      - type: custom:stack-in-card
-        title: Lights and Switches
-        cards:
-          - type: button
-            entity: light.all
-            name: All Lights Off
-            tap_action:
-              action: call-service
-              service: light.turn_off
-              service_data:
-                entity_id: light.all
-          - type: entities
-            entities:
-              - type: divider
-          - type: horizontal-stack
-            cards:
-              - type: button
-                entity: light.kitchen_lights
-                name: Kitchen
-              - type: button
-                entity: switch.living_room_fan
-                name: Fan
-          - type: entities
-            entities:
-              - type: divider
-          - type: custom:light-brightness-preset-row
-            entity: light.island_dimmer
-            name: Island
-            customSetpoints: true
-            LowBrightness: 20
-            MedBrightness: 80
-            HiBrightness: 255
-          - type: custom:light-brightness-preset-row
-            entity: light.living_room_lamp
-            name: Lamp
-            customSetpoints: true
-            LowBrightness: 50
-            MedBrightness: 128
-            HiBrightness: 255
-          - type: custom:light-brightness-preset-row
-            entity: light.couch
-            name: Couch
-            customSetpoints: true
-            LowBrightness: 50
-            MedBrightness: 128
-            HiBrightness: 255
-          - type: entities
-            entities:
-              - type: divider
-          - type: horizontal-stack
-            cards:
-              - type: button
-                entity: light.balcony_lights
-                name: Balcony
-              - type: button
-                entity: light.closet_light
-                name: Closet
-          - type: horizontal-stack
-            cards:
-              - type: button
-                entity: switch.coffee_maker
-                name: Coffee
-              - type: button
-                entity: switch.air_purifier
-                name: Air Purifier
-          - type: horizontal-stack
-            cards:
-              - type: button
-                entity: light.hallway_light
-                name: Hallway
-              - type: button
-                entity: light.bedroom_light
-                name: Bedroom
-          - type: entities
-            entities:
-              - type: divider
-          - type: custom:light-brightness-preset-row
-            entity: light.bedroom_lamp
-            name: Bed Lamp
-            customSetpoints: true
-            LowBrightness: 50
-            MedBrightness: 128
-            HiBrightness: 255
+          - sensor.ktiw_temperature
       - type: vertical-stack
         cards:
           - type: horizontal-stack
             cards:
               - type: sensor
-                entity: sensor.travel_home_to_atl
+                entity: sensor.home_to_sea
                 graph: line
                 detail: 1
-                name: To ATL
+                name: To SEA
               - type: sensor
-                entity: sensor.travel_atl_to_home
+                entity: sensor.sea_to_home
                 graph: line
                 detail: 1
-                name: From ATL
+                name: From SEA
           - type: horizontal-stack
             cards:
               - type: sensor
-                entity: sensor.travel_home_to_gdot
+                entity: sensor.home_to_wdfw
                 graph: line
                 detail: 1
-                name: To GDOT
+                name: To WDFW
               - type: sensor
-                entity: sensor.travel_gdot_to_home
+                entity: sensor.wdfw_to_home
                 graph: line
                 detail: 1
-                name: From GDOT
-      - type: gauge
-        entity: sensor.allergy_index_today
-        min: 0.0
-        max: 12.0
-        severity:
-          green: 0
-          yellow: 4.8
-          red: 7.3
-        name: Pollen Today
-      - type: horizontal-stack
-        cards:
-          - type: entity-button
-            entity: script.house_cold
-            icon: mdi:snowflake
-            tap_action:
-              action: call-service
-              service: script.house_cold
-          - type: entity-button
-            entity: script.house_hot
-            icon: mdi:fire
-            tap_action:
-              action: call-service
-              service: script.house_hot
+                name: From WDFW
       - type: history-graph
         entities:
           - sensor.indoor_temperature
           - sensor.nws_temperature
         title: Status
       - type: weather-forecast
-        entity: weather.katl_hourly
+        entity: weather.ktiw_daynight
 
   - path: vacuum
     title: Vacuum
     icon: mdi:robot-vacuum
     cards:
       - type: "custom:vacuum-card"
-        entity: vacuum.rockrobo
+        entity: vacuum.mater
         map: camera.rockrobo_map
         stats:
           default:
@@ -194,39 +85,15 @@ views:
             - attribute: cleanArea
               unit: m2
               subtitle: Area
-        actions:
-          - name: Clean Bedroom
-            icon: mdi:bed
-            service: vacuum.send_command
-            service_data:
-              entity_id: vacuum.rockrobo
-              command: zoned_cleanup
-              params:
-                "zone_ids": ["Bedroom"]
-          - name: Clean Bathroom
-            icon: mdi:shower
-            service: vacuum.send_command
-            service_data:
-              entity_id: vacuum.rockrobo
-              command: zoned_cleanup
-              params:
-                "zone_ids": ["Bathroom"]
-          - name: Clean Kitchen
-            icon: mdi:stove
-            service: vacuum.send_command
-            service_data:
-              entity_id: vacuum.rockrobo
-              command: zoned_cleanup
-              params:
-                "zone_ids": ["Kitchen"]
-          - name: Clean Litter Box
-            icon: mdi:cat
-            service: vacuum.send_command
-            service_data:
-              entity_id: vacuum.rockrobo
-              command: zoned_cleanup
-              params:
-                "zone_ids": ["Litter Box"]
+  #        actions:
+  #          - name: Clean Bedroom
+  #            icon: mdi:bed
+  #            service: vacuum.send_command
+  #            service_data:
+  #              entity_id: vacuum.rockrobo
+  #              command: zoned_cleanup
+  #              params:
+  #                "zone_ids": ["Bedroom"]
 
   - path: alarm_clock
     title: Alarm Clock
@@ -246,14 +113,6 @@ views:
 
   - path: living_room
     title: Living Room
-    badges:
-      - binary_sensor.front_door
-      - sensor.living_room_fan_power
-      - sensor.living_room_fan_energy
-      - sensor.kitchen_light_switch_power
-      - sensor.kitchen_light_switch_energy
-      - sensor.balcony_christmas_light_plug_power
-      - sensor.balcony_christmas_light_plug_energy
     cards:
       - type: vertical-stack
         cards:
@@ -265,9 +124,6 @@ views:
               - sensor.kitchen_illuminance_z
               - binary_sensor.kitchen_motion_z
             show_name: false
-          - type: entity-button
-            entity: light.hallway_light
-            name: Hallway
       - type: vertical-stack
         cards:
           - type: glance
@@ -278,37 +134,10 @@ views:
               - sensor.hallway_illuminance_z
               - binary_sensor.hallway_motion_z
             show_name: false
-          - type: horizontal-stack
-            cards:
-              - type: entity-button
-                entity: light.kitchen_lights
-                name: Kitchen
-              - type: entity-button
-                entity: switch.coffee_maker
-                name: Coffee
-          - type: horizontal-stack
-            cards:
-              - type: light
-                entity: light.island_dimmer
-                name: Island
-              - type: entity-button
-                entity: switch.living_room_fan
-                name: Fan
-          - type: horizontal-stack
-            cards:
-              - type: light
-                entity: light.living_room_lamp
-                name: Lamp
-              - type: light
-                entity: light.couch
-                name: Couch
 
   - path: bedroom
     title: Bedroom
     badges:
-      - binary_sensor.bedroom_window_1
-      - binary_sensor.bedroom_window_2
-      - binary_sensor.bedroom_window_3
       - sensor.desk_plug_power
       - sensor.desk_plug_energy
     cards:
@@ -330,10 +159,7 @@ views:
             show_name: false
       - type: entities
         entities:
-          - light.bedroom_light
           - light.bedroom_lamp
-          - light.bedroom_led
-          - light.closet_light
           - switch.desk_plug
 
   - path: bathroom
@@ -357,48 +183,11 @@ views:
               - sensor.bathroom_luminance
               - binary_sensor.bathroom_motion
             show_name: false
-      - type: entity-button
-        entity: light.bathroom_lights
-
-  - path: climate
-    title: Climate
-    icon: mdi:air-conditioner
-    badges:
-      - sensor.thermostat_temperature
-      - sensor.thermostat_humidity
-      - sensor.hvac_action
-      - sensor.ac_cool_today
-      - sensor.ac_heat_today
-    cards:
-      - type: thermostat
-        entity: climate.thermostat
-      - type: entities
-        entities:
-          - input_boolean.climate_override
-          - input_number.climate_heat_point
-          - input_number.climate_cool_point
-          - input_number.climate_heat_default
-          - input_number.climate_cool_default
-          - input_number.climate_away_offset
-          - input_number.climate_trip_offset
-          - input_number.climate_sleep_offset
 
   - path: chores
     title: Chores
     icon: mdi:broom
     cards:
-      - type: entities
-        title: Air Filter
-        entities:
-          - sensor.last_air_filter
-          - sensor.next_air_filter
-          - type: button
-            name: Done Now
-            icon: mdi:check
-            tap_action:
-              action: call-service
-              service: script.air_filter_done
-            action_name: Done
       - type: entities
         title: Litter Box
         entities:
@@ -559,23 +348,14 @@ views:
           - binary_sensor.jfk_ground_stop
           - binary_sensor.jfk_closure
       - type: entities
-        title: BOS Status
+        title: SEA Status
         show_header_toggle: false
         entities:
-          - binary_sensor.bos_departure_delay
-          - binary_sensor.bos_arrival_delay
-          - binary_sensor.bos_ground_delay
-          - binary_sensor.bos_ground_stop
-          - binary_sensor.bos_closure
-      - type: entities
-        title: ORD Status
-        show_header_toggle: false
-        entities:
-          - binary_sensor.ord_departure_delay
-          - binary_sensor.ord_arrival_delay
-          - binary_sensor.ord_ground_delay
-          - binary_sensor.ord_ground_stop
-          - binary_sensor.ord_closure
+          - binary_sensor.sea_departure_delay
+          - binary_sensor.sea_arrival_delay
+          - binary_sensor.sea_ground_delay
+          - binary_sensor.sea_ground_stop
+          - binary_sensor.sea_closure
 
   - path: config
     title: config
@@ -606,12 +386,6 @@ views:
           - sensor.pi_hole_domains_blocked
           - sensor.pi_hole_seen_clients
 
-      - type: entities
-        title: Scenes
-        entities:
-          - scene.night_lights
-          - scene.normal_lights
-          - scene.tv_lights
       - type: gauge
         name: CPU Usage
         entity: sensor.processor_use

@@ -6,8 +6,6 @@ home_devices:
 outdoor_doors_windows:
   name: Doors and Windows
   entities:
-    - binary_sensor.front_door
-    - binary_sensor.balcony_door
     - binary_sensor.bedroom_window_1
     - binary_sensor.bedroom_window_2
     - binary_sensor.bedroom_window_3

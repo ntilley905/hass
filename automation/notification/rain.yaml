@@ -34,7 +34,7 @@
       entity_id: input_boolean.dumb_mode
       state: "off"
   action:
-    service: notify.mobile_app_nathans_iphone
+    service: notify.all_mobile_apps
     data:
       title: "Windows Open!"
       message: "You forgot to close the windows."

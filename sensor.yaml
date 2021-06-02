@@ -1,9 +1,6 @@
 ---
 - platform: template
   sensors:
-    hvac_action:
-      friendly_name: HVAC Action
-      value_template: '{{ state_attr("climate.thermostat", "hvac_action") }}'
     precip_type:
       value_template: >
         {% if states("weather.katl_hourly") in ['clear-night', 'cloudy', 'fog', 'partlycloudy', 'sunny', 'windy', 'windy-variant'] %}
@@ -16,41 +13,10 @@
         {{ strptime(state_attr('calendar.work', 'description').split('\n')[0] | replace('Report: ', '') | replace('L', '') + state_attr('calendar.work', 'start_time').split(' ')[0], '%H%M%Y-%m-%d') }}
       availability_template: >
         {{ 'Report' in state_attr('calendar.work', 'description') }}
-    time_to_leave:
-      value_template: >
-        {% set stamp = (states('sensor.next_report_time')|as_timestamp() - (states('sensor.travel_home_to_atl')|round(0, 'ceil')|int() * 60) - 1800) %}
-        {% if states('sensor.forester_range')|int < 80 %}
-        {% set stamp = stamp - 900 %}
-        {% endif %}
-        {{ (stamp - (stamp % 600)) | timestamp_local() }}
-      availability_template: >
-        {% if states('sensor.next_report_time') %}
-        True
-        {% else %}
-        False
-        {% endif %}
-    sea_level_pressure:
-      friendly_name: Sea Level Pressure
-      value_template: "{{ (states('sensor.outdoor_pressure') | float * (1 - 1.9175/(((states('sensor.outdoor_temperature') | float - 32) / 1.8) + 275.0675)) ** -5.257)  | round(2)}}"
-      unit_of_measurement: hPa
-    altimeter:
-      friendly_name: Altimeter Setting
-      value_template: "{{ (states('sensor.sea_level_pressure') | float /  33.863886666667) | round(2) }}"
-      unit_of_measurement: inHg
     nws_temperature:
       friendly_name: NWS Temperature
       value_template: '{{ state_attr("weather.katl_hourly", "temperature") }}'
       unit_of_measurement: "°F"
-    last_air_filter:
-      friendly_name: Last Replacement
-      value_template: '{{ state_attr("input_datetime.last_air_filter", "timestamp") | timestamp_custom("%Y-%m-%dT%H:%M:%S%z") }}'
-      device_class: timestamp
-    next_air_filter:
-      friendly_name: Next Replacement
-      value_template: '{{ (state_attr("input_datetime.last_air_filter", "timestamp") +  7776000) | timestamp_custom("%Y-%m-%dT%H:%M:%S%z") }}'
-      attribute_templates:
-        timestamp: '{{ (state_attr("input_datetime.last_air_filter", "timestamp") +  7776000) }}'
-      device_class: timestamp
     last_litter_box:
       friendly_name: Last Cleaning
       value_template: '{{ states.input_datetime.last_litter_box.attributes.timestamp | timestamp_custom("%Y-%m-%dT%H:%M:%S%z") }}'
@@ -76,34 +42,16 @@
     - "time_date"
     - "date_time_iso"
     - "time_utc"
-- platform: history_stats
-  name: AC Cool Today
-  entity_id: sensor.hvac_action
-  state: "cooling"
-  type: time
-  start: "{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}"
-  end: "{{ now() }}"
-- platform: history_stats
-  name: AC Heat Today
-  entity_id: sensor.hvac_action
-  state: "heating"
-  type: time
-  start: "{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}"
-  end: "{{ now() }}"
 - platform: statistics
   name: Outdoor Temperature Stats
   entity_id: sensor.outdoor_temperature
   sampling_size: 500
   max_age:
     hours: 24
-# Xfinity disabled due to component bug
-# - platform: xfinity
-#   username: !secret xfinity_user
-#   password: !secret xfinity_pass
 - platform: weatheralerts
-  state: GA
-  county: 121
-  zone: 33
+  state: WA
+  county: 53
+  zone: 509
 - platform: rest
   resource: https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=3&mostRecent=true&stationString=KATL
   name: ATL METAR
@@ -131,9 +79,7 @@
     - sensor.bathroom_temperature_z
     - sensor.bedroom_temperature
     - sensor.bedroom_temperature_z
-    - sensor.ecolink_z_wave_plus_firefighter_air_temperature
     - sensor.hallway_temperature_z
     - sensor.kitchen_temperature_z
-    - sensor.thermostat_temperature
   type: mean
   name: Indoor Temperature

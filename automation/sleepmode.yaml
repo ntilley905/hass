@@ -7,14 +7,9 @@
     - platform: state
       entity_id: switch.coffee_maker
       to: "on"
-    - platform: state
-      entity_id: binary_sensor.front_door
     - platform: sun
       event: sunrise
       offset: "+00:15:00"
-    - platform: state
-      entity_id: device_tracker.sara_work_laptop
-      to: "home"
   condition:
     - condition: state
       entity_id: input_boolean.dumb_mode
@@ -42,5 +37,3 @@
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.sleep_mode
-    - service: switch.turn_off
-      entity_id: switch.living_room_fan
