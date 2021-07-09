@@ -29,7 +29,7 @@ uart:
   tx_pin: GPIO17
   rx_pin: GPIO16
   baud_rate: 9600
-  
+
 sensor:
   - platform: pmsx003
     type: PMSX003
@@ -39,6 +39,6 @@ sensor:
       name: "Particulate Matter <2.5µm Concentration"
     pm_10_0:
       name: "Particulate Matter <10.0µm Concentration"
-      
+
 status_led:
   pin: GPIO2
