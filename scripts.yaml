@@ -1,22 +1,4 @@
 ---
-house_cold:
-  alias: It's Cold
-  sequence:
-    - service: climate.set_temperature
-      data:
-        entity_id: climate.thermostat
-        temperature: "{{ state_attr('climate.thermostat', 'current_temperature') + 1 | round(0, 'ceil') }}"
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.climate_override
-house_hot:
-  alias: It's Hot
-  sequence:
-    - service: climate.set_temperature
-      data:
-        entity_id: climate.thermostat
-        temperature: "{{ state_attr('climate.thermostat', 'current_temperature') - 1 | round(0, 'ceil') }}"
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.climate_override
 apple_tv_on:
   sequence:
     - service: remote.send_command
@@ -39,30 +21,32 @@ apple_tv_off:
         command: "select"
     - service: remote.turn_off
       entity_id: remote.apple_tv
-led_on:
-  sequence:
-    - choose:
-        - conditions: # yamllint disable-line rule:indentation
-            - condition: state
-              entity_id: input_boolean.holiday_mode
-              state: "on"
-          sequence:
-            - service: scene.turn_on
-              entity_id: scene.holiday_lights
-      default:
-        service: scene.turn_on
-        entity_id: scene.led_ambiance
-    - service: light.turn_on
-      entity_id: light.wled_kitchen_master
-air_filter_done:
-  sequence:
-    - service: input_datetime.set_datetime
-      data:
-        entity_id: input_datetime.last_air_filter
-        timestamp: "{{ now().timestamp() }}"
 litter_box_done:
   sequence:
     - service: input_datetime.set_datetime
       data:
         entity_id: input_datetime.last_air_filter
         timestamp: "{{ now().timestamp() }}"
+spotify_contemporary_blend:
+  icon: mdi:playlist-music
+  sequence:
+    - alias: "set_spotify_source"
+      service: media_player.select_source
+      target:
+        entity_id: media_player.spotify_nathan
+      data:
+        source: "Marantz SR5012"
+    - alias: "start_playlist"
+      service: media_player.play_media
+      target:
+        entity_id: media_player.spotify_nathan
+      data:
+        media_content_id: "https://open.spotify.com/playlist/37i9dQZF1DWViBxWcYEI1b?si=c627eabd5d9e41a3"
+        media_content_type: playlist
+    - delay: "00:00:10"
+    - alias: "set_marantz_volume"
+      service: media_player.volume_set
+      target:
+        entity_id: media_player.marantz_sr5012
+      data:
+        volume_level: 0.37

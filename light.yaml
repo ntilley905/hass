@@ -1,12 +1,19 @@
 ---
-
 - platform: group
   name: Bathroom Lights
   entities:
-    - light.bathroom_light_1
-    - light.bathroom_light_2
-    - light.bathroom_light_3
+    - light.bathroom_color
+    - light.bathroom_white_1
+    - light.bathroom_white_2
 - platform: group
   name: all
   entities:
     - light.bedroom_lamp
+    - light.bathroom_color
+    - light.bathroom_white_1
+    - light.bathroom_white_2
+- platform: group
+  name: Sensor LEDs
+  entities:
+    - light.bathroom_sensor_led
+    - light.living_room_sensor_led

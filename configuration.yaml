@@ -30,6 +30,8 @@ lovelace:
       type: module
     - url: /hacsfiles/lovelace-template-entity-row/template-entity-row.js
       type: module
+    - type: js
+      url: /community_plugin/lovelace-valetudo-map-card/valetudo-map-card.js
 
 ios:
   push:
@@ -79,6 +81,14 @@ octoprint:
     bed: true
     number_of_tools: 1
 
+spotify:
+  client_id: !secret spotify_client_id
+  client_secret: !secret spotify_client_secret
+
+geo_location:
+  - platform: usgs_earthquakes_feed
+    feed_type: "past_week_all_earthquakes"
+
 automation: !include_dir_merge_list automation
 input_number: !include input_number.yaml
 input_boolean: !include input_boolean.yaml
@@ -89,3 +99,4 @@ light: !include light.yaml
 scene: !include scene.yaml
 script: !include scripts.yaml
 group: !include group.yaml
+template: !include template.yaml

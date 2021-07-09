@@ -23,3 +23,8 @@ updaters:
     - binary_sensor.ssh_web_terminal_update_available
     - binary_sensor.visual_studio_code_update_available
     - binary_sensor.z_wave_js_update_available
+bathroom_motion:
+  name: Bathroom Motion
+  entities:
+    - binary_sensor.bathroom_motion
+    - binary_sensor.bathroom_motion_z

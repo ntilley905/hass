@@ -8,6 +8,8 @@ esphome:
 wifi:
   ssid: !secret ssid
   password: !secret wifipw
+  domain: .homelab
+  use_address: 192.168.212.13
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:

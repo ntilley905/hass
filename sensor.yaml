@@ -77,9 +77,29 @@
   entity_ids:
     - sensor.bathroom_temperature
     - sensor.bathroom_temperature_z
-    - sensor.bedroom_temperature
     - sensor.bedroom_temperature_z
-    - sensor.hallway_temperature_z
     - sensor.kitchen_temperature_z
+    - sensor.living_room_temperature
   type: mean
   name: Indoor Temperature
+- platform: filter
+  name: PM1
+  entity_id: sensor.particulate_matter_1_0um_concentration
+  filters:
+    - filter: time_simple_moving_average
+      window_size: "00:02"
+      precision: 2
+- platform: filter
+  name: PM2.5
+  entity_id: sensor.particulate_matter_2_5um_concentration
+  filters:
+    - filter: time_simple_moving_average
+      window_size: "00:02"
+      precision: 2
+- platform: filter
+  name: PM10
+  entity_id: sensor.particulate_matter_10_0um_concentration
+  filters:
+    - filter: time_simple_moving_average
+      window_size: "00:05"
+      precision: 1

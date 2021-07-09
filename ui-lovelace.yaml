@@ -49,13 +49,38 @@ views:
                 graph: line
                 detail: 1
                 name: From WDFW
+      - type: button
+        entity: light.bathroom_lights
+      - type: button
+        entity: light.bedroom_lamp
       - type: history-graph
         entities:
           - sensor.indoor_temperature
-          - sensor.nws_temperature
+          - sensor.ktiw_temperature
         title: Status
+      - type: gauge
+        entity: sensor.airnow_aqi
+        name: Air Quality
+        min: 0
+        max: 301
+        severity:
+          green: 0
+          yellow: 101
+          red: 151
       - type: weather-forecast
         entity: weather.ktiw_daynight
+      - type: map
+        name: Earthquakes
+        geo_location_sources:
+          - usgs_earthquakes_feed
+        entities:
+          - zone.home
+        title: Nearby Earthquakes Last Week
+      - type: history-graph
+        entities:
+          - sensor.pm1
+          - sensor.pm2_5
+          - sensor.pm10
 
   - path: vacuum
     title: Vacuum
@@ -66,17 +91,17 @@ views:
         map: camera.rockrobo_map
         stats:
           default:
-            - attribute: mainBrush
-              unit: h
+            - entity_id: sensor.main_brush
+              unit: m
               subtitle: Brush
-            - attribute: sideBrush
-              unit: h
+            - attribute: sensor.right_brush
+              unit: m
               subtitle: Side
-            - attribute: filter
-              unit: h
+            - attribute: sensor.main_filter
+              unit: m
               subtitle: Filter
-            - attribute: sensor
-              unit: h
+            - attribute: sensor.sensor_cleaning
+              unit: m
               subtitle: Sensor
           cleaning:
             - attribute: cleanTime
@@ -85,15 +110,25 @@ views:
             - attribute: cleanArea
               unit: m2
               subtitle: Area
-  #        actions:
-  #          - name: Clean Bedroom
-  #            icon: mdi:bed
-  #            service: vacuum.send_command
-  #            service_data:
-  #              entity_id: vacuum.rockrobo
-  #              command: zoned_cleanup
-  #              params:
-  #                "zone_ids": ["Bedroom"]
+      #        actions:
+      #          - name: Clean Bedroom
+      #            icon: mdi:bed
+      #            service: vacuum.send_command
+      #            service_data:
+      #              entity_id: vacuum.rockrobo
+      #              command: zoned_cleanup
+      #              params:
+      #                "zone_ids": ["Bedroom"]
+      - type: "custom:valetudo-map-card"
+        entity: camera.map_data
+        vacuum_entity: vacuum.mater
+        rotate: 0
+        crop:
+          top: 0
+          bottom: 0
+          left: 0
+          right: 0
+        min_height: 0
 
   - path: alarm_clock
     title: Alarm Clock
@@ -134,12 +169,18 @@ views:
               - sensor.hallway_illuminance_z
               - binary_sensor.hallway_motion_z
             show_name: false
+      - type: glance
+        title: Living Room Sensor
+        entities:
+          - sensor.living_room_temperature
+          - sensor.living_room_humidity
+          - sensor.living_room_luminance
+          - binary_sensor.living_room_motion
+      - type: button
+        entity: light.living_room_lamp
 
   - path: bedroom
     title: Bedroom
-    badges:
-      - sensor.desk_plug_power
-      - sensor.desk_plug_energy
     cards:
       - type: vertical-stack
         cards:
@@ -160,10 +201,14 @@ views:
       - type: entities
         entities:
           - light.bedroom_lamp
-          - switch.desk_plug
+          - light.reading_lamp
 
   - path: bathroom
     title: Bathroom
+    badges:
+      - sensor.washer_plug_power
+      - sensor.washer_plug_energy
+      - binary_sensor.washer_status
     cards:
       - type: vertical-stack
         cards:
@@ -281,6 +326,15 @@ views:
                   service_data:
                     entity_id: remote.apple_tv
                     command: "down"
+      - type: media-control
+        entity: media_player.spotify_nathan
+      - type: media-control
+        entity: media_player.marantz_sr5012
+      - type: button
+        entity: script.spotify_contemporary_blend
+        tap_action:
+          action: call-service
+          service: script.spotify_contemporary_blend
 
   - path: 3d_printer
     title: 3D Printer
@@ -288,6 +342,8 @@ views:
     badges:
       - binary_sensor.prusa_i3_mk3s_printing
       - binary_sensor.prusa_i3_mk3s_printing_error
+      - sensor.3d_printer_temperature
+      - sensor.3d_printer_humidity
     cards:
       - type: history-graph
         entities:
