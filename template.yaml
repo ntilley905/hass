@@ -1,0 +1,13 @@
+---
+- trigger:
+    - platform: numeric_state
+      entity_id: sensor.washer_plug_power
+      above: 4
+      for: "00:01:00"
+    - platform: numeric_state
+      entity_id: sensor.washer_plug_power
+      below: 3
+      for: "00:01:00"
+  binary_sensor:
+    name: Washer Status
+    state: "{{ states('sensor.washer_plug_power') | int >= 4 }}"
