@@ -1,0 +1,44 @@
+esphome:
+  name: air-quality
+  platform: ESP32
+  board: esp32dev
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  password: "7de5d4f9b5d4102d9f24b807ac5ed445"
+
+wifi:
+  ssid: !secret ssid
+  password: !secret wifipw
+  domain: .homelab
+  use_address: 192.168.212.15
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Air-Quality Fallback Hotspot"
+    password: "SPHLVIdFD5yF"
+
+captive_portal:
+
+uart:
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  baud_rate: 9600
+  
+sensor:
+  - platform: pmsx003
+    type: PMSX003
+    pm_1_0:
+      name: "Particulate Matter <1.0µm Concentration"
+    pm_2_5:
+      name: "Particulate Matter <2.5µm Concentration"
+    pm_10_0:
+      name: "Particulate Matter <10.0µm Concentration"
+      
+status_led:
+  pin: GPIO2

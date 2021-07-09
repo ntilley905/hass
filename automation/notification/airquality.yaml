@@ -1,0 +1,91 @@
+---
+# These automations notify us of various air quality levels.
+
+- id: air_quality_yellow
+  alias: Notify Air Quality Yellow
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.airnow_aqi
+      above: 51
+      below: 101
+  action:
+    - alias: "notify_mobile_apps"
+      service: notify.all_mobile_apps
+      data:
+        title: "Air Quality Yellow"
+        message: "AQI today is {{ states('sensor.airnow_aqi') }} which is moderate."
+
+- id: air_quality_orange
+  alias: Notify Air Quality Orange
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.airnow_aqi
+      above: 101
+      below: 151
+  action:
+    - alias: "notify_mobile_apps"
+      service: notify.all_mobile_apps
+      data:
+        title: "Air Quality Orange"
+        message: "AQI today is {{ states('sensor.airnow_aqi') }} which is Unhealthy for Sensitive Groups."
+
+- id: air_quality_red
+  alias: Notify Air Quality Red
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.airnow_aqi
+      above: 151
+      below: 201
+  action:
+    - alias: "notify_mobile_apps"
+      service: notify.all_mobile_apps
+      data:
+        title: "Air Quality Red"
+        message: "AQI today is {{ states('sensor.airnow_aqi') }} which is Unhealthy. Close all windows and do not open them today."
+
+- id: air_quality_purple
+  alias: Notify Air Quality Purple
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.airnow_aqi
+      above: 201
+      below: 301
+  action:
+    - alias: "notify_mobile_apps"
+      service: notify.all_mobile_apps
+      data:
+        title: "Air Quality Purple"
+        message: "AQI today is {{ states('sensor.airnow_aqi') }} which is Very Unhealthy. Close all windows and do not open them today. Consider running the air purifiers on high."
+
+- id: air_quality_maroon
+  alias: Notify Air Quality Maroon
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.airnow_aqi
+      above: 201
+      below: 301
+  action:
+    - alias: "notify_mobile_apps"
+      service: notify.all_mobile_apps
+      data:
+        title: "Air Quality Maroon"
+        message: "AQI today is {{ states('sensor.airnow_aqi') }} which is Hazardous. This is considered an EMERGENCY condition. Close all windows and do not open them today. Turn the air purifiers to high. Only go outside if absolutely necessary and wear a mask if you do."
+
+- id: indoor_air_quality
+  alias: Notify Indoor Air Quality
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.pm1
+      above: 15
+    - platform: numeric_state
+      entity_id: sensor.pm2_5
+      above: 15
+    - platform: numeric_state
+      entity_id: sensor.pm10
+      above: 15
+  action:
+    - alias: "notify_mobile_apps"
+      service: notify.all_mobile_apps
+      data:
+        title: "Indoor Air Quality"
+        message: "Current {{ trigger.to_state.name }} concentration is {{ trigger.to_state.state }}."

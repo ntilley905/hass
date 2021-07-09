@@ -1,0 +1,45 @@
+---
+# This group of automations control our bathroom lights via motion.
+# TODO: Add bathroom door check
+
+- id: bathroom_lights_on
+  alias: Bathroom Lights On
+  trigger:
+    - platform: state
+      entity_id: group.bathroom_motion
+      to: "on"
+  condition:
+    - alias: "home"
+      condition: state
+      entity_id: group.home_devices
+      state: "home"
+    - alias: "dumb_mode_off"
+      condition: state
+      entity_id: input_boolean.dumb_mode
+      state: "off"
+  action:
+    - alias: "turn_lights_on"
+      service: light.turn_on
+      target:
+        entity_id: light.bathroom_lights
+      data:
+        brightness: 255
+
+- id: bathroom_lights_off
+  alias: Bathroom Lights Off
+  trigger:
+    - platform: state
+      entity_id: group.bathroom_motion
+      to: "off"
+      for:
+        minutes: 15
+  condition:
+    - alias: "dumb_mode_off"
+      condition: state
+      entity_id: input_boolean.dumb_mode
+      state: "off"
+  action:
+    - alias: "turn_lights_off"
+      service: light.turn_off
+      target:
+        entity_id: light.bathroom_lights

@@ -1,0 +1,20 @@
+---
+# Automations that notify us when our laundry is done.
+
+- id: washer_done
+  alias: Notify Washer Done
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.washer_status
+      to: "off"
+  condition:
+    - alias: "dumb_mode_off"
+      condition: state
+      entity_id: input_boolean.dumb_mode
+      state: "off"
+  action:
+    - alias: "notify_washer_done"
+      service: notify.all_mobile_apps
+      data:
+        title: "Washer is Done"
+        message: "Get the clothes out!"

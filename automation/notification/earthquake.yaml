@@ -1,0 +1,21 @@
+---
+# Notify us of a new earthquake from the USGS feed.
+
+- id: notify_earthquake
+  alias: Notify Earthquake
+  trigger:
+    - platform: geo_location
+      source: usgs_earthquakes_feed
+      zone: zone.earthquake_alert
+      event: enter
+  condition:
+    - condition: template
+      value_template: "{{ trigger.to_state.attributes.type == 'earthquake' }}"
+  action:
+    - alias: "notify_mobile_apps"
+      service: notify.all_mobile_apps
+      data:
+        title: "Earthquake Detected"
+        message: >
+          Magnitude: {{ trigger.to_state.attributes.magnitude}}
+          Location: {{ trigger.to_state.attributes.place }}

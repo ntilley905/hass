@@ -1,0 +1,35 @@
+esphome:
+  name: 3d-print
+  platform: ESP8266
+  board: nodemcuv2
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  password: "0d20ad1cbbc5e7353247c3ac6971080b"
+
+wifi:
+  ssid: !secret ssid
+  password: !secret wifipw
+  domain: .homelab
+  use_address: 192.168.212.17
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "3D-Print Fallback Hotspot"
+    password: "cET9MrDdJy72"
+
+captive_portal:
+
+sensor:
+  - platform: dht
+    pin: D7
+    model: AM2302
+    temperature:
+      name: "3D Printer Temperature"
+    humidity:
+      name: "3D Printer Humidity"

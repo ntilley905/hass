@@ -1,0 +1,66 @@
+esphome:
+  name: living_room_sensor
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: !secret ssid
+  password: !secret wifipw
+  domain: .homelab
+  use_address: 192.168.212.14
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Living Room Sensor Fallback"
+    password: "tDQKgX7zU4al"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+sensor:
+  - platform: adc
+    pin: A0
+    name: "Living Room Luminance"
+    unit_of_measurement: lx
+    filters:
+      - lambda: |-
+          return (x / 10000.0) * 2000000.0;
+
+  - platform: dht
+    pin: D7
+    model: AM2302
+    temperature:
+      name: "Living Room Temperature"
+    humidity:
+      name: "Living Room Humidity"
+
+binary_sensor:
+  - platform: gpio
+    pin: D5
+    name: "Living Room Motion"
+    device_class: motion
+
+output:
+  - platform: esp8266_pwm
+    pin: D1
+    id: led_red
+  - platform: esp8266_pwm
+    pin: D2
+    id: led_green
+  - platform: esp8266_pwm
+    pin: D3
+    id: led_blue
+
+light:
+  - platform: rgb
+    name: "Living Room Sensor LED"
+    red: led_red
+    green: led_green
+    blue: led_blue

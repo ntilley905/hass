@@ -1,0 +1,24 @@
+esphome:
+  name: test
+  platform: ESP32
+  board: esp-wrover-kit
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  password: "e67c07b41c4c57af1619009ed164d696"
+
+wifi:
+  ssid: "test"
+  password: "test"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Test Fallback Hotspot"
+    password: "juJPXDkz3saE"
+
+captive_portal:
