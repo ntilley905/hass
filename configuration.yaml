@@ -30,7 +30,7 @@ lovelace:
       type: module
     - url: /hacsfiles/lovelace-template-entity-row/template-entity-row.js
       type: module
-    - type: js
+    - type: module
       url: /community_plugin/lovelace-valetudo-map-card/valetudo-map-card.js
 
 ios:
@@ -87,7 +87,7 @@ spotify:
 
 geo_location:
   - platform: usgs_earthquakes_feed
-    feed_type: "past_week_all_earthquakes"
+    feed_type: "past_week_m25_earthquakes"
 
 automation: !include_dir_merge_list automation
 input_number: !include input_number.yaml
