@@ -12,6 +12,8 @@
     - light.bathroom_color
     - light.bathroom_white_1
     - light.bathroom_white_2
+    - light.living_room_lamp
+    - light.reading_lamp
 - platform: group
   name: Sensor LEDs
   entities:

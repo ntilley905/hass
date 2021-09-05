@@ -25,7 +25,7 @@ litter_box_done:
   sequence:
     - service: input_datetime.set_datetime
       data:
-        entity_id: input_datetime.last_air_filter
+        entity_id: input_datetime.last_litter_box
         timestamp: "{{ now().timestamp() }}"
 spotify_contemporary_blend:
   icon: mdi:playlist-music
@@ -50,3 +50,24 @@ spotify_contemporary_blend:
         entity_id: media_player.marantz_sr5012
       data:
         volume_level: 0.37
+
+toggle_octopi:
+  sequence:
+    - choose:
+      - alias: octopi_on
+        conditions:
+          condition: state
+          entity_id: switch.octopi
+          state: 'on'
+        sequence:
+          # TODO: Add script to shutdown octoprint and pi before turning POE switch off
+          - service: switch.turn_off
+            entity_id: switch.octopi
+      - alias: octopi_off
+        conditions:
+          condition: state
+          entity_id: switch.octopi
+          state: 'off'
+        sequence:
+          - service: switch.turn_on
+            entity_id: switch.octopi

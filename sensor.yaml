@@ -29,7 +29,7 @@
       device_class: timestamp
     last_vacuum:
       friendly_name: Last Vacuum Run
-      value_template: "{{ states.vacuum.rockrobo.last_changed.isoformat() }}"
+      value_template: "{{ states.vacuum.mater.last_changed.isoformat() }}"
       device_class: timestamp
     next_vacuum:
       friendly_name: Next Vacuum
@@ -87,14 +87,14 @@
   entity_id: sensor.particulate_matter_1_0um_concentration
   filters:
     - filter: time_simple_moving_average
-      window_size: "00:02"
+      window_size: "00:05"
       precision: 2
 - platform: filter
   name: PM2.5
   entity_id: sensor.particulate_matter_2_5um_concentration
   filters:
     - filter: time_simple_moving_average
-      window_size: "00:02"
+      window_size: "00:05"
       precision: 2
 - platform: filter
   name: PM10
