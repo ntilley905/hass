@@ -54,7 +54,7 @@ spotify_contemporary_blend:
 toggle_octopi:
   sequence:
     - choose:
-      - alias: octopi_on
+      - alias: octopi_on # yamllint disable-line rule:indentation
         conditions:
           condition: state
           entity_id: switch.octopi
