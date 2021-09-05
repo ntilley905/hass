@@ -88,7 +88,7 @@ views:
     cards:
       - type: "custom:vacuum-card"
         entity: vacuum.mater
-        map: camera.rockrobo_map
+        map: camera.valetudo_map_rendered_map
         stats:
           default:
             - entity_id: sensor.main_brush
@@ -148,6 +148,11 @@ views:
 
   - path: living_room
     title: Living Room
+    badges:
+      - sensor.desk_plug_power
+      - sensor.desk_plug_energy
+      - sensor.entertainment_center_plug_power
+      - sensor.entertainment_center_plug_energy
     cards:
       - type: vertical-stack
         cards:
@@ -359,6 +364,15 @@ views:
         hours_to_show: 2
       - type: gauge
         entity: sensor.prusa_i3_mk3s_job_percentage
+      - type: button
+        name: OctoPi
+        icon: mdi:raspberry-pi
+        entity: switch.octopi
+        tap_action:
+          confirmation: true
+          action: call-service
+          service: script.toggle_octopi
+
 
   - path: delays
     title: Delays
