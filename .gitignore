@@ -1,5 +1,5 @@
 #generic ignores
-*.log
+*.log*
 *.xml
 *.sqlite
 *.db*
