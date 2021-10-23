@@ -34,3 +34,5 @@
           A total of {{ states('sensor.mail_packages_in_transit') }} packages are in transit.
         data:
           entity_id: camera.mail_usps_camera
+          push:
+            interruption-level: passive

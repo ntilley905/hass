@@ -19,6 +19,9 @@
       data:
         title: "Precip Detected!"
         message: "Windows are open and the weather is {{ states('sensor.precip_type') }}!"
+        data:
+          push:
+            interruption-level: time-sensitive
 
 - alias: Windows Open When Leaving
   id: "windows_open_when_leaving"
@@ -38,3 +41,6 @@
     data:
       title: "Windows Open!"
       message: "You forgot to close the windows."
+      data:
+        push:
+          interruption-level: time-sensitive

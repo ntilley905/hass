@@ -16,5 +16,5 @@
     - condition: sun
       after: sunset
       after_offset: "-01:00:00"
-#    - service: scene.turn_on
-#      entity_id: scene.normal_lights
+    - service: light.turn_on
+      entity_id: light.living_room_lamp

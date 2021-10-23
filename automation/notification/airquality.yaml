@@ -14,6 +14,9 @@
       data:
         title: "Air Quality Yellow"
         message: "AQI today is {{ states('sensor.airnow_aqi') }} which is moderate."
+        data:
+          push:
+            interruption-level: passive
 
 - id: air_quality_orange
   alias: Notify Air Quality Orange
@@ -28,6 +31,9 @@
       data:
         title: "Air Quality Orange"
         message: "AQI today is {{ states('sensor.airnow_aqi') }} which is Unhealthy for Sensitive Groups."
+        data:
+          push:
+            interruption-level: active
 
 - id: air_quality_red
   alias: Notify Air Quality Red
@@ -42,6 +48,9 @@
       data:
         title: "Air Quality Red"
         message: "AQI today is {{ states('sensor.airnow_aqi') }} which is Unhealthy. Close all windows and do not open them today."
+        data:
+          push:
+            interruption-level: active
 
 - id: air_quality_purple
   alias: Notify Air Quality Purple
@@ -56,6 +65,9 @@
       data:
         title: "Air Quality Purple"
         message: "AQI today is {{ states('sensor.airnow_aqi') }} which is Very Unhealthy. Close all windows and do not open them today. Consider running the air purifiers on high."
+        data:
+          push:
+            interruption-level: active
 
 - id: air_quality_maroon
   alias: Notify Air Quality Maroon
@@ -70,6 +82,9 @@
       data:
         title: "Air Quality Maroon"
         message: "AQI today is {{ states('sensor.airnow_aqi') }} which is Hazardous. This is considered an EMERGENCY condition. Close all windows and do not open them today. Turn the air purifiers to high. Only go outside if absolutely necessary and wear a mask if you do."
+        data:
+          push:
+            interruption-level: active
 
 - id: indoor_air_quality
   alias: Notify Indoor Air Quality
@@ -89,3 +104,6 @@
       data:
         title: "Indoor Air Quality"
         message: "Current {{ trigger.to_state.name }} concentration is {{ trigger.to_state.state }}."
+        data:
+          push:
+            interruption-level: active

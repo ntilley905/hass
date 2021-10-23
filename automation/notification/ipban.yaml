@@ -20,3 +20,5 @@
         message: "{{ trigger.to_state.attributes.message }}"
         data:
           url: http://www.ip-tracker.org/locator/ip-lookup.php?ip={{ states.persistent_notification.http_login.attributes.message.split("from ")[1] }}
+          push:
+            interruption-level: passive

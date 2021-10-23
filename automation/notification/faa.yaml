@@ -49,6 +49,9 @@
         {% if trigger.to_state.attributes.end %}
         End: {{ trigger.to_state.attributes.end }}
         {% endif %}
+      data:
+        push:
+          interruption-level: active
 
 - alias: FAA Notification Cancel
   id: "faa_notification_cancel"
@@ -74,3 +77,6 @@
     data:
       message: >
         {{ trigger.to_state.name }} Canceled
+      data:
+        push:
+          interruption-level: active

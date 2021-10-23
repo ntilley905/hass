@@ -1348,6 +1348,9 @@ automation:
         data:
           entity_id: input_text.weatheralerts_1_triggered_notify_alert_ids
           value: "{{ state_attr('sensor.weatheralerts_1_alert_1', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_2', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_3', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_4', 'alert_id') }} {{ state_attr('sensor.weatheralerts_1_alert_5', 'alert_id') }}"
+          data:
+            push:
+              interruption-level: time-sensitive
 
   - alias: Weather Alerts Mobile Notification Critical
     id: "weather_alerts_mobile_notification_critical"
@@ -1376,10 +1379,8 @@ automation:
             {{ states.sensor.weatheralerts_1_alert_1.attributes.alert_instruction }}
           data:
             push:
-              sound:
-                name: default
-                critical: 1
-                volume: 1.0
+              interruption-level: critical
+
       - service: input_text.set_value
         data:
           entity_id: input_text.weatheralerts_1_triggered_notify_alert_ids

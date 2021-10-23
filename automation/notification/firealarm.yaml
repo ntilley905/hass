@@ -18,10 +18,7 @@
         message: "The fire alarm at home is sounding."
         data:
           push:
-            sound:
-              name: default
-              critical: 1
-              volume: 1.0
+            interruption-level: critical
 
 - alias: Fire Alarm Cleared
   id: "fire_alarm_cleared"
@@ -35,3 +32,6 @@
       data:
         title: "Fire Alarm Clear"
         message: "The fire alarm is all clear."
+        data:
+          push:
+            interruption-level: time-sensitive

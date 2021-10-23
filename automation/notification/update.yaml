@@ -22,3 +22,6 @@
         Update available for {{ entity.attributes.friendly_name }}
         {% endif %}
         {% endfor %}
+      data:
+        push:
+          interruption-level: passive

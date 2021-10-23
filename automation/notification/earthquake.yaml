@@ -19,3 +19,6 @@
         message: >
           Magnitude: {{ trigger.to_state.attributes.magnitude}}
           Location: {{ trigger.to_state.attributes.place }}
+        data:
+          push:
+            interruption-level: active

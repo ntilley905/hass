@@ -18,3 +18,6 @@
       data:
         title: "Washer is Done"
         message: "Get the clothes out!"
+        data:
+          push:
+            interruption-level: time-sensitive
