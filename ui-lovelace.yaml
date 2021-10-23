@@ -22,7 +22,7 @@ views:
           - person.nathan
           - person.sara
           - sensor.indoor_temperature
-          - sensor.ktiw_temperature
+          - sensor.openweathermap_temperature
       - type: vertical-stack
         cards:
           - type: horizontal-stack
@@ -56,7 +56,7 @@ views:
       - type: history-graph
         entities:
           - sensor.indoor_temperature
-          - sensor.ktiw_temperature
+          - sensor.openweathermap_temperature
         title: Status
       - type: gauge
         entity: sensor.airnow_aqi
@@ -68,7 +68,7 @@ views:
           yellow: 101
           red: 151
       - type: weather-forecast
-        entity: weather.ktiw_daynight
+        entity: weather.openweathermap
       - type: map
         name: Earthquakes
         geo_location_sources:
@@ -372,7 +372,6 @@ views:
           confirmation: true
           action: call-service
           service: script.toggle_octopi
-
 
   - path: delays
     title: Delays
