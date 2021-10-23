@@ -1,0 +1,36 @@
+---
+# Daily notification to inform us of mail coming that day.
+
+- id: daily_mail
+  alias: Notify Mail Daily
+  trigger:
+    - platform: time
+      at: "09:30:00"
+  condition:
+    - condition: or
+      conditions:
+        - alias: "packages_coming"
+          condition: numeric_state
+          entity_id: sensor.mail_packages_in_transit
+          above: 0
+        - alias: "mail_coming"
+          condition: numeric_state
+          entity_id: sensor.mail_usps_mail
+          above: 0
+  action:
+    - alias: "notify_mail_coming"
+      service: notify.all_mobile_apps
+      data:
+        title: "Mail Summary"
+        message: >
+          Mail Summary:
+          {% if states('sensor.mail_usps_mail')|int > 0 or states('sensor.mail_usps_delivering')|int > 0 %}
+          USPS is delivering {{ states('sensor.mail_usps_mail') }} pieces of mail and {{ states('sensor.mail_usps_delivering') }} packages today.
+          {% endif %}{% if states('sensor.mail_ups_delivering')|int > 0 %}
+          UPS is delivering {{ states('sensor.mail_ups_delivering') }} packages today.
+          {% endif %}{% if states('sensor.mail_fedex_delivering')|int > 0 %}
+          FedEx is delivering {{ states('sensor.mail_fedex_delivering') }} packages today.
+          {% endif %}
+          A total of {{ states('sensor.mail_packages_in_transit') }} packages are in transit.
+        data:
+          entity_id: camera.mail_usps_camera
