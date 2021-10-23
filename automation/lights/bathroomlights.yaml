@@ -32,12 +32,17 @@
       entity_id: group.bathroom_motion
       to: "off"
       for:
-        minutes: 15
+        minutes: 10
   condition:
     - alias: "dumb_mode_off"
       condition: state
       entity_id: input_boolean.dumb_mode
       state: "off"
+    # don't turn off if humidity is high ie. someone is in the shower
+    - alias: "high_humidity"
+      condition: numeric_state
+      entity_id: sensor.bathroom_humidity
+      below: 70
   action:
     - alias: "turn_lights_off"
       service: light.turn_off
