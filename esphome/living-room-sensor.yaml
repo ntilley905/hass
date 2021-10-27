@@ -1,13 +1,11 @@
 esphome:
-  name: living_room_sensor
+  name: living-room-sensor
   platform: ESP8266
   board: nodemcuv2
 
 wifi:
   ssid: !secret ssid
   password: !secret wifipw
-  domain: .homelab
-  use_address: 192.168.212.14
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
