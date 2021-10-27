@@ -15,6 +15,7 @@ __pycache__/
 /node-red
 /.cloud
 /.vscode
+/custom_components/mail_and_packages/images/
 
 #specific ignores
 secrets.yaml

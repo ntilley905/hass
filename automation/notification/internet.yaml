@@ -1,0 +1,50 @@
+---
+# Automations to notify us of the state of our internet connection.
+
+- id: internet_notify_down
+  alias: Notify Internet Down
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.cloudflare_ping
+      to: 'off'
+  action:
+    service: notify.all_mobile_apps
+    data:
+      title: "Internet Down"
+      message: "Home Assistant is not able to reach the internet."
+      data:
+        push:
+          interruption-level: active
+
+- id: internet_notify_up
+  alias: Notify Internet Up
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.cloudflare_ping
+      to: 'on'
+  action:
+    - service: notify.all_mobile_apps
+      data:
+        title: "Internet Up"
+        message: "Home Assistant is able to reach the internet again."
+        data:
+          push:
+            interruption-level: active
+
+- id: pihole_notify_down
+  alias: Notify Pihole Down
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.pihole_2_ping
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.pihole_5_ping
+      to: 'off'
+  action:
+    service: notify.mobile_app_nathans_iphone
+    data:
+      title: "Pihole Down"
+      message: "One of the Pihole instances is not reachable by Home Assistant."
+      data:
+        push:
+          interruption-level: time-sensitive

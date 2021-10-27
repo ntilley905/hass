@@ -4,3 +4,15 @@
     hacs_update_available:
       friendly_name: "HACS"
       value_template: "{{ states('sensor.hacs') | int > 0 }}"
+- platform: ping
+  host: 9.9.9.9
+  name: Cloudflare Ping
+  scan_interval: 60
+- platform: ping
+  host: !secret pihole2
+  name: Pihole.2 Ping
+  scan_interval: 60
+- platform: ping
+  host: !secret pihole5
+  name: Pihole.5 Ping
+  scan_interval: 60
