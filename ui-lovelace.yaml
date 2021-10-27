@@ -335,6 +335,8 @@ views:
         entity: media_player.spotify_nathan
       - type: media-control
         entity: media_player.marantz_sr5012
+      - type: media-control
+        entity: media_player.bedroom
       - type: button
         entity: script.spotify_contemporary_blend
         tap_action:
@@ -436,24 +438,36 @@ views:
         entities:
           - input_boolean.trip_mode
           - input_boolean.sleep_mode
-          - group.outdoor_doors_windows
           - input_boolean.dumb_mode
           - light.all
           - group.home_devices
           - group.updaters
       - type: entities
-        title: Pi-Hole
+        title: Pi-Hole.2
         entities:
-          - switch.pi_hole
-          - sensor.pi_hole_ads_blocked_today
-          - sensor.pi_hole_ads_percentage_blocked_today
-          - sensor.pi_hole_dns_queries_cached
-          - sensor.pi_hole_dns_queries_forwarded
-          - sensor.pi_hole_dns_queries_today
-          - sensor.pi_hole_dns_unique_clients
-          - sensor.pi_hole_dns_unique_domains
-          - sensor.pi_hole_domains_blocked
-          - sensor.pi_hole_seen_clients
+          - switch.pi_hole2
+          - sensor.pi_hole2_ads_blocked_today
+          - sensor.pi_hole2_ads_percentage_blocked_today
+          - sensor.pi_hole2_dns_queries_cached
+          - sensor.pi_hole2_dns_queries_forwarded
+          - sensor.pi_hole2_dns_queries_today
+          - sensor.pi_hole2_dns_unique_clients
+          - sensor.pi_hole2_dns_unique_domains
+          - sensor.pi_hole2_domains_blocked
+          - sensor.pi_hole2_seen_clients
+      - type: entities
+        title: Pi-Hole.5
+        entities:
+          - switch.pi_hole5
+          - sensor.pi_hole5_ads_blocked_today
+          - sensor.pi_hole5_ads_percentage_blocked_today
+          - sensor.pi_hole5_dns_queries_cached
+          - sensor.pi_hole5_dns_queries_forwarded
+          - sensor.pi_hole5_dns_queries_today
+          - sensor.pi_hole5_dns_unique_clients
+          - sensor.pi_hole5_dns_unique_domains
+          - sensor.pi_hole5_domains_blocked
+          - sensor.pi_hole5_seen_clients
 
       - type: gauge
         name: CPU Usage
