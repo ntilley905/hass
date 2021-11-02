@@ -14,3 +14,5 @@ dumb_mode:
 holiday_mode:
   name: Holiday Mode
   icon: mdi:string-lights
+aqi_notify_15:
+aqi_notify_50:

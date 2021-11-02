@@ -86,8 +86,9 @@
           push:
             interruption-level: active
 
-- id: indoor_air_quality
-  alias: Notify Indoor Air Quality
+- id: indoor_air_quality_15
+  alias: Notify Indoor Air Quality 15
+  mode: single
   trigger:
     - platform: numeric_state
       entity_id: sensor.pm1
@@ -98,6 +99,12 @@
     - platform: numeric_state
       entity_id: sensor.pm10
       above: 15
+  condition:
+    # Notify only if notification has not been sent in the past hour
+    - alias: "boolean_off"
+      condition: state
+      entity_id: input_boolean.aqi_notify_15
+      state: "off"
   action:
     - alias: "notify_mobile_apps"
       service: notify.all_mobile_apps
@@ -107,3 +114,49 @@
         data:
           push:
             interruption-level: active
+    - alias: "turn_on_boolean"
+      service: input_boolean.turn_on
+      target:
+        entity_id: input_boolean.aqi_notify_15
+    - delay: 01:00:00
+    - alias: "turn_off_boolean"
+      service: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.aqi_notify_15
+
+- id: indoor_air_quality_50
+  alias: Notify Indoor Air Quality 50
+  mode: single
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.pm1
+      above: 50
+    - platform: numeric_state
+      entity_id: sensor.pm2_5
+      above: 50
+    - platform: numeric_state
+      entity_id: sensor.pm10
+      above: 50
+  condition:
+    - alias: "boolean_off"
+      condition: state
+      entity_id: input_boolean.aqi_notify_50
+      state: "off"
+  action:
+    - alias: "notify_mobile_apps"
+      service: notify.all_mobile_apps
+      data:
+        title: "Indoor Air Quality"
+        message: "Current {{ trigger.to_state.name }} concentration is {{ trigger.to_state.state }}. Consider turning up the air purifiers."
+        data:
+          push:
+            interruption-level: active
+    - alias: "turn_on_boolean"
+      service: input_boolean.turn_on
+      target:
+        entity_id: input_boolean.aqi_notify_50
+    - delay: 01:00:00
+    - alias: "turn_off_boolean"
+      service: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.aqi_notify_50
