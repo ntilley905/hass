@@ -1,3 +1,5 @@
+---
+
 esphome:
   name: air-quality
   platform: ESP32

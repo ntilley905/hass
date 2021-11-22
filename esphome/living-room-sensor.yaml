@@ -1,3 +1,5 @@
+---
+
 esphome:
   name: living-room-sensor
   platform: ESP8266

@@ -1,3 +1,5 @@
+---
+
 esphome:
   name: airgradient
   platform: ESP8266
@@ -76,3 +78,4 @@ display:
       it.printf(0, 12, id(opensans), "%.1f%% RH", id(humidity).state);
       it.printf(0, 24, id(opensans), "%.0fppm", id(co2).state);
       it.printf(0, 36, id(opensans), "%.0f µg/m³", id(pm25).state);
+
