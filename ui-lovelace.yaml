@@ -81,6 +81,7 @@ views:
           - sensor.pm1
           - sensor.pm2_5
           - sensor.pm10
+          - sensor.bedroom_particulate_matter_2_5um_concentration
 
   - path: vacuum
     title: Vacuum
@@ -164,23 +165,13 @@ views:
               - sensor.kitchen_illuminance_z
               - binary_sensor.kitchen_motion_z
             show_name: false
-      - type: vertical-stack
-        cards:
-          - type: glance
-            title: Hallway Sensor
-            entities:
-              - sensor.hallway_temperature_z
-              - sensor.hallway_humidity_z
-              - sensor.hallway_illuminance_z
-              - binary_sensor.hallway_motion_z
-            show_name: false
       - type: glance
         title: Living Room Sensor
         entities:
           - sensor.living_room_temperature
           - sensor.living_room_humidity
-          - sensor.living_room_luminance
           - binary_sensor.living_room_motion
+        show_name: false
       - type: button
         entity: light.living_room_lamp
 
@@ -207,6 +198,9 @@ views:
         entities:
           - light.bedroom_lamp
           - light.reading_lamp
+      - type: history-graph
+        entities:
+          - sensor.bedroom_senseair_co2_value
 
   - path: bathroom
     title: Bathroom
@@ -347,25 +341,26 @@ views:
     title: 3D Printer
     icon: mdi:printer-3d-nozzle
     badges:
-      - binary_sensor.prusa_i3_mk3s_printing
-      - binary_sensor.prusa_i3_mk3s_printing_error
+      - binary_sensor.octoprint_printing
+      - binary_sensor.octoprint_printing_error
+      - sensor.octoprint_current_state
       - sensor.3d_printer_temperature
       - sensor.3d_printer_humidity
     cards:
       - type: history-graph
         entities:
-          - sensor.prusa_i3_mk3s_target_bed_temp
-          - sensor.prusa_i3_mk3s_actual_bed_temp
+          - sensor.octoprint_target_bed_temp
+          - sensor.octoprint_actual_bed_temp
         hours_to_show: 2
         title: Bed Temp
       - type: history-graph
         entities:
-          - sensor.prusa_i3_mk3s_target_tool0_temp
-          - sensor.prusa_i3_mk3s_actual_tool0_temp
+          - sensor.octoprint_target_tool0_temp
+          - sensor.octoprint_actual_tool0_temp
         title: Nozzle Temp
         hours_to_show: 2
       - type: gauge
-        entity: sensor.prusa_i3_mk3s_job_percentage
+        entity: sensor.octoprint_job_percentage
       - type: button
         name: OctoPi
         icon: mdi:raspberry-pi
@@ -374,13 +369,14 @@ views:
           confirmation: true
           action: call-service
           service: script.toggle_octopi
+      - type: entities
+        title: Lights
+        entities:
+          - light.3d_printer_lights
 
   - path: delays
     title: Delays
     icon: mdi:airplane
-    badges:
-      - sensor.next_report_time
-      - sensor.time_to_leave
     cards:
       - type: entities
         title: ATL Status
@@ -442,6 +438,7 @@ views:
           - light.all
           - group.home_devices
           - group.updaters
+          - sensor.cp1500_status
       - type: entities
         title: Pi-Hole.2
         entities:
@@ -481,3 +478,9 @@ views:
       - type: sensor
         name: CPU Temp
         entity: sensor.processor_temperature
+      - type: gauge
+        name: UPS Battery
+        entity: sensor.cp1500_battery_charge
+      - type: history-graph
+        entities:
+          - sensor.cp1500_input_voltage

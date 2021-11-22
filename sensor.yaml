@@ -80,6 +80,7 @@
     - sensor.bedroom_temperature_z
     - sensor.kitchen_temperature_z
     - sensor.living_room_temperature
+    - sensor.bedroom_temperature
   type: mean
   name: Indoor Temperature
 - platform: filter

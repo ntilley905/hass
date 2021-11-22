@@ -23,13 +23,6 @@ api:
 ota:
 
 sensor:
-  - platform: adc
-    pin: A0
-    name: "Living Room Luminance"
-    unit_of_measurement: lx
-    filters:
-      - lambda: |-
-          return (x / 10000.0) * 2000000.0;
 
   - platform: dht
     pin: D7

@@ -1,0 +1,39 @@
+---
+# These automations trigger various actions when the power goes out or comes
+# back based on the state of a UPS that powers HA.
+
+- id: notify_power_out
+  alias: Notify Power Out
+  trigger:
+    - platform: state
+      entity_id: sensor.cp1500_status
+      to: "On Battery Battery Discharging"
+  condition:
+    - alias: "dumb_mode"
+      condition: state
+      entity_id: binary_sensor.dumb_mode
+      state: "off"
+  action:
+    - alias: "notify_mobile_apps"
+      service: notify.all_mobile_apps
+      data:
+        title: "Power is Out"
+        message: "The UPS is running on battery."
+
+- id: notify_power_on
+  alias: Notify Power On
+  trigger:
+    - platform: state
+      entity_id: sensor.cp1500_status
+      to: "Online Battery Charging"
+  condition:
+    - alias: "dumb_mode"
+      condition: state
+      entity_id: binary_sensor.dumb_mode
+      state: "off"
+  action:
+    - alias: "notify_mobile_apps"
+      service: notify.all_mobile_apps
+      data:
+        title: "Power is On"
+        message: "The UPS is online."
