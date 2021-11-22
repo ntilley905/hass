@@ -74,13 +74,6 @@ google:
 
 python_script:
 
-octoprint:
-  - host: !secret octoprint_host
-    api_key: !secret octoprint_key
-    name: Prusa i3 MK3S
-    bed: true
-    number_of_tools: 1
-
 spotify:
   client_id: !secret spotify_client_id
   client_secret: !secret spotify_client_secret
