@@ -51,14 +51,15 @@ jobs:
     steps:
       - name: ⤵️ Check out configuration from GitHub
         uses: actions/checkout@v2.4.0
-      - name: Set up Python 3.8
+      - name: Set up Python 3.9
         uses: actions/setup-python@v2.3.0
         with:
-          python-version: 3.8
+          python-version: 3.9
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip setuptools wheel
           pip install esphome
+          pip install pillow
           pip list
           esphome version
       - name: Copy test files into configuration folder
