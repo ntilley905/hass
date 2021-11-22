@@ -11,3 +11,4 @@
 
 # specific allows
 !/secrets.yaml
+!/fonts/
