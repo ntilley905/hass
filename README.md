@@ -1,3 +1,7 @@
+# Repository Archived
+
+This configuration is no longer in use following a move. This repository will be archived and no longer updated.
+
 # Home Assistant Configuration
 
 Hello! Welcome to my Home Assistant configuration repo. Here I store all of my config files and I will attempt to explain them as best as I can below.
